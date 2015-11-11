@@ -1,6 +1,6 @@
 <?php
 
-namespace AvekApetit\UserBundle;
+namespace AvekApeti\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

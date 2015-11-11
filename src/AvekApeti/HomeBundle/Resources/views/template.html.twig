@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}AvekApeti{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/home/css/bootstrap.min.css') }}" rel="stylesheet">
+    {% endblock %}
+    {% block head_scripts %}
+        <script type="text/javascript" src="{{ asset('bundles/home/js/jquery-2.1.4.min.js') }}"></script>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block foot_scripts %}
+    <script type="text/javascript" src="{{ asset('bundles/home/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>
