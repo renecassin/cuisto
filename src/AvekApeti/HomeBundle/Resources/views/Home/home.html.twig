@@ -1,6 +1,23 @@
 {%  extends  "@HomeBundle/Resources/views/layout.html.twig" %}
 
+{% block foot_scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}"></script>
+{%  endblock foot_scripts %}
+
 {% block content %}
+    <header>
+        <div class="header-opacity"></div>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>Your Favorite Source of Free Bootstrap Themes</h1>
+                <hr>
+                <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+            </div>
+        </div>
+    </header>
+
     <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">

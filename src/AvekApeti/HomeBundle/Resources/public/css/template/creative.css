@@ -186,11 +186,22 @@ header {
     -o-background-size: cover;
 }
 
+header .header-opacity {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    text-align: center;
+    background:#000;
+    opacity: 0.3;
+    z-index: 1;
+}
+
 header .header-content {
     position: relative;
     width: 100%;
     padding: 100px 15px;
     text-align: center;
+    z-index: 2;
 }
 
 header .header-content .header-content-inner h1 {
@@ -208,7 +219,7 @@ header .header-content .header-content-inner p {
     margin-bottom: 50px;
     font-size: 16px;
     font-weight: 300;
-    color: rgba(255,255,255,.7);
+    color: #FFF;
 }
 
 @media(min-width:768px) {
