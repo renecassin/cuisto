@@ -1,3 +1,16 @@
 home_homepage:
     path:     /
     defaults: { _controller: HomeBundle:Home:home }
+
+home_chefpage:
+    path:     /chef
+    defaults: { _controller: HomeBundle:Chef:chef}
+
+home_gourmetpage:
+    path:     /gourmet
+    defaults: { _controller: HomeBundle:Gourmet:gourmet}
+
+select_page:
+    path:     /select
+    defaults: { _controller: HomeBundle:Select:index}
+
