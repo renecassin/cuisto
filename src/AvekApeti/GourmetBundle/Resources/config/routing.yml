@@ -1,0 +1,23 @@
+gourmet_homepage:
+    path:     /
+    defaults: { _controller: GourmetBundle:Main:index }
+
+gourmet_loginpage:
+    path:     /login
+    defaults: { _controller: GourmetBundle:Main:login}
+
+gourmet_chef_inscription_page:
+    path:     /inscription-chef
+    defaults: { _controller: GourmetBundle:Chef:chefInscription}
+
+gourmet_gourmet_inscription_page:
+    path:     /inscription-gourmet
+    defaults: { _controller: GourmetBundle:Gourmet:gourmetInscription}
+
+gourmet_platpage:
+    path:     /plat
+    defaults: { _controller: GourmetBundle:Plat:index}
+
+gourmet_selection_platpage:
+    path:     /selection-plat
+    defaults: { _controller: GourmetBundle:Plat:selection}

@@ -1,7 +1,11 @@
-home:
-    resource: "@HomeBundle/Resources/config/routing.yml"
-    prefix:   /home/
+back:
+    resource: "@BackBundle/Resources/config/routing.yml"
+    prefix:   /back/
 
-user:
-    resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /user/
+chef:
+    resource: "@ChefBundle/Resources/config/routing.yml"
+    prefix:   /chef/
+
+gourmet:
+    resource: "@GourmetBundle/Resources/config/routing.yml"
+    prefix:   /

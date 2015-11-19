@@ -1,0 +1,323 @@
+#h1-home{
+    font-size: 60px!important;
+}
+
+.h1-page{
+    font-size: 50px!important;
+}
+
+header .header-opacity {
+    position: absolute;
+    width: 100%;
+    min-height: auto;
+    text-align: center;
+    background:radial-gradient(rgba(0,0,0,0.2),black 120%);
+    z-index: 1;
+}
+
+.btn-semi-transparent {
+    background: rgba(255,255,255,0.2);
+    border-style: none;
+    color: white;
+    margin-bottom: 100px;
+}
+
+.btn-semi-transparent:hover {
+    background-color:rgba(0,0,0,0.3);
+    color: white;
+}
+
+.address-input {
+    width: 50%;
+    border: 0;
+    font-family: 'Hevetica Neue',Arial,sans-serif;
+    padding: 15px 30px;
+    border-radius: 4px 0 0 4px;
+    box-sizing: border-box;
+    color: #565a5c;
+}
+
+.find-chef{
+    border-radius: 0 4px 4px 0;
+    box-sizing: border-box;
+    vertical-align: bottom;
+    margin-left: -4px;
+}
+
+.glyphycon-loupe{
+    font-size:19px;
+    font-weight: 200;
+}
+
+
+.form-recherche {
+    margin: 30px auto;
+}
+
+.form-adresse {
+    display: inline;
+}
+
+/*
+.logo-nav{
+    width: 3%;
+    position: absolute;
+    margin : 3px;
+}*/
+
+.btn-inscription{
+    background: #ff4848;
+    color: white;
+}
+
+.btn-inscription:hover {
+    background: #ffada2;
+}
+
+#mode-emploi{
+    /*
+    background: #ffada2;
+    */
+}
+
+.opacity-plat{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background: black;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 12px rgba(51,204,255,0.2);
+    }
+    50% {
+        -webkit-box-shadow: 0 0 12px rgba(51,204,255,0.9);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 12px rgba(51,204,255,0.2);
+    }
+}
+
+.header{
+    background-image: url(../../img/header.jpg);
+}
+
+.header-chef {
+    background-image: url(../../img/chef/chef7.jpg);
+}
+
+.header-gourmet {
+    background-image: url(../../img/gourmet/header.jpg);
+}
+
+.header-connexion {
+    background-image: url(../../img/header-connexion.jpg);
+}
+
+
+@media (min-width: 768px) {
+    .form-adresse {
+        display: inline;
+    }
+}
+
+@media (min-width: 768px) {
+    .form-adresse {
+        vertical-align: bottom;
+    }
+    .address-input{
+        width: 400px;
+    }
+    .petite-recherche{
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .grande-recherche{
+        display: none;
+    }
+    .find-chef{
+        padding: 13px 28px;
+    }
+}
+
+.portfolio-padding{
+    padding: 0 120px;
+}
+
+.img-format {
+    height: 285px;
+}
+
+.bg-primary{
+    padding: 40px 0;
+}
+
+.margin-haut{
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .inscription-gourmet{
+        width: 400px;
+    }
+}
+
+.btn-valider-inscription{
+    box-sizing: border-box;
+    vertical-align: bottom;
+    width: 100%;
+    padding: 15px 1px;
+}
+
+.btn-facebook-inscription{
+    box-sizing: border-box;
+    vertical-align: bottom;
+    width: 100%;
+    background-color: #3b5998;
+    padding: 15px 1px;
+}
+
+.btn-facebook-inscription:hover,
+.btn-facebook-inscription:focus
+{
+    background-color: #3470a5;
+}
+
+.titre-inscription {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+.hr-marge{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.remember{
+    text-align: left;
+    color: black;
+}
+
+.acceptation{
+    text-align: left;
+    color: black;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.form-control-feedback{
+    color: #777;
+}
+
+.panel-perso {
+    color: #777;
+    background-color: rgba(255, 255, 255, 0.8);
+    border:none;
+    margin :80px 2% 20px 2%;
+}
+
+@media (min-width: 768px) {
+    .panel-perso {
+        margin :60px 0 0 0;
+    }
+}
+
+.form-control-perso{
+    border-color:gray;
+}
+
+.bloc-titre-inscription{
+    margin-top: 80px;
+    text-align:left;
+}
+
+@media (min-width: 768px) {
+    .bloc-titre-inscription{
+        margin-top: 50px;
+    }
+}
+
+.ou{
+    text-align: center;
+    margin:0;
+    color: black;
+}
+
+.margin-hr{
+    margin-top:5px;
+}
+
+.logo-facebook{
+    left: 70px;
+    top: 25px;
+    position: absolute;
+}
+
+@media (min-width: 992px) {
+    .logo-facebook{
+        left: 50px;
+        top: 85px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .logo-facebook{
+        display: none ;
+    }
+}
+
+.panel-perso-inscription {
+    color: #777;
+    background-color: rgba(255, 255, 255, 0.8);
+    border:none;
+    margin :50px 0 0 0;
+}
+
+@media (min-width: 768px) {
+    .panel-perso-inscription {
+        margin :10px 0 0 0;
+    }
+}
+
+.logo-facebook-inscription{
+    left: 50px;
+    top: 25px;
+    position: absolute;
+}
+
+@media (min-width: 992px) {
+    .logo-facebook-inscription{
+        left: 50px;
+        top: 35px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .logo-facebook-inscription{
+        display: none ;
+    }
+}
+
+@media (min-width: 768px) {
+    header .header-content-connexion{
+        top: 45%;
+    }
+}
+
+.bloc-titre-connexion{
+    margin-top: 80px;
+    text-align:center;
+}
+
+@media (min-width: 768px) {
+    .bloc-titre-connexion{
+        margin-top: 0;
+    }
+}
