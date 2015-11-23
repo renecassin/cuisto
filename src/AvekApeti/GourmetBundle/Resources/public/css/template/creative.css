@@ -30,7 +30,6 @@ a {
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
-    font-weight: 700;
 }
 
 
@@ -55,10 +54,6 @@ p {
     line-height: 1.5;
 }
 
-.bg-primary {
-    background-color: #64aeb4;
-}
-
 .bg-dark {
     color: #fff;
     background-color: #222;
@@ -69,7 +64,7 @@ p {
 }
 
 section {
-    padding: 50px 0;
+    padding: 65px 0;
 }
 
 aside {
@@ -244,7 +239,7 @@ header .header-content .header-content-inner p {
 
     header .header-content {
         position: absolute;
-        top: 50%;
+        top: 48%;
         /*padding: 0 120px;*/
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -310,7 +305,7 @@ header .header-content .header-content-inner p {
     transition: opacity 0.5s ease-in-out;
 
 }
-/*
+
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
     position: absolute;
     top: 50%;
@@ -348,7 +343,7 @@ header .header-content .header-content-inner p {
         font-size: 22px;
     }
 }
-*/
+
 .text-primary {
     color: #64aeb4;
 }
@@ -548,19 +543,21 @@ ul.social-buttons li a:active {
 
 #portfolio .portfolio-item {
     right: 0;
-    margin: 0 0 15px;
 }
 
 #portfolio .portfolio-item .portfolio-link {
     display: block;
     position: relative;
-    margin: 20px auto;
-    max-width: 400px;
+    margin: 15px auto;
     filter: saturate(120%);
     -webkit-filter: saturate(110%);
     -moz-filter: saturate(110%);
     -o-filter: saturate(110%);
     -ms-filter: saturate(110%);
+}
+
+.plat-jour .portfolio-link {
+    max-width: 400px;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
@@ -648,39 +645,6 @@ section#contact .form-group input.form-control {
 
 section#contact .form-group textarea.form-control {
     height: 245px;
-}
-
-section#contact .form-control:focus {
-    border-color: #fed136;
-    box-shadow: none;
-}
-
-section#contact::-webkit-input-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact:-moz-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact::-moz-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact:-ms-input-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    color: #bbb;
 }
 
 section#contact .text-danger {

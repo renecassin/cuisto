@@ -5,9 +5,23 @@
     <script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}"></script>
 {%  endblock foot_scripts %}
 
+{% block titre %}Plat{{ parent() }}{% endblock %}
+
 {% block content %}
+
+    <header class="header header-selection-plat">
+        <div class="header-opacity"></div>
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 id="h1-home">Votre plat</h1>
+                <br>
+                <p>Bientôt vous pourrez commander en quelques clics un plat fait maison sur Avekapeti <br> Préparez-vous une révolution arrive !</p>
+            </div>
+        </div>
+    </header>
+
     <!-- Page Content -->
-    <div class="container">
+    <div class="container selection-plat">
 
         <div class="row">
 
@@ -23,7 +37,7 @@
             <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <img class="img-responsive" src="{{ asset('bundles/gourmet/img/plats/selection-plat/raviolesAuFromage.jpg') }}" alt="">
                     <div class="caption-full">
                         <h4 class="pull-right">$24.99</h4>
                         <h4><a href="#">Product Name</a>
@@ -104,6 +118,33 @@
 
         </div>
 
+        <!-- Related Projects Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Si vous aimez ce plat, vous pourriez aimer ...</h3>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
     </div>
     <!-- /.container -->
 {% endblock content %}

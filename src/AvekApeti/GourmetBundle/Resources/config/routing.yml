@@ -7,11 +7,11 @@ gourmet_loginpage:
     defaults: { _controller: GourmetBundle:Main:login}
 
 gourmet_chef_inscription_page:
-    path:     /inscription-chef
+    path:     /inscription_chef
     defaults: { _controller: GourmetBundle:Chef:chefInscription}
 
 gourmet_gourmet_inscription_page:
-    path:     /inscription-gourmet
+    path:     /inscription_gourmet
     defaults: { _controller: GourmetBundle:Gourmet:gourmetInscription}
 
 gourmet_platpage:
@@ -19,5 +19,5 @@ gourmet_platpage:
     defaults: { _controller: GourmetBundle:Plat:index}
 
 gourmet_selection_platpage:
-    path:     /selection-plat
+    path:     /selection_plat
     defaults: { _controller: GourmetBundle:Plat:selection}
