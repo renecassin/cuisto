@@ -1,0 +1,30 @@
+utilisateur:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Utilisateur:index" }
+
+utilisateur_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Utilisateur:show" }
+
+utilisateur_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Utilisateur:new" }
+
+utilisateur_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Utilisateur:create" }
+    methods:  POST
+
+utilisateur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Utilisateur:edit" }
+
+utilisateur_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Utilisateur:update" }
+    methods:  [POST, PUT]
+
+utilisateur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Utilisateur:delete" }
+    methods:  [POST, DELETE]

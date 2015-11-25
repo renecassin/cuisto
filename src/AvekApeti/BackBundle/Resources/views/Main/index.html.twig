@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AvekApetiBackBundle:Main:index{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Admin Main:index page</h1>
+
+    <a href="{{ path("utilisateur")}}">Redirection utilisateur</a><br>
+    <a href="{{ path("chef")}}">Redirection chef</a><br>
+    <a href="{{ path("groupe")  }}">Redirection groupe</a>
+
+{% endblock %}

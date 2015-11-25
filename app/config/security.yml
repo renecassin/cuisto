@@ -1,0 +1,49 @@
+
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        AvekApeti\BackBundle\Entity\Utilisateur:
+          algorithm: bcrypt
+          cost: 15
+    role_hierarchy:
+        # Un admin hérite des droits d'auteur et de modérateur
+        ROLE_CHEF:       [ROLE_GOURMET]
+        ROLE_ADMIN:       [ROLE_GOURMET, ROLE_CHEF]
+        # On garde ce rôle superadmin, il nous resservira par la suite
+        ROLE_SUPER_ADMIN: [ROLE_GOURMET, ROLE_CHEF, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+      in_memory:
+        memory:
+          users:
+            user:
+            admin@admin: { password: admin, roles: ROLE_SUPER_ADMIN }
+      main:
+        entity:
+          class: AvekApetiBackBundle:Utilisateur
+          property: email
+      mix:
+        chain:
+          provider: [in_memory, main]
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:   ^/
+            anonymous: true
+            provider:  in_memory
+            form_login:
+                login_path: login
+                check_path: login_check
+                csrf_provider: security.csrf.token_manager
+            logout:
+                path:   logout
+                target: /
+            remember_me:
+              key:      "%secret%"
+              lifetime: 172800 # 2jours a définir en secondes
+    access_control:
+    - { path: ^/Admin, role: ROLE_ADMIN }
+    - { path: ^/Chef, role: ROLE_CHEF }
+    - { path: ^/Gourmet, role: ROLE_GOURMET }

@@ -10,9 +10,16 @@ gourmet_chef_inscription_page:
     path:     /inscription_chef
     defaults: { _controller: GourmetBundle:Chef:chefInscription}
 
+gourmet_chef_inscription_create:
+    path:     /Create
+    defaults: { _controller: GourmetBundle:Chef:create }
 gourmet_gourmet_inscription_page:
     path:     /inscription_gourmet
     defaults: { _controller: GourmetBundle:Gourmet:gourmetInscription}
+
+gourmet_gourmet_inscription_create:
+    path:     /Create
+    defaults: { _controller: GourmetBundle:Gourmet:create }
 
 gourmet_platpage:
     path:     /plat
@@ -21,3 +28,4 @@ gourmet_platpage:
 gourmet_selection_platpage:
     path:     /selection_plat
     defaults: { _controller: GourmetBundle:Plat:selection}
+

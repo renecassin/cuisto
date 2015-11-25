@@ -1,0 +1,4 @@
+services:
+#    avekapeti_back.example:
+#        class: Avekapeti\BackBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

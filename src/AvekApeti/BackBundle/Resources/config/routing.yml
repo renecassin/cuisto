@@ -1,0 +1,21 @@
+avekapeti_back_chef:
+    resource: "@AvekApetiBackBundle/Resources/config/routing/chef.yml"
+    prefix:   /chef
+
+avekapeti_back_utilisateur:
+    resource: "@AvekApetiBackBundle/Resources/config/routing/utilisateur.yml"
+    prefix:   /utilisateur
+
+
+avekapeti_back_image:
+    resource: "@AvekApetiBackBundle/Resources/config/routing/image.yml"
+    prefix:   /image
+
+avekapeti_back_groupe:
+    resource: "@AvekApetiBackBundle/Resources/config/routing/groupe.yml"
+    prefix:   /groupe
+
+
+index:
+    path:     /
+    defaults: { _controller: AvekApetiBackBundle:Main:index }

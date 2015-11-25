@@ -1,0 +1,30 @@
+groupe:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Groupe:index" }
+
+groupe_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Groupe:show" }
+
+groupe_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Groupe:new" }
+
+groupe_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Groupe:create" }
+    methods:  POST
+
+groupe_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Groupe:edit" }
+
+groupe_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Groupe:update" }
+    methods:  [POST, PUT]
+
+groupe_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Groupe:delete" }
+    methods:  [POST, DELETE]

@@ -1,6 +1,6 @@
-back:
-    resource: "@BackBundle/Resources/config/routing.yml"
-    prefix:   /back/
+avekapeti_back:
+    resource: "@AvekApetiBackBundle/Resources/config/routing.yml"
+    prefix:   /Admin
 
 chef:
     resource: "@ChefBundle/Resources/config/routing.yml"
@@ -9,3 +9,13 @@ chef:
 gourmet:
     resource: "@GourmetBundle/Resources/config/routing.yml"
     prefix:   /
+
+login:
+    pattern:   /login
+    defaults:  { _controller: GourmetBundle:Main:login }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout

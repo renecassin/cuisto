@@ -17,13 +17,7 @@ security:
       memory:
         users:
           user:
-            password: userpass
-            roles: [ ’ROLE_GOURMET’ ]
-
-          admin:
-            password: admin
-            roles: ROLE_ADMIN #un role commence tj par ROLE
-          admin: { password: admin, roles: ROLE_SUPER_ADMIN }
+          admin@admin: { password: admin, roles: ROLE_SUPER_ADMIN }
     user_admin:
       entity: { class: AvekApeti\BackBundle\Entity\Utilisateur }
     mix:
@@ -40,12 +34,8 @@ security:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
 
-    loginfirewall:
-      pattern: ^Admin/login$
-      security: false
-
     main:
-      pattern: ^/Admin
+      pattern: ^/
       anonymous: false
 
       provider: user_admin
@@ -74,5 +64,5 @@ security:
       #Gere l'accé pas l'authetification
   access_control:
   - { path: ^/Admin, role: ROLE_ADMIN }
-  - { path: ^/chef, role: ROLE_CHEF }
-  - { path: ^/gourmet, role: ROLE_GOURMET }
+  - { path: ^/Chef, role: ROLE_CHEF }
+  - { path: ^/Gourmet, role: ROLE_GOURMET }

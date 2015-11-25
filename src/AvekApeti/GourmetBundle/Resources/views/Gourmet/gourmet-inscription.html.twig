@@ -12,7 +12,8 @@
                 <div class="col-sm-4 col-sm-offset-1" >
                     <div class="login-panel panel panel-default panel-perso">
                         <div class="panel-body">
-                            <form role="form">
+                            <!--<form role="form">-->
+                                {{ form_start(form) }}
                                 <div class=" panel-heading-perso ">
                                     <a href="#" class="btn btn-primary btn-xl btn-facebook-inscription"><i class="fa fa-2x fa-facebook logo-facebook"></i>Inscription avec Facebook</a>
                                 </div>
@@ -20,43 +21,75 @@
                                 <hr class="margin-hr">
                                 <fieldset>
                                     <div class="form-group has-feedback">
-                                        <input type="text" class="form-control form-control-perso" placeholder="Nom" id="nom-gourmet" required data-validation-required-message="Veuillez entrer votre nom." autofocus>
+                                        {{ form_widget(form.login,
+                                        {
+                                            attr:{class: "form-control form-control-perso",placeholder: "Login",id: "login-gourmet",required: 'data-validation-required-message= "Veuillez entrer votre login."'}
+                                        })
+                                        }}
+                                      <!-- <input type="text" class="form-control form-control-perso" placeholder="Nom" id="nom-gourmet" required data-validation-required-message="Veuillez entrer votre nom." autofocus>-->
                                         <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
-                                        <p class="help-block text-danger"></p>
+                                        <p class="help-block text-danger">{{ form_errors(form.login) }}</p>
                                     </div>
-                                    <div class="form-group has-feedback">
+                                    <!--<div class="form-group has-feedback">
                                         <input type="text" class="form-control form-control-perso" placeholder="Prénom" id="prenom-gourmet" required data-validation-required-message="Veuillez entrer votre prénom.">
                                         <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
                                         <p class="help-block text-danger"></p>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group has-feedback">
-                                        <input type="email" class="form-control form-control-perso" placeholder="Adresse e-mail : nom@exemple.com" id="email-gourmet" required data-validation-required-message="Veuillez entrer votre email.">
+                                        {{ form_widget(form.email,
+                                        {
+                                            attr:{class: "form-control form-control-perso",placeholder: "Adresse e-mail : nom@exemple.com",id: "email-gourmet",required: 'data-validation-required-message= "Veuillez entrer votre email."'}
+                                        })
+                                        }}
+                                      <!--  <input type="email" class="form-control form-control-perso" placeholder="Adresse e-mail : nom@exemple.com" id="email-gourmet" required data-validation-required-message="Veuillez entrer votre email.">-->
                                         <span class="glyphicon glyphicon-envelope form-control-feedback glyphicon-perso"></span>
-                                        <p class="help-block text-danger"></p>
+                                        <p class="help-block text-danger">{{ form_errors(form.email) }}</p>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <input type="tel" class="form-control form-control-perso" placeholder="Téléphone" id="telephone-gourmet" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
+                                        {{ form_widget(form.phone,
+                                        {
+                                            attr:{class: "form-control form-control-perso",placeholder: "Téléphone",id: "telephone-gourmet",required: 'data-validation-required-message= "Veuillez entrer votre numéro de téléphone."'}
+                                        })
+                                        }}
+                                        <!--<input type="tel" class="form-control form-control-perso" placeholder="Téléphone" id="telephone-gourmet" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">-->
                                         <span class="glyphicon glyphicon-earphone form-control-feedback glyphicon-perso"></span>
-                                        <p class="help-block text-danger"></p>
+                                        <p class="help-block text-danger">{{ form_errors(form.phone) }}</p>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <input type="password" class="form-control form-control-perso" placeholder="Mot de passe" id="password-gourmet" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
+                                        {{ form_widget(form.password,
+                                        {
+                                            attr:{class: "form-control form-control-perso",placeholder: "Mot de passe",id: "password-gourmet",required: 'data-validation-required-message= "Veuillez entrer votre mot de passe."'}
+                                        })
+                                        }}
+                                        <!--<input type="password" class="form-control form-control-perso" placeholder="Mot de passe" id="password-gourmet" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">-->
                                         <span class="glyphicon glyphicon-lock form-control-feedback glyphicon-perso"></span>
-                                        <p class="help-block text-danger"></p>
+                                        <p class="help-block text-danger">{{ form_errors(form.password) }}</p>
                                     </div>
                                     <div class="checkbox remember">
                                         <label>
-                                            <input name="remember"  type="checkbox" value="Remember Me">Je souhaite recevoir la newsletter Avekapeti
+                                            {{ form_widget(form.newsletter,
+                                            {
+                                                attr:{name: "remember", value: "Remember Me"}
+                                            })
+                                            }}
+
+                                           <!-- <input name="remember"  type="checkbox" value="Remember Me">-->Je souhaite recevoir la newsletter Avekapeti
                                         </label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-xl btn-valider-inscription">Créer un compte</button>
+                                    {{ form_widget(form.submit,{label:"Créer un compte",
+                                        attr:{class:"btn btn-primary btn-xl btn-valider-inscription"},
+                                        id:"Envoyer"
+                                    })
+                                    }}
+                                    <!--<button type="submit" class="btn btn-primary btn-xl btn-valider-inscription">Créer un compte</button>-->
                                     <div class="form-group">
                                         <p class="acceptation">En cliquant sur Créer un compte, vous acceptez les <a href="#">Conditions générales</a>  et la <a href="#">Politique de confidentialité</a> d'Avekapeti.</p>
                                     </div>
                                     <hr>
                                     <p class="acceptation">Déjà membre Avekapeti ? <a href={{ path('gourmet_loginpage') }} >Connexion</a></p>
                                 </fieldset>
-                            </form>
+                            <!--</form>-->
+                            {{ form_end(form) }}
                         </div>
                     </div>
                 </div>

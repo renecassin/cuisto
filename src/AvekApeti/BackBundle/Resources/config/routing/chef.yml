@@ -1,0 +1,30 @@
+chef:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Chef:index" }
+
+chef_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Chef:show" }
+
+chef_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Chef:new" }
+
+chef_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Chef:create" }
+    methods:  POST
+
+chef_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Chef:edit" }
+
+chef_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Chef:update" }
+    methods:  [POST, PUT]
+
+chef_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Chef:delete" }
+    methods:  [POST, DELETE]

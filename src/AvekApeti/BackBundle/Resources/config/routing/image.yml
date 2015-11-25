@@ -1,0 +1,10 @@
+image:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Image:index" }
+
+image_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Image:show" }
+
+
+
