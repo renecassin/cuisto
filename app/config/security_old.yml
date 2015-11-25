@@ -1,0 +1,78 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+  encoders:
+    Symfony\Component\Security\Core\User\User: plaintext
+   # Www\BackBundle\Entity\User:
+   #   algorithm:  sha512
+   #   encode_as_base64: true
+   #   iterations:  200000
+    AvekApeti\BackBundle\Entity\Utilisateur:
+      algorithm: bcrypt
+      cost: 15
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+  providers:
+    in_memory:
+      memory:
+        users:
+          user:
+            password: userpass
+            roles: [ ’ROLE_GOURMET’ ]
+
+          admin:
+            password: admin
+            roles: ROLE_ADMIN #un role commence tj par ROLE
+          admin: { password: admin, roles: ROLE_SUPER_ADMIN }
+    user_admin:
+      entity: { class: AvekApeti\BackBundle\Entity\Utilisateur }
+    mix:
+      chain:
+        provider: [in_memory, user_admin]
+  role_hierarchy:
+    #Si j'essay d'acceder a /product en tant que commercial sachant qu'un commercial a accé a product
+    #alors en tant qu'admin je pourrait egalement y acceder
+
+    ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+  firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+
+    loginfirewall:
+      pattern: ^Admin/login$
+      security: false
+
+    main:
+      pattern: ^/Admin
+      anonymous: false
+
+      provider: user_admin
+            # activate different ways to authenticate
+      switch_user: { role: ROLE_SUPER_ADMIN , parameter: _swt_u}
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+      form_login:
+        login_path: gourmet_loginpage
+        check_path: /login_check
+        default_target_path: /
+              # oblige à rediriger sur le default_target_path
+        always_use_default_target_path: true
+          #activation de la protection csrf
+        csrf_provider: security.csrf.token_manager
+      logout:
+        path: /logout
+        target: /
+      remember_me:
+        key:      "%secret%"
+        lifetime: 172800 # 2jours a définir en secondes
+      # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+      #Gere l'accé pas l'authetification
+  access_control:
+  - { path: ^/Admin, role: ROLE_ADMIN }
+  - { path: ^/chef, role: ROLE_CHEF }
+  - { path: ^/gourmet, role: ROLE_GOURMET }
