@@ -5,7 +5,7 @@
  */
 
 .selection-plat {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 20px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .slide-image {
@@ -28,6 +28,7 @@
 
 .caption h4 {
     white-space: nowrap;
+    margin-bottom: 5px;
 }
 
 .thumbnail img {
@@ -47,3 +48,8 @@
 .thumbnail .caption {
     padding: 0 9px 0;
 }
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+

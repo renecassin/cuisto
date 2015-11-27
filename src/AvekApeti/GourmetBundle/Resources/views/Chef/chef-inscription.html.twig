@@ -5,8 +5,10 @@
     <script type="text/javascript" src="{{ asset('bundles/gourmet/js/home.js') }}"></script>
 {%  endblock foot_scripts %}
 
+{% block titre %}Devenez Chef{{ parent() }}{% endblock %}
+
 {% block content %}
-    <header class="header-chef">
+    <header class="header-chef" id="chef-inscription">
         <div class="header-content">
             <div class="row">
                 <div class="col-sm-5 col-sm-offset-1">

@@ -1,0 +1,609 @@
+#h1-home{
+    font-size: 60px!important;
+}
+
+.h1-page{
+    font-size: 50px!important;
+}
+
+.btn-semi-transparent {
+    background: rgba(229,73,95,.4);
+    border-style: none;
+    color: white;
+    margin-bottom: 70px;
+}
+
+.btn-semi-transparent:hover,
+.btn-semi-transparent:focus,
+.btn-semi-transparent.focus,
+.btn-semi-transparent:active,
+.btn-semi-transparent.active,
+.open > .dropdown-toggle.btn-semi-transparent {
+    background: rgba(229,73,95,.7);
+    color: white;
+    outline: none!important;
+}
+
+
+.btn-semi-transparent:active,
+.btn-semi-transparent.active,
+.open > .dropdown-toggle.btn-default {
+    background-color: #ff4848;
+}
+
+.address-input {
+    width: 70%;
+    border: 0;
+    font-family: 'Hevetica Neue',Arial,sans-serif;
+    padding: 15px 30px;
+    border-radius: 4px 0 0 4px;
+    box-sizing: border-box;
+    color: #565a5c;
+}
+
+
+.glyphycon-loupe{
+    font-size:19px;
+    font-weight: 200;
+}
+
+
+.form-recherche {
+    margin: 30px auto;
+}
+
+.form-adresse {
+    display: inline;
+}
+
+
+.header{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header.jpg);
+}
+
+.header-chef {
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/chef/header.jpg);
+}
+
+.header-gourmet {
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/gourmet/header.jpg);
+}
+
+.header-connexion {
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header-connexion.jpg);
+}
+
+.header-selection-plat{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/plats/selection-plat/raviolesAuFromage.jpg);
+    min-height: 60%;
+}
+
+.header-index-plat{
+    background-image: radial-gradient(rgba(0,0,0,0),black 120%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg);
+    min-height: 70%;
+}
+
+
+@media (min-width: 768px) {
+    .form-adresse {
+        display: inline;
+    }
+}
+
+@media (min-width: 768px) {
+    .form-adresse {
+        vertical-align: bottom;
+    }
+    .address-input{
+        width: 500px;
+    }
+    .petite-recherche{
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    #header-home .grande-recherche{
+        display: none;
+    }
+    #header-home .btn-primary{
+        padding: 13px 28px;
+    }
+}
+
+
+
+.img-format {
+    height: 285px;
+}
+
+.bg-primary{
+    padding: 70px 0;
+
+}
+
+.bg-cta-chef {
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/chef/header.jpg) no-repeat center fixed ;
+    background-size: cover;
+}
+
+.bg-cta-gourmet {
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/gourmet/header.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+
+.margin-haut{
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .inscription-gourmet{
+        width: 400px;
+    }
+}
+
+.btn-valider-inscription{
+    box-sizing: border-box;
+    vertical-align: bottom;
+    width: 100%;
+    padding: 15px 1px;
+}
+
+.btn-facebook-inscription{
+    box-sizing: border-box;
+    vertical-align: bottom;
+    width: 100%;
+    background-color: #3b5998;
+    padding: 15px 1px;
+}
+
+.btn-facebook-inscription:hover,
+.btn-facebook-inscription:focus
+{
+    background-color: #3470a5;
+}
+
+.titre-inscription {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+.hr-marge{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.remember{
+    text-align: left;
+    color: black;
+}
+
+.acceptation{
+    text-align: left;
+    color: black;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.glyphicon-perso{
+    color: #777;
+}
+
+section#contact .glyphicon-perso {
+    top:3px;
+}
+
+
+.panel-perso {
+    color: #777;
+    background-color: rgba(255, 255, 255, 0.8);
+    border:none;
+}
+
+#chef-inscription .panel-perso{
+    margin :50px 2% 20px 2%;
+}
+
+#gourmet-inscription .panel-perso{
+    margin :80px 2% 20px 2%;
+}
+
+@media (min-width: 768px) {
+    #chef-inscription .panel-perso,
+    #gourmet-inscription .panel-perso {
+        margin :40px 0 0 0;
+    }
+}
+
+.form-control-perso{
+    border-color:gray;
+}
+
+#chef-inscription .bloc-titre-inscription{
+     margin: 70px 3% 0 3%;
+     text-align:left;
+ }
+
+#gourmet-inscription .bloc-titre-inscription{
+    margin: 50px 3% 0 3%;
+    text-align:left;
+}
+
+@media (min-width: 768px) {
+    #chef-inscription .bloc-titre-inscription,
+    #gourmet-inscription .bloc-titre-inscription{
+        margin-top: 20px;
+    }
+}
+
+.ou{
+    text-align: center;
+    margin:0;
+    color: black;
+}
+
+.margin-hr{
+    margin-top:5px;
+}
+
+@media (max-width: 400px) {
+    .logo-facebook{
+        display: none ;
+    }
+}
+
+@media (min-width: 400px) {
+    .logo-facebook{
+        left: 70px;
+        top: 25px;
+        position: absolute;
+    }
+}
+
+@media (min-width: 1050px) {
+    .logo-facebook{
+        left: 50px;
+        top: 66px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1050px) {
+    .logo-facebook{
+        display: none ;
+    }
+}
+
+.panel-perso-connexion {
+    color: #777;
+    background-color: rgba(255, 255, 255, 0.8);
+    border:none;
+    margin :50px 0 0 0;
+}
+
+@media (min-width: 768px) {
+    .panel-perso-connexion {
+        margin :10px 0 0 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-facebook-connexion{
+        display: none ;
+    }
+}
+
+@media (min-width: 400px) {
+    .logo-facebook-connexion{
+        left: 50px;
+        top: 25px;
+        position: absolute;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1050px) {
+    .logo-facebook-connexion{
+        top: 35px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .logo-facebook-connexion{
+        left: 50px;
+        top: 35px;
+    }
+}
+
+@media (min-width: 768px) {
+    header .header-content-connexion{
+        top: 45%;
+    }
+}
+
+.bloc-titre-connexion{
+    margin-top: 80px;
+    text-align:center;
+}
+
+@media (min-width: 768px) {
+    .bloc-titre-connexion{
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 440px) {
+    .header-selection-plat {
+        min-height: 40%;
+    }
+}
+
+.nom-plat{
+    color:#565a5c;
+}
+
+.index-plat .nom-plat{
+    font-size: 24px;
+}
+
+.selection-plat .nom-plat:hover{
+    color:#565a5c;
+    text-decoration: underline;
+}
+
+.ratings p{
+    color:#777;
+    font-size: 14px;
+}
+
+.ratings span{
+    color:#ff4848;
+}
+
+.monde-petit{
+    background: radial-gradient(rgba(0,0,0,0.1),black 400%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg) no-repeat center;
+}
+
+.monde-moyen{
+    background: radial-gradient(rgba(0,0,0,0.1),black 400%), url(../img/plats/selection-plat/ombleChevalierFaconMeuniere.jpg) no-repeat center;
+}
+
+.monde-grand{
+    background: radial-gradient(rgba(0,0,0,0.1),black 400%), url(../img/plats/selection-plat/gateauChocolat.jpg) no-repeat center;
+}
+
+.monde{
+    background-size: cover;
+    padding: 90px 0;
+    transition: all .4s ease-in-out;
+}
+
+.monde:hover{
+    transform: scale(1.05);
+}
+
+.monde-zoom{
+    overflow: hidden;
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+.specialite h3{
+    color:white;
+    text-align: center;
+    font-size: 30px;
+}
+
+.project-category{
+    color: #8aece5;
+    font-size: 26px;
+}
+
+.project-name{
+    font-size: 20px;
+}
+
+.selection-plat .portfolio-hover .portfolio-hover-content{
+    top:55%
+}
+
+.btn-toolbar-filtre {
+    margin-bottom: 10px;
+}
+
+.btn-filtre{
+    background: white;
+    color:#565a5c;
+    text-transform: none;
+    font-weight: normal;
+    border: #c4c4c4 1px solid;
+    font-size: 16px;
+
+    margin-bottom:20px;
+    padding: 9.5px 30px;
+}
+
+.selection-plat .btn-group{
+    padding-left:20px;
+}
+
+@media(max-width:768px) {
+    .selection-plat .btn-group{
+        width: 96%;
+    }
+
+    .selection-plat .btn-default{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .selection-plat .btn-xl{
+        width: 94%;
+    }
+}
+
+.btn-toolbar-filtre p{
+    font-weight: bold;
+    margin: 5px 25px;
+    font-size: 16px;
+}
+
+.bloc-filtre{
+    margin-bottom: 30px;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.selection-plat .btn-xl{
+    margin:10px 20px;
+}
+
+.selection-plat .fa{
+    color:#ff4848;
+    padding-right:5px;
+}
+
+.selection-plat input{
+    margin-left: -1px;
+}
+
+.btn-plus-filtres{
+    width: 100%;
+}
+
+@media(max-width:993px) {
+    .selection-plat iframe{
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .selection-plat .petite-carte{
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .selection-plat .grande-carte{
+        display: none;
+    }
+}
+
+.selection-plat .carte-fixe{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 70px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1250px;
+    }
+}
+
+.selection-plat input{
+    height: 44px;
+}
+
+.description-plat{
+    font-size: 16px;
+}
+
+.commentaire{
+    font-size: 14px;
+}
+
+.index-plat hr {
+    max-width: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 0;
+    border-top: 1px solid #dce0e0;
+}
+
+.well{
+    border:0;
+    margin-top: 20px;
+}
+
+.index-plat .thumbnail {
+    margin-bottom: 0;
+}
+
+.vous-aimeriez{
+    margin-bottom: 30px;
+}
+
+.index-plat .carte-fixe{
+    margin-top: 20px;
+}
+
+.index-plat .petite-carte{
+    margin-top: 40px;
+}
+
+@media(max-width:768px) {
+    .btn-default{
+        width: 100%;
+    }
+}
+
+/* Landing */
+
+.header-landing{
+    background-image: radial-gradient(rgba(0,0,0,0.1),black 120%), url(../img/landing/legumes.jpg);
+}
+
+.header-landing input{
+    width: 100%;
+    border: #c4c4c4 1px solid;
+    font-family: 'Hevetica Neue',Arial,sans-serif;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    color: #565a5c;
+}
+
+.prenom-input{
+    border-radius: 4px 0 0 4px;
+}
+
+.cadre-transp{
+    background-color: rgba(229,73,95,.4);
+    border: medium none;
+    border-radius: 4px;
+}
+
+@media(max-width:350px) {
+    .cadre-transp {
+        background: none;
+    }
+}
+
+.header-landing .panel-body{
+    padding: 20px;
+}
+
+@media(max-width:993px) {
+    .header-landing input,
+    .header-landing .btn-primary{
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+#footer-landing {
+    border: #c4c4c4 1px solid;
+    background-color:white;
+}
+
+#footer-landing img {
+    width:25%;
+}
+
+#mode-emploi img{
+    width: 100%;
+    height: 260px;
+}
