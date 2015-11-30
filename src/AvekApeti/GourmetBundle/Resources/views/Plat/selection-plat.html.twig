@@ -9,13 +9,12 @@
 
 {% block content %}
 
-    <header class="header header-selection-plat">
+    <header class="header" id="header-selection-plat">
         <div class="header-content header-content-transform">
-            <div class="header-content-inner">
-                <h1 id="h1-home">Du côté de chez vous</h1>
-                <h2>178 avenue de Versailles, Paris</h2>
-                <br>
-            </div>
+                <div class="header-content-inner">
+                    <h1 class="h1-home">Du côté de chez vous</h1>
+                    <h2 class="adresse-selection">178 avenue de Versailles, Paris</h2>
+                </div>
         </div>
     </header>
 
@@ -45,7 +44,7 @@
                     <div class="input-group">
                         <span class="input-group-btn">
                             <button class="btn btn-default btn-filtre" type="button">
-                                <i class="fa fa-1x fa-map-marker"></i><span class="grande-recherche">Nouvelle adresse</span>
+                                <i class="fa fa-1x fa-exchange"></i><span class="grande-recherche">Nouvelle adresse</span>
                             </button>
                         </span>
                         <input type="search" class="form-control" placeholder="ex. 178 avenue de Versailles, Paris">
@@ -61,51 +60,81 @@
                     <div id="MonCollapse" class="collapse">
                         <form name="sentFilter" id="contactForm" novalidate>
                                 <div class="bloc-filtre">
+
                                     <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                         <p>Date</p>
-                                        <div id="filters-states" class="btn-group btn-group-date" role="group" aria-label="..." data-toggle="buttons-checkbox">
-                                            <button type="button" class="btn btn-primary btn-filtre ">
+                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="maitenant" autocomplete="off">
                                                 <i class="fa fa-1x fa-cutlery"></i>Maintenant
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-filtre btn-primary">
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="ce-soir" autocomplete="off">
                                                 <i class="fa fa-1x fa-moon-o"></i>Ce soir
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-filtre btn-primary">
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="plus-tard" autocomplete="off">
                                                 <i class="fa fa-1x fa-calendar"></i>Plus tard
-                                            </button>
+                                            </label>
                                         </div>
                                     </div>
 
-                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="..." data-toggle="buttons-checkbox">
+                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                         <p>Type de cuisine</p>
-                                        <div class="btn-group btn-group-cat" role="group" aria-label="...">
-                                            <button type="button" class="btn btn-primary btn-filtre">
+                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="viande" autocomplete="off">
                                                 <i class="fa fa-1x fa-fire"></i>Viande
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-filtre">
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="poisson" autocomplete="off">
                                                 <i class="fa fa-1x fa-eye"></i>Poisson
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-filtre">
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="vegetarien" autocomplete="off">
                                                 <i class="fa fa-1x fa-tree"></i>Végétarien
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-filtre">
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="dessert" autocomplete="off">
                                                 <i class="fa fa-1x fa-birthday-cake"></i>Dessert
-                                            </button>
+                                            </label>
                                         </div>
                                     </div>
 
-                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="..." data-toggle="buttons-checkbox">
+                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                        <p>Prix</p>
+                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="plat-simple" autocomplete="off">
+                                                <i class="fa fa-1x fa-smile-o"></i>Plat simple
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="plat-cuisiné" autocomplete="off">
+                                                <i class="fa fa-1x fa-shopping-cart"></i>Plat cuisiné
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="gastronomie" autocomplete="off">
+                                                <i class="fa fa-1x fa-eur"></i>Gastronomie
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                         <p>Rayon</p>
-                                        <div class="btn-group btn-group-rayon" role="group" aria-label="...">
-                                            <button type="button" class="btn btn-primary btn-filtre">
+                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="en-bas" autocomplete="off">
                                                 <i class="fa fa-1x fa-home"></i>En bas de chez moi
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-filtre">
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="a-pied" autocomplete="off">
                                                 <i class="fa fa-1x fa-street-view"></i>10 min à pied
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-filtre">
+                                            </label>
+                                            <label class="btn btn-primary btn-filtre">
+                                                <input type="radio" name="options" id="metro" autocomplete="off">
                                                 <i class="fa fa-1x fa-subway"></i>Métro
-                                            </button>
+                                            </label>
+                                            </label>
                                         </div>
                                     </div>
 
@@ -146,11 +175,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Viande -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
                                         - 14 commentaires
                                     </p>
                                 </a>
@@ -184,11 +213,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Viande -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 11 commentaires
                                     </p>
                                 </a>
@@ -221,11 +250,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Viande -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 4 commentaires
                                     </p>
                                 </a>
@@ -257,11 +286,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Poisson -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
                                         - 15 commentaires
                                     </p>
                                 </a>
@@ -294,11 +323,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Végétarien -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 1 commentaire
                                     </p>
                                 </a>
@@ -331,11 +360,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Viande -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 5 commentaires
                                     </p>
                                 </a>
@@ -368,11 +397,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Végétarien -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 0 commentaire
                                     </p>
                                 </a>
@@ -405,11 +434,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Poisson -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 18 commentaires
                                     </p>
                                 </a>
@@ -442,11 +471,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Dessert -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 27 commentaires
                                     </p>
                                 </a>
@@ -479,11 +508,11 @@
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
                                     <p>Dessert -
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
                                         - 8 commentaires
                                     </p>
                                 </a>
@@ -496,8 +525,8 @@
             </div>
 
             <div class="col-md-4 carte-fixe">
-                <iframe class="grande-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="390" height="650" frameborder="0" style="border:0" allowfullscreen></iframe>
-                <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="640" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe class="grande-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="390" height="640" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="630" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
         </div>
 
