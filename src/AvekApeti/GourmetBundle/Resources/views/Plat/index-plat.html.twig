@@ -9,76 +9,72 @@
 
 {% block content %}
 
-    <header class="header header-selection-plat">
-        <div class="header-opacity"></div>
-        <div class="header-content header-content-transform">
-            <div class="header-content-inner">
-                <h1 id="h1-home">Votre plat</h1>
-                <br>
-                <p>Bientôt vous pourrez commander en quelques clics un plat fait maison sur Avekapeti <br> Préparez-vous une révolution arrive !</p>
-            </div>
-        </div>
+    <header class="header header-index-plat">
     </header>
 
     <!-- Page Content -->
-    <div class="container selection-plat">
+    <div class="container index-plat">
 
         <div class="row">
 
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                </div>
+            <div class="col-md-3 portrait-chef">
+                <a href="#">
+                    <div class="monde-zoom">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category ">
+                                    Chef Ludo94
+                                </div>
+                                <div class="project-name">
+                                    Rue Boileau, Paris
+                                </div>
+                            </div>
+                        </div>
+                        <img class="img-responsive img-hover img-related" src={{ asset('bundles/gourmet/img/chef/chef77.jpg') }} alt="" >
+                    </div>
+                </a>
+                <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="360" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
 
             <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="{{ asset('bundles/gourmet/img/plats/selection-plat/raviolesAuFromage.jpg') }}" alt="">
                     <div class="caption-full">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">Product Name</a>
+                        <h4 class="nom-plat pull-right">11 €</h4>
+                        <h4 class="nom-plat">Roti De Boeuf Esterhazy
                         </h4>
-                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                        <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        <div class="ratings">
+                            <a href="{{ path('gourmet_platpage') }}">
+                                <p>Viande -
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    - 14 commentaires
+                                </p>
+                            </a>
+                        </div>
+                        <p class="description-plat">La gastronomie s’affranchit des frontières, pour cela il n’a pas fallu attendre l’unification européenne. La monarchie autrichienne regorge d’exemples. Dans le cas précis, nous devons la recette de ce rôti de bœuf fondant à l’illustre famille des Esterházys, dont les membres ne furent pas seulement mécènes généreux et politiciens influents, mais aussi fins gourmets. Tartes, tartines et escalopes portant leur nom ont immortalisé cette dynastie issue de la Hongrie et du Burgenland actuel.</p>
                     </div>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
+                </div>
+
+                <div class="text-right">
+                    <a class="btn btn-default btn-xl">Commander</a>
                 </div>
 
                 <div class="well">
 
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>
-
-                    <hr>
-
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart-empty"></span>
+                            Fati
+                            <span class="pull-right">novembre 2015</span>
+                            <p class="commentaire">J’ai gouté ce roti de boeuf de Ludo94, il était excellent, on s’est régalé au bureau !<br>On recommande vivement !</p>
                         </div>
                     </div>
 
@@ -86,14 +82,14 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart-empty"></span>
+                            Florent
+                            <span class="pull-right">octobre 2015</span>
+                            <p class="commentaire">Un pur délice ! La viande fond dans la bouche. Bravo Ludo94 !</p>
                         </div>
                     </div>
 
@@ -101,46 +97,98 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            Lucas
+                            <span class="pull-right">novembre 2015</span>
+                            <p class="commentaire">Ma copine et moi avons adorés votre roti de boeuf ! C’était exquis et copieux merci beaucoup.</p>
                         </div>
                     </div>
 
                 </div>
+                <div class="text-right">
+                    <a class="btn btn-default btn-filtre ">Laisser un commentaire</a>
+                </div>
+
 
             </div>
 
         </div>
 
         <!-- Related Projects Row -->
-        <div class="row">
+        <div class="row vous-aimeriez">
             <div class="col-lg-12">
                 <h3 class="page-header">Si vous aimez ce plat, vous pourriez aimer ...</h3>
             </div>
             <div class="col-sm-3 col-xs-6">
                 <a href="#">
-                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                    <div class="monde-zoom">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category ">
+                                    Chef Max75
+                                </div>
+                                <div class="project-name">
+                                    Boulevard Exelmans, Paris
+                                </div>
+                            </div>
+                        </div>
+                        <img class="img-responsive img-hover img-related" src={{ asset('bundles/gourmet/img/plats/selection-plat/porcBraiseAuxLegumesRacines.jpg') }} alt="" >
+                    </div>
                 </a>
             </div>
             <div class="col-sm-3 col-xs-6">
                 <a href="#">
-                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                    <div class="monde-zoom">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category ">
+                                    Chef Luc95
+                                </div>
+                                <div class="project-name">
+                                    Avenue Victor Hugo, Boulogne-Billancourt
+                                </div>
+                            </div>
+                        </div>
+                        <img class="img-responsive img-hover img-related" src={{ asset('bundles/gourmet/img/plats/selection-plat/knodelsAuLard.jpg') }} alt="" >
+                    </div>
                 </a>
             </div>
             <div class="col-sm-3 col-xs-6">
                 <a href="#">
-                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                    <div class="monde-zoom">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category ">
+                                    Chef Luc95
+                                </div>
+                                <div class="project-name">
+                                    Avenue Victor Hugo, Boulogne-Billancourt
+                                </div>
+                            </div>
+                        </div>
+                        <img class="img-responsive img-hover img-related" src={{ asset('bundles/gourmet/img/plats/selection-plat/SaladeDePouletPané.jpg') }} alt="" >
+                    </div>
                 </a>
             </div>
             <div class="col-sm-3 col-xs-6">
                 <a href="#">
-                    <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+                    <div class="monde-zoom">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category ">
+                                    Chef Max75
+                                </div>
+                                <div class="project-name">
+                                    Boulevard Exelmans, Paris
+                                </div>
+                            </div>
+                        </div>
+                        <img class="img-responsive img-hover img-related" src={{ asset('bundles/gourmet/img/plats/selection-plat/kasknople.jpg') }} alt="" >
+                    </div>
                 </a>
             </div>
         </div>

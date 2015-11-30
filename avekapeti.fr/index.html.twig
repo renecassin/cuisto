@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/gourmet/favicon.png') }}" />
+
+    <title>Avekapeti</title>
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/bootstrap.min.css') }}" type="text/css">
+
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/font-awesome.min.css') }}" type="text/css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+        <!-- Plugin CSS -->
+        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/animate.min.css') }}" type="text/css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/creative.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/shop-item.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/shop-homepage.css') }}" type="text/css">
+
+        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/main.css') }}" type="text/css">
+
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">AVEKAPETI</a>
+                <!--<img src="{{ asset('bundles/gourmet/img/logo.jpg') }}" class="img-responsive logo-nav" alt="logo">-->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#mode-emploi">Mode d'emploi</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header class="header-landing">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 id="h1-home">Envie d'un bon petit plat fait maison ?</h1>
+                <br>
+                <p>Un peu de patience, AVEKAPETI est en train de mijoter mais sera bientôt prêt ! <br>N'hésitez pas à nous laisser votre adresse mail afin d'être les premiers informés du lancement du site</p>
+                <div class ="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    {{ form_start(form,{attr:{class:"form-inline"}}) }}
+                        <div class="col-sm-8 no-padding">
+                            {{ form_widget(form.email,{
+                                attr:{class:"email-input",placeholder:"Adresse e-mail"},
+                                id:"mail"
+                            })
+                            }}
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            {{ form_widget(form.submit,{label:"Enregistrez-vous",
+                                attr:{class:"btn btn-primary btn-xl"},
+                                id:"Envoyer"
+                            })
+                            }}
+                        </div>
+                    <div>{{ form_errors(form.email) }}</div>
+                    {{ form_end(form) }}
+                    {% if valid %} <div>Votre email a bien été enregistré</div>{% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="mode-emploi">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6  text-center">
+                    <div class="service-box">
+                        <img class="img-responsive img-hover img-related grand-mere" src={{ asset('bundles/gourmet/img/landing/grand-mere.png') }} alt="avekapeti" >
+                        <h3>Bernadette cuisine un bon petit plat</h3>
+                        <p class="text-muted"> Connaissez vous Bernadette ? Quelle honte c'est votre voisine ! Elle prépare actuellement un bon repas pour sa famille et a des parts en trop</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 text-center">
+                    <div class="service-box">
+                        <img class="img-responsive img-hover img-related idea" src={{ asset('bundles/gourmet/img/landing/idea.png') }} alt="avekapeti"" >
+                        <h3>Thibault commande une part en ligne</h3>
+                        <p class="text-muted">Pendant ce temps, Thibault veut manger un repas mais ne veut pas cuisiner ni faire la vaisselle... Eureka ! Il se souvient qu'il peut commander une part du plat de Bernadette sur AVEKAPETI</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 text-center">
+                    <div class="service-box">
+                        <img class="img-responsive img-hover img-related immeuble" src={{ asset('bundles/gourmet/img/landing/immeuble.jpg') }} alt="avekapeti"" >
+                        <h3>Bernadette vient livrer son plat</h3>
+                        <p class="text-muted">Dring dring ! Bernadette est à la porte avec son bon petit plat fait maison</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 text-center">
+                    <div class="service-box">
+                        <img class="img-responsive img-hover img-related plat-design" src={{ asset('bundles/gourmet/img/landing/plat-design.jpg') }} alt="avekapeti"" >
+                        <h3>Thibault se régale</h3>
+                        <p class="text-muted">Manger sain, équilibré, fait maison à des prix abordables et sans cuisiner si si ca sera bientôt possible avec AVEKAPETI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer-landing">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <img src="{{ asset('bundles/gourmet/img/logo.jpg') }}" class="img-responsive" alt="logo">
+                </div>
+                <div class="col-sm-4">
+                    <p>Rejoignez-nous sur </p>
+                    <ul class="list-inline social-buttons">
+                        <li><a href="https://www.facebook.com/avekapeti"><i class="fa fa-facebook"></i></a>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.easing.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.fittext.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/creative.js') }}"></script>
+</body>
+</html>
+
+

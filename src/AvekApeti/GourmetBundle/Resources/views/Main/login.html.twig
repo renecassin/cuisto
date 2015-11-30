@@ -7,20 +7,25 @@
 
 
 {% block content %}
+<<<<<<< HEAD
 
     <header class="header-connexion">
         <div class="header-opacity"></div>
         <div class="header-content header-content-connexion">
+=======
+    <header class="header-inscription" id="connexion">
+        <div class="header-content header-content-transform ">
+>>>>>>> origin/dev
             <div class="row">
-                <div class="bloc-titre-connexion">
-                    <h1 class="h1-page">Connexion</h1>
-                </div>
-                <div class="col-sm-4 col-sm-offset-4" >
-                    <div class="login-panel panel panel-default panel-perso-inscription">
+                <div class="col-md-4 col-md-offset-4" >
+                    <div class="bloc-titre-inscription">
+                        <h1 class="h1-page">Connexion</h1>
+                    </div>
+                    <div class="login-panel panel panel-default panel-perso">
                         <div class="panel-body">
                             <form role="form" action="{{ path('login_check') }}" method="post">
                                 <div class=" panel-heading-perso ">
-                                    <a href="#" class="btn btn-primary btn-xl btn-facebook-inscription"><i class="fa fa-2x fa-facebook logo-facebook-inscription"></i>
+                                    <a href="#" class="btn btn-primary btn-xl btn-facebook-inscription"><i class="fa fa-2x fa-facebook logo-facebook"></i>
                                         Connexion avec Facebook</a>
                                 </div>
                                 <p class="ou">ou</p>

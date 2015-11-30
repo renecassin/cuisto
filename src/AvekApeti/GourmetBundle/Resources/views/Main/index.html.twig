@@ -8,19 +8,21 @@
 {% block titre %}Home{{ parent() }}{% endblock %}
 
 {% block content %}
-    <header class="header">
+    <header class="header" id="header-home">
         <div class="header-content header-content-transform">
             <div class="header-content-inner">
                 <h1 id="h1-home">Le fait maison à portée de clics</h1>
-                <br>
                 <p>Bientôt vous pourrez commander en quelques clics un plat fait maison sur Avekapeti <br> Préparez-vous une révolution arrive !</p>
                 <a href="#mode-emploi" class="btn btn-xl btn-semi-transparent page-scroll ">Mode d'emploi</a>
                 <form class="form-inline form-recherche" action={{ path('gourmet_selection_platpage') }}>
                     <div class="form-adresse">
                         <label for="adressInput"></label>
-                        <input type="text" class="address-input" id="adressInput" placeholder="Où habitez-vous ?">
+                        <input type="text" class="address-input" id="adressInput" placeholder="Où êtes-vous ?">
                     </div>
-                    <button type="submit" class=" btn btn-primary btn-xl find-chef"><span class="glyphicon glyphicon-search glyphycon-loupe petite-recherche" aria-hidden="true"></span><span class="grande-recherche">Rechercher un plat</span></button>
+                    <button type="submit" class="btn btn-primary btn-xl">
+                        <span class="glyphicon glyphicon-search glyphycon-loupe petite-recherche" aria-hidden="true"></span>
+                        <span class="grande-recherche">Rechercher un plat</span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -38,33 +40,32 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6  text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-map-marker wow bounceIn text-primary"></i>
-                        <h3>Géolocalisez-vous en un clic</h3>
-                        <p class="text-muted">Avekapeti vous situe via vos coordonnées et vous met en relation avec les cuisiniers les plus proches.</p>
+                        <img class="img-responsive img-hover img-related grand-mere" src={{ asset('bundles/gourmet/img/landing/grand-mere.png') }} alt="avekapeti" >
+                        <h3>Bernadette cuisine un bon petit plat</h3>
+                        <p class="text-muted"> Connaissez vous Bernadette ? Quelle honte c'est votre voisine ! Elle prépare actuellement un bon repas pour sa famille et a des parts en trop.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-cutlery wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Découvrez des plats incroyables</h3>
-                        <p class="text-muted">Trouvez des cuisiniers proposant un risotto aux cèpes ou un tajine aux pruneaux comme une pizza reine.</p>
+                        <img class="img-responsive img-hover img-related idea" src={{ asset('bundles/gourmet/img/landing/idea.png') }} alt="avekapeti"" >
+                        <h3>Thibault commande une part en ligne</h3>
+                        <p class="text-muted">Pendant ce temps, Thibault veut manger un repas mais ne veut pas cuisiner ni faire la vaisselle... Eureka ! Il se souvient qu'il peut commander une part du plat de Bernadette sur AVEKAPETI</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-shopping-cart wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Commandez votre repas</h3>
-                        <p class="text-muted">Confirmez votre commande en un clic et effectuez votre paiement en toute confiance à l'aide de nos services sécurisés.</p>
+                        <img class="img-responsive img-hover img-related immeuble" src={{ asset('bundles/gourmet/img/landing/immeuble.jpg') }} alt="avekapeti"" >
+                        <h3>Bernadette vient livrer son plat</h3>
+                        <p class="text-muted">Dring dring ! Bernadette est à la porte avec son bon petit plat fait maison.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Régalez-vous et notez votre plat !</h3>
-                        <p class="text-muted">Un dîner ou un déjeuner pour deux, pour satisfaire toutes les envies gourmandes. Après votre repas, évaluez votre plat.
-                        </p>
+                        <img class="img-responsive img-hover img-related plat-design" src={{ asset('bundles/gourmet/img/landing/plat-design.jpg') }} alt="avekapeti"" >
+                        <h3>Thibault se régale</h3>
+                        <p class="text-muted">Manger sain, équilibré, fait maison à des prix abordables et sans cuisiner si si ca sera bientôt possible avec AVEKAPETI.</p>
                     </div>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">Ouvrez la porte de votre cuisine à vos voisins !</h2>
                     <p>Gagnez de l'argent en toute simplicité avec Avekapeti en proposant vos plats.</p>
-                    <a href={{ path('gourmet_chef_inscription_page') }} class="btn btn-default btn-xl btn-inscription">Devenez Chef</a>
+                    <a href={{ path('gourmet_chef_inscription_page') }} class="btn btn-default btn-xl">Devenez Chef</a>
                 </div>
             </div>
         </div>
@@ -96,26 +97,27 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 col-sm-4 portfolio-item">
                     <a href={{ path('gourmet_platpage') }} class="portfolio-link">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
-                                <div class="project-category text-faded">
+                                <div class="project-category">
                                     Chef Max75
                                 </div>
                                 <div class="project-name">
                                     Boulettes de viande et tomate fraîche
                                 </div>
-                                <h3>9 €</h3>                            </div>
+                                <h3>9 €</h3>
+                            </div>
                         </div>
                         <img src="{{ asset('bundles/gourmet/img/plats/bouletteDeViande.jpg') }}" class="img-responsive" alt="">
                     </a>
                 </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 col-sm-4 portfolio-item">
                     <a href={{ path('gourmet_platpage') }} class="portfolio-link">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
-                                <div class="project-category text-faded">
+                                <div class="project-category">
                                     Chef Ludo94
                                 </div>
                                 <div class="project-name">
@@ -127,11 +129,11 @@
                         <img src="{{ asset('bundles/gourmet/img/plats/lasagneCourgette.jpg') }}" class="img-responsive" alt="">
                     </a>
                 </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 col-sm-4 portfolio-item">
                     <a href={{ path('gourmet_platpage') }} class="portfolio-link">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
-                                <div class="project-category text-faded">
+                                <div class="project-category">
                                     Chef Luc95
                                 </div>
                                 <div class="project-name">
@@ -154,7 +156,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">Commandez votre plat !</h2>
                     <p>Créez votre compte et commandez votre plat en quelques minutes.</p>
-                    <a href="{{ path('gourmet_gourmet_inscription_page') }}" class="btn btn-default btn-xl btn-inscription wow tada">Inscription</a>
+                    <a href="{{ path('gourmet_gourmet_inscription_page') }}" class="btn btn-default btn-xl  wow tada">Inscription</a>
                 </div>
             </div>
         </div>
@@ -207,13 +209,13 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
+            <div class="col-md-8 col-md-offset-2 text-center">
                 <h2 class="section-heading">Vous avez des questions ?</h2>
-                <hr class="primary">
+                <hr class="light">
                 <p>Comment rechercher un plat ? Et si j'ai un imprévu, comment annuler ma réservation ? Comment récupérer monn argent disponible ? Et si mon chef est injoignable ?</p>
             </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row margin-haut">
                             <div class="col-md-6">
@@ -245,9 +247,9 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
+                            <div class="col-md-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-default btn-xl btn-inscription">Envoyer</button>
+                                <button type="submit" class="btn btn-default btn-xl">Envoyer</button>
                             </div>
                         </div>
                     </form>
