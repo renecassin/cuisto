@@ -1,28 +1,22 @@
 {%  extends  "@GourmetBundle/Resources/views/layout.html.twig" %}
 
-{% block foot_scripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/home.js') }}"></script>
-{%  endblock foot_scripts %}
-
 {% block titre %}Devenez Chef{{ parent() }}{% endblock %}
 
 {% block content %}
     <header class="header-inscription " id="chef-inscription">
         <div class="header-content header-content-transform">
             <div class="row">
+
                 <div class="col-md-5 col-md-offset-1">
-                        <div class="bloc-titre-inscription">
-                            <h1 class="h1-page">Ouvrez la porte de votre cuisine à vos voisins</h1>
-                            <p class="description-inscription">Gagnez de l'argent en toute simplicité avec AVEKAPETI ! Vous cuisinez quand vous le souhaitez, vous préparez vos plats préférés et vous gagnez de l'argent pour chaque commande. Devenez Chef avec AVEKAPETI, inscrivez-vous maintenant !</p>
-                        </div>
+                    <div class="bloc-titre-inscription">
+                        <h1 class="h1-page">Ouvrez la porte de votre cuisine à vos voisins</h1>
+                        <p class="description-inscription">Gagnez de l'argent en toute simplicité avec AVEKAPETI ! Vous cuisinez quand vous le souhaitez, vous préparez vos plats préférés et vous gagnez de l'argent pour chaque commande. Devenez Chef avec AVEKAPETI, inscrivez-vous maintenant !</p>
+                    </div>
                 </div>
 
                 <div class="col-md-4 col-md-offset-1" >
-                        <div class="login-panel panel panel-default panel-perso">
-                            <div class="panel-body">
-
-<<<<<<< HEAD
+                    <div class="login-panel panel panel-default panel-perso">
+                        <div class="panel-body">
                             {{ form_start(form) }}
                             <div class=" panel-heading-perso ">
                                 <a href="#" class="btn btn-primary btn-xl btn-facebook-inscription"><i class="fa fa-2x fa-facebook logo-facebook"></i>Inscription avec Facebook</a>
@@ -100,55 +94,8 @@
                             </fieldset>
                             <!--</form>-->
                             {{ form_end(form) }}
-=======
-                                <form role="form">
-                                    <div class=" panel-heading-perso ">
-                                        <a href="#" class="btn btn-primary btn-xl btn-facebook-inscription"><i class="fa fa-2x fa-facebook logo-facebook"></i>Inscription avec Facebook</a>
-                                    </div>
-                                    <p class="ou">ou</p>
-                                    <hr class="margin-hr">
-                                    <fieldset>
-                                        <div class="form-group has-feedback">
-                                            <input type="text" class="form-control form-control-perso" placeholder="Nom" id="nom-chef" required data-validation-required-message="Veuillez entrer votre nom." autofocus>
-                                            <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
-                                            <p class="help-block text-danger"></p>
-                                        </div>
-                                        <div class="form-group has-feedback">
-                                            <input type="text" class="form-control form-control-perso" placeholder="Prénom" id="prenom-chef" required data-validation-required-message="Veuillez entrer votre prénom.">
-                                            <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
-                                            <p class="help-block text-danger"></p>
-                                        </div>
-                                        <div class="form-group has-feedback">
-                                            <input type="email" class="form-control form-control-perso" placeholder="Adresse e-mail : nom@exemple.com" id="email-chef" required data-validation-required-message="Veuillez entrer votre email.">
-                                            <span class="glyphicon glyphicon-envelope form-control-feedback glyphicon-perso"></span>
-                                            <p class="help-block text-danger"></p>
-                                        </div>
-                                        <div class="form-group has-feedback">
-                                            <input type="tel" class="form-control form-control-perso" placeholder="Téléphone" id="telephone-chef" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
-                                            <span class="glyphicon glyphicon-earphone form-control-feedback glyphicon-perso"></span>
-                                            <p class="help-block text-danger"></p>
-                                        </div>
-                                        <div class="form-group has-feedback">
-                                            <input type="password" class="form-control form-control-perso" placeholder="Mot de passe" id="password-chef" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
-                                            <span class="glyphicon glyphicon-lock form-control-feedback glyphicon-perso"></span>
-                                            <p class="help-block text-danger"></p>
-                                        </div>
-                                        <div class="checkbox remember">
-                                            <label>
-                                                <input name="remember"  type="checkbox" value="Remember Me">Je souhaite recevoir la newsletter Avekapeti
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-xl btn-valider-inscription">Créer un compte Chef</button>
-                                        <div class="form-group">
-                                            <p class="acceptation">En cliquant sur Créer un compte, vous acceptez les <a href="#">Conditions générales</a>  et la <a href="#">Politique de confidentialité</a> d'Avekapeti.</p>
-                                        </div>
-                                        <hr>
-                                        <p class="acceptation">Déjà membre Avekapeti ? <a href="{{ path('gourmet_loginpage') }}">Connexion</a></p>
-                                    </fieldset>
-                                </form>
-                            </div>
->>>>>>> origin/dev
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

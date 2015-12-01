@@ -61,14 +61,16 @@
 @media (min-width: 800px) {
     #h1-home {
         font-size: 60px !important;
-        margin-bottom: 30px;
         margin-top: 20px;
     }
     .h1-page {
         font-size: 50px !important;
         margin-bottom: 20px;
     }
-    #header-home p,
+    #header-home p{
+        margin-bottom: 40px;
+        font-size: 24px;
+    }
     .header-landing p {
         margin-bottom: 70px;
         font-size: 22px;
@@ -139,11 +141,30 @@
     display: inline;
 }
 
-
-.header{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header.jpg);
+@media (min-width: 768px) {
+    #header-home {
+        min-height: 85%;
+    }
 }
 
+.header1{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header1.jpg);
+}
+.header2{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header2.jpg);
+}
+.header3{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header3.jpg);
+}
+.header4{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header4.jpg);
+}
+.header5{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header5.jpg);
+}
+.header6{
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header6.jpg);
+}
 
 #chef-inscription {
     background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/chef/header.jpg);

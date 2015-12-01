@@ -93,7 +93,7 @@ aside {
     text-transform: uppercase;
     font-family: 'Helvetica Neue',Arial,sans-serif;
     font-weight: 700;
-    color: #ffada2;
+    color: #00cfb3;
 }
 
 
@@ -274,12 +274,6 @@ header .header-content .header-content-inner p {
 .service-box {
     margin: 10px auto 0;
     max-width: 400px;
-}
-
-@media(min-width:992px) {
-    .service-box {
-        margin: 10px auto 0;
-    }
 }
 
 .service-box p {

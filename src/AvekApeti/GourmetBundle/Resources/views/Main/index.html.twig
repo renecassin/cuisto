@@ -2,13 +2,16 @@
 
 {% block foot_scripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/home.js') }}"></script>
+    <script type="text/javascript">
+        var banListe=['1','2','3','4','5','6'];
+        document.getElementsByTagName('header')[0].className += 'header' + banListe[Math.floor(Math.random()*banListe.length)];
+    </script>
 {%  endblock foot_scripts %}
 
 {% block titre %}Home{{ parent() }}{% endblock %}
 
 {% block content %}
-    <header class="header" id="header-home">
+    <header  id="header-home">
         <div class="header-content header-content-transform">
             <div class="header-content-inner">
                 <h1 id="h1-home">Le fait maison à portée de clics</h1>
@@ -43,29 +46,29 @@
                 <div class="col-lg-3 col-sm-6  text-center">
                     <div class="service-box">
                         <img class="img-responsive img-hover img-related grand-mere" src={{ asset('bundles/gourmet/img/landing/grand-mere.png') }} alt="avekapeti" >
-                        <h3>Bernadette cuisine un bon petit plat</h3>
-                        <p class="text-muted"> Connaissez vous Bernadette ? Quelle honte c'est votre voisine ! Elle prépare actuellement un bon repas pour sa famille et a des parts en trop.</p>
+                        <h3>Bernadette a eu les yeux plus gros que le ventre</h3>
+                        <p class="text-muted"> Connaissez vous Bernadette ? Quelle honte c'est votre voisine ! Elle prépare actuellement un boeuf bourguignon pour sa famille et a des parts en trop.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
-                        <img class="img-responsive img-hover img-related idea" src={{ asset('bundles/gourmet/img/landing/idea.png') }} alt="avekapeti"" >
-                        <h3>Thibault commande une part en ligne</h3>
-                        <p class="text-muted">Pendant ce temps, Thibault veut manger un repas mais ne veut pas cuisiner ni faire la vaisselle... Eureka ! Il se souvient qu'il peut commander une part du plat de Bernadette sur AVEKAPETI</p>
+                        <img class="img-responsive img-hover img-related idea" src={{ asset('bundles/gourmet/img/landing/marie-idris.png') }} alt="avekapeti"" >
+                        <h3>Marie et Idris commandent une part en ligne</h3>
+                        <p class="text-muted">Marie et Idris veulent manger un bon petit plat fait maison. Mais sans cuisiner ni faire la vaisselle Avekapeti.com vient à la rescousse !</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <img class="img-responsive img-hover img-related immeuble" src={{ asset('bundles/gourmet/img/landing/immeuble.jpg') }} alt="avekapeti"" >
                         <h3>Bernadette vient livrer son plat</h3>
-                        <p class="text-muted">Dring dring ! Bernadette est à la porte avec son bon petit plat fait maison.</p>
+                        <p class="text-muted">Dring dring ! Bernadette est sur le palier. Avec son boeuf bourguignon</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <img class="img-responsive img-hover img-related plat-design" src={{ asset('bundles/gourmet/img/landing/plat-design.jpg') }} alt="avekapeti"" >
-                        <h3>Thibault se régale</h3>
-                        <p class="text-muted">Manger sain, équilibré, fait maison à des prix abordables et sans cuisiner si si ca sera bientôt possible avec AVEKAPETI.</p>
+                        <h3>Marie et Idris se régalent</h3>
+                        <p class="text-muted"> Manger sain, équilibré, fait maison, et sans effort... Si si c’est maitenant possible ! Avec avekapeti.com</p>
                     </div>
                 </div>
             </div>
