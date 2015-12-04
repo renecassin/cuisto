@@ -1,6 +1,6 @@
 <?php
 
-namespace AvekApeti\BackBundle\Entity;
+namespace AvekApeti\BackBundle\Repository;
 
 /**
  * UtilisateurRepository
