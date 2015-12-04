@@ -21,12 +21,6 @@ class PlatType extends AbstractType
             ->add('quantity')
             ->add('active')
             ->add('unableWhile')
-            ->add('Utilisateur', 'entity',  array(
-                'class' => 'AvekApetiBackBundle:Utilisateur',
-                'choice_label' => 'email',
-                "multiple" => false,
-                "expanded" => false
-            ))
             ->add('specialite', 'entity',  array(
                 'class' => 'AvekApetiBackBundle:Specialite',
                 'choice_label' => 'name',

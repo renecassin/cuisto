@@ -1,0 +1,30 @@
+facturation:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Facturation:index" }
+
+facturation_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Facturation:show" }
+
+facturation_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Facturation:new" }
+
+facturation_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Facturation:create" }
+    methods:  POST
+
+facturation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Facturation:edit" }
+
+facturation_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Facturation:update" }
+    methods:  [POST, PUT]
+
+facturation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Facturation:delete" }
+    methods:  [POST, DELETE]

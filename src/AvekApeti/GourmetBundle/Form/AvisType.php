@@ -17,13 +17,6 @@ class AvisType extends AbstractType
         $builder
             ->add('note')
             ->add('comment')
-            ->add('active')
-            ->add('utilisateur', 'entity',  array(
-                'class' => 'AvekApetiBackBundle:Utilisateur',
-                'choice_label' => 'email',
-                "multiple" => false,
-                "expanded" => false
-            ))
         ;
     }
     

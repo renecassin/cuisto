@@ -1,0 +1,30 @@
+specialite:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Specialite:index" }
+
+specialite_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Specialite:show" }
+
+specialite_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Specialite:new" }
+
+specialite_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Specialite:create" }
+    methods:  POST
+
+specialite_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Specialite:edit" }
+
+specialite_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Specialite:update" }
+    methods:  [POST, PUT]
+
+specialite_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Specialite:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,30 @@
+menu:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Menu:index" }
+
+menu_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Menu:show" }
+
+menu_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Menu:new" }
+
+menu_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Menu:create" }
+    methods:  POST
+
+menu_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Menu:edit" }
+
+menu_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Menu:update" }
+    methods:  [POST, PUT]
+
+menu_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Menu:delete" }
+    methods:  [POST, DELETE]

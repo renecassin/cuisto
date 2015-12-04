@@ -1,0 +1,30 @@
+campagne:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Campagne:index" }
+
+campagne_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Campagne:show" }
+
+campagne_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Campagne:new" }
+
+campagne_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Campagne:create" }
+    methods:  POST
+
+campagne_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Campagne:edit" }
+
+campagne_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Campagne:update" }
+    methods:  [POST, PUT]
+
+campagne_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Campagne:delete" }
+    methods:  [POST, DELETE]

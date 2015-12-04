@@ -15,12 +15,6 @@ class ChefType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('utilisateur', 'entity',  array(
-                'class' => 'AvekApetiBackBundle:Utilisateur',
-                'choice_label' => 'id',
-                "multiple" => false,
-                "expanded" => false
-            ))
             ->add('adress')
             ->add('city')
             ->add('cp')

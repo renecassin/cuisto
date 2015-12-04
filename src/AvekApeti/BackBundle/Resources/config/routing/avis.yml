@@ -1,0 +1,30 @@
+avis:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Avis:index" }
+
+avis_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Avis:show" }
+
+avis_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Avis:new" }
+
+avis_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Avis:create" }
+    methods:  POST
+
+avis_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Avis:edit" }
+
+avis_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Avis:update" }
+    methods:  [POST, PUT]
+
+avis_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Avis:delete" }
+    methods:  [POST, DELETE]

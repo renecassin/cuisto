@@ -1,0 +1,30 @@
+commande:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Commande:index" }
+
+commande_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Commande:show" }
+
+commande_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Commande:new" }
+
+commande_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Commande:create" }
+    methods:  POST
+
+commande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Commande:edit" }
+
+commande_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Commande:update" }
+    methods:  [POST, PUT]
+
+commande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Commande:delete" }
+    methods:  [POST, DELETE]

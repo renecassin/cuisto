@@ -1,0 +1,30 @@
+typelivraison:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:TypeLivraison:index" }
+
+typelivraison_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:TypeLivraison:show" }
+
+typelivraison_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:TypeLivraison:new" }
+
+typelivraison_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:TypeLivraison:create" }
+    methods:  POST
+
+typelivraison_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:TypeLivraison:edit" }
+
+typelivraison_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:TypeLivraison:update" }
+    methods:  [POST, PUT]
+
+typelivraison_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:TypeLivraison:delete" }
+    methods:  [POST, DELETE]

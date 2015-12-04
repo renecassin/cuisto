@@ -15,20 +15,7 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('item')
             ->add('content')
-            ->add('emetteur_user', 'entity',  array(
-                'class' => 'AvekApetiBackBundle:Utilisateur',
-                'choice_label' => 'email',
-                "multiple" => false,
-                "expanded" => false
-            ))
-            ->add('dest_user', 'entity',  array(
-                'class' => 'AvekApetiBackBundle:Utilisateur',
-                'choice_label' => 'email',
-                "multiple" => false,
-                "expanded" => false
-            ))
         ;
     }
     

@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
  *
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Entity\UtilisateurRepository")
+ * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\UtilisateurRepository")
  * @UniqueEntity("login", message="Login deja utilise")
  * @UniqueEntity("email", message="Email deja utilise")
  */
@@ -130,6 +130,11 @@ class Utilisateur implements UserInterface
      * @ORM\Column(name="date_updated", type="datetime")
      */
     private $dateUpdated;
+    /**
+     * @ORM\OneToMany(targetEntity="Avis", mappedBy="utilisateurAvis", cascade={"remove"})
+     */
+    private $avis;
+
     /**
      * Get id
      *
@@ -534,4 +539,38 @@ class Utilisateur implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
+
+    /**
+     * Add avi
+     *
+     * @param \AvekApeti\BackBundle\Entity\Avis $avi
+     *
+     * @return Utilisateur
+     */
+    public function addAvi(\AvekApeti\BackBundle\Entity\Avis $avi)
+    {
+        $this->avis[] = $avi;
+
+        return $this;
+    }
+
+    /**
+     * Remove avi
+     *
+     * @param \AvekApeti\BackBundle\Entity\Avis $avi
+     */
+    public function removeAvi(\AvekApeti\BackBundle\Entity\Avis $avi)
+    {
+        $this->avis->removeElement($avi);
+    }
+
+    /**
+     * Get avis
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvis()
+    {
+        return $this->avis;
+    }
 }
