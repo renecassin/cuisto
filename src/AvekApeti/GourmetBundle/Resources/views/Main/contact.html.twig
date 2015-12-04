@@ -1,0 +1,24 @@
+{%  extends  "@GourmetBundle/Resources/views/layout.html.twig" %}
+
+{% block titre %}Contact{{  parent() }}{% endblock %}
+
+{% block content %}
+    <header class="header-inscription" id="page-contact">
+        <div class="header-content header-content-transform ">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center" >
+                    <div class="bloc-titre-inscription">
+                        <h1 class="h1-page">Vous avez des questions ?</h1>
+                        <hr class="light">
+                        <p>Comment rechercher un plat ? Et si j'ai un imprévu, comment annuler ma réservation ? Comment récupérer mon argent disponible ? Comment contacter mon chef ? Et si mon chef est injoignable ?</p>
+
+                    </div>
+                    {{  include  ('@GourmetBundle/Resources/views/main/form-contact-feedback.html.twig')  }}
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

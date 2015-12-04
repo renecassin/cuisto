@@ -1,10 +1,6 @@
 {%  extends  "@GourmetBundle/Resources/views/layout.html.twig" %}
 
-{% block foot_scripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/home.js') }}"></script>
-{%  endblock foot_scripts %}
-
+{% block titre %}Connexion{{ parent() }}{% endblock %}
 
 {% block content %}
 
