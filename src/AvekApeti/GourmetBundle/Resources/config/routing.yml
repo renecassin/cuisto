@@ -29,3 +29,11 @@ gourmet_selection_platpage:
     path:     /selection_plat
     defaults: { _controller: GourmetBundle:Plat:selection}
 
+gourmet_contactpage:
+    path:     /contact
+    defaults: { _controller: GourmetBundle:Main:contact}
+
+gourmet_feedbackpage:
+    path:     /feedback
+    defaults: { _controller: GourmetBundle:Main:feedback}
+

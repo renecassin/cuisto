@@ -25,8 +25,24 @@
                         <li>
                             <a class="page-scroll" href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
                         </li>
+                        {% set login = true %}
+                        {% if login == true %}
+                            <li>
+                                <a class="page-scroll" href={{ path('gourmet_loginpage') }}>Déconnexion</a>
+                            </li>
+                            <li>
+                                <a>Mon compte</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a class="page-scroll" href={{ path('gourmet_loginpage') }}>Connexion</a>
+                            </li>
+                        {% endif %}
                         <li>
-                            <a class="page-scroll" href={{ path('gourmet_loginpage') }}>Connexion</a>
+                            <a class="page-scroll" href={{ path('gourmet_contactpage') }}>Contact</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href={{ path('gourmet_feedbackpage') }}>Feedback</a>
                         </li>
                     </ul>
                 </div>
@@ -49,7 +65,7 @@
                         <ul class="list-inline social-buttons">
                             <li><a href="#"><i class="fa fa-twitter"></i></a>
                             </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            <li><a href="https://www.facebook.com/avekapeti"><i class="fa fa-facebook"></i></a>
                             </li>
                             <li><a href="#"><i class="fa fa-linkedin"></i></a>
                             </li>

@@ -36,6 +36,16 @@ class MainController extends Controller
 
     }
 
+    public function contactAction()
+    {
+        return $this->render('GourmetBundle:Main:contact.html.twig');
+    }
+
+    public function feedbackAction()
+    {
+        return $this->render('GourmetBundle:Main:feedback.html.twig');
+    }
+
 
 
 }

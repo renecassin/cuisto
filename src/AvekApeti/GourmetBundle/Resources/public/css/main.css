@@ -3,14 +3,35 @@
 }
 
 .h1-page{
-    font-size: 30px!important;
+    font-size: 36px!important;
     margin-bottom: 15px;
+}
+
+@media (max-width: 360px) {
+    .h1-page,
+    .description-inscription{
+        text-align: center;
+    }
+}
+
+#header-index-plat .h1-page{
+    text-shadow: rgba(0,0,0,.8) 0 1px 0;
+}
+
+#index-plat h2,
+#index-plat h1{
+    font-size: 30px!important;
+    margin-top: 0;
+}
+
+.cercle h3{
+    margin-top: 8px;
 }
 
 #header-home p,
 .header-landing p {
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .description-inscription {
@@ -19,11 +40,33 @@
 
 .nom-plat{
     color:#565a5c;
-    font-size: 14px;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.nom-plat a{
+    color:#565a5c;
+}
+
+.lien-hover:hover{
+    color:#00cfb3;
+}
+
+.prix-plat{
+    margin-top: 0;
 }
 
 .adresse-selection{
     font-size: 20px!important;
+}
+
+.ratings p{
+    color:#777;
+    font-size: 12px;
+}
+
+.ratings span{
+    color:#ff4848;
 }
 
 @media (min-width: 350px) {
@@ -32,12 +75,12 @@
         margin-bottom: 25px;
     }
     .h1-page{
-        font-size: 40px!important;
+        font-size: 44px!important;
     }
     #header-home p,
     .header-landing p {
         margin-bottom: 40px;
-        font-size: 18px;
+        font-size: 20px;
     }
     .description-inscription {
         margin-bottom: 40px;
@@ -46,15 +89,25 @@
         font-size: 26px!important;
     }
     .nom-plat{
-        color:#565a5c;
-        font-size: 20px;
+        font-size: 16px;
     }
+    .ratings p{
+        font-size: 14px;
+    }
+
 }
 
 @media (min-width: 768px) {
     #header-home p,
     .header-landing p {
         margin-bottom: 60px;
+    }
+    #h1-home{
+        font-size: 54px!important;
+        margin-bottom: 25px;
+    }
+    .h1-page{
+        font-size: 50px!important;
     }
 }
 
@@ -64,7 +117,7 @@
         margin-top: 20px;
     }
     .h1-page {
-        font-size: 50px !important;
+        font-size: 56px !important;
         margin-bottom: 20px;
     }
     #header-home p{
@@ -82,8 +135,20 @@
     .adresse-selection{
         font-size: 40px!important;
     }
+    .nom-plat{
+        font-size: 18px;
+    }
+    .ratings p{
+        font-size: 16px;
+    }
 }
 
+
+@media (min-width: 1280px) {
+    .nom-plat{
+        font-size: 20px;
+    }
+}
 
 
 .btn-semi-transparent {
@@ -183,9 +248,16 @@
     min-height: 50%;
 }
 
-.header-index-plat{
+#header-index-plat{
     background-image: radial-gradient(rgba(0,0,0,0),black 120%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg);
     min-height: 70%;
+}
+
+#page-contact {
+    background-color: #222;
+    background-image: url(../img/map-image.png);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -360,26 +432,6 @@ section#contact .glyphicon-perso {
     }
 }
 
-
-
-.index-plat .nom-plat{
-    font-size: 24px;
-}
-
-.selection-plat .nom-plat:hover{
-    color:#565a5c;
-    text-decoration: underline;
-}
-
-.ratings p{
-    color:#777;
-    font-size: 14px;
-}
-
-.ratings span{
-    color:#ff4848;
-}
-
 .monde-petit{
     background: radial-gradient(rgba(0,0,0,0.1),black 400%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg) no-repeat center;
 }
@@ -424,7 +476,7 @@ section#contact .glyphicon-perso {
     font-size: 20px;
 }
 
-.selection-plat .portfolio-hover .portfolio-hover-content{
+#selection-plat .portfolio-hover .portfolio-hover-content{
     top:55%
 }
 
@@ -439,19 +491,31 @@ section#contact .glyphicon-perso {
     font-weight: normal;
     border: #c4c4c4 1px solid;
     font-size: 16px;
-
     margin-bottom:20px;
     padding: 9.5px 30px;
 }
 
-.selection-plat .btn-group{
-    padding-left:20px;
+@media (max-width: 768px) {
+    #index-plat .btn-filtre,
+    #selection-plat .bloc-filtre .btn-filtre {
+        width: 100%;
+    }
+    #selection-plat .btn-xl{
+        /*margin:10px 20px;*/
+        width: 100%;
+    }
+}
+
+
+#selection-plat .btn-group{
+    /*padding-left:20px;*/
+    width: 100%;
 }
 
 
 .btn-toolbar-filtre p{
     font-weight: bold;
-    margin: 5px 25px;
+    margin: 5px 10px;
     font-size: 16px;
 }
 
@@ -461,16 +525,13 @@ section#contact .glyphicon-perso {
     padding: 10px;
 }
 
-.selection-plat .btn-xl{
-    margin:10px 20px;
-}
 
-.selection-plat .fa{
+#selection-plat .fa{
     color:#ff4848;
     padding-right:5px;
 }
 
-.selection-plat input{
+#selection-plat input{
     margin-left: -1px;
 }
 
@@ -479,24 +540,25 @@ section#contact .glyphicon-perso {
 }
 
 @media(max-width:993px) {
-    .selection-plat iframe{
+    #index-plat iframe,
+    #selection-plat iframe{
         display: none;
     }
 }
 
 @media (min-width: 1200px) {
-    .selection-plat .petite-carte{
+    #selection-plat .petite-carte{
         display: none;
     }
 }
 
 @media (max-width: 1200px) {
-    .selection-plat .grande-carte{
+    #selection-plat .grande-carte{
         display: none;
     }
 }
 
-.selection-plat .carte-fixe{
+#selection-plat .carte-fixe{
     position: sticky;
     position: -webkit-sticky;
     top: 70px;
@@ -509,21 +571,29 @@ section#contact .glyphicon-perso {
     }
 }
 
-.selection-plat input{
-    height: 44px;
+#selection-plat input{
+    height: 43px;
+}
+
+@media (min-width: 768px) {
+    #index-plat{
+        padding: 20px 0;
+    }
 }
 
 .description-plat{
     font-size: 16px;
+    text-align: justify;
 }
 
-.commentaire{
+.well p{
     font-size: 14px;
+    margin-top: 5px;
 }
 
-.index-plat hr {
+#index-plat hr {
     max-width: none;
-    margin-top: 15px;
+    margin-top: 0;
     margin-bottom: 15px;
     border: 0;
     border-top: 1px solid #dce0e0;
@@ -531,30 +601,23 @@ section#contact .glyphicon-perso {
 
 .well{
     border:0;
-    margin-top: 20px;
 }
 
-.index-plat .thumbnail {
+#index-plat .thumbnail {
     margin-bottom: 0;
+    margin-top: 10px;
 }
 
-.vous-aimeriez{
-    margin-bottom: 30px;
-}
 
-.index-plat .carte-fixe{
+#index-plat .petite-carte{
     margin-top: 20px;
-}
-
-.index-plat .petite-carte{
-    margin-top: 40px;
 }
 
 
 /* Landing */
 
 .header-landing{
-    background-image: radial-gradient(rgba(0,0,0,0.1),black 120%), url(../img/landing/legumes.jpg);
+    background-image: radial-gradient(rgba(0,0,0,0.1),black 120%), url(../img/landing/legumes.jpg) ;
 }
 
 @media(min-width:767px) {
@@ -635,4 +698,95 @@ section#contact .glyphicon-perso {
 #mode-emploi img{
     margin: auto;
     height: 260px;
+}
+
+.panel-image-chef{
+    position: absolute;
+    z-index: 1;
+    left: 79%;
+    top: 63%;
+}
+
+.well .panel-image-chef{
+    position: inherit;
+}
+
+#index-plat .img-circle,
+#selection-plat .img-circle{
+    border: 2px solid white;
+    vertical-align: middle;
+    transition: all .4s ease-in-out;
+}
+
+.well .img-circle,
+.thumbnail .img-circle{
+    width: 65px;
+    height: 65px;
+}
+
+.thumbnail .img-circle:hover{
+    transform: scale(1.05);
+}
+
+
+.portrait-chef{
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.lien-portrait-chef .img-circle{
+    width: 110px;
+    height: 110px;
+}
+
+.lien-image-chef{
+    float: right;
+}
+
+.page-header {
+    margin-bottom:0;
+    margin-top: 0;
+}
+
+.description-adresse{
+    margin:0;
+    color: #565a5c;
+    font-size: 16px;
+}
+
+.panier-dynamique{
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 190px;
+}
+
+.cercle{
+    background-color: white;
+    border: 2px solid;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.cercle:hover{
+    color:white;
+    background-color: #00cfb3;
+    border: 2px solid #565a5c;
+}
+
+#page-contact p{
+    text-align: center;
+}
+
+@media(max-width:360px) {
+    #index-plat .texte-centre {
+        text-align: center;
+    }
+}
+
+.panier{
+    background: green;
 }

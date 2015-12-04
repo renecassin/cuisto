@@ -12,42 +12,43 @@
     <header class="header" id="header-selection-plat">
         <div class="header-content header-content-transform">
                 <div class="header-content-inner">
-                    <h1 class="h1-home">Du côté de chez vous</h1>
+                    <h1 class="h1-page">Du côté de chez vous</h1>
                     <h2 class="adresse-selection">178 avenue de Versailles, Paris</h2>
                 </div>
         </div>
     </header>
 
     <!-- Page Content -->
-    <div class="container selection-plat">
+    <div class="container petite-section" id="selection-plat">
 
         <div class="row">
 
             <div class="col-md-12">
-
-                <div class="col-md-2 ">
-                    <button class="btn btn-default btn-filtre btn-plus-filtres" type="button" data-target="#MonCollapse" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
-                        <i class="fa fa-1x fa-filter"></i>Filtres
-                    </button>
-                </div>
-                <div class="col-md-5">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default btn-filtre" type="button">
-                                <i class="fa fa-1x fa-search"></i><span class="grande-recherche">Recherche</span>
-                            </button>
-                        </span>
-                        <input type="search" class="form-control" placeholder="ex. Risotto, Tajine, Salade">
+                <div class="row">
+                    <div class="col-md-2 ">
+                        <button class="btn btn-default btn-filtre btn-plus-filtres" type="button" data-target="#MonCollapse" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                            <i class="fa fa-1x fa-filter"></i>Filtres
+                        </button>
                     </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default btn-filtre" type="button">
-                                <i class="fa fa-1x fa-exchange"></i><span class="grande-recherche">Nouvelle adresse</span>
-                            </button>
-                        </span>
-                        <input type="search" class="form-control" placeholder="ex. 178 avenue de Versailles, Paris">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-filtre" type="button">
+                                    <i class="fa fa-1x fa-search"></i><span class="grande-recherche">Recherche</span>
+                                </button>
+                            </span>
+                            <input type="search" class="form-control" placeholder="ex. Risotto, Tajine, Salade">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-filtre" type="button">
+                                    <i class="fa fa-1x fa-exchange"></i><span class="grande-recherche">Nouvelle adresse</span>
+                                </button>
+                            </span>
+                            <input type="search" class="form-control" placeholder="ex. 178 avenue de Versailles, Paris">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,92 +60,92 @@
                 <div class="col-md-12">
                     <div id="MonCollapse" class="collapse">
                         <form name="sentFilter" id="contactForm" novalidate>
-                                <div class="bloc-filtre">
+                            <div class="bloc-filtre">
 
-                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
-                                        <p>Date</p>
-                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="maitenant" autocomplete="off">
-                                                <i class="fa fa-1x fa-cutlery"></i>Maintenant
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="ce-soir" autocomplete="off">
-                                                <i class="fa fa-1x fa-moon-o"></i>Ce soir
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="plus-tard" autocomplete="off">
-                                                <i class="fa fa-1x fa-calendar"></i>Plus tard
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
-                                        <p>Type de cuisine</p>
-                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="viande" autocomplete="off">
-                                                <i class="fa fa-1x fa-fire"></i>Viande
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="poisson" autocomplete="off">
-                                                <i class="fa fa-1x fa-eye"></i>Poisson
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="vegetarien" autocomplete="off">
-                                                <i class="fa fa-1x fa-tree"></i>Végétarien
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="dessert" autocomplete="off">
-                                                <i class="fa fa-1x fa-birthday-cake"></i>Dessert
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
-                                        <p>Prix</p>
-                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="plat-simple" autocomplete="off">
-                                                <i class="fa fa-1x fa-smile-o"></i>Plat simple
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="plat-cuisiné" autocomplete="off">
-                                                <i class="fa fa-1x fa-shopping-cart"></i>Plat cuisiné
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="gastronomie" autocomplete="off">
-                                                <i class="fa fa-1x fa-eur"></i>Gastronomie
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
-                                        <p>Rayon</p>
-                                        <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="en-bas" autocomplete="off">
-                                                <i class="fa fa-1x fa-home"></i>En bas de chez moi
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="a-pied" autocomplete="off">
-                                                <i class="fa fa-1x fa-street-view"></i>10 min à pied
-                                            </label>
-                                            <label class="btn btn-primary btn-filtre">
-                                                <input type="radio" name="options" id="metro" autocomplete="off">
-                                                <i class="fa fa-1x fa-subway"></i>Métro
-                                            </label>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div id="success"></div>
-                                        <button type="submit" class="btn btn-default btn-xl">Appliquer les filtres</button>
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Date</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="maitenant" autocomplete="off">
+                                            <i class="fa fa-1x fa-cutlery"></i>Maintenant
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="ce-soir" autocomplete="off">
+                                            <i class="fa fa-1x fa-moon-o"></i>Ce soir
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="plus-tard" autocomplete="off">
+                                            <i class="fa fa-1x fa-calendar"></i>Plus tard
+                                        </label>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Type de cuisine</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="viande" autocomplete="off">
+                                            <i class="fa fa-1x fa-fire"></i>Viande
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="poisson" autocomplete="off">
+                                            <i class="fa fa-1x fa-eye"></i>Poisson
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="vegetarien" autocomplete="off">
+                                            <i class="fa fa-1x fa-tree"></i>Végétarien
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="dessert" autocomplete="off">
+                                            <i class="fa fa-1x fa-birthday-cake"></i>Dessert
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Prix</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="plat-simple" autocomplete="off">
+                                            <i class="fa fa-1x fa-smile-o"></i>Plat simple
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="plat-cuisiné" autocomplete="off">
+                                            <i class="fa fa-1x fa-shopping-cart"></i>Plat cuisiné
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="gastronomie" autocomplete="off">
+                                            <i class="fa fa-1x fa-eur"></i>Gastronomie
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Rayon</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="en-bas" autocomplete="off">
+                                            <i class="fa fa-1x fa-home"></i>En bas de chez moi
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="a-pied" autocomplete="off">
+                                            <i class="fa fa-1x fa-street-view"></i>10 min à pied
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="metro" autocomplete="off">
+                                            <i class="fa fa-1x fa-subway"></i>Métro
+                                        </label>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div id="success"></div>
+                                    <button type="submit" class="btn btn-default btn-xl">Appliquer les filtres</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
 
@@ -152,6 +153,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="thumbnail">
+
                             <a href={{ path('gourmet_platpage') }}>
                                 <div class="monde-zoom">
                                     <div class="portfolio-hover">
@@ -168,9 +170,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">11 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Roti De Boeuf Esterhazy</a>
-                                </h4>
+                                    <a href=# class="lien-image-chef" >
+                                        <div class="panel-image-chef">
+                                            <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+                                        </div>
+                                    </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Roti de boeuf Esterhazy</span> - 9 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -180,7 +185,7 @@
                                         <span class="glyphicon glyphicon-heart"></span>
                                         <span class="glyphicon glyphicon-heart"></span>
                                         <span class="glyphicon glyphicon-heart"></span>
-                                        - 14 commentaires
+                                        - 3 commentaires
                                     </p>
                                 </a>
                             </div>
@@ -206,9 +211,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">9 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Porc Braisé Aux Légumes Racines</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef9.jpeg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Porc braisé aux légumes</span> - 8 €</a> </h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -243,9 +251,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">7 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Salade De Poulet Pané</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef8.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Salade de poulet pané</span> - 6 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -279,9 +290,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">12 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Filet De Truite Aux Champignons</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Filet de truite</span> - 10 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -316,9 +330,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">7 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Ravioles Au Fromage</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef7.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Ravioles au fromage</span> - 7 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -353,9 +370,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">8 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Knodels Au Lard</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Knodels au lard</span> - 8 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -390,9 +410,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">9 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Kasknople</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef7.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Kasknople</span> - 6 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -427,9 +450,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">13 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Omble Chevalier Façon Meunière</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef8.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Omble chevalier</span> - 11 €</a> </h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -464,9 +490,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">6 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Gâteau Au Chocolat</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef9.jpeg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Gâteau au chocolat</span> - 4 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">
@@ -501,9 +530,12 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h4 class="pull-right">5 €</h4>
-                                <h4><a href="{{ path('gourmet_platpage') }}" class="nom-plat">Tarte De Linz</a>
-                                </h4>
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Tarte de Linz</span> - 3 €</a></h4>
                             </div>
                             <div class="ratings">
                                 <a href="{{ path('gourmet_platpage') }}">

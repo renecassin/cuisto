@@ -67,6 +67,11 @@ section {
     padding: 50px 0;
 }
 
+.petite-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
 aside {
     padding: 50px 0;
 }
@@ -151,8 +156,6 @@ aside {
     .navbar-default.affix {
         border-color: rgba(34,34,34,.05);
         background-color: rgba(2,201,164,0.7);
-    ;
-
     }
 
     .navbar-default.affix .navbar-header .navbar-brand {
@@ -197,8 +200,16 @@ header .header-content {
     z-index: 2;
 }
 
+
+#header-index-plat .header-content-transform {
+    position: absolute;
+    top: 90%;
+}
+
 @media(max-width:700px) {
     .header-landing .header-content-transform {
+        -webkit-transform: translateY(13%);
+        -ms-transform: translateY(13%);
         transform: translateY(13%);
     }
     #header-home .header-content-transform {
@@ -239,11 +250,21 @@ header .header-content .header-content-inner p {
     header {
         min-height: 100%;
     }
+    #header-selection-plat .header-content,
+    #header-home .header-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-45%);
+        -webkit-transform: translateY(-45%);
+        -ms-transform: translateY(-45%);
+    }
 
     header .header-content {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
     }
 
     header .header-content .header-content-inner {
@@ -265,6 +286,7 @@ header .header-content .header-content-inner p {
     header .header-content .header-content-inner p {
         font-size: 22px;
     }
+
 }
 
 .section-heading {
@@ -358,7 +380,7 @@ fieldset[disabled] .btn-default.active {
 .header-landing .btn-primary,
 #header-home .btn-primary {
     border-radius: 0 4px 4px 0;
-    /*margin-left: -4px;*/
+    margin-left: -1px;
     box-sizing: border-box;
 }
 
@@ -378,11 +400,11 @@ fieldset[disabled] .btn-default.active {
 }
 
 
-.selection-plat .btn-primary:hover,
-.selection-plat .btn-primary:focus,
-.selection-plat .btn-primary.focus,
-.selection-plat .btn-primary:active,
-.selection-plat .btn-primary.active,
+#selection-plat .btn-primary:hover,
+#selection-plat .btn-primary:focus,
+#selection-plat .btn-primary.focus,
+#selection-plat .btn-primary:active,
+#selection-plat .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
     border: #c4c4c4 1px solid;
 }
@@ -393,9 +415,9 @@ fieldset[disabled] .btn-default.active {
     background-color: #64aeb4;
 }
 
-.selection-plat .btn-primary:active,
-.selection-plat .btn-primary.active,
-.selection-plat .open > .dropdown-toggle.btn-primary {
+#selection-plat .btn-primary:active,
+#selection-plat .btn-primary.active,
+#selection-plat .open > .dropdown-toggle.btn-primary {
     background-color: #00cfb3;
 }
 
@@ -432,6 +454,25 @@ fieldset[disabled] .btn-primary.active {
     padding: 15px 30px;
 }
 
+@media(max-width:768px) {
+    #page-contact .btn-xl,
+    section .btn-xl {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+#index-plat .btn-xl {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+@media(max-width:980px) {
+    #index-plat .page-header {
+        margin-top: 40px;
+    }
+}
 
 .header-landing .btn-xl {
     padding: 16px 0;
@@ -575,6 +616,8 @@ ul.social-buttons li a:active {
     font-size: 20px;
     color: #fff;
     transform: translateY(-150%);
+    -webkit-transform: translateY(-150%);
+    -ms-transform: translateY(-150%);
     /*text-shadow: rgba(0,0,0,.8) 0 1px 0;*/
 }
 
@@ -619,27 +662,29 @@ section#contact p{
     color: #fff;
 }
 
+#page-contact .form-group,
 section#contact .form-group {
     margin-bottom: 25px;
 }
 
+#page-contact .form-group input,
+#page-contact .form-group textarea,
 section#contact .form-group input,
 section#contact .form-group textarea {
     padding: 10px;
 }
 
+#page-contact .form-group input.form-control,
 section#contact .form-group input.form-control {
     height: auto;
 }
 
+#page-contact .form-group textarea.form-control,
 section#contact .form-group textarea.form-control {
     height: 245px;
 }
 
+#page-contact .text-danger,
 section#contact .text-danger {
     color: #e74c3c;
-}
-
-.portrait-chef{
-    margin: 30px 0;
 }

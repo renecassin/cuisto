@@ -31,7 +31,7 @@
     margin-bottom: 5px;
 }
 
-.thumbnail img {
+.thumbnail .monde-zoom img {
     width: 100%;
 }
 
@@ -43,6 +43,7 @@
 .thumbnail {
     padding: 0;
     border: 0;
+    position: relative;
 }
 
 .thumbnail .caption {
