@@ -1,6 +1,6 @@
 <?php
 
-namespace AvekApeti\BackBundle\Form;
+namespace AvekApeti\GourmetBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

@@ -23,6 +23,7 @@ class ChefController extends Controller
     public function createAction(Request $request)
     {
         //Determine l'objet groupe avec le nom ROLE_GOURMET, definit ensuite le droit de l'utilisateur
+        //Le groupe doit exister en base de donné
         $em = $this->getDoctrine()->getManager();
         $Groupe =$em->getRepository("AvekApetiBackBundle:Groupe")
             ->findOneByRole('ROLE_GOURMET');
@@ -43,7 +44,7 @@ class ChefController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gourmet_homepage', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('gourmet_homepage'));
         }
 
         return $this->render('GourmetBundle:Chef:chef-inscription.html.twig', array(

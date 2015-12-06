@@ -1,0 +1,7 @@
+gourmet_profil:
+    path:     /profil
+    defaults: { _controller: "GourmetBundle:Gourmet:profil" }
+gourmet_update:
+    path:     /update
+    defaults: { _controller: "GourmetBundle:Gourmet:update" }
+    methods:  [POST, PUT]

@@ -37,3 +37,6 @@ gourmet_feedbackpage:
     path:     /feedback
     defaults: { _controller: GourmetBundle:Main:feedback}
 
+gourmet_detail:
+    resource: "@GourmetBundle/Resources/config/routing/gourmet.yml"
+    prefix:   /gourmet

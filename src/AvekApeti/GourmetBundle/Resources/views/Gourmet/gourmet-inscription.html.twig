@@ -13,7 +13,9 @@
                         <p class="description-inscription">Bientôt vous pourrez commander en quelques clics un plat fait maison sur AVEKAPETI. Préparez-vous une révolution arrive !</p>
                     </div>
                 </div>
-
+    {% if (is_granted('ROLE_GOURMET')) %}
+        (A METTRE EN FORME) Vous etes deja inscrit
+    {% else%}
                 <div class="col-md-4 col-md-offset-1" >
                     <div class="login-panel panel panel-default panel-perso">
                         <div class="panel-body">
@@ -98,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-
+        {% endif %}
             </div>
         </div>
     </header>

@@ -13,7 +13,13 @@
                         <p class="description-inscription">Gagnez de l'argent en toute simplicité avec AVEKAPETI ! Vous cuisinez quand vous le souhaitez, vous préparez vos plats préférés et vous gagnez de l'argent pour chaque commande. Devenez Chef avec AVEKAPETI, inscrivez-vous maintenant !</p>
                     </div>
                 </div>
-
+    {% if (is_granted('ROLE_GOURMET')) %}
+        {% if (is_granted('ROLE_CHEF')) %}
+            (A METTRE EN FORME) Vous etes deja un chef
+        {% else %}
+           (A METTRE EN FORME) Vous etes deja inscrit et souhaitez devenir chef
+        {% endif %}
+    {% else %}
                 <div class="col-md-4 col-md-offset-1" >
                     <div class="login-panel panel panel-default panel-perso">
                         <div class="panel-body">
@@ -97,6 +103,7 @@
                         </div>
                     </div>
                 </div>
+        {% endif %}
             </div>
         </div>
     </header>

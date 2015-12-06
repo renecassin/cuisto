@@ -1,3 +1,7 @@
+avek_apeti_back_mail:
+    resource: "@AvekApetiBackBundle/Resources/config/routing/mail.yml"
+    prefix:   /mail
+
 avek_apeti_back_typelivraison:
     resource: "@AvekApetiBackBundle/Resources/config/routing/typelivraison.yml"
     prefix:   /typelivraison

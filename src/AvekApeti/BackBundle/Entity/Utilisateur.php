@@ -22,7 +22,8 @@ class Utilisateur implements UserInterface
     {
         $this->dateCreated = new \DateTime("now");
         $this->groupe = $Groupe ; //Id de groupe par defaut doit correspondre a l'id du groupe d'un utilisateur enregistr� (gourmet)
-        $this->salt = md5(uniqid(null, true)); // cr�ation d'un salt pour chaque utilisateur
+       // $this->salt = md5(uniqid(null, true)); // cr�ation d'un salt pour chaque utilisateur
+        $this->salt =null; // cr�ation d'un salt pour chaque utilisateur
     }
 
     /**
@@ -65,7 +66,7 @@ class Utilisateur implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=4096)
      */
     private $password;
 
@@ -312,7 +313,8 @@ class Utilisateur implements UserInterface
      */
     public function getSalt()
     {
-        return $this->salt;
+        return '';
+       // return $this->salt;
     }
 
     /**

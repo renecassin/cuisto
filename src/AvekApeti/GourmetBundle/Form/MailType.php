@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MessageType extends AbstractType
+class MailType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,6 +15,10 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name')
+            ->add('firstname')
+            ->add('mail')
+            ->add('phone')
             ->add('content')
         ;
     }
@@ -25,7 +29,7 @@ class MessageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AvekApeti\BackBundle\Entity\Message'
+            'data_class' => 'AvekApeti\BackBundle\Entity\Mail'
         ));
     }
 
@@ -34,6 +38,6 @@ class MessageType extends AbstractType
      */
     public function getName()
     {
-        return 'avekapeti_backbundle_message';
+        return 'avekapeti_backbundle_mail';
     }
 }

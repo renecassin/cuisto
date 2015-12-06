@@ -22,28 +22,31 @@
                         <li>
                             <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
                         </li>
-                        <li>
-                            <a class="page-scroll" href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
-                        </li>
-                        {% set login = true %}
-                        {% if login == true %}
-                            <li>
-                                <a class="page-scroll" href={{ path('gourmet_loginpage') }}>Déconnexion</a>
-                            </li>
-                            <li>
-                                <a>Mon compte</a>
-                            </li>
-                        {% else %}
-                            <li>
-                                <a class="page-scroll" href={{ path('gourmet_loginpage') }}>Connexion</a>
-                            </li>
-                        {% endif %}
+
                         <li>
                             <a class="page-scroll" href={{ path('gourmet_contactpage') }}>Contact</a>
                         </li>
                         <li>
                             <a class="page-scroll" href={{ path('gourmet_feedbackpage') }}>Feedback</a>
                         </li>
+                        {% if (is_granted('ROLE_GOURMET')) %}
+                         <!--   <a href="...">Delete</a>-->
+                            <li>
+                                <a>Mon compte</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href={{ path('logout') }}>Déconnexion</a>
+                            </li>
+
+                        {% else %}
+                            <li>
+                                <a class="page-scroll" href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href={{ path('gourmet_loginpage') }}>Connexion</a>
+                            </li>
+                        {% endif %}
+
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

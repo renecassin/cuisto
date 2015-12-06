@@ -1,0 +1,30 @@
+mail:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:Mail:index" }
+
+mail_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:Mail:show" }
+
+mail_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:Mail:new" }
+
+mail_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:Mail:create" }
+    methods:  POST
+
+mail_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:Mail:edit" }
+
+mail_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:Mail:update" }
+    methods:  [POST, PUT]
+
+mail_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:Mail:delete" }
+    methods:  [POST, DELETE]
