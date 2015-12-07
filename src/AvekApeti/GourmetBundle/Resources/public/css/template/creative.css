@@ -138,7 +138,8 @@ aside {
 
 .navbar-brand {
     height: 50px;
-    padding: 14px 65px;
+    padding-top: 14px;
+    padding-left: 65px;
 }
 
 

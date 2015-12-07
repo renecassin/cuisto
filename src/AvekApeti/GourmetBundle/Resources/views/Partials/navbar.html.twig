@@ -9,101 +9,96 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand page-scroll" href={{ path('gourmet_homepage') }}>
-                <img src="{{ asset('bundles/gourmet/img/logo/avekapeti-logo-RVB-01.png') }}" class="img-responsive logo-nav" alt="logo">
-                Avekapeti
+                <img src="{{ asset('bundles/gourmet/img/logo/avekapeti-logo-RVB-02.png') }}" class="img-responsive logo-nav" alt="logo">
+                Avekapeti <i style="text-transform: lowercase">beta</i>
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        {% set login = true %}
-        {% set chef = true %}
-        {% if login == false %}
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
-                    </li>
-                    <li>
-                        <a href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
-                    </li>
-                    <li>
-                        <a href={{ path('gourmet_loginpage') }}>Connexion</a>
-                    </li>
 
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Aide <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href={{ path('gourmet_contactpage') }}>Contact</a>
-                            </li>
-                            <li>
-                                <a href={{ path('gourmet_feedbackpage') }}>Feedback</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        {% else %}
+
+    <!--    {% if (is_granted('ROLE_GOURMET')) %}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href={{ path('gourmet_loginpage') }}>Déconnexion</a>
                     </li>
-                    {% if login == false %}
-                    <li>
-                        <a href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
-                    </li>
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Maxime <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a>Mon profil</a>
-                            </li>
-                            <li>
-                                <a>Mes commandes</a>
-                            </li>
-                            <li>
-                                <a>Mes messages</a>
-                            </li>
-                            <li>
-                                <a>Mes favoris</a>
-                            </li>
-                            <li>
-                                <a>Mon compte</a>
-                            </li>
+                    {% if (is_granted('ROLE_CHEF')) %}
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Chef Luc95 <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a>Gérer mes plats</a>
+                                </li>
+                                <li>
+                                    <a>Créer un plat</a>
+                                </li>
+                                <li>
+                                    <a>Gérer mes commandes</a>
+                                </li>
+                                <li>
+                                    <a>Mon profil</a>
+                                </li>
+                                <li>
+                                    <a>Mes messages</a>
+                                </li>
+                                <li>
+                                    <a>Mon compte</a>
+                                </li>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
                     {% else %}
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Chef Luc95 <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a>Gérer mes plats</a>
-                            </li>
-                            <li>
-                                <a>Créer un plat</a>
-                            </li>
-                            <li>
-                                <a>Gérer mes commandes</a>
-                            </li>
-                            <li>
-                                <a>Mon profil</a>
-                            </li>
-                            <li>
-                                <a>Mes messages</a>
-                            </li>
-                            <li>
-                                <a>Mon compte</a>
-                            </li>
+                        <li>
+                            <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
+                        </li>
 
-                        </ul>
+                    {% endif %}
+                        <li>
+                            <a href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Maxime <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a>Mon profil</a>
+                                </li>
+                                <li>
+                                    <a>Mes commandes</a>
+                                </li>
+                                <li>
+                                    <a>Mes messages</a>
+                                </li>
+                                <li>
+                                    <a>Mes favoris</a>
+                                </li>
+                                <li>
+                                    <a>Mon compte</a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+                </ul>
+            </div>
+        {% else %}
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
+                    </li>
+
+                    <li>
+                        <a href={{ path('gourmet_loginpage') }}>Connexion</a>
                     </li>
                     {% endif %}
                     <li role="presentation" class="dropdown">
@@ -121,9 +116,100 @@
                     </li>
                 </ul>
             </div>
+-->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        {% if (is_granted('ROLE_CHEF')) %}
+            <li>
+                <a href={{ path('index') }}>Admin</a>
+            </li>
         {% endif %}
+        {% if (is_granted('ROLE_CHEF')) %}
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Chef Luc95 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a>Gérer mes plats</a>
+                    </li>
+                    <li>
+                        <a>Créer un plat</a>
+                    </li>
+                    <li>
+                        <a>Gérer mes commandes</a>
+                    </li>
+                    <li>
+                        <a>Mon profil</a>
+                    </li>
+                    <li>
+                        <a>Mes messages</a>
+                    </li>
+                    <li>
+                        <a>Mon compte</a>
+                    </li>
 
+                </ul>
+            </li>
+        {% else %}
+            <li>
+                <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
+            </li>
+        {% endif %}
+            {% if (is_granted('ROLE_GOURMET')) %}
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Maxime <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a>Mon profil</a>
+                        </li>
+                        <li>
+                            <a>Mes commandes</a>
+                        </li>
+                        <li>
+                            <a>Mes messages</a>
+                        </li>
+                        <li>
+                            <a>Mes favoris</a>
+                        </li>
+                        <li>
+                            <a>Mon compte</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href={{ path('logout') }}>Déconnexion</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
+                </li>
+                <li>
+                    <a href={{ path('gourmet_loginpage') }}>Connexion</a>
+                </li>
+            {% endif %}
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Aide <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href={{ path('gourmet_contactpage') }}>Contact</a>
+                        </li>
+                        <li>
+                            <a href={{ path('gourmet_feedbackpage') }}>Feedback</a>
+                        </li>
+                    </ul>
+                </li>
+
+        </ul>
+    </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
 </nav>
+
+
