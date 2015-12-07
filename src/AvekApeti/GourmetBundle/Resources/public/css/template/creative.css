@@ -64,7 +64,7 @@ p {
 
 
 section {
-    padding: 50px 0;
+    padding: 30px 0;
 }
 
 .petite-section {
@@ -130,27 +130,27 @@ aside {
 
 @media(min-width:768px) {
     .navbar-default {
-        border-color: rgba(255,255,255,.3);
+        border: none;
         background-color: transparent;
     }
 
     .navbar-default .navbar-header .navbar-brand {
-        color: rgba(255,255,255,.7);
+        color: white;
     }
 
     .navbar-default .navbar-header .navbar-brand:hover,
     .navbar-default .navbar-header .navbar-brand:focus {
-        color: #fff;
+        color: #00cfb3;
     }
 
     .navbar-default .nav > li>a,
     .navbar-default .nav>li>a:focus {
-        color: rgba(255,255,255,.7);
+        color: white;
     }
 
     .navbar-default .nav > li>a:hover,
     .navbar-default .nav>li>a:focus:hover {
-        color: #fff;
+        color: #00cfb3;
     }
 
     .navbar-default.affix {
@@ -177,12 +177,14 @@ aside {
     .navbar-default.affix .nav>li>a:focus:hover {
         color: #ff4848;
     }
+    .navbar-right {
+        padding-top: 7px;
+    }
 }
 
 header {
     position: relative;
     width: 100%;
-    min-height: 100%;
     text-align: center;
     color: #fff;
     background-position: center;
@@ -190,6 +192,19 @@ header {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+
+#header-home {
+    height: 440px;
+}
+
+#header-selection-plat {
+    height: 300px;
+}
+
+#header-index-plat {
+    height: 350px;
 }
 
 header .header-content {
@@ -201,27 +216,55 @@ header .header-content {
 }
 
 
-#header-index-plat .header-content-transform {
-    position: absolute;
-    top: 90%;
+#header-home .header-content-transform {
+    -webkit-transform: translateY(40%);
+    -ms-transform: translateY(40%);
+    transform: translateY(40%);
 }
 
-@media(max-width:700px) {
-    .header-landing .header-content-transform {
-        -webkit-transform: translateY(13%);
-        -ms-transform: translateY(13%);
-        transform: translateY(13%);
-    }
+#header-selection-plat .header-content-transform{
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+}
+
+#header-index-plat .header-content-transform{
+    -webkit-transform: translateY(80%);
+    -ms-transform: translateY(80%);
+    transform: translateY(80%);
+}
+
+@media(min-width:360px) {
     #header-home .header-content-transform {
-        -webkit-transform: translateY(20%);
-        -ms-transform: translateY(20%);
-        transform: translateY(20%);
+        -webkit-transform: translateY(30%);
+        -ms-transform: translateY(30%);
+        transform: translateY(30%);
     }
+    #header-index-plat .header-content-transform,
     #header-selection-plat .header-content-transform{
         -webkit-transform: translateY(60%);
         -ms-transform: translateY(60%);
         transform: translateY(60%);
     }
+}
+
+@media (min-width: 768px){
+    #page-feedback,
+    #page-contact,
+    #connexion ,
+    #gourmet-inscription ,
+    #chef-inscription {
+        min-height: 100%;
+    }
+}
+
+@media(max-width:768px) {
+    .header-landing .header-content-transform {
+        -webkit-transform: translateY(13%);
+        -ms-transform: translateY(13%);
+        transform: translateY(13%);
+    }
+
 }
 
 header .header-content .header-content-inner h1 {
@@ -247,16 +290,14 @@ header .header-content .header-content-inner p {
 }
 */
 @media(min-width:768px) {
-    header {
-        min-height: 100%;
-    }
+    #header-index-plat .header-content-transform,
     #header-selection-plat .header-content,
     #header-home .header-content {
         position: absolute;
         top: 50%;
-        transform: translateY(-45%);
-        -webkit-transform: translateY(-45%);
-        -ms-transform: translateY(-45%);
+        transform: translateY(-40%);
+        -webkit-transform: translateY(-40%);
+        -ms-transform: translateY(-40%);
     }
 
     header .header-content {
@@ -280,6 +321,16 @@ header .header-content .header-content-inner p {
         max-width: 80%;
         font-size: 20px;
     }
+
+    #header-home {
+        height: 600px;
+    }
+    #header-selection-plat {
+        height: 400px;
+    }
+    #header-index-plat {
+        height: 500px;
+    }
 }
 
 @media(min-width:800px) {
@@ -295,7 +346,7 @@ header .header-content .header-content-inner p {
 
 .service-box {
     margin: 10px auto 0;
-    max-width: 400px;
+    max-width: 290px;
 }
 
 .service-box p {
@@ -455,6 +506,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 @media(max-width:768px) {
+    #page-feedback .btn-xl,
     #page-contact .btn-xl,
     section .btn-xl {
         width: 100%;
@@ -652,7 +704,7 @@ ul.social-buttons li a:active {
 
 section#contact {
     background-color: #222;
-    background-image: url(../../img/map-image.png);
+    background-image: radial-gradient(rgba(0,0,0,0.1),black 150%), url(../../img/marry-me.jpg);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -662,11 +714,14 @@ section#contact p{
     color: #fff;
 }
 
+#page-feedback .form-group,
 #page-contact .form-group,
 section#contact .form-group {
     margin-bottom: 25px;
 }
 
+#page-feedback .form-group input,
+#page-feedback .form-group textarea,
 #page-contact .form-group input,
 #page-contact .form-group textarea,
 section#contact .form-group input,
@@ -674,16 +729,19 @@ section#contact .form-group textarea {
     padding: 10px;
 }
 
+#page-feedback .form-group input.form-control,
 #page-contact .form-group input.form-control,
 section#contact .form-group input.form-control {
     height: auto;
 }
 
+#page-feedback .form-group textarea.form-control,
 #page-contact .form-group textarea.form-control,
 section#contact .form-group textarea.form-control {
     height: 245px;
 }
 
+#page-feedback .text-danger,
 #page-contact .text-danger,
 section#contact .text-danger {
     color: #e74c3c;

@@ -93,7 +93,7 @@ aside {
     text-transform: uppercase;
     font-family: 'Helvetica Neue',Arial,sans-serif;
     font-weight: 700;
-    color: #ff4848;
+    color: #00cfb3;
 }
 
 
@@ -107,18 +107,18 @@ aside {
 
 .navbar-default .nav > li>a:hover,
 .navbar-default .nav>li>a:focus:hover {
-    color: #ffada2;
+    color: #ff4848;
 }
 
 .navbar-default .nav > li.active>a,
 .navbar-default .nav>li.active>a:focus {
-    color: #ff4848!important;
+    color: #ffada2!important;
     background-color: transparent;
 }
 
 .navbar-default .nav > li.active>a:hover,
 .navbar-default .nav>li.active>a:focus:hover {
-    color: #ffada2!important;
+    color: #ff4848!important;
     background-color: transparent;
 
 }
@@ -199,35 +199,21 @@ header .header-content {
 
 @media(max-width:700px) {
     .header-landing .header-content-transform {
+        -webkit-transform: translateY(13%);
+        -ms-transform: translateY(13%);
         transform: translateY(13%);
     }
-}
-
-#header-selection-plat .header-content-transform,
-#header-home .header-content-transform {
-    -webkit-transform: translateY(20%);
-    -ms-transform: translateY(20%);
-    transform: translateY(20%);
-}
-
-@media(min-width:800px) {
-    #header-selection-plat .header-content-transform,
-    #header-home .header-content-transform{
-        -webkit-transform: translateY(30%);
-        -ms-transform: translateY(30%);
-        transform: translateY(30%);
+    #header-home .header-content-transform {
+        -webkit-transform: translateY(20%);
+        -ms-transform: translateY(20%);
+        transform: translateY(20%);
+    }
+    #header-selection-plat .header-content-transform{
+        -webkit-transform: translateY(60%);
+        -ms-transform: translateY(60%);
+        transform: translateY(60%);
     }
 }
-
-@media(min-width:700px) {
-    .header-inscription .header-content-transform{
-        -webkit-transform: translateY(10%);
-        -ms-transform: translateY(10%);
-        transform: translateY(10%);
-    }
-}
-
-
 
 header .header-content .header-content-inner h1 {
     margin-top: 0;
@@ -260,6 +246,8 @@ header .header-content .header-content-inner p {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
     }
 
     header .header-content .header-content-inner {
@@ -290,12 +278,6 @@ header .header-content .header-content-inner p {
 .service-box {
     margin: 10px auto 0;
     max-width: 400px;
-}
-
-@media(min-width:992px) {
-    .service-box {
-        margin: 10px auto 0;
-    }
 }
 
 .service-box p {
@@ -380,7 +362,7 @@ fieldset[disabled] .btn-default.active {
 .header-landing .btn-primary,
 #header-home .btn-primary {
     border-radius: 0 4px 4px 0;
-    /*margin-left: -4px;*/
+    margin-left: -1px;
     box-sizing: border-box;
 }
 
@@ -597,6 +579,8 @@ ul.social-buttons li a:active {
     font-size: 20px;
     color: #fff;
     transform: translateY(-150%);
+    -webkit-transform: translateY(-150%);
+    -ms-transform: translateY(-150%);
     /*text-shadow: rgba(0,0,0,.8) 0 1px 0;*/
 }
 

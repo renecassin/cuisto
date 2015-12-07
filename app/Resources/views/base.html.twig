@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    {%  include ':Partials:meta.html.twig' only %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/gourmet/favicon.ico') }}" />
+
+    <title>{% block titre %} | Avekapeti{% endblock %}</title>
+    {% block stylesheets %}
+        {%  include ':Partials:link.html.twig' only %}
+    {% endblock stylesheets %}
+</head>
+
+<body>
+    {% block body %}{% endblock %}
+    {% block foot_scripts %}
+        {%  include ':Partials:script.html.twig' only %}
+    {% endblock %}
+</body>
 </html>

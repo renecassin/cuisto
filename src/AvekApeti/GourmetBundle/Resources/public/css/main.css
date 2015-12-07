@@ -1,11 +1,18 @@
 #h1-home{
-    font-size: 40px!important;
+    font-size: 32px!important;
 }
 
 .h1-page{
-    font-size: 36px!important;
+    font-size: 30px!important;
     margin-bottom: 15px;
 }
+
+#header-index-plat .adresse-selection
+#header-index-plat .h1-page{
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+
+}
+
 
 @media (max-width: 360px) {
     .h1-page,
@@ -30,8 +37,9 @@
 
 #header-home p,
 .header-landing p {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     font-size: 18px;
+    margin-top: 10px;
 }
 
 .description-inscription {
@@ -69,18 +77,13 @@
     color:#ff4848;
 }
 
-@media (min-width: 350px) {
+@media (min-width: 360px) {
     #h1-home{
-        font-size: 50px!important;
+        font-size: 34px!important;
         margin-bottom: 25px;
     }
     .h1-page{
-        font-size: 44px!important;
-    }
-    #header-home p,
-    .header-landing p {
-        margin-bottom: 40px;
-        font-size: 20px;
+        font-size: 32px!important;
     }
     .description-inscription {
         margin-bottom: 40px;
@@ -98,28 +101,29 @@
 }
 
 @media (min-width: 768px) {
-    #header-home p,
-    .header-landing p {
-        margin-bottom: 60px;
-    }
     #h1-home{
-        font-size: 54px!important;
+        font-size: 60px!important;
         margin-bottom: 25px;
     }
     .h1-page{
-        font-size: 50px!important;
+        font-size: 58px!important;
+    }
+    #header-home p,
+    .header-landing p {
+        font-size: 22px;
     }
 }
 
-@media (min-width: 800px) {
-    #h1-home {
-        font-size: 60px !important;
+
+@media (min-width: 980px) {
+    #header-home p,
+    .header-landing p {
+        margin-bottom: 20px;
         margin-top: 20px;
     }
-    .h1-page {
-        font-size: 56px !important;
-        margin-bottom: 20px;
-    }
+}
+
+@media (min-width: 1280px) {
     #header-home p{
         margin-bottom: 40px;
         font-size: 24px;
@@ -155,11 +159,16 @@
     background: rgba(229,73,95,.4);
     border-style: none;
     color: white;
-    margin-bottom: 100px;
 }
-@media (max-width: 700px) {
+@media (max-width: 360px) {
     #header-home .btn-semi-transparent {
         display: none;
+    }
+}
+
+@media (min-width: 1280px) {
+    #header-home .btn-semi-transparent {
+        margin-bottom: 70px;
     }
 }
 
@@ -206,56 +215,59 @@
     display: inline;
 }
 
-@media (min-width: 768px) {
+/*
+@media (min-width: 1281px) {
     #header-home {
         min-height: 85%;
     }
+}*/
+
+#header-home {
+    background-size: cover;
 }
+
 
 .header1{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header1.jpg);
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header1.jpg) no-repeat center;
 }
 .header2{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header2.jpg);
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header2.jpg) no-repeat center;
 }
 .header3{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header3.jpg);
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header3.jpg) no-repeat center;
 }
 .header4{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header4.jpg);
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header4.jpg) no-repeat center;
 }
 .header5{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header5.jpg);
-}
-.header6{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header6.jpg);
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header5.jpg) no-repeat center;
 }
 
+
 #chef-inscription {
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/chef/header.jpg);
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/chef/header.jpg);
 }
 
 #gourmet-inscription {
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/gourmet/header.jpg);
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header6.jpg);
 }
 
 #connexion {
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/header-connexion.jpg);
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/landing/legumes.jpg);
 }
 
 #header-selection-plat{
-    background-image: radial-gradient(rgba(0,0,0,0.2),black 120%), url(../img/plats/selection-plat/raviolesAuFromage.jpg);
-    min-height: 50%;
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/selection-plat/raviolesAuFromage.jpg);
 }
 
 #header-index-plat{
-    background-image: radial-gradient(rgba(0,0,0,0),black 120%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg);
-    min-height: 70%;
+    background-image: radial-gradient(rgba(0,0,0,0),black 400%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg);
 }
 
+#page-feedback,
 #page-contact {
     background-color: #222;
-    background-image: url(../img/map-image.png);
+    background-image: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/marry-me.jpg);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -300,12 +312,12 @@
 }
 
 .bg-cta-chef {
-    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/chef/header.jpg) no-repeat center fixed ;
+    background: radial-gradient(rgba(0,0,0,0.1),black 200%), url(../img/chef/header.jpg) no-repeat center fixed ;
     background-size: cover;
 }
 
 .bg-cta-gourmet {
-    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/gourmet/header.jpg) no-repeat center fixed;
+    background: radial-gradient(rgba(0,0,0,0.1),black 200%), url(../img/header6.jpg) no-repeat center fixed;
     background-size: cover;
 }
 
@@ -394,6 +406,8 @@ section#contact .glyphicon-perso {
     margin-top: 65px;
 }
 
+#page-contact .bloc-titre-inscription,
+#page-feedback .bloc-titre-inscription,
 #connexion .bloc-titre-inscription {
     text-align: center;
 }
@@ -419,13 +433,13 @@ section#contact .glyphicon-perso {
     position: absolute;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 360px) {
     .logo-facebook{
         display: none ;
     }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 360px) {
     .logo-facebook{
         left: 25px;
         top: 11px;
@@ -539,8 +553,7 @@ section#contact .glyphicon-perso {
     width: 100%;
 }
 
-@media(max-width:993px) {
-    #index-plat iframe,
+@media(max-width:980px) {
     #selection-plat iframe{
         display: none;
     }
@@ -550,10 +563,16 @@ section#contact .glyphicon-perso {
     #selection-plat .petite-carte{
         display: none;
     }
+    #index-plat .mini-carte{
+        display: none;
+    }
 }
 
 @media (max-width: 1200px) {
     #selection-plat .grande-carte{
+        display: none;
+    }
+    #index-plat .petite-carte{
         display: none;
     }
 }
@@ -609,7 +628,8 @@ section#contact .glyphicon-perso {
 }
 
 
-#index-plat .petite-carte{
+#index-plat .petite-carte,
+#index-plat .mini-carte{
     margin-top: 20px;
 }
 
@@ -617,13 +637,7 @@ section#contact .glyphicon-perso {
 /* Landing */
 
 .header-landing{
-    background-image: radial-gradient(rgba(0,0,0,0.1),black 120%), url(../img/landing/legumes.jpg) ;
-}
-
-@media(min-width:767px) {
-    .header-landing{
-        min-height: 70%;
-    }
+    background-image: radial-gradient(rgba(0,0,0,0.1),black 200%), url(../img/landing/legumes.jpg) ;
 }
 
 .header-landing input{
@@ -645,7 +659,7 @@ section#contact .glyphicon-perso {
     border-radius: 4px;
 }
 
-@media(max-width:350px) {
+@media(max-width:360px) {
     .cadre-transp {
         background: none;
     }
@@ -655,7 +669,7 @@ section#contact .glyphicon-perso {
     padding: 20px;
 }
 
-@media(max-width:993px) {
+@media(max-width:980px) {
     .header-landing input,
     .header-landing .btn-primary{
         width: 100%;
@@ -664,7 +678,7 @@ section#contact .glyphicon-perso {
 }
 
 .grand-mere{
-    width: 70%;
+    width: 60%;
 }
 
 .immeuble{
@@ -689,7 +703,7 @@ section#contact .glyphicon-perso {
     margin: auto;
 }
 
-@media(max-width:993px) {
+@media(max-width:980px) {
     #footer-landing p {
         margin: 0;
     }
@@ -697,7 +711,7 @@ section#contact .glyphicon-perso {
 
 #mode-emploi img{
     margin: auto;
-    height: 260px;
+    height: 200px;
 }
 
 .panel-image-chef{
@@ -711,6 +725,7 @@ section#contact .glyphicon-perso {
     position: inherit;
 }
 
+#mainNav .img-circle,
 #index-plat .img-circle,
 #selection-plat .img-circle{
     border: 2px solid white;
@@ -718,6 +733,7 @@ section#contact .glyphicon-perso {
     transition: all .4s ease-in-out;
 }
 
+#mainNav .img-circle,
 .well .img-circle,
 .thumbnail .img-circle{
     width: 65px;
@@ -777,6 +793,7 @@ section#contact .glyphicon-perso {
     border: 2px solid #565a5c;
 }
 
+#page-feedback p
 #page-contact p{
     text-align: center;
 }
@@ -787,6 +804,22 @@ section#contact .glyphicon-perso {
     }
 }
 
-.panier{
-    background: green;
+@media(min-width:768px) {
+    .disparition{
+        display: none;
+    }
+}
+
+.logo-nav{
+    width: 65px;
+    height: 65px;
+    left: 10px;
+    position: absolute;
+    top: 0px;
+}
+
+
+.navbar-brand {
+    padding: 22px 80px;
+    height: 65px;
 }

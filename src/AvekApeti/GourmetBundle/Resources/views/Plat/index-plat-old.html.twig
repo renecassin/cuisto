@@ -1,0 +1,292 @@
+{%  extends  "@GourmetBundle/Resources/views/layout.html.twig" %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}" xmlns="http://www.w3.org/1999/html"></script>
+{%  endblock foot_scripts %}
+
+{% block titre %}Plat{{ parent() }}{% endblock %}
+
+{% block content %}
+
+    <header class="header" id="header-index-plat">
+        <div class="header-content header-content-transform"></div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container" id="index-plat">
+
+        <div class="col-md-3 text-center">
+            <div class="portrait-chef">
+                <a href=# class="lien-portrait-chef" >
+                    <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+                    <h4 class="nom-plat lien-hover">Chef Ludo94</h4>
+                    <p class="description-adresse">Rue Boileau, Paris</p>
+                </a>
+            </div>
+
+            <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="470" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe class="mini-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="280" height="360" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="thumbnail">
+                <div class="caption-full">
+
+                    <div class="row">
+                        <div class="col-sm-9 texte-centre ">
+                            <h1>Roti de boeuf Esterhazy</h1>
+                            <div class="ratings">
+                                <p>Viande -
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                    - 3 commentaires
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 text-center">
+                            <button class="cercle">
+                                <div >
+                                    <h3>9€</h3>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="description-plat">La gastronomie s’affranchit des frontières, pour cela il n’a pas fallu attendre l’unification européenne. La monarchie autrichienne regorge d’exemples. Dans le cas précis, nous devons la recette de ce rôti de bœuf fondant à l’illustre famille des Esterházys, dont les membres ne furent pas seulement mécènes généreux et politiciens influents, mais aussi fins gourmets. Tartes, tartines et escalopes portant leur nom ont immortalisé cette dynastie issue de la Hongrie et du Burgenland actuel. </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panier">
+            <div class="col-md-3 text-center">
+                <button class="btn btn-default btn-xl">Ajouter au panier</button>
+                <div class="panier-dynamique"><br><h3>Panier</h3></div>
+                <a class="btn btn-default btn-xl">Commander</a>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="well">
+
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <div class="row">
+                            <a href=# class="" >
+                                <div class="panel-image-chef">
+                                    <img src={{ asset('bundles/gourmet/img/gourmet/angelina.jpg') }} alt="" class="img-circle">
+                                </div>
+                            </a>
+                            <p>Angelina</p>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart-empty"></span>
+                        <span class="pull-right">novembre 2015</span>
+                        <p>J’ai gouté ce roti de boeuf de Ludo94, il était excellent, on s’est régalé au bureau ! On recommande vivement !</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <div class="row">
+                            <a href=# class="" >
+                                <div class="panel-image-chef">
+                                    <img src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="" class="img-circle">
+                                </div>
+                            </a>
+                            <p>Brad</p>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart-empty"></span>
+                        <span class="pull-right">octobre 2015</span>
+                        <p>Un pur délice ! La cuisson était parfaite, la viande fond dans la bouche. Bravo Ludo94 ! Nous allons nous revoir très vite ;)</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <div class="row">
+                            <a href=# class="" >
+                                <div class="panel-image-chef">
+                                    <img src={{ asset('bundles/gourmet/img/gourmet/johnny.jpg') }} alt="" class="img-circle">
+                                </div>
+                            </a>
+                            <p>Johnny</p>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        <span class="pull-right">novembre 2015</span>
+                        <p>Ma copine et moi avons adoré votre roti de boeuf ! C’était exquis et copieux merci beaucoup.</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-right">
+                <a class="btn btn-default btn-filtre ">Laisser un commentaire</a>
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Related Projects Row -->
+        <div class="row vous-aimeriez">
+            <div class="col-lg-12">
+                <h3 class="page-header">Si vous aimez ce plat, vous pourriez aimer ...</h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="thumbnail">
+                    <a href={{ path('gourmet_platpage') }}>
+                        <div class="monde-zoom">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <div class="project-category ">
+                                        Chef Max75
+                                    </div>
+                                    <div class="project-name">
+                                        Boulevard Exelmans, Paris
+                                    </div>
+                                </div>
+                            </div>
+                            <img src={{ asset('bundles/gourmet/img/plats/selection-plat/porcBraiseAuxLegumesRacines.jpg') }} alt="" >
+                        </div>
+                    </a>
+                    <div class="caption">
+                        <a href=# class="lien-image-chef" >
+                            <div class="panel-image-chef">
+                                <img src={{ asset('bundles/gourmet/img/chef/chef9.jpeg') }} alt="" class="img-circle">
+                            </div>
+                        </a>
+                        <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Porc braisé aux légumes</span> - 8 €</a> </h4>
+                    </div>
+                    <div class="ratings">
+                        <a href="{{ path('gourmet_platpage') }}">
+                            <p>Viande -
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart-empty"></span>
+                                - 11 commentaires
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="thumbnail">
+                    <a href={{ path('gourmet_platpage') }}>
+                        <div class="monde-zoom">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <div class="project-category ">
+                                        Chef Luc95
+                                    </div>
+                                    <div class="project-name">
+                                        Avenue Victor Hugo, Boulogne-Billancourt
+                                    </div>
+                                </div>
+                            </div>
+                            <img src={{ asset('bundles/gourmet/img/plats/selection-plat/knodelsAuLard.jpg') }} alt="" >
+                        </div>
+                    </a>
+                    <div class="caption">
+                        <a href=# class="lien-image-chef" >
+                            <div class="panel-image-chef">
+                                <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
+                            </div>
+                        </a>
+                        <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Knodels au lard</span> - 8 €</a></h4>
+                    </div>
+                    <div class="ratings">
+                        <a href="{{ path('gourmet_platpage') }}">
+                            <p>Viande -
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart-empty"></span>
+                                - 5 commentaires
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="thumbnail">
+                    <a href={{ path('gourmet_platpage') }}>
+                        <div class="monde-zoom">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <div class="project-category ">
+                                        Chef Luc95
+                                    </div>
+                                    <div class="project-name">
+                                        Avenue Victor Hugo, Boulogne-Billancourt
+                                    </div>
+                                </div>
+                            </div>
+                            <img src={{ asset('bundles/gourmet/img/plats/selection-plat/SaladeDePouletPané.jpg') }} alt="" >
+                        </div>
+                    </a>
+                    <div class="caption">
+                        <a href=# class="lien-image-chef" >
+                            <div class="panel-image-chef">
+                                <img src={{ asset('bundles/gourmet/img/chef/chef8.jpg') }} alt="" class="img-circle">
+                            </div>
+                        </a>
+                        <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Salade de poulet pané</span> - 6 €</a></h4>
+                    </div>
+                    <div class="ratings">
+                        <a href="{{ path('gourmet_platpage') }}">
+                            <p>Viande -
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart-empty"></span>
+                                - 4 commentaires
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+{% endblock content %}
+
