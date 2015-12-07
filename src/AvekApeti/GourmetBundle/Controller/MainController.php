@@ -9,9 +9,38 @@ use AvekApeti\BackBundle\Entity\Mail;
 use AvekApeti\GourmetBundle\Form\MailType;
 class MainController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('GourmetBundle:Main:index.html.twig');
+       // return $this->render('GourmetBundle:Main:index.html.twig');
+
+        //Partie contact
+        $entity = new Mail();
+
+        $form = $this->createForm(new MailType(), $entity, array(
+            'action' => $this->generateUrl('gourmet_homepage'),
+            'method' => 'POST',
+        ));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            //Recuperation des informations utilisateur si il est logé
+            $user =$this->get('security.context')->getToken()->getUser();
+            if($user != "anon.")
+            {
+                if($user->getUsername() != 'admin@admin') {
+                    $entity->setUtilisateur($user);
+                }
+            }
+            $entity->setItem("Homepage");
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('gourmet_homepage'));
+        }
+        return $this->render('GourmetBundle:Main:index.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
     }
 
     public function loginAction(Request $request)

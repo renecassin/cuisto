@@ -19,6 +19,8 @@ security:
           users:
             user:
             admin@admin: { password: admin, roles: ROLE_SUPER_ADMIN }
+            chef@chef: { password: chef, roles: ROLE_CHEF }
+            gourmet@gourmet: { password: gourmet, roles: ROLE_GOURMET }
 
       main:
         entity:
