@@ -810,16 +810,3 @@ section#contact .glyphicon-perso {
     }
 }
 
-.logo-nav{
-    width: 65px;
-    height: 65px;
-    left: 10px;
-    position: absolute;
-    top: 0px;
-}
-
-
-.navbar-brand {
-    padding: 22px 80px;
-    height: 65px;
-}
