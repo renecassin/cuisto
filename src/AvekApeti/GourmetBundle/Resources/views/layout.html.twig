@@ -1,7 +1,8 @@
-{%  extends  "@GourmetBundle/Resources/views/base.html.twig" %}
+{% extends "::base.html.twig" %}
 
 {% block body %}
     {% block nav %}
+<<<<<<< HEAD
         <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -53,38 +54,16 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
+=======
+        {%  include 'GourmetBundle:Partials:navbar.html.twig' only %}
+>>>>>>> origin/annexe
     {% endblock nav %}
+
     {% block content %}
     {% endblock content %}
 
     {% block footer %}
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <span class="copyright">Copyright &copy; Avekapeti 2015</span>
-                    </div>
-                    <div class="col-md-4">
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="https://www.facebook.com/avekapeti"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <ul class="list-inline quicklinks">
-                            <li><a href="#">Confidentialité</a>
-                            </li>
-                            <li><a href="#">Conditions générales</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        {%  include 'GourmetBundle:Partials:footer.html.twig' only %}
     {% endblock footer %}
 {% endblock body %}
 
