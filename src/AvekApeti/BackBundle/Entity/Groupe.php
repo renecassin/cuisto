@@ -93,6 +93,21 @@ class Groupe
     {
         return $this->role;
     }
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+        //dump($this->groupe->toArray(),$this->groupe);
+        $roles = [];
+        if ($this->groupe)
+        {
+            foreach($this->groupe as $group)
+            {
+                array_push($roles, $group->getRole());
+            }
+        }
+        return $roles;
+        //return $this->groupe->getRole();
+    }
     /**
      * Constructor
      */
