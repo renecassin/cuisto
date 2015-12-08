@@ -24,7 +24,7 @@ class ChefController extends Controller
         }
 
         $editForm = $this->createForm(new ChefType(), $entity, array(
-            'action' => $this->generateUrl('chef_update'),
+            'action' => $this->generateUrl('chef_chef_update'),
             'method' => 'PUT',
         ));
 
@@ -34,6 +34,40 @@ class ChefController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
 
+        ));
+    }
+
+    public function updateAction(Request $request)
+    {
+        $user =$this->get('security.context')->getToken()->getUser();
+        $id = $user->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($id);
+
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Chef entity.');
+        }
+
+        $editForm = $this->createForm(new ChefType(), $entity, array(
+            'action' => $this->generateUrl('chef_chef_update'),
+            'method' => 'PUT',
+        ));
+        $editForm->add('submit', 'submit', array('label' => 'Update'));
+
+
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('chef_profil'));
+        }
+
+        return $this->render('ChefBundle:Chef:profil.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
         ));
     }
 
