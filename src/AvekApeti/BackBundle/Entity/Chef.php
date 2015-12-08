@@ -24,26 +24,26 @@ class Chef
     /**
      * @var string
      *
-     * @ORM\Column(name="adress", type="string", length=255)
+     * @ORM\Column(name="adress", type="string", length=255, nullable=true)
      */
     private $adress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zone_km", type="string", length=255)
+     * @ORM\Column(name="zone_km", type="string", length=255, nullable=true)
      */
     private $zoneKm;
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
     /**
      * @var string
      *
-     * @ORM\Column(name="cp", type="string", length=255)
+     * @ORM\Column(name="cp", type="string", length=255, nullable=true)
      */
     private $cp;
     /**

@@ -76,7 +76,7 @@ class Mail
     /**
      *
      * @ORM\OneToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumn(name="Utilisateur_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="Utilisateur_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $utilisateur;
     /**

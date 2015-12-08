@@ -119,6 +119,11 @@
 -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                {% if  (app.user) %}
+                    <li>
+                        <a href="">{{ app.user.username }}</a>
+                    </li>
+                {% endif %}
         {% if (is_granted('ROLE_CHEF')) %}
             <li>
                 <a href={{ path('index') }}>Admin</a>
@@ -175,7 +180,7 @@
                             <a>Mes favoris</a>
                         </li>
                         <li>
-                            <a>Mon compte</a>
+                            <a href={{ path('gourmet_profil') }}>Mon compte</a>
                         </li>
 
                     </ul>

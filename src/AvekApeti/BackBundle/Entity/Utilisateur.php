@@ -7,6 +7,7 @@ use AvekApeti\BackBundle\Entity\Validator as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 /**
  * Utilisateur
  *
@@ -16,7 +17,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
  * @UniqueEntity("login", message="Login deja utilise")
  * @UniqueEntity("email", message="Email deja utilise")
  */
-class Utilisateur implements UserInterface
+class Utilisateur implements UserInterface //, EquatableInterface
 {
     public function __construct(Groupe $Groupe = null)
     {
@@ -118,7 +119,7 @@ class Utilisateur implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Groupe")
-     * @ORM\JoinColumn(name="groupe_id",referencedColumnName="id")
+     * @ORM\JoinColumn(name="groupe_id",referencedColumnName="id",nullable=true)
      */
     private $groupe;
     /**
@@ -581,5 +582,8 @@ class Utilisateur implements UserInterface
     {
         return $this->avis;
     }
-
+    /*public function isEqualTo(UserInterface $user)
+    {
+        return ($this->getUsername() == $user->getUsername() && serialize($this->getRoles()) == serialize($user->getRoles()));
+    }*/
 }

@@ -5,8 +5,8 @@ namespace AvekApeti\GourmetBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use AvekApeti\BackBundle\Form\ImageType;
-class Utilisateur2Type extends AbstractType
+
+class ChefType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,23 +15,10 @@ class Utilisateur2Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('email')
-            ->add('login')
-            ->add('password','password',[
-            "required" => false,
-            ])
             ->add('adress')
             ->add('city')
             ->add('cp')
-            ->add('phone')
-            ->add('newsletter',null,[
-                "required" => false,
-            ])
-            ->add('image', new ImageType(), [
-                "required" => false,
-            ])
+            ->add('zoneKm')
 
         ;
     }
@@ -42,7 +29,7 @@ class Utilisateur2Type extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Avekapeti\BackBundle\Entity\Utilisateur'
+            'data_class' => 'AvekApeti\BackBundle\Entity\Chef'
         ));
     }
 
@@ -51,6 +38,6 @@ class Utilisateur2Type extends AbstractType
      */
     public function getName()
     {
-        return 'avekapeti_gourmetbundle_utilisateur';
+        return 'avekapeti_backbundle_chef';
     }
 }
