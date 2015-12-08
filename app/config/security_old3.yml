@@ -1,8 +1,7 @@
 
 security:
-    always_authenticate_before_granting: true
     encoders:
-        #Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User: plaintext
         AvekApeti\BackBundle\Entity\Utilisateur:
          # algorithm: sha512
           algorithm: bcrypt
@@ -15,13 +14,21 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_GOURMET, ROLE_CHEF, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+      in_memory:
+        memory:
+          users:
+            user:
+            admin@admin: { password: admin, roles: ROLE_SUPER_ADMIN }
+            chef@chef: { password: chef, roles: ROLE_CHEF }
+            gourmet@gourmet: { password: gourmet, roles: ROLE_GOURMET }
+
       main:
         entity:
           class: AvekApetiBackBundle:Utilisateur
           property: email
       mix:
         chain:
-          provider: [main]
+          provider: [in_memory, main]
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -29,7 +36,7 @@ security:
         main:
             pattern:   ^/
             anonymous: true
-            provider:  main
+            provider:  in_memory
             form_login:
                 login_path: login
                 check_path: login_check
@@ -42,5 +49,5 @@ security:
               lifetime: 172800 # 2jours a définir en secondes
     access_control:
     - { path: ^/Admin, role: ROLE_ADMIN }
-    - { path: ^/chef, role: ROLE_CHEF }
-    - { path: ^/gourmet, role: ROLE_GOURMET }
+    - { path: ^/Chef, role: ROLE_CHEF }
+    - { path: ^/Gourmet, role: ROLE_GOURMET }

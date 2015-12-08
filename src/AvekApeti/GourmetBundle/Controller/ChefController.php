@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AvekApeti\BackBundle\Entity\Utilisateur;
 use AvekApeti\GourmetBundle\Form\UtilisateurType;
+use AvekApeti\BackBundle\Entity\Chef;
+use AvekApeti\GourmetBundle\Form\ChefType;
 class ChefController extends Controller
 {
     public function chefInscriptionAction()
@@ -70,4 +72,40 @@ class ChefController extends Controller
 
         return $form;
     }
+    public function enregistrementAction()
+    {
+        //n'autorise que les gourmets
+        $this->denyAccessUnlessGranted('ROLE_GOURMET', null, 'Unable to access this page!');
+        //Recuperation id user
+        $user =$this->get('security.context')->getToken()->getUser();
+
+       if(!($this->get('security.authorization_checker')->isGranted('ROLE_CHEF'))) {
+
+           //Recupere les droits chef
+           $em = $this->getDoctrine()->getManager();
+           $Groupe =$em->getRepository("AvekApetiBackBundle:Groupe")
+               ->findOneByRole('ROLE_CHEF');
+
+           $user->setGroupe($Groupe);
+
+           $entity = new Chef();
+           $entity->setUtilisateur($user);
+
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($entity);
+           $em->persist($user);
+           $em->flush();
+          // $user->isEqualTo($user);
+        }else
+       {
+           $em = $this->getDoctrine()->getManager();
+           $entity =$em->getRepository("AvekApetiBackBundle:Chef")
+               ->findOneByUtilisateur($user->getId());
+       }
+        return $this->redirect($this->generateUrl('chef_profil'));
+
+
+
+    }
+
 }

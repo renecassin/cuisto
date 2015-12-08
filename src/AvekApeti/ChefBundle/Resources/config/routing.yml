@@ -1,1 +1,7 @@
-
+chef_profil:
+    path:     /profil
+    defaults: { _controller: "ChefBundle:Chef:profil" }
+chef_chef_update:
+    path:     /update
+    defaults: { _controller: "ChefBundle:Chef:update" }
+    methods:  [POST, PUT]

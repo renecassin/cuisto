@@ -7,6 +7,7 @@ use AvekApeti\BackBundle\Entity\Validator as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 /**
  * Utilisateur
  *
@@ -16,14 +17,14 @@ use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
  * @UniqueEntity("login", message="Login deja utilise")
  * @UniqueEntity("email", message="Email deja utilise")
  */
-class Utilisateur implements UserInterface
+class Utilisateur implements UserInterface //, EquatableInterface
 {
     public function __construct(Groupe $Groupe = null)
     {
         $this->dateCreated = new \DateTime("now");
         $this->groupe = $Groupe ; //Id de groupe par defaut doit correspondre a l'id du groupe d'un utilisateur enregistr� (gourmet)
-       // $this->salt = md5(uniqid(null, true)); // cr�ation d'un salt pour chaque utilisateur
-        $this->salt =null; // cr�ation d'un salt pour chaque utilisateur
+        $this->salt = md5(uniqid(null, true)); // cr�ation d'un salt pour chaque utilisateur
+        //$this->salt =null; // cr�ation d'un salt pour chaque utilisateur
     }
 
     /**
@@ -118,7 +119,7 @@ class Utilisateur implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Groupe")
-     * @ORM\JoinColumn(name="groupe_id",referencedColumnName="id")
+     * @ORM\JoinColumn(name="groupe_id",referencedColumnName="id",nullable=true)
      */
     private $groupe;
     /**
@@ -313,7 +314,7 @@ class Utilisateur implements UserInterface
      */
     public function getSalt()
     {
-        return '';
+        return $this->salt;
        // return $this->salt;
     }
 
@@ -519,14 +520,20 @@ class Utilisateur implements UserInterface
     public function getRoles()
     {
         // TODO: Implement getRoles() method.
-        //dump($this->groupe->toArray(),$this->groupe);
+       // die(dump($this->groupe,$this->groupe));
         $roles = [];
-        foreach($this->groupe as $group)
+      /*  foreach($this->groupe as $group)
         {
             array_push($roles, $group->getRole());
-        }
+        }*/
+
+
+            array_push($roles, $this->groupe->getRole());
+
         return $roles;
         //return $this->groupe->getRole();
+        //return $groupe->getRole();
+      //  return $this->groupe;
     }
 
 
@@ -575,4 +582,8 @@ class Utilisateur implements UserInterface
     {
         return $this->avis;
     }
+    /*public function isEqualTo(UserInterface $user)
+    {
+        return ($this->getUsername() == $user->getUsername() && serialize($this->getRoles()) == serialize($user->getRoles()));
+    }*/
 }

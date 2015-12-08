@@ -87,23 +87,23 @@ class GourmetController extends Controller
         }
 
         $editForm = $this->createForm(new Utilisateur2Type(), $entity, array(
-            'action' => $this->generateUrl('gourmet_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('gourmet_update'),
             'method' => 'PUT',
         ));
 
         $editForm->add('submit', 'submit', array('label' => 'Update'));
 
-        return $this->render('AvekApetiGourmetBundle:Gourmet:profil.html.twig', array(
+        return $this->render('GourmetBundle:Gourmet:profil.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
 
         ));
     }
 
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request)
     {
 
-        $postData = $request->request->get('avekapeti_backbundle_utilisateur');
+        $postData = $request->request->get('avekapeti_gourmetbundle_utilisateur');
 
         //Recuperation de l'utilisateur connecté et recuperation de son id
         $user =$this->get('security.context')->getToken()->getUser();
@@ -114,15 +114,19 @@ class GourmetController extends Controller
 
 
         //Verifie si le mot de passe a ete changer si oui on le rencode
-        if(($postData['password'] != $entity->getPassword()) || ($postData['salt'] != $entity->getSalt()))
+        if(  ($postData['password'] != null) )
         {
+
 
             //Encodage du mot de passe
             $factory = $this->get('security.encoder_factory');
-            $hash = $factory->getEncoder($entity)->encodePassword($postData['password'],$postData['salt']);
+            $hash = $factory->getEncoder($entity)->encodePassword($postData['password'],$entity->getSalt());
             $postData['password'] = $hash;
-            $request->request->set('avekapeti_backbundle_utilisateur',  $postData );
+            $request->request->set('avekapeti_gourmetbundle_utilisateur',  $postData );
 
+        }else{
+
+            $request->request->set('avekapeti_gourmetbundle_utilisateur',  $entity->getPassword() );
         }
 
         if (!$entity) {
