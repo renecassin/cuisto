@@ -34,50 +34,32 @@
 
 <body id="page-top">
 
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">AVEKAPETI</a>
-                <!--<img src="{{ asset('bundles/gourmet/img/logo.jpg') }}" class="img-responsive logo-nav" alt="logo">-->
+    <header id="header-landing">
+
+            <div class="row petite-nav-landing">
+                <div class="bloc-nav-landing">
+                    <a class="" href=#>
+                            <img src="{{ asset('bundles/gourmet/img/logo/avekapeti-logo-RVB-02.png') }}" class="img-responsive logo-nav" alt="logo">
+                            <h2>Avekapeti</h2>
+                    </a>
+                </div>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="#mode-emploi">Mode d'emploi</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
 
-    <header class="header-landing">
         <div class="header-content header-content-transform">
             <div class="header-content-inner">
                 <h1 id="h1-home">Envie d'un bon petit plat fait maison ?</h1>
-                <p>Un peu de patience AVEKAPETI est en train de mijoter mais sera bientôt prêt ! <br>N'hésitez pas à nous laisser votre adresse mail afin d'être les premiers informés du lancement du site</p>
-                <div class ="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <form class="form-inline">
-                        <div class="col-sm-8  no-padding">
-                            <input type="email" class="email-input" placeholder="Adresse e-mail">
-                        </div>
-                        <div class="col-sm-4 no-padding">
-                            <button type="submit" class="btn btn-primary btn-xl">
-                                <span>Enregistrez-vous</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <p>Un peu de patience AVEKAPETI est en train de mijoter mais sera bientôt prêt !<br>N'hésitez pas à nous laisser votre adresse mail afin d'être les premiers informés du lancement du site</p>
+                <a href="#mode-emploi" class="btn btn-xl btn-semi-transparent page-scroll ">Mode d'emploi</a>
+                <form class="form-inline form-recherche">
+                    <div class="form-adresse">
+                        <input type="email" class="address-input" placeholder="Adresse e-mail">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-xl">
+                        <span class="petite-recherche">Go</span>
+                        <span class="grande-recherche">Enregistrez-vous</span>
+                    </button>
+                </form>
             </div>
         </div>
     </header>
@@ -89,28 +71,28 @@
                     <div class="service-box">
                         <img class="img-responsive img-hover img-related grand-mere" src={{ asset('bundles/gourmet/img/landing/grand-mere.png') }} alt="avekapeti" >
                         <h3>Bernadette cuisine un bon petit plat</h3>
-                        <p class="text-muted"> Connaissez vous Bernadette ? Quelle honte c'est votre voisine ! Elle prépare actuellement un bon repas pour sa famille et a des parts en trop</p>
+                        <p class="text-muted">Connaissez vous Bernadette ?<br>Quelle honte c'est votre voisine !<br>Elle prépare actuellement un bon repas pour sa famille et a des parts en trop</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <img class="img-responsive img-hover img-related idea" src={{ asset('bundles/gourmet/img/landing/idea.png') }} alt="avekapeti"" >
                         <h3>Thibault commande une part en ligne</h3>
-                        <p class="text-muted">Pendant ce temps, Thibault veut manger un repas mais ne veut pas cuisiner ni faire la vaisselle... Eureka ! Il se souvient qu'il peut commander une part du plat de Bernadette sur AVEKAPETI</p>
+                        <p class="text-muted">Pendant ce temps, Thibault veut manger un repas mais ne veut pas cuisiner ni faire la vaisselle...<br>Eureka ! Il se souvient qu'il peut commander une part du plat de Bernadette sur AVEKAPETI</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <img class="img-responsive img-hover img-related immeuble" src={{ asset('bundles/gourmet/img/landing/immeuble.jpg') }} alt="avekapeti"" >
                         <h3>Bernadette vient livrer son plat</h3>
-                        <p class="text-muted">Dring dring ! Bernadette est à la porte avec son bon petit plat fait maison</p>
+                        <p class="text-muted">Dring dring !<br>Bernadette est à la porte avec son bon petit plat fait maison</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <img class="img-responsive img-hover img-related plat-design" src={{ asset('bundles/gourmet/img/landing/plat-design.jpg') }} alt="avekapeti"" >
                         <h3>Thibault se régale</h3>
-                        <p class="text-muted">Manger sain, équilibré, fait maison à des prix abordables et sans cuisiner si si ca sera bientôt possible avec AVEKAPETI</p>
+                        <p class="text-muted">Manger sain, équilibré, fait maison à des prix abordables et sans cuisiner si si ca sera bientôt possible sur AVEKAPETI</p>
                     </div>
                 </div>
             </div>
@@ -121,7 +103,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 text-center">
-                    <img src="{{ asset('bundles/gourmet/img/logo.jpg') }}" class="img-responsive" alt="logo">
+                    <a href=#>
+                        <img src="{{ asset('bundles/gourmet/img/logo/avekapeti-logo-RVB-01.png') }}" class="img-responsive" alt="logo">
+                    </a>
                 </div>
                 <div class="col-sm-4">
                     <p>Rejoignez-nous sur </p>
