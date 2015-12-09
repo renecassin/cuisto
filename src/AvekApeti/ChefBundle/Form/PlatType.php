@@ -1,10 +1,11 @@
 <?php
 
-namespace AvekApeti\BackBundle\Form;
+namespace AvekApeti\ChefBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use AvekApeti\BackBundle\Form\ImageType;
 
 class PlatType extends AbstractType
 {

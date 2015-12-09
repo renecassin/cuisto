@@ -67,6 +67,7 @@ private $commandes = array(
             }
         }
 
+        //$this->getContainer->setParameter('maintenance', 'true');
 
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $groupe = $em->getRepository("AvekApetiBackBundle:Groupe")

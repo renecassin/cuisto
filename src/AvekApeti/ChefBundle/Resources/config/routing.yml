@@ -5,3 +5,6 @@ chef_chef_update:
     path:     /update
     defaults: { _controller: "ChefBundle:Chef:update" }
     methods:  [POST, PUT]
+chef_plat:
+    resource: "@ChefBundle/Resources/config/routing/plat.yml"
+    prefix:   /plat

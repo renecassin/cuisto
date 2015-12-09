@@ -5,10 +5,10 @@ namespace AvekApeti\BackBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Plat
+ * PLat
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\PlatRepository")
  */
 class Plat
 {

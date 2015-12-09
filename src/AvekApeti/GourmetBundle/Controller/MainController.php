@@ -136,7 +136,23 @@ class MainController extends Controller
         ));
 
     }
+    private function sendMail($subjext,$from,$to,$body)
+    {
+         $message = \Swift_Message::newInstance()
+             ->setSubject($subjext)
+             ->setFrom($from)
+             ->setTo($to)
+             ->setBody(
+                 $this->renderView(
+                 // app/Resources/views/Emails/registration.html.twig
+                     'Services/mail.html.twig',
+                     array('body' => $body)
+                 ),
+                 'text/html'
+             );
 
+            $this->get('mailer')->send($message);
+    }
 
 
 }
