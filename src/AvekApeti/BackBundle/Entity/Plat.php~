@@ -78,7 +78,6 @@ class Plat
     /**
      *
      * @ORM\OneToOne(targetEntity="Utilisateur")
-     * @ORM\Column(name="utilisateur_id")
      */
     private $Utilisateur;
     /**
@@ -113,6 +112,18 @@ class Plat
      * @ORM\OneToMany(targetEntity="Avis", mappedBy="platAvis", cascade={"remove"})
      */
     private $avis;
+    /**
+     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Plat" )
+     * @ORM\JoinTable(name="commande_plat",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="plat_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     *   }
+     *)
+     */
+    private $commande;
     /**
      * Get id
      *

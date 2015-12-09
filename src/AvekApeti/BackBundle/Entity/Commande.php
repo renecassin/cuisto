@@ -67,13 +67,13 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="$livraison", type="string", length=255)
+     * @ORM\Column(name="livraison", type="string", length=255)
      */
     private $livraison;
     /**
      * @var string
      *
-     * @ORM\Column(name="$typecommande", type="string", length=255)
+     * @ORM\Column(name="typecommande", type="string", length=255)
      */
     private $typecommande;
     /**

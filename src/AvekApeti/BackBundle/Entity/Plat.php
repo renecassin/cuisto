@@ -113,6 +113,18 @@ class Plat
      */
     private $avis;
     /**
+     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Plat" )
+     * @ORM\JoinTable(name="commande_plat",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="plat_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     *   }
+     *)
+     */
+    private $commande;
+    /**
      * Get id
      *
      * @return integer
@@ -456,5 +468,39 @@ class Plat
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Add commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\Commande $commande
+     *
+     * @return Plat
+     */
+    public function addCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
+    {
+        $this->commande[] = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Remove commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\Commande $commande
+     */
+    public function removeCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
+    {
+        $this->commande->removeElement($commande);
+    }
+
+    /**
+     * Get commande
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommande()
+    {
+        return $this->commande;
     }
 }

@@ -124,7 +124,7 @@
                         <a href="">{{ app.user.username }}</a>
                     </li>
                 {% endif %}
-        {% if (is_granted('ROLE_CHEF')) %}
+        {% if (is_granted('ROLE_SUPER_ADMIN')) %}
             <li>
                 <a href={{ path('index') }}>Admin</a>
             </li>
