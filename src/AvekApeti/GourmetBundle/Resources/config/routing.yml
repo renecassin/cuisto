@@ -40,3 +40,6 @@ gourmet_feedbackpage:
 gourmet_detail:
     resource: "@GourmetBundle/Resources/config/routing/gourmet.yml"
     prefix:   /gourmet
+gourmet_message:
+    resource: "@GourmetBundle/Resources/config/routing/message.yml"
+    prefix:   /gourmet/message

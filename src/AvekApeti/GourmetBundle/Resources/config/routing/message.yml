@@ -1,0 +1,17 @@
+gourmet_message:
+    path:     /
+    defaults: { _controller: "GourmetBundle:Message:index" }
+
+gourmet_message_show:
+    path:     /{id}/show
+    defaults: { _controller: "GourmetBundle:Message:show" }
+
+gourmet_message_new:
+    path:     /new
+    defaults: { _controller: "GourmetBundle:Message:new" }
+
+gourmet_message_create:
+    path:     /create
+    defaults: { _controller: "GourmetBundle:Message:create" }
+    methods:  POST
+

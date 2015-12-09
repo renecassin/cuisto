@@ -99,7 +99,7 @@ class PlatController extends Controller
         $User = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AvekApetiBackBundle:Plat')->findIfChef($User->getId(),$id);
+        $entity = $em->getRepository('AvekApetiBackBundle:Plat')->findOneIfChef($User->getId(),$id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Plat entity.');

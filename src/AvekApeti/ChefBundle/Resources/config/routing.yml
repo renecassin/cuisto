@@ -8,3 +8,6 @@ chef_chef_update:
 chef_plat:
     resource: "@ChefBundle/Resources/config/routing/plat.yml"
     prefix:   /plat
+chef_commande:
+    path:     /commande
+    defaults: { _controller: "ChefBundle:Commande:index" }

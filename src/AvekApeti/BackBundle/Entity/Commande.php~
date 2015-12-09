@@ -50,12 +50,12 @@ class Commande
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
-    private $Utilisateur;
+    private $utilisateur;
     /**
      *
      * @ORM\ManyToOne(targetEntity="Chef")
      */
-    private $Chef;
+    private $chef;
     /*/**
      * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
      */
@@ -71,8 +71,19 @@ class Commande
      *)
      */
     private $plat;
-    /**
+   /* /**
      * @ORM\ManyToMany(targetEntity="Menu", mappedBy="Commande")
+     */
+    /**
+     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="Commande" )
+     * @ORM\JoinTable(name="commande_menu",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
+     *   }
+     *)
      */
     private $menu;
     /**

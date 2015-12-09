@@ -8,4 +8,7 @@ gourmet_update:
 
 chef_enregistrement:
     path:     /chef_enregistrement
-    defaults: { _controller: "GourmetBundle:Chef:enregistrement"}
+    defaults: { _controller: "GourmetBundle:Chef:enregistrement" }
+gourmet_commande:
+    path:     /commande
+    defaults: { _controller: "GourmetBundle:Commande:index" }

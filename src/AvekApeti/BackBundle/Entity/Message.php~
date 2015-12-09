@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Message
 {
+    public function __construct()
+    {
+        $this->dateCreated = new \DateTime("now");
+
+    }
     /**
      * @var integer
      *
@@ -45,7 +50,7 @@ class Message
     /**
      * @var boolean
      *
-     * @ORM\Column(name="acc_lecture", type="boolean")
+     * @ORM\Column(name="acc_lecture", type="boolean",nullable=true)
      */
     private $accLecture;
 
@@ -164,5 +169,52 @@ class Message
     {
         return $this->accLecture;
     }
-}
 
+    /**
+     * Set emetteurUser
+     *
+     * @param \AvekApeti\BackBundle\Entity\Utilisateur $emetteurUser
+     *
+     * @return Message
+     */
+    public function setEmetteurUser(\AvekApeti\BackBundle\Entity\Utilisateur $emetteurUser = null)
+    {
+        $this->emetteur_user = $emetteurUser;
+
+        return $this;
+    }
+
+    /**
+     * Get emetteurUser
+     *
+     * @return \AvekApeti\BackBundle\Entity\Utilisateur
+     */
+    public function getEmetteurUser()
+    {
+        return $this->emetteur_user;
+    }
+
+    /**
+     * Set destUser
+     *
+     * @param \AvekApeti\BackBundle\Entity\Utilisateur $destUser
+     *
+     * @return Message
+     */
+    public function setDestUser(\AvekApeti\BackBundle\Entity\Utilisateur $destUser = null)
+    {
+        $this->dest_user = $destUser;
+
+        return $this;
+    }
+
+    /**
+     * Get destUser
+     *
+     * @return \AvekApeti\BackBundle\Entity\Utilisateur
+     */
+    public function getDestUser()
+    {
+        return $this->dest_user;
+    }
+}

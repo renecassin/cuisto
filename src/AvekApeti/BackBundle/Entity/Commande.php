@@ -50,12 +50,12 @@ class Commande
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
-    private $Utilisateur;
+    private $utilisateur;
     /**
      *
      * @ORM\ManyToOne(targetEntity="Chef")
      */
-    private $Chef;
+    private $chef;
     /*/**
      * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
      */
@@ -193,7 +193,7 @@ class Commande
      */
     public function setUtilisateur(\AvekApeti\BackBundle\Entity\Utilisateur $utilisateur = null)
     {
-        $this->Utilisateur = $utilisateur;
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }
@@ -205,7 +205,7 @@ class Commande
      */
     public function getUtilisateur()
     {
-        return $this->Utilisateur;
+        return $this->utilisateur;
     }
 
     /**
@@ -217,7 +217,7 @@ class Commande
      */
     public function setChef(\AvekApeti\BackBundle\Entity\Chef $chef = null)
     {
-        $this->Chef = $chef;
+        $this->chef = $chef;
 
         return $this;
     }
@@ -229,7 +229,7 @@ class Commande
      */
     public function getChef()
     {
-        return $this->Chef;
+        return $this->chef;
     }
 
     /**

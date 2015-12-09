@@ -10,4 +10,54 @@ namespace AvekApeti\BackBundle\Repository;
  */
 class MessageRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findOneByED($User_id,$id)
+    {
+
+        $query = $this->_em->createQueryBuilder($User_id,$id)
+            ->select("m")
+            ->from("AvekApetiBackBundle:Message", "m")
+            ->where('m.id = :id')
+            ->where('m.emetteur_user = :User_id')
+            ->setParameter('User_id',$User_id)
+            ->setParameter('id',$id)
+            ->getQuery();
+        if($query->getSingleResult() == null)
+        {
+            $query = $this->_em->createQueryBuilder($User_id,$id)
+                ->select("m")
+                ->from("AvekApetiBackBundle:Message", "m")
+                ->where('m.id = :id')
+                ->where('m.dest_user = :User_id')
+                ->setParameter('User_id',$User_id)
+                ->setParameter('id',$id)
+                ->getQuery();
+        }
+        return $query->getSingleResult();
+    }
+
+    public function getByEmetteur($User_id)
+    {
+
+        $query = $this->_em->createQueryBuilder($User_id)
+            ->select("m")
+            ->from("AvekApetiBackBundle:Message", "m")
+            ->where('m.emetteur_user = :User_id')
+            ->setParameter('User_id',$User_id)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+    public function getByDest($User_id)
+    {
+
+        $query = $this->_em->createQueryBuilder($User_id)
+            ->select("m")
+            ->from("AvekApetiBackBundle:Message", "m")
+            ->where('m.dest_user = :User_id')
+            ->setParameter('User_id',$User_id)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }
