@@ -101,7 +101,7 @@ class Plat
      *   }
      *)
      */
-    private $tlivs;
+    public $tlivs;
 
 
     /**
@@ -112,7 +112,7 @@ class Plat
      * @ORM\OneToMany(targetEntity="Avis", mappedBy="platAvis", cascade={"remove"})
      */
     private $avis;
-    /**
+ /*   /**
      * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Plat" )
      * @ORM\JoinTable(name="commande_plat",
      *    joinColumns={
@@ -122,6 +122,9 @@ class Plat
      *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
      *   }
      *)
+     */
+    /**
+    * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Plat")
      */
     private $commande;
     /**
@@ -449,11 +452,11 @@ class Plat
     /**
      * Set active
      *
-     * @param \bollean $active
+     * @param boolean $active
      *
      * @return Plat
      */
-    public function setActive(\bollean $active)
+    public function setActive($active)
     {
         $this->active = $active;
 
@@ -463,7 +466,7 @@ class Plat
     /**
      * Get active
      *
-     * @return \bollean
+     * @return \boolean
      */
     public function getActive()
     {

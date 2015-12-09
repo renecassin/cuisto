@@ -63,7 +63,7 @@ class Menu
      *)
      */
     private $tlivs;
-    /**
+    /*/**
      * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Menu" )
      * @ORM\JoinTable(name="commande_menu",
      *    joinColumns={
@@ -73,6 +73,9 @@ class Menu
      *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
      *   }
      *)
+     */
+    /**
+     * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Menu")
      */
     private $commande;
     /**

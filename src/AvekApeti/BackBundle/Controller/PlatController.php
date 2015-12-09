@@ -35,9 +35,18 @@ class PlatController extends Controller
      */
     public function createAction(Request $request)
     {
+
+        $user =$this->get('security.context')->getToken()->getUser();
+
+        // inject some form values in request parameter before bind,
+        // so that values will be validated by form
+       // $form_param['email'] = $this->email_value;
         $entity = new Plat();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        $image = $entity->getImage();
+        $image->setUser($user->getId());
+        $entity->setImage($image);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

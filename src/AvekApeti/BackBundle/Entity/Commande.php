@@ -48,26 +48,46 @@ class Commande
     private $status;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $Utilisateur;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Chef")
+     * @ORM\ManyToOne(targetEntity="Chef")
      */
     private $Chef;
-    /**
+    /*/**
      * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
      */
-    private $plat;
     /**
+     * @ORM\ManyToMany(targetEntity="Plat", inversedBy="Commande" )
+     * @ORM\JoinTable(name="commande_plat",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="plat_id", referencedColumnName="id")
+     *   }
+     *)
+     */
+    private $plat;
+   /* /**
      * @ORM\ManyToMany(targetEntity="Menu", mappedBy="Commande")
+     */
+    /**
+     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="Commande" )
+     * @ORM\JoinTable(name="commande_menu",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
+     *   }
+     *)
      */
     private $menu;
     /**
-     * @var string
-     *
-     * @ORM\Column(name="livraison", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="TypeLivraison")
      */
     private $livraison;
     /**

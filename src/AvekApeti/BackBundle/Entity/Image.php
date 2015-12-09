@@ -14,6 +14,11 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class Image
 {
+    public function __construct()
+    {
+        $this->dateCreated = new \DateTime("now");
+
+    }
     /**
      * @var integer
      *
@@ -30,12 +35,7 @@ class Image
      */
     private $name;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="src", type="string", length=255)
-     */
-    private $src;
+
 
     /**
      * @var integer
@@ -205,8 +205,8 @@ class Image
         //Si j'ai deja un nom(edition), je sauvegarde celui ci dans une variable oldname
         if(null != $this->getFile())
         {
-            // On effectue une modification fictive pour obliger doctrine à croire qu'il y a eu une modif et donc
-            // faire la mise à jour de mon objet Image
+            // On effectue une modification fictive pour obliger doctrine ï¿½ croire qu'il y a eu une modif et donc
+            // faire la mise ï¿½ jour de mon objet Image
             $this->oldName = $this->name;
             $this->name = "changement";
         }
@@ -235,5 +235,9 @@ class Image
     public function getUser()
     {
         return $this->user;
+    }
+    public function getFile()
+    {
+        return $this->file;
     }
 }
