@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Commande
 {
+    public function __construct()
+    {
+        $this->dateCreated = new \DateTime("now");
+
+    }
     /**
      * @var integer
      *
@@ -51,6 +56,32 @@ class Commande
      * @ORM\OneToOne(targetEntity="Chef")
      */
     private $Chef;
+    /**
+     * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
+     */
+    private $plat;
+    /**
+     * @ORM\ManyToMany(targetEntity="Menu", mappedBy="Commande")
+     */
+    private $menu;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$livraison", type="string", length=255)
+     */
+    private $livraison;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$typecommande", type="string", length=255)
+     */
+    private $typecommande;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
     /**
      * Get id
      *
@@ -132,5 +163,52 @@ class Commande
     {
         return $this->status;
     }
-}
 
+    /**
+     * Set utilisateur
+     *
+     * @param \AvekApeti\BackBundle\Entity\Utilisateur $utilisateur
+     *
+     * @return Commande
+     */
+    public function setUtilisateur(\AvekApeti\BackBundle\Entity\Utilisateur $utilisateur = null)
+    {
+        $this->Utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \AvekApeti\BackBundle\Entity\Utilisateur
+     */
+    public function getUtilisateur()
+    {
+        return $this->Utilisateur;
+    }
+
+    /**
+     * Set chef
+     *
+     * @param \AvekApeti\BackBundle\Entity\Chef $chef
+     *
+     * @return Commande
+     */
+    public function setChef(\AvekApeti\BackBundle\Entity\Chef $chef = null)
+    {
+        $this->Chef = $chef;
+
+        return $this;
+    }
+
+    /**
+     * Get chef
+     *
+     * @return \AvekApeti\BackBundle\Entity\Chef
+     */
+    public function getChef()
+    {
+        return $this->Chef;
+    }
+}
