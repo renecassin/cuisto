@@ -1,3 +1,7 @@
+avek_apeti_back_typecommande:
+    resource: "@AvekApetiBackBundle/Resources/config/routing/typecommande.yml"
+    prefix:   /typecommande
+
 avek_apeti_back_mail:
     resource: "@AvekApetiBackBundle/Resources/config/routing/mail.yml"
     prefix:   /mail

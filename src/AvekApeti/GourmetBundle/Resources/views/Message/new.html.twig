@@ -1,13 +1,16 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+    {% if User_dest is defined %}
+        <span>Le destinataire n'a pas ete trouvé</span>
+    {% endif %}
     <h1>Message creation</h1>
 
     {{ form(form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('message') }}">
+        <a href="{{ path('gourmet_message') }}">
             Back to the list
         </a>
     </li>

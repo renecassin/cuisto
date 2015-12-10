@@ -28,21 +28,31 @@ class MessageController extends Controller
      */
     public function createAction(Request $request)
     {
+        $User = $this->get('security.context')->getToken()->getUser();
+        $postData = $request->request->get('gourmetbundle_message');
+
+
+        $em = $this->getDoctrine()->getManager();
+        $User_dest = $em->getRepository('AvekApetiBackBundle:Utilisateur')->findOneByLogin($postData['destinataire']);
+
         $entity = new Message();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if ($form->isValid() && $User_dest) {
+
+            $entity->setEmetteurUser($User);
+            $entity->setDestUser($User_dest);
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('message_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('gourmet_message_show', array('id' => $entity->getId())));
         }
 
         return $this->render('GourmetBundle:Message:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'User_dest' => true
         ));
     }
 
@@ -56,7 +66,7 @@ class MessageController extends Controller
     private function createCreateForm(Message $entity)
     {
         $form = $this->createForm(new MessageType(), $entity, array(
-            'action' => $this->generateUrl('message_create'),
+            'action' => $this->generateUrl('gourmet_message_create'),
             'method' => 'POST',
         ));
 
@@ -89,10 +99,15 @@ class MessageController extends Controller
         $User = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AvekApetiBackBundle:Message')->findOneByED($User->getId(),$id);
+        $entity = $em->getRepository('AvekApetiBackBundle:Message')->getOneByED($User->getId(),$id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Message entity.');
+        }else{
+            //Enregistrement de l'accusé de lecture
+            $entity->setAccLecture(1);
+            $em->persist($entity);
+            $em->flush();
         }
 
 

@@ -77,7 +77,7 @@ class Plat
     private $unableWhile;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $Utilisateur;
     /**
@@ -102,7 +102,18 @@ class Plat
      *)
      */
     public $tlivs;
-
+    /**
+     * @ORM\ManyToMany(targetEntity="TypeCommande", inversedBy="Plat" )
+     * @ORM\JoinTable(name="plat_typecommande",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="plat_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="typecommande_id", referencedColumnName="id")
+     *   }
+     *)
+     */
+    public $tcoms;
 
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
@@ -505,5 +516,39 @@ class Plat
     public function getCommande()
     {
         return $this->commande;
+    }
+
+    /**
+     * Add tcom
+     *
+     * @param \AvekApeti\BackBundle\Entity\TypeCommande $tcom
+     *
+     * @return Plat
+     */
+    public function addTcom(\AvekApeti\BackBundle\Entity\TypeCommande $tcom)
+    {
+        $this->tcoms[] = $tcom;
+
+        return $this;
+    }
+
+    /**
+     * Remove tcom
+     *
+     * @param \AvekApeti\BackBundle\Entity\TypeCommande $tcom
+     */
+    public function removeTcom(\AvekApeti\BackBundle\Entity\TypeCommande $tcom)
+    {
+        $this->tcoms->removeElement($tcom);
+    }
+
+    /**
+     * Get tcoms
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTcoms()
+    {
+        return $this->tcoms;
     }
 }

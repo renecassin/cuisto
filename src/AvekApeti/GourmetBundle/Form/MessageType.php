@@ -36,6 +36,6 @@ class MessageType extends AbstractType
      */
     public function getName()
     {
-        return 'avekapeti_backbundle_message';
+        return 'gourmetbundle_message';
     }
 }

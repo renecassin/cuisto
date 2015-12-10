@@ -39,10 +39,10 @@ class PlatType extends AbstractType
                 "multiple" => false,
                 "expanded" => false
             ))
-            ->add('tlivs', 'entity',  array(
-                'class' => 'AvekApetiBackBundle:TypeLivraison',
+            ->add('tcoms', 'entity',  array(
+                'class' => 'AvekApetiBackBundle:TypeCommande',
                 'choice_label' => 'name',
-                "multiple" => false,
+                "multiple" => true,
                 "expanded" => false
             ))
             ->add('image',new ImageType())

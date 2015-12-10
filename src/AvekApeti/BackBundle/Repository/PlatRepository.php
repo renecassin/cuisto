@@ -20,8 +20,7 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->_em->createQueryBuilder($User_id,$id)
             ->select("p")
             ->from("AvekApetiBackBundle:Plat", "p")
-            ->where('p.id = :id')
-            ->where('p.Utilisateur = :User_id')
+            ->where('p.id = :id AND p.Utilisateur = :User_id')
             ->setParameter('User_id',$User_id)
             ->setParameter('id',$id)
             ->getQuery();

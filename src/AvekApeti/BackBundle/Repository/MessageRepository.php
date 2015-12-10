@@ -11,24 +11,23 @@ namespace AvekApeti\BackBundle\Repository;
 class MessageRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function findOneByED($User_id,$id)
+    public function getOneByED($User_id,$id)
     {
 
         $query = $this->_em->createQueryBuilder($User_id,$id)
             ->select("m")
             ->from("AvekApetiBackBundle:Message", "m")
-            ->where('m.id = :id')
-            ->where('m.emetteur_user = :User_id')
+            ->where('m.id = :id AND m.emetteur_user = :User_id')
             ->setParameter('User_id',$User_id)
             ->setParameter('id',$id)
             ->getQuery();
+   //     die(dump($query));
         if($query->getSingleResult() == null)
         {
             $query = $this->_em->createQueryBuilder($User_id,$id)
                 ->select("m")
                 ->from("AvekApetiBackBundle:Message", "m")
-                ->where('m.id = :id')
-                ->where('m.dest_user = :User_id')
+                ->where('m.id = :id AND m.dest_user = :User_id')
                 ->setParameter('User_id',$User_id)
                 ->setParameter('id',$id)
                 ->getQuery();

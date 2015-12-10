@@ -57,6 +57,18 @@ class Chef
      */
     private $avis;
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="professionel", type="boolean", nullable=true)
+     */
+    private $professionel;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siret", type="string", length=255, nullable=true)
+     */
+    private $siret;
+    /**
      * Get id
      *
      * @return integer
@@ -225,5 +237,53 @@ class Chef
     public function getAvis()
     {
         return $this->avis;
+    }
+
+    /**
+     * Set professionel
+     *
+     * @param boolean $professionel
+     *
+     * @return Chef
+     */
+    public function setProfessionel($professionel)
+    {
+        $this->professionel = $professionel;
+
+        return $this;
+    }
+
+    /**
+     * Get professionel
+     *
+     * @return boolean
+     */
+    public function getProfessionel()
+    {
+        return $this->professionel;
+    }
+
+    /**
+     * Set siret
+     *
+     * @param string $siret
+     *
+     * @return Chef
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return string
+     */
+    public function getSiret()
+    {
+        return $this->siret;
     }
 }

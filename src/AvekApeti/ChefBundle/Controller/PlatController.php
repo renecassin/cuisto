@@ -38,9 +38,15 @@ class PlatController extends Controller
      */
     public function createAction(Request $request)
     {
+        $user =$this->get('security.context')->getToken()->getUser();
         $entity = new Plat();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+
+        $image = $entity->getImage();
+        $image->setUser($user->getId());
+        $entity->setImage($image);
+        $entity->setUtilisateur($user);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

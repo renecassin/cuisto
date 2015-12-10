@@ -32,15 +32,10 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('commande') }}">
+        <a href="{{ path('gourmet_commande') }}">
             Back to the list
         </a>
     </li>
-    <li>
-        <a href="{{ path('commande_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
+
 </ul>
 {% endblock %}

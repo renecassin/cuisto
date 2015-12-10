@@ -90,10 +90,9 @@ class Commande
      * @ORM\ManyToOne(targetEntity="TypeLivraison")
      */
     private $livraison;
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="typecommande", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="TypeCommande")
      */
     private $typecommande;
     /**
@@ -102,6 +101,12 @@ class Commande
      * @ORM\Column(name="content", type="text")
      */
     private $content;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content_validation", type="text",nullable=true)
+     */
+    private $content_validation;
     /**
      * Get id
      *
@@ -370,5 +375,29 @@ class Commande
     public function getMenu()
     {
         return $this->menu;
+    }
+
+    /**
+     * Set contentValidation
+     *
+     * @param string $contentValidation
+     *
+     * @return Commande
+     */
+    public function setContentValidation($contentValidation)
+    {
+        $this->content_validation = $contentValidation;
+
+        return $this;
+    }
+
+    /**
+     * Get contentValidation
+     *
+     * @return string
+     */
+    public function getContentValidation()
+    {
+        return $this->content_validation;
     }
 }
