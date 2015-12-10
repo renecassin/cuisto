@@ -11,3 +11,6 @@ chef_plat:
 chef_commande:
     path:     /commande
     defaults: { _controller: "ChefBundle:Commande:index" }
+chef_commande_details:
+    path:     /commande/{id}/show
+    defaults: { _controller: "ChefBundle:Commande:show" }

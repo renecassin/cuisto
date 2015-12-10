@@ -22,5 +22,21 @@ class CommandeController extends Controller
         ));
 
     }
+    public function showAction($id)
+    {
+        $User = $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $Chef = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($User->getId());
 
+        $entity = $em->getRepository('AvekApetiBackBundle:Commande')->getOneByC($Chef->getId(),$id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Commande entity.');
+        }
+
+
+        return $this->render('ChefBundle:Commande:show.html.twig', array(
+            'entity'      => $entity,
+        ));
+    }
 }
