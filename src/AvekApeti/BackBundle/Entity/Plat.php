@@ -82,12 +82,12 @@ class Plat
     private $Utilisateur;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Specialite")
+     * @ORM\ManyToOne(targetEntity="Specialite")
      */
     private $specialite;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="Categorie")
      */
     private $categorie;
     /**

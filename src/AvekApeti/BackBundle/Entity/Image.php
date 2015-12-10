@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 /**
  * Image
- *
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\ImageRepository")
  */

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use AvekApeti\BackBundle\Entity\Utilisateur;
+use AvekApeti\BackBundle\Entity\Image;
 use AvekApeti\GourmetBundle\Form\UtilisateurType;
 use AvekApeti\GourmetBundle\Form\Utilisateur2Type;
 class GourmetController extends Controller
@@ -100,57 +101,119 @@ class GourmetController extends Controller
         ));
     }
 
-    public function updateAction(Request $request)
-    {
+    /* public function updateAction(Request $request)
+     {
 
-        $postData = $request->request->get('avekapeti_gourmetbundle_utilisateur');
+         $postData = $request->request->get('avekapeti_gourmetbundle_utilisateur');
 
-        //Recuperation de l'utilisateur connecté et recuperation de son id
+         //Recuperation de l'utilisateur connecté et recuperation de son id
+         $user =$this->get('security.context')->getToken()->getUser();
+         $id = $user->getId();
+
+         $em = $this->getDoctrine()->getManager();
+         $entity = $em->getRepository('AvekApetiBackBundle:Utilisateur')->find($id);
+
+
+         //Verifie si le mot de passe a ete changer si oui on le rencode
+         if(  ($postData['password'] != null) )
+         {
+
+
+             //Encodage du mot de passe
+             $factory = $this->get('security.encoder_factory');
+             $hash = $factory->getEncoder($entity)->encodePassword($postData['password'],$entity->getSalt());
+             $postData['password'] = $hash;
+             $request->request->set('avekapeti_gourmetbundle_utilisateur',  $postData );
+
+         }else{
+
+             $request->request->set('avekapeti_gourmetbundle_utilisateur',  $entity->getPassword() );
+         }
+
+         if (!$entity) {
+             throw $this->createNotFoundException('Unable to find Utilisateur entity.');
+         }
+
+         $editForm = $this->createForm(new Utilisateur2Type(), $entity, array(
+             'action' => $this->generateUrl('gourmet_profil'),
+             'method' => 'PUT',
+         ));
+
+         $editForm->add('submit', 'submit', array('label' => 'Update'));
+         $editForm->handleRequest($request);
+        // dump($postData);
+        //die( dump($editForm));
+         if ($editForm->isValid()) {
+
+             $em->flush();
+
+             return $this->redirect($this->generateUrl('gourmet_profil'));
+         }
+
+         return $this->render('GourmetBundle:Gourmet:profil.html.twig', array(
+             'entity'      => $entity,
+             'edit_form'   => $editForm->createView()
+         ));
+     }*/
+    public function updateAction(Request $request) {
         $user =$this->get('security.context')->getToken()->getUser();
-        $id = $user->getId();
+        $em = $this->getDoctrine()->getEntityManager();
 
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AvekApetiBackBundle:Utilisateur')->find($id);
+        $ancienMdp = $user->getPassword();
+        $oldImage = $user->getImage();
 
-
-        //Verifie si le mot de passe a ete changer si oui on le rencode
-        if(  ($postData['password'] != null) )
-        {
+        $Utilisateur2Type = new Utilisateur2Type(); // instancie le formulaire pour pouvoir utiliser getName() plus loin
+        $editForm = $this->createForm($Utilisateur2Type, $user);
 
 
-            //Encodage du mot de passe
-            $factory = $this->get('security.encoder_factory');
-            $hash = $factory->getEncoder($entity)->encodePassword($postData['password'],$entity->getSalt());
-            $postData['password'] = $hash;
-            $request->request->set('avekapeti_gourmetbundle_utilisateur',  $postData );
-
-        }else{
-
-            $request->request->set('avekapeti_gourmetbundle_utilisateur',  $entity->getPassword() );
+        // gestion du changement -ou non- de mot de passe
+        $PostData = $request->request->get($Utilisateur2Type->getName());
+        $isNewPassword = ($PostData['password'] == '')? false : true ;
+        if(!$isNewPassword){
+            // réinjection de l'ancien mot de passe dans la requête
+            $PostData['password'] = $ancienMdp;
+            $request->request->set($Utilisateur2Type->getName(), $PostData);
         }
+        //$PostData['image']['user'] = $user->getId();
+      /*  $isNewImage = ($PostData['image']['name'] == '')? false : true ;
+        if(!$isNewImage){
+            // réinjection de l'ancien mot de passe dans la requête
+            $PostData['image']['name'] = $oldImage;
+            $request->request->set($Utilisateur2Type->getName(), $PostData);
+        }*/
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Utilisateur entity.');
-        }
-
-        $editForm = $this->createForm(new Utilisateur2Type(), $entity, array(
+        $editForm = $this->createForm(new Utilisateur2Type(), $user, array(
             'action' => $this->generateUrl('gourmet_profil'),
             'method' => 'PUT',
         ));
 
         $editForm->add('submit', 'submit', array('label' => 'Update'));
         $editForm->handleRequest($request);
-
+       // die(dump($request->request->get($Utilisateur2Type->getName())));
         if ($editForm->isValid()) {
 
+            if($isNewPassword){
+                // encodage du nouveau mot de passe
+                $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+                $user->setPassword($encoder->encodePassword($user->getPassword(), $user->getSalt()));
+            }
+          //  if($isNewImage){
+                $image = $user->getImage();
+                $image->setUser($user->getId());
+                $user->setImage($image);
+           // }
+
+            $em->persist($user);
             $em->flush();
 
+            $user->setImage(new Image());
             return $this->redirect($this->generateUrl('gourmet_profil'));
         }
 
-        return $this->render('AvekApetiGourmetBundle:Gourmet:profil.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView()
+        // la validation n'est pas bonne, on réaffiche le formulaire avec les erreurs
+        return $this->render('GourmetBundle:Gourmet:profil.html.twig', array(
+            'entity' => $user,
+            'edit_form' => $editForm->createView(),
         ));
     }
 }
