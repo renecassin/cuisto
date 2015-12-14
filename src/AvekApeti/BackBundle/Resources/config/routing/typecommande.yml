@@ -1,0 +1,30 @@
+typecommande:
+    path:     /
+    defaults: { _controller: "AvekApetiBackBundle:TypeCommande:index" }
+
+typecommande_show:
+    path:     /{id}/show
+    defaults: { _controller: "AvekApetiBackBundle:TypeCommande:show" }
+
+typecommande_new:
+    path:     /new
+    defaults: { _controller: "AvekApetiBackBundle:TypeCommande:new" }
+
+typecommande_create:
+    path:     /create
+    defaults: { _controller: "AvekApetiBackBundle:TypeCommande:create" }
+    methods:  POST
+
+typecommande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AvekApetiBackBundle:TypeCommande:edit" }
+
+typecommande_update:
+    path:     /{id}/update
+    defaults: { _controller: "AvekApetiBackBundle:TypeCommande:update" }
+    methods:  [POST, PUT]
+
+typecommande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AvekApetiBackBundle:TypeCommande:delete" }
+    methods:  [POST, DELETE]
