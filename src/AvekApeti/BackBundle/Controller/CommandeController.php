@@ -91,17 +91,17 @@ class CommandeController extends Controller
      * Finds and displays a Commande entity.
      *
      */
-    public function showAction($id)
+    public function showAction(Commande $entity)
     {
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AvekApetiBackBundle:Commande')->find($id);
-
+       // $entity = $em->getRepository('AvekApetiBackBundle:Commande')->find($id);
+        //die(dump($entity));
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Commande entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return $this->render('AvekApetiBackBundle:Commande:show.html.twig', array(
             'entity'      => $entity,

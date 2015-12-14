@@ -5,10 +5,10 @@ namespace AvekApeti\BackBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Plat
+ * PLat
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\PlatRepository")
  */
 class Plat
 {
@@ -77,17 +77,17 @@ class Plat
     private $unableWhile;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $Utilisateur;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Specialite")
+     * @ORM\ManyToOne(targetEntity="Specialite")
      */
     private $specialite;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="Categorie")
      */
     private $categorie;
     /**
@@ -101,8 +101,19 @@ class Plat
      *   }
      *)
      */
-    private $tlivs;
-
+    public $tlivs;
+    /**
+     * @ORM\ManyToMany(targetEntity="TypeCommande", inversedBy="Plat" )
+     * @ORM\JoinTable(name="plat_typecommande",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="plat_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="typecommande_id", referencedColumnName="id")
+     *   }
+     *)
+     */
+    public $tcoms;
 
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
@@ -112,6 +123,21 @@ class Plat
      * @ORM\OneToMany(targetEntity="Avis", mappedBy="platAvis", cascade={"remove"})
      */
     private $avis;
+ /*   /**
+     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Plat" )
+     * @ORM\JoinTable(name="commande_plat",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="plat_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     *   }
+     *)
+     */
+    /**
+    * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Plat")
+     */
+    private $commande;
     /**
      * Get id
      *
@@ -437,11 +463,11 @@ class Plat
     /**
      * Set active
      *
-     * @param \bollean $active
+     * @param boolean $active
      *
      * @return Plat
      */
-    public function setActive(\bollean $active)
+    public function setActive($active)
     {
         $this->active = $active;
 
@@ -451,10 +477,78 @@ class Plat
     /**
      * Get active
      *
-     * @return \bollean
+     * @return \boolean
      */
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Add commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\Commande $commande
+     *
+     * @return Plat
+     */
+    public function addCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
+    {
+        $this->commande[] = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Remove commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\Commande $commande
+     */
+    public function removeCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
+    {
+        $this->commande->removeElement($commande);
+    }
+
+    /**
+     * Get commande
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+
+    /**
+     * Add tcom
+     *
+     * @param \AvekApeti\BackBundle\Entity\TypeCommande $tcom
+     *
+     * @return Plat
+     */
+    public function addTcom(\AvekApeti\BackBundle\Entity\TypeCommande $tcom)
+    {
+        $this->tcoms[] = $tcom;
+
+        return $this;
+    }
+
+    /**
+     * Remove tcom
+     *
+     * @param \AvekApeti\BackBundle\Entity\TypeCommande $tcom
+     */
+    public function removeTcom(\AvekApeti\BackBundle\Entity\TypeCommande $tcom)
+    {
+        $this->tcoms->removeElement($tcom);
+    }
+
+    /**
+     * Get tcoms
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTcoms()
+    {
+        return $this->tcoms;
     }
 }

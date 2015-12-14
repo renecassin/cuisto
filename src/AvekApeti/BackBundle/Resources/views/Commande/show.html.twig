@@ -2,7 +2,6 @@
 
 {% block body -%}
     <h1>Commande</h1>
-
     <table class="record_properties">
         <tbody>
             <tr>
@@ -20,6 +19,13 @@
             <tr>
                 <th>Status</th>
                 <td>{{ entity.status }}</td>
+            </tr>
+            <tr>
+                <th>plat</th>
+                <td> {% for plat in entity.plat %}
+                        {{ plat.name }}<br>
+                    {% endfor %}
+                </td>
             </tr>
         </tbody>
     </table>

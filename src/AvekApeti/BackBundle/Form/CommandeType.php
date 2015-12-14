@@ -29,6 +29,25 @@ class CommandeType extends AbstractType
                 "multiple" => false,
                 "expanded" => false
             ))
+            ->add('content')
+            ->add('typecommande','entity', array(
+                'class' => 'AvekApetiBackBundle:TypeCommande',
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => false,
+                'required' => false))
+            ->add('plat','entity', array(
+                'class' => 'AvekApetiBackBundle:Plat',
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true,
+                'required' => false))
+           ->add('menu','entity', array(
+               'class' => 'AvekApetiBackBundle:Menu',
+               'choice_label' => 'name',
+               'expanded' => false,
+               'multiple' => true,
+               'required' => false))
         ;
     }
     

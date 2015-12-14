@@ -1,10 +1,11 @@
 <?php
 
-namespace AvekApeti\BackBundle\Form;
+namespace AvekApeti\ChefBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use AvekApeti\BackBundle\Form\ImageType;
 
 class PlatType extends AbstractType
 {
@@ -33,10 +34,10 @@ class PlatType extends AbstractType
                 "multiple" => false,
                 "expanded" => false
             ))
-            ->add('tlivs', 'entity',  array(
-                'class' => 'AvekApetiBackBundle:TypeLivraison',
+            ->add('tcoms', 'entity',  array(
+                'class' => 'AvekApetiBackBundle:TypeCommande',
                 'choice_label' => 'name',
-                "multiple" => false,
+                "multiple" => true,
                 "expanded" => false
             ))
             ->add('image',new ImageType())

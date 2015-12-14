@@ -55,6 +55,7 @@
                         <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
                     </li>
                 {% endif %}
+<<<<<<< HEAD
                 {% if (is_granted('ROLE_GOURMET')) and  (app.user)  %}
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -75,6 +76,27 @@
                             </li>
 
                         </ul>
+=======
+        {% if (is_granted('ROLE_SUPER_ADMIN')) %}
+            <li>
+                <a href={{ path('index') }}>Admin</a>
+            </li>
+        {% endif %}
+        {% if (is_granted('ROLE_CHEF')) %}
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Chef Luc95 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href={{ path('chef_plat') }}>Gérer mes plats</a>
+                    </li>
+                    <li>
+                        <a href={{ path('chef_plat_new') }}>Créer un plat</a>
+                    </li>
+                    <li>
+                        <a href={{ path('chef_commande') }}>Gérer mes commandes</a>
+>>>>>>> 399f9ff1e26966d86c4a8630f361496aabaa6db2
                     </li>
                     <li>
                         <a href={{ path('logout') }}>Déconnexion</a>
@@ -86,7 +108,53 @@
                     <li>
                         <a href={{ path('gourmet_loginpage') }}>Connexion</a>
                     </li>
+<<<<<<< HEAD
                 {% endif %}
+=======
+
+                </ul>
+            </li>
+        {% else %}
+            <li>
+                <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
+            </li>
+        {% endif %}
+            {% if (is_granted('ROLE_GOURMET')) %}
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Maxime <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a>Mon profil</a>
+                        </li>
+                        <li>
+                            <a href={{ path('gourmet_commande') }}>Mes commandes</a>
+                        </li>
+                        <li>
+                            <a href={{ path('gourmet_message') }}>Mes messages</a>
+                        </li>
+                        <li>
+                            <a>Mes favoris</a>
+                        </li>
+                        <li>
+                            <a href={{ path('gourmet_profil') }}>Mon compte gourmet</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href={{ path('logout') }}>Déconnexion</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
+                </li>
+                <li>
+                    <a href={{ path('gourmet_loginpage') }}>Connexion</a>
+                </li>
+            {% endif %}
+>>>>>>> 399f9ff1e26966d86c4a8630f361496aabaa6db2
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         Aide <span class="caret"></span>

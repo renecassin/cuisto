@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new AvekApeti\BackBundle\AvekApetiBackBundle(),
             new AvekApeti\ChefBundle\ChefBundle(),
             new AvekApeti\GourmetBundle\GourmetBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

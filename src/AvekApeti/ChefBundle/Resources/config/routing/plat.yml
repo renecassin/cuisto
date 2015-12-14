@@ -1,0 +1,30 @@
+chef_plat:
+    path:     /
+    defaults: { _controller: "ChefBundle:Plat:index" }
+
+chef_plat_show:
+    path:     /{id}/show
+    defaults: { _controller: "ChefBundle:Plat:show" }
+
+chef_plat_new:
+    path:     /new
+    defaults: { _controller: "ChefBundle:Plat:new" }
+
+chef_plat_create:
+    path:     /create
+    defaults: { _controller: "ChefBundle:Plat:create" }
+    methods:  POST
+
+chef_plat_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ChefBundle:Plat:edit" }
+
+chef_plat_update:
+    path:     /{id}/update
+    defaults: { _controller: "ChefBundle:Plat:update" }
+    methods:  [POST, PUT]
+
+chef_plat_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ChefBundle:Plat:delete" }
+    methods:  [POST, DELETE]

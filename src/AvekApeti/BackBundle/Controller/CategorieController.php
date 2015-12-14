@@ -181,6 +181,7 @@ class CategorieController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Categorie entity.
      *

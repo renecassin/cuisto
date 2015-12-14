@@ -2,3 +2,8 @@ services:
 #    avekapeti_back.example:
 #        class: Avekapeti\BackBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+  avekapeti.maintenance:
+    class: AvekApeti\BackBundle\Listener\Maintenance
+    arguments: [@twig,%maintenance%, %kernel.environment%]
+    tags:
+    - { name: kernel.event_listener, event: kernel.request, method: miseEnMaintenance }

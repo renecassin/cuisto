@@ -63,6 +63,21 @@ class Menu
      *)
      */
     private $tlivs;
+    /*/**
+     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Menu" )
+     * @ORM\JoinTable(name="commande_menu",
+     *    joinColumns={
+     *				@ORM\JoinColumn(name="menu_id", referencedColumnName="id")
+     *		},
+     *		inverseJoinColumns={
+     *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
+     *   }
+     *)
+     */
+    /**
+     * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Menu")
+     */
+    private $commande;
     /**
      * Get id
      *
@@ -219,5 +234,39 @@ class Menu
     public function getTlivs()
     {
         return $this->tlivs;
+    }
+
+    /**
+     * Add commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\Commande $commande
+     *
+     * @return Menu
+     */
+    public function addCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
+    {
+        $this->commande[] = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Remove commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\Commande $commande
+     */
+    public function removeCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
+    {
+        $this->commande->removeElement($commande);
+    }
+
+    /**
+     * Get commande
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommande()
+    {
+        return $this->commande;
     }
 }

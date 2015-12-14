@@ -15,7 +15,9 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('item')
             ->add('content')
+            ->add('destinataire','text', array('mapped' => false))
         ;
     }
     
@@ -34,6 +36,6 @@ class MessageType extends AbstractType
      */
     public function getName()
     {
-        return 'avekapeti_backbundle_message';
+        return 'gourmetbundle_message';
     }
 }
