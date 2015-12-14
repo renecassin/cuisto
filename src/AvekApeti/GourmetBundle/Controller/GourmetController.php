@@ -91,7 +91,6 @@ class GourmetController extends Controller
             'method' => 'PUT',
         ));
 
-        $editForm->add('submit', 'submit', array('label' => 'Update'));
 
         return $this->render('GourmetBundle:Gourmet:profil.html.twig', array(
             'entity'      => $entity,

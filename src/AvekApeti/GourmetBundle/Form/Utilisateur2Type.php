@@ -17,7 +17,7 @@ class Utilisateur2Type extends AbstractType
         $builder
             ->add('firstname')
             ->add('lastname')
-            ->add('email')
+            ->add('email','email')
             ->add('login')
             ->add('password','password',[
             "required" => false,
@@ -26,12 +26,14 @@ class Utilisateur2Type extends AbstractType
             ->add('city')
             ->add('cp')
             ->add('phone')
+            /*
             ->add('newsletter',null,[
                 "required" => false,
             ])
             ->add('image', new ImageType(), [
                 "required" => false,
             ])
+            A REMETTRE : Newsletter + Image */
 
         ;
     }

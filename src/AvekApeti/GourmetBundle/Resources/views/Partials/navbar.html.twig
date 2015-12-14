@@ -16,83 +16,77 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                {% if  (app.user) %}
+                {# {% if  (app.user) %}
                     <li>
                         <a href="">{{ app.user.username }}</a>
                     </li>
+                {% endif %}#}
+                {% if (is_granted('ROLE_CHEF')) %}
+                    <li>
+                        <a href={{ path('index') }}>Admin</a>
+                    </li>
                 {% endif %}
-        {% if (is_granted('ROLE_CHEF')) %}
-            <li>
-                <a href={{ path('index') }}>Admin</a>
-            </li>
-        {% endif %}
-        {% if (is_granted('ROLE_CHEF')) %}
-            <li role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Chef Luc95 <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a>Gérer mes plats</a>
-                    </li>
-                    <li>
-                        <a>Créer un plat</a>
-                    </li>
-                    <li>
-                        <a>Gérer mes commandes</a>
-                    </li>
-                    <li>
-                        <a>Mon profil</a>
-                    </li>
-                    <li>
-                        <a>Mes messages</a>
-                    </li>
-                    <li>
-                        <a href={{ path('chef_profil') }}>Mon compte chef</a>
-                    </li>
+                {% if (is_granted('ROLE_CHEF')) and  (app.user) %}
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Chef {{ app.user.username }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a>Gérer mes plats</a>
+                            </li><hr>
+                            <li>
+                                <a>Créer un plat</a>
+                            </li><hr>
+                            <li>
+                                <a>Gérer mes commandes</a>
+                            </li><hr>
+                            <li>
+                                <a>Mes messages</a>
+                            </li><hr>
+                            <li>
+                                <a href={{ path('chef_profil') }}>Mon compte</a>
+                            </li>
 
-                </ul>
-            </li>
-        {% else %}
-            <li>
-                <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
-            </li>
-        {% endif %}
-            {% if (is_granted('ROLE_GOURMET')) %}
-                <li role="presentation" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Maxime <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a>Mon profil</a>
-                        </li>
-                        <li>
-                            <a>Mes commandes</a>
-                        </li>
-                        <li>
-                            <a>Mes messages</a>
-                        </li>
-                        <li>
-                            <a>Mes favoris</a>
-                        </li>
-                        <li>
-                            <a href={{ path('gourmet_profil') }}>Mon compte gourmet</a>
-                        </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="page-scroll" href={{ path('gourmet_chef_inscription_page') }}>Devenez Chef</a>
+                    </li>
+                {% endif %}
+                {% if (is_granted('ROLE_GOURMET')) and  (app.user)  %}
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            {{ app.user.username }}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a>Mes commandes</a>
+                            </li><hr>
+                            <li>
+                                <a>Mes messages</a>
+                            </li><hr>
+                            <li>
+                                <a>Mes favoris</a>
+                            </li><hr>
+                            <li>
+                                <a href={{ path('gourmet_profil') }}>Mon compte</a>
+                            </li>
 
-                    </ul>
-                </li>
-                <li>
-                    <a href={{ path('logout') }}>Déconnexion</a>
-                </li>
-            {% else %}
-                <li>
-                    <a href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
-                </li>
-                <li>
-                    <a href={{ path('gourmet_loginpage') }}>Connexion</a>
-                </li>
-            {% endif %}
+                        </ul>
+                    </li>
+                    <li>
+                        <a href={{ path('logout') }}>Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href={{ path('gourmet_gourmet_inscription_page') }}>Inscription</a>
+                    </li>
+                    <li>
+                        <a href={{ path('gourmet_loginpage') }}>Connexion</a>
+                    </li>
+                {% endif %}
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         Aide <span class="caret"></span>
@@ -100,15 +94,14 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href={{ path('gourmet_contactpage') }}>Contact</a>
-                        </li>
+                        </li><hr>
                         <li>
                             <a href={{ path('gourmet_feedbackpage') }}>Feedback</a>
                         </li>
                     </ul>
                 </li>
-
-        </ul>
-    </div>
+            </ul>
+        </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->

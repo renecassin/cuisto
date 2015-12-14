@@ -3,15 +3,6 @@
     <div class="row margin-haut">
         <div class="col-md-6">
             <div class="form-group has-feedback">
-                {{ form_widget(form.name,
-                {
-                    attr:{class: "form-control",placeholder: "Nom",id: "Nom",required: 'data-validation-required-message= "Veuillez entrer votre nom."'}
-                })
-                }}
-                <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
-                <p class="help-block text-danger">{{ form_errors(form.name) }}</p>
-            </div>
-            <div class="form-group has-feedback">
                 {{ form_widget(form.firstname,
                 {
                     attr:{class: "form-control",placeholder: "Prénom",id: "prenom",required: 'data-validation-required-message= "Veuillez entrer votre prénom."'}
@@ -19,6 +10,15 @@
                 }}
                 <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
                 <p class="help-block text-danger">{{ form_errors(form.firstname) }}</p>
+            </div>
+            <div class="form-group has-feedback">
+                {{ form_widget(form.name,
+                {
+                    attr:{class: "form-control",placeholder: "Nom",id: "Nom",required: 'data-validation-required-message= "Veuillez entrer votre nom."'}
+                })
+                }}
+                <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
+                <p class="help-block text-danger">{{ form_errors(form.name) }}</p>
             </div>
             <div class="form-group has-feedback">
                 {{ form_widget(form.phone,
@@ -45,10 +45,10 @@
             <div class="form-group has-feedback">
                 {{ form_widget(form.content,
                 {
-                    attr:{class: "form-control",placeholder: "Message",id: "message",required: 'data-validation-required-message= "Veuillez entrer votre message.."'}
+                    attr:{class: "form-control",placeholder: "Message",id: "message",required: 'data-validation-required-message= "Veuillez entrer votre message."'}
                 })
                 }}
-
+                <span class="glyphicon glyphicon-envelope form-control-feedback glyphicon-perso"></span>
                 <p class="help-block text-danger">{{ form_errors(form.content) }}</p>
             </div>
         </div>

@@ -69,7 +69,6 @@ class ChefController extends Controller
         ));
 
         $form->add('submit', 'submit', array('label' => 'Create'));
-
         return $form;
     }
     public function enregistrementAction()

@@ -1,132 +1,265 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" c content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="Un peu de patience AVEKAPETI est en train de mijoter mais sera bientôt prêt ! N'hésitez pas à nous laisser votre adresse mail afin d'être les premiers informés du lancement du site">
-    <meta name="author" content="">
+{%  extends  "@GourmetBundle/Resources/views/layout.html.twig" %}
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/gourmet/favicon.ico') }}" />
+{% block foot_scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var banListe=['1','2','3','4'];
+        document.getElementsByTagName('header')[0].className += 'header' + banListe[Math.floor(Math.random()*banListe.length)];
+    </script>
+{%  endblock foot_scripts %}
 
-    <title>Avekapeti</title>
-        <!-- Bootstrap Core CSS -->
-        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/bootstrap.min.css') }}" type="text/css">
+{% block titre %}Avekapeti{% endblock %}
 
-        <!-- Custom Fonts -->
-       <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/font-awesome.min.css') }}" type="text/css">
-        <!-- Ionicons -->
-        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-        <!-- Plugin CSS -->
-        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/animate.min.css') }}" type="text/css">
-
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/creative.css') }}" type="text/css">
-        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/shop-item.css') }}" type="text/css">
-        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/template/shop-homepage.css') }}" type="text/css">
-
-        <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/main.css') }}" type="text/css">
-
-</head>
-
-<body id="page-top">
-
-    <header id="header-landing">
-
-        <div class="col-lg-12">
-            <div class="row petite-nav-landing">
-                <div class="bloc-nav-landing">
-                    <a class="" href=#>
-                        <img src="{{ asset('bundles/gourmet/img/logo/avekapeti-logo-RVB-02.png') }}" class="img-responsive logo-nav" alt="logo">
-                        <h2>Avekapeti</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-
+{% block content %}
+    <header  id="header-home">
         <div class="header-content header-content-transform">
             <div class="header-content-inner">
-                <h1 id="h1-home">Envie d'un bon petit plat fait maison ?</h1>
-                <p>Un peu de patience AVEKAPETI est en train de mijoter mais sera bientôt prêt !<br>N'hésitez pas à nous laisser votre adresse mail afin d'être les premiers informés du lancement du site</p>
+                <h1 id="h1-home">Envie d'un bon petit plat maison ?</h1>
+                <p>Bientôt vous pourrez commander en quelques clics un plat fait maison sur Avekapeti <br> Préparez-vous une révolution arrive !</p>
                 <a href="#mode-emploi" class="btn btn-xl btn-semi-transparent page-scroll ">Mode d'emploi</a>
-                <form class="form-inline form-recherche">
+                <form class="form-inline form-recherche" action={{ path('gourmet_selection_platpage') }}>
                     <div class="form-adresse">
-                        <input type="email" class="address-input" placeholder="Adresse e-mail">
+                        <label for="adressInput"></label>
+                        <input type="text" class="address-input" id="adressInput" placeholder="Où êtes-vous ?">
                     </div>
                     <button type="submit" class="btn btn-primary btn-xl">
-                        <span class="petite-recherche">Go</span>
-                        <span class="grande-recherche">Enregistrez-vous</span>
+                        <span class="glyphicon glyphicon-search glyphycon-loupe petite-recherche" aria-hidden="true"></span>
+                        <span class="grande-recherche">Rechercher un plat</span>
                     </button>
                 </form>
             </div>
         </div>
     </header>
 
+    <!-- Mode d'emploi -->
     <section id="mode-emploi">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Simple comme bonjour</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-sm-6  text-center">
                     <div class="service-box">
-                        <img class="img-responsive img-hover img-related grand-mere" src={{ asset('bundles/gourmet/img/landing/grand-mere.png') }} alt="avekapeti" >
-                        <h3>Bernadette cuisine un bon petit plat</h3>
-                        <p class="text-muted">Connaissez vous Bernadette ?<br>Quelle honte c'est votre voisine !<br>Elle prépare actuellement un bon repas pour sa famille et a des parts en trop</p>
+                        <img class="img-responsive img-hover img-related grand-mere" src={{ asset('bundles/gourmet/img/design/MAMIE.png') }} alt="avekapeti" >
+                        <h3>Bernadette a eu les yeux plus gros que le ventre</h3>
+                        <p class="text-muted"> Connaissez vous Bernadette ?<br>Quelle honte c'est votre voisine !<br>Elle prépare actuellement un boeuf bourguignon pour sa famille et a des parts en trop</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
-                        <img class="img-responsive img-hover img-related idea" src={{ asset('bundles/gourmet/img/landing/idea.png') }} alt="avekapeti"" >
-                        <h3>Thibault commande une part en ligne</h3>
-                        <p class="text-muted">Pendant ce temps, Thibault veut manger un repas mais ne veut pas cuisiner ni faire la vaisselle...<br>Eureka ! Il se souvient qu'il peut commander une part du plat de Bernadette sur AVEKAPETI</p>
+                        <img class="img-responsive img-hover img-related idea" src={{ asset('bundles/gourmet/img/design/FEMME-HOMME.png') }} alt="avekapeti" >
+                        <h3>Marie et Idris commandent une part en ligne</h3>
+                        <p class="text-muted">Marie et Idris veulent manger un bon petit plat fait maison<br>Mais sans cuisiner ni faire la vaisselle avekapeti.com vient à la rescousse !</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
-                        <img class="img-responsive img-hover img-related immeuble" src={{ asset('bundles/gourmet/img/landing/immeuble.jpg') }} alt="avekapeti"" >
+                        <img class="img-responsive img-hover img-related immeuble" src={{ asset('bundles/gourmet/img/design/IMMEUBLES.png') }} alt="avekapeti" >
                         <h3>Bernadette vient livrer son plat</h3>
-                        <p class="text-muted">Dring dring !<br>Bernadette est à la porte avec son bon petit plat fait maison</p>
+                        <p class="text-muted">Dring dring !<br>Bernadette est sur le palier<br>Avec son boeuf bourguignon</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
-                        <img class="img-responsive img-hover img-related plat-design" src={{ asset('bundles/gourmet/img/landing/plat-design.jpg') }} alt="avekapeti"" >
-                        <h3>Thibault se régale</h3>
-                        <p class="text-muted">Manger sain, équilibré, fait maison à des prix abordables et sans cuisiner si si ca sera bientôt possible sur AVEKAPETI</p>
+                        <img class="img-responsive img-hover img-related plat-design" src={{ asset('bundles/gourmet/img/design/PLAT.png') }} alt="avekapeti" >
+                        <h3>Marie et Idris se régalent</h3>
+                        <p class="text-muted"> Manger sain, équilibré, fait maison, et sans effort...<br>Si si c’est maitenant possible !<br>Sur avekapeti.com</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="footer-landing">
+    <!-- Call to action Chef -->
+    <section class="bg-primary bg-cta-chef" id="chef">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4 text-center">
-                    <a href=#>
-                        <img src="{{ asset('bundles/gourmet/img/logo/avekapeti-logo-RVB-01.png') }}" class="img-responsive" alt="logo">
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <p>Rejoignez-nous sur </p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="https://www.facebook.com/avekapeti"><i class="fa fa-facebook"></i></a>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Faites profiter vos voisins de vos talents culinaires</h2>
+                    <p>Gagnez de l'argent en toute simplicité sur Avekapeti en proposant vos plats.</p>
+                    <a href={{ path('gourmet_chef_inscription_page') }} class="btn btn-default btn-xl">Devenez Chef</a>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.easing.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.fittext.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/wow.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/creative.js') }}"></script>
-</body>
-</html>
+    <!-- Plats du jour -->
+    <section id="portfolio" class="bg-light-gray plat-jour">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Découvrez nos plats du jour</h2>
+                    <hr class="primary">
+                    <p>Découvrez de nouveaux plats incroyables près de chez vous. Nos entrées, plats ou dessert pour les repas de tous les jours comme pour recevoir des invités. Idéal pour varier les plaisir sans se ruiner. </p>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-sm-4 portfolio-item">
+                    <a href={{ path('gourmet_platpage') }} class="portfolio-link">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category">
+                                    Chef Max75
+                                </div>
+                                <div class="project-name">
+                                    Boulettes de viande et tomate fraîche
+                                </div>
+                                <h3>9 €</h3>
+                            </div>
+                        </div>
+                        <img src="{{ asset('bundles/gourmet/img/plats/bouletteDeViande.jpg') }}" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 col-sm-4 portfolio-item">
+                    <a href={{ path('gourmet_platpage') }} class="portfolio-link">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category">
+                                    Chef Ludo94
+                                </div>
+                                <div class="project-name">
+                                    Lasagne aux courgettes
+                                </div>
+                                <h3>8 €</h3>
+                            </div>
+                        </div>
+                        <img src="{{ asset('bundles/gourmet/img/plats/lasagneCourgette.jpg') }}" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 col-sm-4 portfolio-item">
+                    <a href={{ path('gourmet_platpage') }} class="portfolio-link">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <div class="project-category">
+                                    Chef Luc95
+                                </div>
+                                <div class="project-name">
+                                    Tiramisu
+                                </div>
+                                <h3>6 €</h3>
+                            </div>
+                        </div>
+                        <img src="{{ asset('bundles/gourmet/img/plats/tiramisu.jpg') }}" class="img-responsive" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Call to Action Gourmet -->
+    <section class="bg-primary bg-cta-gourmet" id="gourmet">
+        <div class="container">
+            <div class="row call-to-action">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Commandez votre plat</h2>
+                    <p>Créez votre compte et commandez votre plat en quelques minutes.</p>
+                    <a href="{{ path('gourmet_gourmet_inscription_page') }}" class="btn btn-default btn-xl  wow tada">Inscription</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spécialités -->
+    <section id="portfolio" class="bg-light-gray specialite">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Explorer le monde</h2>
+                    <hr class="primary">
+                    <p>Des chefs originaires de différents pays vous cuisinent des plats exotiques et authentiques
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href={{ path('gourmet_platpage') }} class="portfolio-link">
+                        <div class="monde-zoom">
+                            <div class="monde monde-petit">
+                                <h3>Orientale</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-8 col-sm-6 portfolio-item">
+                    <a href={{ path('gourmet_platpage') }} class="portfolio-link">
+                        <div class="monde-zoom">
+                            <div class="monde monde-moyen">
+                                <h3>Asiatique</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-12 col-sm-6 portfolio-item">
+                    <a href={{ path('gourmet_platpage') }} class="portfolio-link">
+                        <div class="monde-zoom">
+                            <div class="monde monde-grand">
+                                <h3>Occidentale</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h2 class="section-heading">Vous avez des questions ?</h2>
+                <hr class="light">
+                <p>Comment rechercher un plat ? Et si j'ai un imprévu, comment annuler ma réservation ? Comment récupérer mon argent disponible ? Et si mon chef est injoignable ?</p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{  include  ('@GourmetBundle/Resources/views/main/form-contact-feedback.html.twig')  }}
+                 <!--   <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row margin-haut">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" placeholder="Nom" id="nom" required data-validation-required-message="Veuillez entrer votre nom.">
+                                    <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" placeholder="Prénom" id="prenom" required data-validation-required-message="Veuillez entrer votre prénom.">
+                                    <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="tel" class="form-control" placeholder="Téléphone" id="telephone" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
+                                    <span class="glyphicon glyphicon-earphone form-control-feedback glyphicon-perso"></span>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="email" class="form-control" placeholder="Adresse e-mail : nom@exemple.com" id="email" required data-validation-required-message="Veuillez entrer votre email.">
+                                    <span class="glyphicon glyphicon-envelope form-control-feedback glyphicon-perso"></span>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <textarea class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message.."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-default btn-xl">Envoyer</button>
+                            </div>
+                        </div>
+                    </form>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

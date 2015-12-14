@@ -1,8 +1,220 @@
-{% extends '::base.html.twig' %}
+{%  extends  "@GourmetBundle/Resources/views/layout.html.twig" %}
 
-{% block body -%}
-    <h1>Chef edit</h1>
+{% block titre %}Mon compte Chef{{ parent() }}{% endblock %}
 
-    {{ form(edit_form) }}
+{% block content %}
+    <header class="header-inscription" id="header-mon-compte-chef">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Mon compte Chef</h1>
+                <h2 class="adresse-selection">{{ app.user.username }}</h2>
+            </div>
+        </div>
+    </header>
 
-{% endblock %}
+    <section id="page-mon-compte-chef">
+        <div class="container">
+
+            <div class="col-sm-12 text-center photo-mon-compte ">
+                <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+            </div>
+
+            <div class="row">
+                {{ form_start(edit_form, {attr:{class: "form-horizontal"}} ) }}
+                <div class="col-lg-12 text-center titre-compte">
+                        <h3 class="section-heading">Autour de chez vous</h3>
+                        <hr class="primary">
+                </div>
+                <div class="col-md-12">
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="adresse" class="col-md-3 control-label">Adresse</label>
+                            <div class="col-md-8">
+                                {{ form_widget(edit_form.adress,
+                                {
+                                    attr:{class: "form-control",placeholder: "Adresse",id: "adresse",required: 'data-validation-required-message= "Veuillez entrer votre adresse."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.adress) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="ville" class="col-md-3 control-label">Ville</label>
+                            <div class="col-md-8">
+                                {{ form_widget(edit_form.city,
+                                {
+                                    attr:{class: "form-control",placeholder: "Ville",id: "ville",required: 'data-validation-required-message= "Veuillez entrer votre ville."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.city) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="code-postal" class="col-md-3 control-label">Code postal</label>
+                            <div class="col-md-8">
+                                {{ form_widget(edit_form.cp,
+                                {
+                                    attr:{class: "form-control",placeholder: "Code Postal",id: "code-postal",required: 'data-validation-required-message= "Veuillez entrer votre code postal."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.cp) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="code-postal" class="col-md-3 control-label">Rayon en km</label>
+                            <div class="col-md-8">
+                                {{ form_widget(edit_form.zoneKm,
+                                {
+                                    attr:{class: "form-control",placeholder: "Rayon en km",id: "zoneKm",required: 'data-validation-required-message= "Veuillez entrer votre rayon en km."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.zoneKm) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="col-lg-12 text-center titre-compte">
+                    <h3 class="section-heading">Quel Chef êtes-vous ?</h3>
+                    <hr class="primary">
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="exampleInputFile1" class="col-md-3 control-label">Photo de profil</label>
+                            <div class="col-md-6">
+                                <input type="file" id="exampleInputFile1">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="col-md-3">
+                                <img class="rond" src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="exampleInputFile2" class="col-md-3 control-label">Photo de votre cuisine</label>
+                            <div class="col-md-6">
+                                <input type="file" id="exampleInputFile2">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="col-md-3">
+                                <img src={{ asset('bundles/gourmet/img/cuisine.jpg') }} alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="connu" class="col-md-3 control-label" id="comment">Comment avez-vous connu Avekapeti ?</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="connu">
+                                    <option>Par un membre de notre équipe</option>
+                                    <option>Flyer</option>
+                                    <option>Moteur de recherche (ex: Google, Bing)</option>
+                                    <option>Réseaux sociaux</option>
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="pro" class="col-md-3 control-label" id="label-pro">Etes-vous un Chef professionnel ?</label>
+                            <div class="col-md-2">
+                                <select class="form-control" id="pro">
+                                    <option>Oui</option>
+                                    <option>Non</option>
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <label for="siret" class="col-md-3 control-label" id="label-siret">Si oui indiquez votre n° Siret</label>
+                            <div class="col-md-4">
+                                <input type="text" id="siret" class="form-control" placeholder="n° Siret">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="blog" class="col-md-3 control-label" id="label-blog">Avez-vous un blog ou une page Facebook ?</label>
+                            <div class="col-md-9">
+                                <input type="text" id="blog" class="form-control" placeholder="https://www.facebook.com/avekapeti">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="temps" class="col-md-3 control-label" id="label-temps">Temps de réponse moyen aux messages</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="temps">
+                                    <option>Moins de 10 min</option>
+                                    <option>Entre 10 et 20 min</option>
+                                    <option>Plus de 20 min</option>
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="rib" class="col-md-3 control-label" id="label-rib">Coordonnées bancaires</label>
+                            <div class="col-md-9">
+                                <input type="text" id="rib" class="form-control" placeholder="RIB">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <div class="col-sm-offset-3 col-md-8">
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="remember-me" checked>J’accepte de recevoir des recettes astuces et bon plans culinaires
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="description" class="col-md-3 control-label">Votre description</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" placeholder="Dites quelques mots sur vous aux gourmets, donnez-leur envie de vous rencontrer. Quel est votre savoir-faire culinaire, vos spécialités et comment vous est venu l’amour de la cuisine ?" id="description"  data-validation-required-message="Veuillez entrer votre description."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <div id="success"></div>
+                    <button type="submit" class="btn btn-default btn-xl">Enregistrer</button>
+                </div>
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

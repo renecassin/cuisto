@@ -28,7 +28,8 @@ class ChefController extends Controller
             'method' => 'PUT',
         ));
 
-        $editForm->add('submit', 'submit', array('label' => 'Update'));
+        /*$editForm->add('submit', 'submit', array('label' => 'Update'));*/
+
 
         return $this->render('ChefBundle:Chef:profil.html.twig', array(
             'entity'      => $entity,
