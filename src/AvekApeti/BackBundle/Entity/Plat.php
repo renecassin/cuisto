@@ -76,6 +76,18 @@ class Plat
      */
     private $unableWhile;
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_start", type="datetime")
+     */
+    private $dateStart;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_end", type="datetime")
+     */
+    private $dateEnd;
+    /**
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
@@ -135,7 +147,7 @@ class Plat
      *)
      */
     /**
-    * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Plat")
+     * @ORM\ManyToOne(targetEntity="CommandePlat")
      */
     private $commande;
     /**
@@ -550,5 +562,67 @@ class Plat
     public function getTcoms()
     {
         return $this->tcoms;
+    }
+
+    /**
+     * Set dateStart
+     *
+     * @param \DateTime $dateStart
+     *
+     * @return Plat
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->dateStart = $dateStart;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStart
+     *
+     * @return \DateTime
+     */
+    public function getDateStart()
+    {
+        return $this->dateStart;
+    }
+
+    /**
+     * Set dateEnd
+     *
+     * @param \DateTime $dateEnd
+     *
+     * @return Plat
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnd
+     *
+     * @return \DateTime
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
+    }
+
+    /**
+     * Set commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commande
+     *
+     * @return Plat
+     */
+    public function setCommande(\AvekApeti\BackBundle\Entity\CommandePlat $commande = null)
+    {
+        $this->commande = $commande;
+
+        return $this;
     }
 }

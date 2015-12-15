@@ -3,7 +3,7 @@
 namespace AvekApeti\BackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Commande
  *
@@ -15,8 +15,11 @@ class Commande
     public function __construct()
     {
         $this->dateCreated = new \DateTime("now");
+        $this->commandeplat = new ArrayCollection();
+        $this->commandemenu = new ArrayCollection();
 
     }
+
     /**
      * @var integer
      *
@@ -60,32 +63,16 @@ class Commande
      * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
      */
     /**
-     * @ORM\ManyToMany(targetEntity="Plat", inversedBy="Commande" )
-     * @ORM\JoinTable(name="commande_plat",
-     *    joinColumns={
-     *				@ORM\JoinColumn(name="commande_id", referencedColumnName="id")
-     *		},
-     *		inverseJoinColumns={
-     *       @ORM\JoinColumn(name="plat_id", referencedColumnName="id")
-     *   }
-     *)
+     * @ORM\ManyToOne(targetEntity="CommandePlat")
      */
-    private $plat;
+    private $commandeplat;
    /* /**
      * @ORM\ManyToMany(targetEntity="Menu", mappedBy="Commande")
      */
     /**
-     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="Commande" )
-     * @ORM\JoinTable(name="commande_menu",
-     *    joinColumns={
-     *				@ORM\JoinColumn(name="commande_id", referencedColumnName="id")
-     *		},
-     *		inverseJoinColumns={
-     *       @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
-     *   }
-     *)
+     * @ORM\ManyToOne(targetEntity="CommandeMenu")
      */
-    private $menu;
+    private $commandemenu;
     /**
      * @ORM\ManyToOne(targetEntity="TypeLivraison")
      */
@@ -104,7 +91,7 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="content_validation", type="text")
+     * @ORM\Column(name="content_validation", type="text",nullable=true)
      */
     private $content_validation;
     /**
@@ -375,5 +362,78 @@ class Commande
     public function getMenu()
     {
         return $this->menu;
+    }
+
+    /**
+     * Set contentValidation
+     *
+     * @param string $contentValidation
+     *
+     * @return Commande
+     */
+    public function setContentValidation($contentValidation)
+    {
+        $this->content_validation = $contentValidation;
+
+        return $this;
+    }
+
+    /**
+     * Get contentValidation
+     *
+     * @return string
+     */
+    public function getContentValidation()
+    {
+        return $this->content_validation;
+    }
+    /**
+     * Add commandeplat
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandeplat
+     * @return Plat
+     */
+    public function addCommandeplat(\AvekApeti\BackBundle\Entity\CommandePlat $commandeplat)
+    {
+
+            $commandeplat->setCommande($this);
+           // $this->$commandeplat[] = $commandeplat;
+        array_push($this->$commandeplat,$commandeplat);
+        return $this;
+    }
+    /**
+     * Remove commandeplat
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandeplat
+     */
+    public function removeUsercoupon(\AvekApeti\BackBundle\Entity\CommandePlat $commandeplat)
+    {
+        $this->$commandeplat->removeElement($commandeplat);
+       // $this->oldCoupons[] = $usercoupon;
+    }
+    /**
+     * Add commandemenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu
+     * @return Plat
+     */
+    public function addCommandemenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu)
+    {
+
+        $commandemenu->setCommande($this);
+       // $this->$commandemenu[] = $commandemenu;
+        array_push($this->$commandemenu,$commandemenu);
+
+        return $this;
+    }
+    /**
+     * Remove commandemenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu
+     */
+    public function removeCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu)
+    {
+        $this->$commandemenu->removeElement($commandemenu);
+        // $this->oldCoupons[] = $usercoupon;
     }
 }

@@ -48,7 +48,7 @@ class Menu
     private $plats;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $Utilisateur;
     /**
@@ -63,19 +63,9 @@ class Menu
      *)
      */
     private $tlivs;
-    /*/**
-     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Menu" )
-     * @ORM\JoinTable(name="commande_menu",
-     *    joinColumns={
-     *				@ORM\JoinColumn(name="menu_id", referencedColumnName="id")
-     *		},
-     *		inverseJoinColumns={
-     *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
-     *   }
-     *)
-     */
+
     /**
-     * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Menu")
+     * @ORM\ManyToOne(targetEntity="CommandeMenu")
      */
     private $commande;
     /**

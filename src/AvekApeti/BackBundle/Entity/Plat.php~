@@ -76,18 +76,30 @@ class Plat
      */
     private $unableWhile;
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_start", type="datetime")
+     */
+    private $dateStart;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_end", type="datetime")
+     */
+    private $dateEnd;
+    /**
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $Utilisateur;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Specialite")
+     * @ORM\ManyToOne(targetEntity="Specialite")
      */
     private $specialite;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="Categorie")
      */
     private $categorie;
     /**
@@ -135,7 +147,7 @@ class Plat
      *)
      */
     /**
-    * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Plat")
+     * @ORM\ManyToOne(targetEntity="CommandePlat")
      */
     private $commande;
     /**

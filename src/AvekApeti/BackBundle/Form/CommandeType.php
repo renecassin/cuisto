@@ -36,18 +36,42 @@ class CommandeType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'required' => false))
-            ->add('plat','entity', array(
+          /*  ->add('plat','entity', array(
                 'class' => 'AvekApetiBackBundle:Plat',
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => true,
                 'required' => false))
-           ->add('menu','entity', array(
-               'class' => 'AvekApetiBackBundle:Menu',
-               'choice_label' => 'name',
-               'expanded' => false,
-               'multiple' => true,
-               'required' => false))
+            ->add('plat','collection', array(
+              'type' => 'AvekApetiBackBundle:Plat',
+               // 'class' => 'AvekApetiBackBundle:Plat',
+                 'allow_add'    => true,
+                'required' => false))
+          /*  ->add('menu','entity', array(
+                'class' => 'AvekApetiBackBundle:Menu',
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true,
+                'required' => false))
+           ->add('menu','collection', array(
+            //   'class' => 'AvekApetiBackBundle:Menu',
+               'type' => 'AvekApetiBackBundle:Menu',
+               'allow_add'    => true,
+               'required' => false))*/
+          ->add('commandeplat', 'collection',
+              [
+                  'type' => new CommandePlatType(),
+                  'allow_add'    => true,
+                  'allow_delete' => true,
+                  'by_reference' => false
+              ])
+          ->add('commandemenu', 'collection',
+              [
+                  'type' => new CommandeMenuType(),
+                  'allow_add'    => true,
+                  'allow_delete' => true,
+                  'by_reference' => false
+              ]);
         ;
     }
     

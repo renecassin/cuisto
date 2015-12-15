@@ -56,12 +56,12 @@ class Message
 
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $emetteur_user;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $dest_user;
     /**
