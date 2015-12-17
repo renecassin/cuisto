@@ -17,6 +17,7 @@ class CommandeMenuType extends AbstractType
                     'class' => 'AvekApetiBackBundle:Menu',
                     'property' => 'name',
                 ])
+            ->add('quantity')
         ;
     }
     /**

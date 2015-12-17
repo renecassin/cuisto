@@ -17,6 +17,7 @@ class CommandePlatType extends AbstractType
                     'class' => 'AvekApetiBackBundle:Plat',
                     'property' => 'name',
                 ])
+            ->add('quantity')
         ;
     }
     /**
