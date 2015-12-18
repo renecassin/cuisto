@@ -29,7 +29,16 @@
             </tr>
         </tbody>
     </table>
-
+    <ul>
+        {% for commandePlat in listePlats %}
+            <li>{{ commandePlat.plat.name }} : quantité {{ commandePlat.quantity }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for commandeMenu in listeMenus %}
+            <li>{{ commandeMenu.menu.name }} : quantité {{ commandeMenu.quantity }}</li>
+        {% endfor %}
+    </ul>
         <ul class="record_actions">
     <li>
         <a href="{{ path('commande') }}">

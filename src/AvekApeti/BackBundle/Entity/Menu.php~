@@ -48,7 +48,7 @@ class Menu
     private $plats;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $Utilisateur;
     /**
@@ -65,9 +65,9 @@ class Menu
     private $tlivs;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Menu")
+     * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="id")
      */
-    private $commande;
+    private $commandeMenu;
     /**
      * Get id
      *

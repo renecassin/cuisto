@@ -63,14 +63,14 @@ class Commande
      * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
      */
     /**
-     * @ORM\ManyToOne(targetEntity="CommandePlat")
+     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="Id")
      */
     private $commandeplat;
    /* /**
      * @ORM\ManyToMany(targetEntity="Menu", mappedBy="Commande")
      */
     /**
-     * @ORM\ManyToOne(targetEntity="CommandeMenu")
+     * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="Id")
      */
     private $commandemenu;
     /**
@@ -94,6 +94,13 @@ class Commande
      * @ORM\Column(name="content_validation", type="text",nullable=true)
      */
     private $content_validation;
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+
+
     /**
      * Get id
      *
@@ -177,6 +184,54 @@ class Commande
     }
 
     /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return Commande
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set contentValidation
+     *
+     * @param string $contentValidation
+     *
+     * @return Commande
+     */
+    public function setContentValidation($contentValidation)
+    {
+        $this->content_validation = $contentValidation;
+
+        return $this;
+    }
+
+    /**
+     * Get contentValidation
+     *
+     * @return string
+     */
+    public function getContentValidation()
+    {
+        return $this->content_validation;
+    }
+
+    /**
      * Set utilisateur
      *
      * @param \AvekApeti\BackBundle\Entity\Utilisateur $utilisateur
@@ -225,13 +280,81 @@ class Commande
     }
 
     /**
-     * Set livraison
+     * Add commandeplat
      *
-     * @param string $livraison
+     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandeplat
      *
      * @return Commande
      */
-    public function setLivraison($livraison)
+    public function addCommandeplat(\AvekApeti\BackBundle\Entity\CommandePlat $commandeplat)
+    {
+        $this->commandeplat[] = $commandeplat;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandeplat
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandeplat
+     */
+    public function removeCommandeplat(\AvekApeti\BackBundle\Entity\CommandePlat $commandeplat)
+    {
+        $this->commandeplat->removeElement($commandeplat);
+    }
+
+    /**
+     * Get commandeplat
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandeplat()
+    {
+        return $this->commandeplat;
+    }
+
+    /**
+     * Add commandemenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu
+     *
+     * @return Commande
+     */
+    public function addCommandemenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu)
+    {
+        $this->commandemenu[] = $commandemenu;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandemenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu
+     */
+    public function removeCommandemenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu)
+    {
+        $this->commandemenu->removeElement($commandemenu);
+    }
+
+    /**
+     * Get commandemenu
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandemenu()
+    {
+        return $this->commandemenu;
+    }
+
+    /**
+     * Set livraison
+     *
+     * @param \AvekApeti\BackBundle\Entity\TypeLivraison $livraison
+     *
+     * @return Commande
+     */
+    public function setLivraison(\AvekApeti\BackBundle\Entity\TypeLivraison $livraison = null)
     {
         $this->livraison = $livraison;
 
@@ -241,7 +364,7 @@ class Commande
     /**
      * Get livraison
      *
-     * @return string
+     * @return \AvekApeti\BackBundle\Entity\TypeLivraison
      */
     public function getLivraison()
     {
@@ -251,11 +374,11 @@ class Commande
     /**
      * Set typecommande
      *
-     * @param string $typecommande
+     * @param \AvekApeti\BackBundle\Entity\TypeCommande $typecommande
      *
      * @return Commande
      */
-    public function setTypecommande($typecommande)
+    public function setTypecommande(\AvekApeti\BackBundle\Entity\TypeCommande $typecommande = null)
     {
         $this->typecommande = $typecommande;
 
@@ -265,223 +388,10 @@ class Commande
     /**
      * Get typecommande
      *
-     * @return string
+     * @return \AvekApeti\BackBundle\Entity\TypeCommande
      */
     public function getTypecommande()
     {
         return $this->typecommande;
-    }
-
-    /**
-     * Set content
-     *
-     * @param string $content
-     *
-     * @return Commande
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Add plat
-     *
-     * @param \AvekApeti\BackBundle\Entity\Plat $plat
-     *
-     * @return Commande
-     */
-    public function addPlat(\AvekApeti\BackBundle\Entity\Plat $plat)
-    {
-        $this->plat[] = $plat;
-
-        return $this;
-    }
-
-    /**
-     * Remove plat
-     *
-     * @param \AvekApeti\BackBundle\Entity\Plat $plat
-     */
-    public function removePlat(\AvekApeti\BackBundle\Entity\Plat $plat)
-    {
-        $this->plat->removeElement($plat);
-    }
-
-    /**
-     * Get plat
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlat()
-    {
-        return $this->plat;
-    }
-
-    /**
-     * Add menu
-     *
-     * @param \AvekApeti\BackBundle\Entity\Menu $menu
-     *
-     * @return Commande
-     */
-    public function addMenu(\AvekApeti\BackBundle\Entity\Menu $menu)
-    {
-        $this->menu[] = $menu;
-
-        return $this;
-    }
-
-    /**
-     * Remove menu
-     *
-     * @param \AvekApeti\BackBundle\Entity\Menu $menu
-     */
-    public function removeMenu(\AvekApeti\BackBundle\Entity\Menu $menu)
-    {
-        $this->menu->removeElement($menu);
-    }
-
-    /**
-     * Get menu
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMenu()
-    {
-        return $this->menu;
-    }
-
-    /**
-     * Set contentValidation
-     *
-     * @param string $contentValidation
-     *
-     * @return Commande
-     */
-    public function setContentValidation($contentValidation)
-    {
-        $this->content_validation = $contentValidation;
-
-        return $this;
-    }
-
-    /**
-     * Get contentValidation
-     *
-     * @return string
-     */
-    public function getContentValidation()
-    {
-        return $this->content_validation;
-    }
-    /**
-     * Add commandeplat
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandeplat
-     * @return Plat
-     */
-    public function addCommandeplat(\AvekApeti\BackBundle\Entity\CommandePlat $commandeplat)
-    {
-
-            $commandeplat->setCommande($this);
-           // $this->$commandeplat[] = $commandeplat;
-        array_push($this->$commandeplat,$commandeplat);
-        return $this;
-    }
-    /**
-     * Remove commandeplat
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandeplat
-     */
-    public function removeUsercoupon(\AvekApeti\BackBundle\Entity\CommandePlat $commandeplat)
-    {
-        $this->$commandeplat->removeElement($commandeplat);
-       // $this->oldCoupons[] = $usercoupon;
-    }
-    /**
-     * Add commandemenu
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu
-     * @return Plat
-     */
-    public function addCommandemenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu)
-    {
-
-        $commandemenu->setCommande($this);
-       // $this->$commandemenu[] = $commandemenu;
-        array_push($this->$commandemenu,$commandemenu);
-
-        return $this;
-    }
-    /**
-     * Remove commandemenu
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu
-     */
-    public function removeCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu)
-    {
-        $this->$commandemenu->removeElement($commandemenu);
-        // $this->oldCoupons[] = $usercoupon;
-    }
-
-    /**
-     * Set commandeplat
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandeplat
-     *
-     * @return Commande
-     */
-    public function setCommandeplat(\AvekApeti\BackBundle\Entity\CommandePlat $commandeplat = null)
-    {
-        $this->commandeplat = $commandeplat;
-
-        return $this;
-    }
-
-    /**
-     * Get commandeplat
-     *
-     * @return \AvekApeti\BackBundle\Entity\CommandePlat
-     */
-    public function getCommandeplat()
-    {
-        return $this->commandeplat;
-    }
-
-    /**
-     * Set commandemenu
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu
-     *
-     * @return Commande
-     */
-    public function setCommandemenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandemenu = null)
-    {
-        $this->commandemenu = $commandemenu;
-
-        return $this;
-    }
-
-    /**
-     * Get commandemenu
-     *
-     * @return \AvekApeti\BackBundle\Entity\CommandeMenu
-     */
-    public function getCommandemenu()
-    {
-        return $this->commandemenu;
     }
 }

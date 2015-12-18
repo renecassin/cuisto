@@ -21,20 +21,18 @@ class CommandeMenu
      */
     private $id;
 
-    /**
-    * @ORM\OneToMany(targetEntity="Menu")
-     * @var integer
-     *
-     * @ORM\Column(name="menuId", type="integer")
-     */
-    private $menuId;
 
     /**
-     * @var integer
-     * @ORM\OneToMany(targetEntity="Commande")
-     * @ORM\Column(name="commandeId", type="integer")
+     * @ORM\ManyToOne(targetEntity="Menu")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $commandeId;
+    private $menus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Commande")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $commande;
 
     /**
      * @var integer
@@ -125,5 +123,52 @@ class CommandeMenu
     {
         return $this->quantity;
     }
-}
 
+    /**
+     * Set menus
+     *
+     * @param \AvekApeti\BackBundle\Entity\Menu $menus
+     *
+     * @return CommandeMenu
+     */
+    public function setMenus(\AvekApeti\BackBundle\Entity\Menu $menus = null)
+    {
+        $this->menus = $menus;
+
+        return $this;
+    }
+
+    /**
+     * Get menus
+     *
+     * @return \AvekApeti\BackBundle\Entity\Menu
+     */
+    public function getMenus()
+    {
+        return $this->menus;
+    }
+
+    /**
+     * Set commande
+     *
+     * @param \AvekApeti\BackBundle\Entity\Commande $commande
+     *
+     * @return CommandeMenu
+     */
+    public function setCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Get commande
+     *
+     * @return \AvekApeti\BackBundle\Entity\Commande
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+}

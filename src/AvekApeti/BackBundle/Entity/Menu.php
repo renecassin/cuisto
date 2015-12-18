@@ -65,9 +65,9 @@ class Menu
     private $tlivs;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CommandeMenu")
+     * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="id")
      */
-    private $commande;
+    private $commandeMenu;
     /**
      * Get id
      *
@@ -258,5 +258,39 @@ class Menu
     public function getCommande()
     {
         return $this->commande;
+    }
+
+    /**
+     * Add commandeMenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu
+     *
+     * @return Menu
+     */
+    public function addCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu)
+    {
+        $this->commandeMenu[] = $commandeMenu;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandeMenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu
+     */
+    public function removeCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu)
+    {
+        $this->commandeMenu->removeElement($commandeMenu);
+    }
+
+    /**
+     * Get commandeMenu
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandeMenu()
+    {
+        return $this->commandeMenu;
     }
 }

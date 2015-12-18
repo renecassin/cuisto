@@ -35,12 +35,65 @@ class CommandeController extends Controller
      */
     public function createAction(Request $request)
     {
+
         $entity = new Commande();
         $form = $this->createCreateForm($entity);
+
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        $CommandeType = new CommandeType;
+        $PostData = $request->request->get($CommandeType->getName());
+        //die(dump($PostData));
+        $isPlats = ($PostData['liste_plats'] == '')? false : true ;
+        $isMenus = ($PostData['liste_menus'] == '')? false : true ;
+        $listeMenus = Array();
+        $listePlats = Array();
+        if($isPlats)
+            $listePlats =$PostData['liste_plats'];
+        if($isMenus)
+            $listeMenus = $PostData['liste_menus'];
+
+
+    //    die(dump($form));
+        if ($form->isValid() && ($isPlats || $isMenus)) {
+
             $em = $this->getDoctrine()->getManager();
+            $CollectionPLats =
+            $Chef = "";
+            foreach ($listePlats as $plat) {
+                // On crée une nouvelle « relation entre 1 annonce et 1 compétence »
+                $commandePlat = new CommandePlat();
+
+                // On la lie à l'annonce, qui est ici toujours la même
+                $commandePlat->setCommande($entity);
+                // On la lie à la compétence, qui change ici dans la boucle foreach
+                $commandePlat->setPlat($plat[0]);
+
+                // Arbitrairement, on dit que chaque compétence est requise au niveau 'Expert'
+                $commandePlat->setQuantity($plat[1]);
+
+                // Et bien sûr, on persiste cette entité de relation, propriétaire des deux autres relations
+                //$em->persist($commandePlat);
+                $entity->addCommandeplat($commandePlat);
+            }
+            foreach ($listeMenus as $menu) {
+                // On crée une nouvelle « relation entre 1 annonce et 1 compétence »
+                $commandeMenu = new CommandeMenu();
+
+                // On la lie à l'annonce, qui est ici toujours la même
+                $commandeMenu->setCommande($entity);
+                // On la lie à la compétence, qui change ici dans la boucle foreach
+                $commandeMenu->setMenu($menu[0]);
+
+                // Arbitrairement, on dit que chaque compétence est requise au niveau 'Expert'
+                $commandeMenu->setQuantity($menu[1]);
+
+                // Et bien sûr, on persiste cette entité de relation, propriétaire des deux autres relations
+               // $em->persist($commandeMenu);
+                $entity->addCommandemenu($commandeMenu);
+            }
+            $entity->setCommandePlat();
+
             $em->persist($entity);
             $em->flush();
 
@@ -103,8 +156,21 @@ class CommandeController extends Controller
 
         $deleteForm = $this->createDeleteForm($entity->getId());
 
+        // On avait déjà récupéré la liste des candidatures
+        $listCommandeMenus = $em
+            ->getRepository('AvekApetiBackBundle:Menu')
+            ->findBy(array('commande' => $entity))
+        ;
+
+        // On récupère maintenant la liste des AdvertSkill
+        $listCommandePlats = $em
+            ->getRepository('AvekApetiBackBundle:Plat')
+            ->findBy(array('commande' => $entity))
+        ;
         return $this->render('AvekApetiBackBundle:Commande:show.html.twig', array(
             'entity'      => $entity,
+            'listePlats'      => $listCommandePlats,
+            'ListeMenus'      => $listCommandeMenus,
             'delete_form' => $deleteForm->createView(),
         ));
     }

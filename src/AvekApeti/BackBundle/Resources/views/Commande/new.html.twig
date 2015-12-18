@@ -12,56 +12,73 @@
         </a>
     </li>
 </ul>
-    <script type="text/javascript">
-        var $collectionHolder;
-        // setup an "add a tag" link
-        var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
-        var $newLinkLi = $('<li></li>').append($addTagLink);
-        jQuery(document).ready(function() {
-            // Get the ul that holds the collection of tags
-            $collectionHolder = $('#avekapeti_backbundle_commande_commandeplat');
-            // add the "add a tag" anchor and li to the tags ul
-            $collectionHolder.append($newLinkLi);
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length);
-            $addTagLink.on('click', function(e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
-                // add a new tag form (see next code block)
-                addTagForm($collectionHolder, $newLinkLi);
-            });
-            // ajoute un lien de suppression à tous les éléments li de
-            // formulaires de tag existants
-            $collectionHolder.children('div.form-group').each(function() {
-                addTagFormDeleteLink($(this));
-            });
+    <button id="but_plat">Ajout Plat</button>
+    <button id="but_menu">Ajout Menu</button>
+    <div>Plat ajouté: <span id="res_plat"></span></div>
+    <div>Menu ajouté: <span id="res_menu"></span></div>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.js') }}"></script>
+    <script>
+        var commande_plat = [];
+        var commande_menu = [];
+
+        $('#but_plat').click(function(){
+
+            var Plat = $('#avekapeti_backbundle_commande_commandeplat').val();
+            var Done = true;
+            if(Plat == null)
+            {
+                return ;
+            }
+            for(index = 0; index < commande_plat.length; ++index) {
+
+                if(commande_plat[index][0] == Plat)
+                {
+                    commande_plat[index][1] = commande_plat[index][1]+1;
+                    Done = false;
+                }
+            }
+
+            if((index == commande_plat.length) && Done)
+            {
+                commande_plat.push([$('#avekapeti_backbundle_commande_commandeplat').val(),1]);
+            }
+            $('#res_plat').html(commande_plat);
+            $('#avekapeti_backbundle_commande_liste_plats').val(tabString(commande_plat));
+
         });
-        function addTagForm($collectionHolder, $newLinkLi) {
-            // Get the data-prototype explained earlier
-            var prototype = $collectionHolder.data('prototype');
-            // get the new index
-            var index = $collectionHolder.data('index');
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            var newForm = prototype.replace(/__name__/g, index);
-            // increase the index with one for the next item
-            $collectionHolder.data('index', index + 1);
-            // Display the form in the page in an li, before the "Add a tag" link li
-            var $newFormLi = $('<li></li>').append(newForm);
-            $newLinkLi.before($newFormLi);
-            // ajoute un lien de suppression au nouveau formulaire
-            addTagFormDeleteLink($newFormLi);
-        }
-        function addTagFormDeleteLink($tagFormLi) {
-            var $removeFormA = $('<a href="#">Supprimer ce tag</a>');
-            $tagFormLi.append($removeFormA);
-            $removeFormA.on('click', function(e) {
-                // empêche le lien de créer un « # » dans l'URL
-                e.preventDefault();
-                // supprime l'élément li pour le formulaire de tag
-                $tagFormLi.remove();
-            });
+        $('#but_menu').click(function(){
+
+            var Menu = $('#avekapeti_backbundle_commande_commandemenu').val();
+            var Done = true;
+
+            if(Menu == null)
+            {
+                return;
+            }
+            for(index = 0; index < commande_menu.length; ++index) {
+
+                if(commande_menu[index][0] == Menu)
+                {
+                    commande_menu[index][1] = commande_menu[index][1]+1;
+                    Done = false;
+                }
+            }
+
+            if((index == commande_menu.length) && Done)
+            {
+                commande_menu.push([$('#avekapeti_backbundle_commande_commandemenu').val(),1]);
+            }
+            $('#res_menu').html(commande_menu);
+            $('#avekapeti_backbundle_commande_liste_plats').val(tabString(commande_menu));
+        });
+
+        function tabString(Tab){
+            var string = "";
+            for(index = 0; index < Tab.length; ++index) {
+                string = string+'\['+Tab[index]+'\]'+',';
+
+            }
+            return string;
         }
     </script>
 {% endblock %}

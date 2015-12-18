@@ -5,7 +5,7 @@ namespace AvekApeti\BackBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 class CommandeType extends AbstractType
 {
     /**
@@ -58,20 +58,26 @@ class CommandeType extends AbstractType
                'type' => 'AvekApetiBackBundle:Menu',
                'allow_add'    => true,
                'required' => false))*/
-          ->add('commandeplat', 'collection',
-              [
-                  'type' => new CommandePlatType(),
-                  'allow_add'    => true,
-                  'allow_delete' => true,
-                  'by_reference' => false
-              ])
-          ->add('commandemenu', 'collection',
-              [
-                  'type' => new CommandeMenuType(),
-                  'allow_add'    => true,
-                  'allow_delete' => true,
-                  'by_reference' => false
-              ]);
+             ->add('commandeplat', 'entity',
+                 [
+                     'class' => 'AvekApetiBackBundle:Plat',
+                     'property'    => 'name',
+                     'multiple' => false,
+                     'mapped' => false
+                 ])
+            ->add('commandemenu', 'entity',
+                [
+                    'class' => 'AvekApetiBackBundle:Menu',
+                    'property'    => 'name',
+                    'multiple' => false,
+                    'mapped' => false
+                ])
+            ->add('liste_plats','hidden',[
+                'mapped' => false
+            ])
+            ->add('liste_menus','hidden',[
+                'mapped' => false
+            ])
         ;
     }
     

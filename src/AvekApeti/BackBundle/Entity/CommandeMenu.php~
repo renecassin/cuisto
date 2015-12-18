@@ -5,12 +5,12 @@ namespace AvekApeti\BackBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CommandePlat
+ * CommandeMenu
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\CommandePlatRepository")
+ * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\CommandeMenuRepository")
  */
-class CommandePlat
+class CommandeMenu
 {
     /**
      * @var integer
@@ -21,17 +21,19 @@ class CommandePlat
      */
     private $id;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="Plat")
+     * @ORM\ManyToOne(targetEntity="Menu")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $plats;
+    private $menus;
 
     /**
      * @ORM\ManyToOne(targetEntity="Commande")
      * @ORM\JoinColumn(nullable=false)
      */
     private $commande;
+
     /**
      * @var integer
      *
@@ -51,27 +53,27 @@ class CommandePlat
     }
 
     /**
-     * Set platId
+     * Set menuId
      *
-     * @param integer $platId
+     * @param integer $menuId
      *
-     * @return CommandePlat
+     * @return CommandeMenu
      */
-    public function setPlatId($platId)
+    public function setMenuId($menuId)
     {
-        $this->platId = $platId;
+        $this->menuId = $menuId;
 
         return $this;
     }
 
     /**
-     * Get platId
+     * Get menuId
      *
      * @return integer
      */
-    public function getPlatId()
+    public function getMenuId()
     {
-        return $this->platId;
+        return $this->menuId;
     }
 
     /**
@@ -79,7 +81,7 @@ class CommandePlat
      *
      * @param integer $commandeId
      *
-     * @return CommandePlat
+     * @return CommandeMenu
      */
     public function setCommandeId($commandeId)
     {
@@ -103,7 +105,7 @@ class CommandePlat
      *
      * @param integer $quantity
      *
-     * @return CommandePlat
+     * @return CommandeMenu
      */
     public function setQuantity($quantity)
     {
@@ -121,52 +123,5 @@ class CommandePlat
     {
         return $this->quantity;
     }
-
-    /**
-     * Set plats
-     *
-     * @param \AvekApeti\BackBundle\Entity\Plat $plats
-     *
-     * @return CommandePlat
-     */
-    public function setPlats(\AvekApeti\BackBundle\Entity\Plat $plats = null)
-    {
-        $this->plats = $plats;
-
-        return $this;
-    }
-
-    /**
-     * Get plats
-     *
-     * @return \AvekApeti\BackBundle\Entity\Plat
-     */
-    public function getPlats()
-    {
-        return $this->plats;
-    }
-
-    /**
-     * Set commande
-     *
-     * @param \AvekApeti\BackBundle\Entity\Commande $commande
-     *
-     * @return CommandePlat
-     */
-    public function setCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
-    {
-        $this->commande = $commande;
-
-        return $this;
-    }
-
-    /**
-     * Get commande
-     *
-     * @return \AvekApeti\BackBundle\Entity\Commande
-     */
-    public function getCommande()
-    {
-        return $this->commande;
-    }
 }
+
