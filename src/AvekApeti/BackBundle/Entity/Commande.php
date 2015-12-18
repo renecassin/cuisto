@@ -63,14 +63,14 @@ class Commande
      * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
      */
     /**
-     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="Id")
+     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="Id",cascade={"persist"})
      */
     private $commandeplat;
    /* /**
      * @ORM\ManyToMany(targetEntity="Menu", mappedBy="Commande")
      */
     /**
-     * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="Id")
+     * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="Id",cascade={"persist"})
      */
     private $commandemenu;
     /**

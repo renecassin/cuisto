@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use AvekApeti\BackBundle\Entity\Commande;
+use AvekApeti\BackBundle\Entity\Plat;
+use AvekApeti\BackBundle\Entity\CommandePlat;
+use AvekApeti\BackBundle\Entity\CommandeMenu;
 use AvekApeti\BackBundle\Form\CommandeType;
 
 /**
@@ -48,26 +51,38 @@ class CommandeController extends Controller
         $isMenus = ($PostData['liste_menus'] == '')? false : true ;
         $listeMenus = Array();
         $listePlats = Array();
-        if($isPlats)
-            $listePlats =$PostData['liste_plats'];
-        if($isMenus)
-            $listeMenus = $PostData['liste_menus'];
+        if($isPlats){
+            $listePlats = explode(';',$PostData['liste_plats']);
+              array_pop($listePlats);
+        }
 
+        if($isMenus){
+            $listeMenus = explode(';',$PostData['liste_menus']);
+              array_pop($listeMenus);
+        }
+
+        //die(dump($listePlats));
 
     //    die(dump($form));
         if ($form->isValid() && ($isPlats || $isMenus)) {
 
             $em = $this->getDoctrine()->getManager();
-            $CollectionPLats =
+            //$CollectionPLats = "";
             $Chef = "";
             foreach ($listePlats as $plat) {
+                $plat = explode(',',$plat);
+                $newPlat = new Plat;
+                //$plat[0] = $newPlat->setId($plat[0]);
+                $plat[0] = $em
+                    ->getRepository('AvekApetiBackBundle:Plat')
+                    ->findOneById($plat[0]);
                 // On crée une nouvelle « relation entre 1 annonce et 1 compétence »
                 $commandePlat = new CommandePlat();
 
                 // On la lie à l'annonce, qui est ici toujours la même
                 $commandePlat->setCommande($entity);
                 // On la lie à la compétence, qui change ici dans la boucle foreach
-                $commandePlat->setPlat($plat[0]);
+                $commandePlat->setPlats($plat[0]);
 
                 // Arbitrairement, on dit que chaque compétence est requise au niveau 'Expert'
                 $commandePlat->setQuantity($plat[1]);
@@ -83,7 +98,7 @@ class CommandeController extends Controller
                 // On la lie à l'annonce, qui est ici toujours la même
                 $commandeMenu->setCommande($entity);
                 // On la lie à la compétence, qui change ici dans la boucle foreach
-                $commandeMenu->setMenu($menu[0]);
+                $commandeMenu->setMenus($menu[0]);
 
                 // Arbitrairement, on dit que chaque compétence est requise au niveau 'Expert'
                 $commandeMenu->setQuantity($menu[1]);
@@ -92,7 +107,7 @@ class CommandeController extends Controller
                // $em->persist($commandeMenu);
                 $entity->addCommandemenu($commandeMenu);
             }
-            $entity->setCommandePlat();
+           // $entity->setCommandePlat();
 
             $em->persist($entity);
             $em->flush();
@@ -155,18 +170,22 @@ class CommandeController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($entity->getId());
-
+        $em = $this->getDoctrine()->getManager();
         // On avait déjà récupéré la liste des candidatures
         $listCommandeMenus = $em
-            ->getRepository('AvekApetiBackBundle:Menu')
+            ->getRepository('AvekApetiBackBundle:CommandeMenu')
             ->findBy(array('commande' => $entity))
         ;
 
         // On récupère maintenant la liste des AdvertSkill
         $listCommandePlats = $em
-            ->getRepository('AvekApetiBackBundle:Plat')
+            ->getRepository('AvekApetiBackBundle:CommandePlat')
             ->findBy(array('commande' => $entity))
         ;
+       /* dump($listCommandePlats);
+        dump($listCommandeMenus);
+        dump($entity);
+        die();*/
         return $this->render('AvekApetiBackBundle:Commande:show.html.twig', array(
             'entity'      => $entity,
             'listePlats'      => $listCommandePlats,

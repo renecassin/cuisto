@@ -22,22 +22,23 @@
             </tr>
             <tr>
                 <th>plat</th>
-                <td> {% for plat in entity.plat %}
-                        {{ plat.name }}<br>
-                    {% endfor %}
-                </td>
+
             </tr>
         </tbody>
     </table>
     <ul>
+        {% if listePlats is defined %}
         {% for commandePlat in listePlats %}
-            <li>{{ commandePlat.plat.name }} : quantité {{ commandePlat.quantity }}</li>
+            <li>{{ commandePlat.plats.name }} : quantité {{ commandePlat.quantity }}</li>
         {% endfor %}
+        {% endif %}
     </ul>
     <ul>
+        {% if listeMenus is defined %}
         {% for commandeMenu in listeMenus %}
-            <li>{{ commandeMenu.menu.name }} : quantité {{ commandeMenu.quantity }}</li>
+            <li>{{ commandeMenu.menus.name }} : quantité {{ commandeMenu.quantity }}</li>
         {% endfor %}
+        {% endif %}
     </ul>
         <ul class="record_actions">
     <li>
