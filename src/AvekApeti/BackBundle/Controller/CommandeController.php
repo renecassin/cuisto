@@ -10,6 +10,7 @@ use AvekApeti\BackBundle\Entity\Plat;
 use AvekApeti\BackBundle\Entity\CommandePlat;
 use AvekApeti\BackBundle\Entity\CommandeMenu;
 use AvekApeti\BackBundle\Form\CommandeType;
+use AvekApeti\BackBundle\Form\CommandeEditType;
 
 /**
  * Commande controller.
@@ -227,7 +228,7 @@ class CommandeController extends Controller
     */
     private function createEditForm(Commande $entity)
     {
-        $form = $this->createForm(new CommandeType(), $entity, array(
+        $form = $this->createForm(new CommandeEditType(), $entity, array(
             'action' => $this->generateUrl('commande_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
