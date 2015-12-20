@@ -135,11 +135,11 @@ class Plat
      */
     private $commandePlat;
     /**
-     * Get id
+     * @var integer
      *
-     * @return integer
+     * @ORM\Column(name="supp", type="boolean", nullable=true)
      */
-
+    private $supp;
 
     /**
      * Get id
@@ -577,5 +577,53 @@ class Plat
     public function getCommandePlat()
     {
         return $this->commandePlat;
+    }
+
+    /**
+     * Set delete
+     *
+     * @param boolean $delete
+     *
+     * @return Plat
+     */
+    public function setDelete($delete)
+    {
+        $this->delete = $delete;
+
+        return $this;
+    }
+
+    /**
+     * Get delete
+     *
+     * @return boolean
+     */
+    public function getDelete()
+    {
+        return $this->delete;
+    }
+
+    /**
+     * Set supp
+     *
+     * @param boolean $supp
+     *
+     * @return Plat
+     */
+    public function setSupp($supp)
+    {
+        $this->supp = $supp;
+
+        return $this;
+    }
+
+    /**
+     * Get supp
+     *
+     * @return boolean
+     */
+    public function getSupp()
+    {
+        return $this->supp;
     }
 }

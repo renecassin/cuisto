@@ -203,12 +203,11 @@ class PlatController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AvekApetiBackBundle:Plat')->find($id);
-
+            $entity->setSupp('1');
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Plat entity.');
             }
 
-            $em->remove($entity);
             $em->flush();
         }
 

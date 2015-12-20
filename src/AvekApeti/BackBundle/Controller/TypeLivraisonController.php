@@ -197,8 +197,8 @@ class TypeLivraisonController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TypeLivraison entity.');
             }
+            $entity->setSupp('1');
 
-            $em->remove($entity);
             $em->flush();
         }
 

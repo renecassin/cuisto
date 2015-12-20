@@ -162,9 +162,7 @@
             </li>
         {% endif %}
             {% if (is_granted('ROLE_GOURMET')) %}
-                <li class="">
-                    <a  class="ion-ios-cart" style="font-size: 25px"  href=""></a>
-                </li>
+
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         Maxime <span class="caret"></span>
@@ -199,6 +197,9 @@
                     <a href={{ path('gourmet_loginpage') }}>Connexion</a>
                 </li>
             {% endif %}
+                <li class="">
+                    <a  class="ion-ios-cart" style="font-size: 25px"  href=""></a>
+                </li>
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         Aide <span class="caret"></span>

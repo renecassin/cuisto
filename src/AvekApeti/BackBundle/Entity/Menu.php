@@ -69,6 +69,13 @@ class Menu
      */
     private $commandeMenu;
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="supp", type="boolean", nullable=true)
+     */
+    private $supp;
+
+    /**
      * Get id
      *
      * @return integer
@@ -292,5 +299,29 @@ class Menu
     public function getCommandeMenu()
     {
         return $this->commandeMenu;
+    }
+
+    /**
+     * Set supp
+     *
+     * @param boolean $supp
+     *
+     * @return Menu
+     */
+    public function setSupp($supp)
+    {
+        $this->supp = $supp;
+
+        return $this;
+    }
+
+    /**
+     * Get supp
+     *
+     * @return boolean
+     */
+    public function getSupp()
+    {
+        return $this->supp;
     }
 }
