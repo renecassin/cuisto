@@ -197,8 +197,8 @@ class TypeCommandeController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TypeCommande entity.');
             }
+            $entity->setSupp('1');
 
-            $em->remove($entity);
             $em->flush();
         }
 

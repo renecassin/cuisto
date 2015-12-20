@@ -210,8 +210,8 @@ class PlatController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Plat entity.');
             }
-
-            $em->remove($entity);
+            $entity->setSupp('1');
+            //$em->remove($entity);
             $em->flush();
         }
 

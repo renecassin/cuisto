@@ -76,6 +76,18 @@ class Plat
      */
     private $unableWhile;
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_start", type="datetime")
+     */
+    private $dateStart;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_end", type="datetime")
+     */
+    private $dateEnd;
+    /**
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
@@ -91,27 +103,11 @@ class Plat
      */
     private $categorie;
     /**
-     * @ORM\ManyToMany(targetEntity="TypeLivraison", inversedBy="Plat" )
-     * @ORM\JoinTable(name="plat_typelivraison",
-     *    joinColumns={
-     *				@ORM\JoinColumn(name="plat_id", referencedColumnName="id")
-     *		},
-     *		inverseJoinColumns={
-     *       @ORM\JoinColumn(name="typelivraison_id", referencedColumnName="id")
-     *   }
-     *)
+     * @ORM\ManyToOne(targetEntity="TypeLivraison")
      */
-    public $tlivs;
+    public $tliv;
     /**
-     * @ORM\ManyToMany(targetEntity="TypeCommande", inversedBy="Plat" )
-     * @ORM\JoinTable(name="plat_typecommande",
-     *    joinColumns={
-     *				@ORM\JoinColumn(name="plat_id", referencedColumnName="id")
-     *		},
-     *		inverseJoinColumns={
-     *       @ORM\JoinColumn(name="typecommande_id", referencedColumnName="id")
-     *   }
-     *)
+     * @ORM\ManyToOne(targetEntity="TypeCommande")
      */
     public $tcoms;
 
@@ -135,9 +131,16 @@ class Plat
      *)
      */
     /**
-    * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Plat")
+     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="id")
      */
-    private $commande;
+    private $commandePlat;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="supp", type="boolean", nullable=true)
+     */
+    private $supp;
+
     /**
      * Get id
      *
@@ -269,6 +272,30 @@ class Plat
     }
 
     /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Plat
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
      * Set unableWhile
      *
      * @param \DateTime $unableWhile
@@ -291,10 +318,54 @@ class Plat
     {
         return $this->unableWhile;
     }
-    /**
-     * Constructor
-     */
 
+    /**
+     * Set dateStart
+     *
+     * @param \DateTime $dateStart
+     *
+     * @return Plat
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->dateStart = $dateStart;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStart
+     *
+     * @return \DateTime
+     */
+    public function getDateStart()
+    {
+        return $this->dateStart;
+    }
+
+    /**
+     * Set dateEnd
+     *
+     * @param \DateTime $dateEnd
+     *
+     * @return Plat
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnd
+     *
+     * @return \DateTime
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
+    }
 
     /**
      * Set utilisateur
@@ -369,37 +440,75 @@ class Plat
     }
 
     /**
-     * Add tliv
+     * Set tliv
      *
      * @param \AvekApeti\BackBundle\Entity\TypeLivraison $tliv
      *
      * @return Plat
      */
-    public function addTliv(\AvekApeti\BackBundle\Entity\TypeLivraison $tliv)
+    public function setTliv(\AvekApeti\BackBundle\Entity\TypeLivraison $tliv = null)
     {
-        $this->tlivs[] = $tliv;
+        $this->tliv = $tliv;
 
         return $this;
     }
 
     /**
-     * Remove tliv
+     * Get tliv
      *
-     * @param \AvekApeti\BackBundle\Entity\TypeLivraison $tliv
+     * @return \AvekApeti\BackBundle\Entity\TypeLivraison
      */
-    public function removeTliv(\AvekApeti\BackBundle\Entity\TypeLivraison $tliv)
+    public function getTliv()
     {
-        $this->tlivs->removeElement($tliv);
+        return $this->tliv;
     }
 
     /**
-     * Get tlivs
+     * Set tcoms
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param \AvekApeti\BackBundle\Entity\TypeCommande $tcoms
+     *
+     * @return Plat
      */
-    public function getTlivs()
+    public function setTcoms(\AvekApeti\BackBundle\Entity\TypeCommande $tcoms = null)
     {
-        return $this->tlivs;
+        $this->tcoms = $tcoms;
+
+        return $this;
+    }
+
+    /**
+     * Get tcoms
+     *
+     * @return \AvekApeti\BackBundle\Entity\TypeCommande
+     */
+    public function getTcoms()
+    {
+        return $this->tcoms;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \AvekApeti\BackBundle\Entity\Image $image
+     *
+     * @return Plat
+     */
+    public function setImage(\AvekApeti\BackBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \AvekApeti\BackBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -437,118 +546,84 @@ class Plat
     }
 
     /**
-     * Set image
+     * Add commandePlat
      *
-     * @param \AvekApeti\BackBundle\Entity\Image $image
+     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandePlat
      *
      * @return Plat
      */
-    public function setImage(\AvekApeti\BackBundle\Entity\Image $image = null)
+    public function addCommandePlat(\AvekApeti\BackBundle\Entity\CommandePlat $commandePlat)
     {
-        $this->image = $image;
+        $this->commandePlat[] = $commandePlat;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Remove commandePlat
      *
-     * @return \AvekApeti\BackBundle\Entity\Image
+     * @param \AvekApeti\BackBundle\Entity\CommandePlat $commandePlat
      */
-    public function getImage()
+    public function removeCommandePlat(\AvekApeti\BackBundle\Entity\CommandePlat $commandePlat)
     {
-        return $this->image;
+        $this->commandePlat->removeElement($commandePlat);
     }
 
     /**
-     * Set active
-     *
-     * @param boolean $active
-     *
-     * @return Plat
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return \boolean
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * Add commande
-     *
-     * @param \AvekApeti\BackBundle\Entity\Commande $commande
-     *
-     * @return Plat
-     */
-    public function addCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
-    {
-        $this->commande[] = $commande;
-
-        return $this;
-    }
-
-    /**
-     * Remove commande
-     *
-     * @param \AvekApeti\BackBundle\Entity\Commande $commande
-     */
-    public function removeCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
-    {
-        $this->commande->removeElement($commande);
-    }
-
-    /**
-     * Get commande
+     * Get commandePlat
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCommande()
+    public function getCommandePlat()
     {
-        return $this->commande;
+        return $this->commandePlat;
     }
 
     /**
-     * Add tcom
+     * Set delete
      *
-     * @param \AvekApeti\BackBundle\Entity\TypeCommande $tcom
+     * @param boolean $delete
      *
      * @return Plat
      */
-    public function addTcom(\AvekApeti\BackBundle\Entity\TypeCommande $tcom)
+    public function setDelete($delete)
     {
-        $this->tcoms[] = $tcom;
+        $this->delete = $delete;
 
         return $this;
     }
 
     /**
-     * Remove tcom
+     * Get delete
      *
-     * @param \AvekApeti\BackBundle\Entity\TypeCommande $tcom
+     * @return boolean
      */
-    public function removeTcom(\AvekApeti\BackBundle\Entity\TypeCommande $tcom)
+    public function getDelete()
     {
-        $this->tcoms->removeElement($tcom);
+        return $this->delete;
     }
 
     /**
-     * Get tcoms
+     * Set supp
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param boolean $supp
+     *
+     * @return Plat
      */
-    public function getTcoms()
+    public function setSupp($supp)
     {
-        return $this->tcoms;
+        $this->supp = $supp;
+
+        return $this;
+    }
+
+    /**
+     * Get supp
+     *
+     * @return boolean
+     */
+    public function getSupp()
+    {
+        return $this->supp;
     }
 }

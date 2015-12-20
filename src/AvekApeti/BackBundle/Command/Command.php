@@ -20,9 +20,9 @@ class Command extends ContainerAwareCommand
 {
 private $commandes = array(
         array('command' => 'doctrine:database:create'),
-         //   'message' => 'Creation base de données'),
+         //   'message' => 'Creation base de donnï¿½es'),
         array('command' => 'doctrine:schema:update',
-         //   'message' => 'Mise a jour base de données',
+         //   'message' => 'Mise a jour base de donnï¿½es',
         '--force' => true),
         array('command' => 'assets:install'),
          //   'message' => 'Installation des assets'),
@@ -30,7 +30,7 @@ private $commandes = array(
         //    'message' => 'Suppresion cache dev',
         ' --env'=>'dev'),
         array('command' => 'cache:clear',
-        //    'message' => 'Creation base de données',
+        //    'message' => 'Creation base de donnï¿½es',
         '--env'=>'prod --no-debug')
         );
 
@@ -39,7 +39,7 @@ private $commandes = array(
     protected function configure()
     {
         $this->setName('avekapeti:install')
-            ->setDescription('Creation de la base de données et des presrequis');
+            ->setDescription('Creation de la base de donnï¿½es et des presrequis');
 
     }
 

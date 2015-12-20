@@ -35,6 +35,12 @@ class TypeLivraison
      */
     private $content;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="supp", type="boolean", nullable=true)
+     */
+    private $supp;
 
     /**
      * Get id
@@ -92,5 +98,53 @@ class TypeLivraison
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set delete
+     *
+     * @param boolean $delete
+     *
+     * @return TypeLivraison
+     */
+    public function setDelete($delete)
+    {
+        $this->delete = $delete;
+
+        return $this;
+    }
+
+    /**
+     * Get delete
+     *
+     * @return boolean
+     */
+    public function getDelete()
+    {
+        return $this->delete;
+    }
+
+    /**
+     * Set supp
+     *
+     * @param boolean $supp
+     *
+     * @return TypeLivraison
+     */
+    public function setSupp($supp)
+    {
+        $this->supp = $supp;
+
+        return $this;
+    }
+
+    /**
+     * Get supp
+     *
+     * @return boolean
+     */
+    public function getSupp()
+    {
+        return $this->supp;
     }
 }

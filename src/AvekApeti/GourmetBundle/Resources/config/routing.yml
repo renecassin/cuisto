@@ -43,3 +43,6 @@ gourmet_detail:
 gourmet_message:
     resource: "@GourmetBundle/Resources/config/routing/message.yml"
     prefix:   /gourmet/message
+gourmet_panier:
+    path:     /
+    defaults: { _controller: GourmetBundle:Panier:index }

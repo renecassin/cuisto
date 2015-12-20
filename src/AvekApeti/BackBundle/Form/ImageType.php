@@ -18,6 +18,7 @@ class ImageType extends AbstractType
            // ->add('name')
            // ->add('src')
             ->add("file","file", array('label' => false))
+
         ;
     }
     

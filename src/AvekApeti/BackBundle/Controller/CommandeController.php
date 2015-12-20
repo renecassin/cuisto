@@ -6,7 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use AvekApeti\BackBundle\Entity\Commande;
+use AvekApeti\BackBundle\Entity\Plat;
+use AvekApeti\BackBundle\Entity\CommandePlat;
+use AvekApeti\BackBundle\Entity\CommandeMenu;
 use AvekApeti\BackBundle\Form\CommandeType;
+use AvekApeti\BackBundle\Form\CommandeEditType;
 
 /**
  * Commande controller.
@@ -35,12 +39,77 @@ class CommandeController extends Controller
      */
     public function createAction(Request $request)
     {
+
         $entity = new Commande();
         $form = $this->createCreateForm($entity);
+
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        $CommandeType = new CommandeType;
+        $PostData = $request->request->get($CommandeType->getName());
+        //die(dump($PostData));
+        $isPlats = ($PostData['liste_plats'] == '')? false : true ;
+        $isMenus = ($PostData['liste_menus'] == '')? false : true ;
+        $listeMenus = Array();
+        $listePlats = Array();
+        if($isPlats){
+            $listePlats = explode(';',$PostData['liste_plats']);
+              array_pop($listePlats);
+        }
+
+        if($isMenus){
+            $listeMenus = explode(';',$PostData['liste_menus']);
+              array_pop($listeMenus);
+        }
+
+        //die(dump($listePlats));
+
+    //    die(dump($form));
+        if ($form->isValid() && ($isPlats || $isMenus)) {
+
             $em = $this->getDoctrine()->getManager();
+            //$CollectionPLats = "";
+            $Chef = "";
+            foreach ($listePlats as $plat) {
+                $plat = explode(',',$plat);
+                $newPlat = new Plat;
+                //$plat[0] = $newPlat->setId($plat[0]);
+                $plat[0] = $em
+                    ->getRepository('AvekApetiBackBundle:Plat')
+                    ->findOneById($plat[0]);
+                // On crée une nouvelle « relation entre 1 annonce et 1 compétence »
+                $commandePlat = new CommandePlat();
+
+                // On la lie à l'annonce, qui est ici toujours la même
+                $commandePlat->setCommande($entity);
+                // On la lie à la compétence, qui change ici dans la boucle foreach
+                $commandePlat->setPlats($plat[0]);
+
+                // Arbitrairement, on dit que chaque compétence est requise au niveau 'Expert'
+                $commandePlat->setQuantity($plat[1]);
+
+                // Et bien sûr, on persiste cette entité de relation, propriétaire des deux autres relations
+                //$em->persist($commandePlat);
+                $entity->addCommandeplat($commandePlat);
+            }
+            foreach ($listeMenus as $menu) {
+                // On crée une nouvelle « relation entre 1 annonce et 1 compétence »
+                $commandeMenu = new CommandeMenu();
+
+                // On la lie à l'annonce, qui est ici toujours la même
+                $commandeMenu->setCommande($entity);
+                // On la lie à la compétence, qui change ici dans la boucle foreach
+                $commandeMenu->setMenus($menu[0]);
+
+                // Arbitrairement, on dit que chaque compétence est requise au niveau 'Expert'
+                $commandeMenu->setQuantity($menu[1]);
+
+                // Et bien sûr, on persiste cette entité de relation, propriétaire des deux autres relations
+               // $em->persist($commandeMenu);
+                $entity->addCommandemenu($commandeMenu);
+            }
+           // $entity->setCommandePlat();
+
             $em->persist($entity);
             $em->flush();
 
@@ -102,9 +171,26 @@ class CommandeController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($entity->getId());
+        $em = $this->getDoctrine()->getManager();
+        // On avait déjà récupéré la liste des candidatures
+        $listCommandeMenus = $em
+            ->getRepository('AvekApetiBackBundle:CommandeMenu')
+            ->findBy(array('commande' => $entity))
+        ;
 
+        // On récupère maintenant la liste des AdvertSkill
+        $listCommandePlats = $em
+            ->getRepository('AvekApetiBackBundle:CommandePlat')
+            ->findBy(array('commande' => $entity))
+        ;
+       /* dump($listCommandePlats);
+        dump($listCommandeMenus);
+        dump($entity);
+        die();*/
         return $this->render('AvekApetiBackBundle:Commande:show.html.twig', array(
             'entity'      => $entity,
+            'listePlats'      => $listCommandePlats,
+            'ListeMenus'      => $listCommandeMenus,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -142,7 +228,7 @@ class CommandeController extends Controller
     */
     private function createEditForm(Commande $entity)
     {
-        $form = $this->createForm(new CommandeType(), $entity, array(
+        $form = $this->createForm(new CommandeEditType(), $entity, array(
             'action' => $this->generateUrl('commande_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

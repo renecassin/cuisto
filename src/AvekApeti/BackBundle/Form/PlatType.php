@@ -21,6 +21,8 @@ class PlatType extends AbstractType
             ->add('quantity', null, array('attr' => array('min' =>0)))
             ->add('active')
             ->add('unableWhile')
+            ->add('dateStart')
+            ->add('dateEnd')
             ->add('Utilisateur', 'entity',  array(
                 'class' => 'AvekApetiBackBundle:Utilisateur',
                 'choice_label' => 'email',
@@ -42,10 +44,18 @@ class PlatType extends AbstractType
             ->add('tcoms', 'entity',  array(
                 'class' => 'AvekApetiBackBundle:TypeCommande',
                 'choice_label' => 'name',
-                "multiple" => true,
+                "multiple" => false,
                 "expanded" => false
             ))
-            ->add('image',new ImageType())
+            ->add('image',new ImageType(),[
+                "required" => false,
+            ])
+            ->add('tliv', 'entity',  array(
+                'class' => 'AvekApetiBackBundle:TypeLivraison',
+                'choice_label' => 'name',
+                "multiple" => false,
+                "expanded" => false
+            ))
         ;
     }
     

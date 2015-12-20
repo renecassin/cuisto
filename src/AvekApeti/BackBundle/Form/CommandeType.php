@@ -5,7 +5,7 @@ namespace AvekApeti\BackBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 class CommandeType extends AbstractType
 {
     /**
@@ -36,18 +36,48 @@ class CommandeType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'required' => false))
-            ->add('plat','entity', array(
+          /*  ->add('plat','entity', array(
                 'class' => 'AvekApetiBackBundle:Plat',
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => true,
                 'required' => false))
-           ->add('menu','entity', array(
-               'class' => 'AvekApetiBackBundle:Menu',
-               'choice_label' => 'name',
-               'expanded' => false,
-               'multiple' => true,
-               'required' => false))
+            ->add('plat','collection', array(
+              'type' => 'AvekApetiBackBundle:Plat',
+               // 'class' => 'AvekApetiBackBundle:Plat',
+                 'allow_add'    => true,
+                'required' => false))
+          /*  ->add('menu','entity', array(
+                'class' => 'AvekApetiBackBundle:Menu',
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true,
+                'required' => false))
+           ->add('menu','collection', array(
+            //   'class' => 'AvekApetiBackBundle:Menu',
+               'type' => 'AvekApetiBackBundle:Menu',
+               'allow_add'    => true,
+               'required' => false))*/
+             ->add('commandeplat', 'entity',
+                 [
+                     'class' => 'AvekApetiBackBundle:Plat',
+                     'property'    => 'name',
+                     'multiple' => false,
+                     'mapped' => false
+                 ])
+            ->add('commandemenu', 'entity',
+                [
+                    'class' => 'AvekApetiBackBundle:Menu',
+                    'property'    => 'name',
+                    'multiple' => false,
+                    'mapped' => false
+                ])
+            ->add('liste_plats','hidden',[
+                'mapped' => false
+            ])
+            ->add('liste_menus','hidden',[
+                'mapped' => false
+            ])
         ;
     }
     

@@ -48,7 +48,7 @@ class Menu
     private $plats;
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      */
     private $Utilisateur;
     /**
@@ -63,21 +63,18 @@ class Menu
      *)
      */
     private $tlivs;
-    /*/**
-     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="Menu" )
-     * @ORM\JoinTable(name="commande_menu",
-     *    joinColumns={
-     *				@ORM\JoinColumn(name="menu_id", referencedColumnName="id")
-     *		},
-     *		inverseJoinColumns={
-     *       @ORM\JoinColumn(name="commande_id", referencedColumnName="id")
-     *   }
-     *)
-     */
+
     /**
-     * @ORM\ManyToMany(targetEntity="Commande", mappedBy="Menu")
+     * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="id")
      */
-    private $commande;
+    private $commandeMenu;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="supp", type="boolean", nullable=true)
+     */
+    private $supp;
+
     /**
      * Get id
      *
@@ -268,5 +265,63 @@ class Menu
     public function getCommande()
     {
         return $this->commande;
+    }
+
+    /**
+     * Add commandeMenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu
+     *
+     * @return Menu
+     */
+    public function addCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu)
+    {
+        $this->commandeMenu[] = $commandeMenu;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandeMenu
+     *
+     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu
+     */
+    public function removeCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu)
+    {
+        $this->commandeMenu->removeElement($commandeMenu);
+    }
+
+    /**
+     * Get commandeMenu
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandeMenu()
+    {
+        return $this->commandeMenu;
+    }
+
+    /**
+     * Set supp
+     *
+     * @param boolean $supp
+     *
+     * @return Menu
+     */
+    public function setSupp($supp)
+    {
+        $this->supp = $supp;
+
+        return $this;
+    }
+
+    /**
+     * Get supp
+     *
+     * @return boolean
+     */
+    public function getSupp()
+    {
+        return $this->supp;
     }
 }

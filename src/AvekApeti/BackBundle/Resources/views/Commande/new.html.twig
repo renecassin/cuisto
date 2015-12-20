@@ -12,4 +12,73 @@
         </a>
     </li>
 </ul>
+    <button id="but_plat">Ajout Plat</button>
+    <button id="but_menu">Ajout Menu</button>
+    <div>Plat ajouté: <span id="res_plat"></span></div>
+    <div>Menu ajouté: <span id="res_menu"></span></div>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/template/jquery.js') }}"></script>
+    <script>
+        var commande_plat = [];
+        var commande_menu = [];
+
+        $('#but_plat').click(function(){
+
+            var Plat = $('#avekapeti_backbundle_commande_commandeplat').val();
+            var Done = true;
+            if(Plat == null)
+            {
+                return ;
+            }
+            for(index = 0; index < commande_plat.length; ++index) {
+
+                if(commande_plat[index][0] == Plat)
+                {
+                    commande_plat[index][1] = commande_plat[index][1]+1;
+                    Done = false;
+                }
+            }
+
+            if((index == commande_plat.length) && Done)
+            {
+                commande_plat.push([$('#avekapeti_backbundle_commande_commandeplat').val(),1]);
+            }
+            $('#res_plat').html(commande_plat);
+            $('#avekapeti_backbundle_commande_liste_plats').val(tabString(commande_plat));
+
+        });
+        $('#but_menu').click(function(){
+
+            var Menu = $('#avekapeti_backbundle_commande_commandemenu').val();
+            var Done = true;
+
+            if(Menu == null)
+            {
+                return;
+            }
+            for(index = 0; index < commande_menu.length; ++index) {
+
+                if(commande_menu[index][0] == Menu)
+                {
+                    commande_menu[index][1] = commande_menu[index][1]+1;
+                    Done = false;
+                }
+            }
+
+            if((index == commande_menu.length) && Done)
+            {
+                commande_menu.push([$('#avekapeti_backbundle_commande_commandemenu').val(),1]);
+            }
+            $('#res_menu').html(commande_menu);
+            $('#avekapeti_backbundle_commande_liste_plats').val(tabString(commande_menu));
+        });
+
+        function tabString(Tab){
+            var string = "";
+            for(index = 0; index < Tab.length; ++index) {
+                string = string+Tab[index]+';';
+
+            }
+            return string;
+        }
+    </script>
 {% endblock %}
