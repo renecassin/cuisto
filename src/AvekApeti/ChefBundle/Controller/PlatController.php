@@ -76,7 +76,7 @@ class PlatController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        /*$form->add('submit', 'submit', array('label' => 'Create'));*/
 
         return $form;
     }
@@ -128,7 +128,7 @@ class PlatController extends Controller
         $User = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AvekApetiChefBundle:Plat')->findOneIfChef($User->getId(),$id);
+        $entity = $em->getRepository('AvekApetiBackBundle:Plat')->findOneIfChef($User->getId(),$id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Plat entity.');
@@ -158,7 +158,7 @@ class PlatController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        /*$form->add('submit', 'submit', array('label' => 'Update'));*/
 
         return $form;
     }
@@ -230,7 +230,7 @@ class PlatController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('chef_plat_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            /*->add('submit', 'submit', array('label' => 'Supprimer ce plat'))*/
             ->getForm()
         ;
     }
