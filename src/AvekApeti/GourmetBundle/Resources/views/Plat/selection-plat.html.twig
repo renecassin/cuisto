@@ -1,4 +1,4 @@
-{%  extends  "@GourmetBundle/Resources/views/layout.html.twig" %}
+{%  extends 'GourmetBundle::layout.html.twig' %}
 
 {% block foot_scripts %}
 {{ parent() }}
@@ -11,10 +11,10 @@
 
     <header class="header" id="header-selection-plat">
         <div class="header-content header-content-transform">
-                <div class="header-content-inner">
-                    <h1 class="h1-page">Du côté de chez vous</h1>
-                    <h2 class="adresse-selection">178 avenue de Versailles, Paris</h2>
-                </div>
+            <div class="header-content-inner">
+                <h1 class="h1-page">Du côté de chez vous</h1>
+                <h2 class="adresse-selection">178 avenue de Versailles, Paris</h2>
+            </div>
         </div>
     </header>
 
@@ -199,7 +199,7 @@
                                         </label>
                                         <label class="btn btn-primary btn-filtre">
                                             <input type="radio" name="options" id="africaine" autocomplete="off">
-                                            <i class="fa fa-1x fa-bicycle "></i>A emporter
+                                            <i class="fa fa-1x fa-bicycle "></i>Retrait
                                         </label>
                                     </div>
                                 </div>

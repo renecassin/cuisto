@@ -35,8 +35,6 @@ class Image
      */
     private $name;
 
-
-
     /**
      * @var integer
      *
@@ -239,5 +237,22 @@ class Image
     public function getFile()
     {
         return $this->file;
+    }
+
+    public function webPath($thumb = null)
+    {
+        if ($thumb)
+        {
+            if (file_exists(__DIR__.'/../../../../web/'.$this->routewebdir.'/'.$thumb.'-'.$this->name))
+            {
+                return $this->routewebdir.'/'.$thumb.'-'.$this->name;
+            }
+        }
+        if (file_exists(__DIR__.'/../../../../web/'.$this->routewebdir.$this->name))
+        {
+            return $this->routewebdir.$this->name;
+        }
+        // Photo par défaut
+        return null;
     }
 }

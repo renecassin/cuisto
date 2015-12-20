@@ -26,15 +26,12 @@ class Utilisateur2Type extends AbstractType
             ->add('city')
             ->add('cp')
             ->add('phone')
-            /*
-            ->add('newsletter',null,[
+            ->add('newsletter')/*,null,[
                 "required" => false,
-            ])
+            ])*/
             ->add('image', new ImageType(), [
                 "required" => false,
             ])
-            A REMETTRE : Newsletter + Image */
-
         ;
     }
     

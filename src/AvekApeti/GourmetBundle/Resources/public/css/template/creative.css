@@ -55,6 +55,7 @@ p {
     line-height: 1.5;
 }
 
+
 section {
     padding: 30px 0;
 }
@@ -64,9 +65,10 @@ section {
     padding-bottom: 30px;
 }
 
+/*
 aside {
     padding: 50px 0;
-}
+}*/
 
 .no-padding {
     padding: 0;
@@ -234,6 +236,9 @@ header {
     height: 440px;
 }
 
+#header-edit-plat,
+#header-liste-plat,
+#header-creation-plat,
 #header-mon-compte-chef,
 #header-mon-compte,
 #header-selection-plat {
@@ -270,6 +275,7 @@ header .header-content {
     transform: translateY(100%);
 }
 
+#header-liste-plat .header-content-transform,
 #header-mon-compte .header-content-transform{
     -webkit-transform: translateY(150%);
     -ms-transform: translateY(150%);
@@ -282,6 +288,8 @@ header .header-content {
     transform: translateY(90%);
 }
 
+#header-edit-plat .header-content-transform,
+#header-creation-plat .header-content-transform,
 #header-index-plat .header-content-transform{
     -webkit-transform: translateY(80%);
     -ms-transform: translateY(80%);
@@ -303,14 +311,15 @@ header .header-content {
         transform: translateY(125%);
     }
 }
-    #page-mon-compte,
-    #page-feedback,
-    #page-contact,
-    #connexion ,
-    #gourmet-inscription ,
-    #chef-inscription {
-        min-height: 100%;
-    }
+
+#page-mon-compte,
+#page-feedback,
+#page-contact,
+#connexion ,
+#gourmet-inscription ,
+#chef-inscription {
+    min-height: 100%;
+}
 
 header .header-content .header-content-inner h1 {
     margin-top: 0;
@@ -335,6 +344,9 @@ header .header-content .header-content-inner p {
 }
 */
 @media(min-width:768px) {
+    #header-edit-plat .header-content,
+    #header-liste-plat .header-content,
+    #header-creation-plat .header-content,
     #header-mon-compte-chef .header-content,
     #header-mon-compte .header-content,
     #header-landing .header-content,
@@ -379,6 +391,9 @@ header .header-content .header-content-inner p {
     #header-home {
         height: 600px;
     }
+    #header-edit-plat,
+    #header-liste-plat,
+    #header-creation-plat,
     #header-mon-compte-chef,
     #header-mon-compte,
     #header-selection-plat {
@@ -400,6 +415,10 @@ header .header-content .header-content-inner p {
 
 .section-heading {
     margin-top: 0;
+}
+
+#index-plat .section-heading {
+    margin-top: 40px;
 }
 
 .service-box {
@@ -560,18 +579,28 @@ fieldset[disabled] .btn-primary.active {
     padding: 15px 30px;
 }
 
+#index-plat .btn-xl {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 0;
+}
+
 @media(max-width:768px) {
-    #page-mon-chef,
-    #page-mon-compte,
+
+    #page-edit-plat .btn-filtre,
+    #page-creation-plat .btn-filtre,
+    #page-mon-chef .btn-xl,
+    #page-mon-compte .btn-xl,
     #page-feedback .btn-xl,
     #page-contact .btn-xl,
     section .btn-xl {
         width: 100%;
         margin-bottom: 10px;
     }
+
 }
 
-#index-plat .btn-xl {
+#index-plat .panier .btn-xl {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
@@ -765,14 +794,21 @@ section#contact p{
     color: #fff;
 }
 
+/*
 #page-mon-compte-chef .form-group,
 #page-mon-compte .form-group,
 #page-feedback .form-group,
 #page-contact .form-group,
 section#contact .form-group {
     margin-bottom: 25px;
-}
+}*/
 
+#page-edit-plat .form-group input,
+#page-edit-plat .form-group textarea,
+#page-edit-plat .form-group select,
+#page-creation-plat .form-group input,
+#page-creation-plat .form-group textarea,
+#page-creation-plat .form-group select,
 #page-mon-compte-chef .form-group input,
 #page-mon-compte-chef .form-group textarea,
 #page-mon-compte-chef .form-group select,
@@ -788,6 +824,17 @@ section#contact .form-group textarea {
     padding: 10px;
 }
 
+#page-edit-plat  #avekapeti_backbundle_plat_tlivs,
+#page-edit-plat  #avekapeti_backbundle_plat_tcoms,
+#page-creation-plat  #avekapeti_backbundle_plat_tlivs,
+#page-creation-plat  #avekapeti_backbundle_plat_tcoms{
+    height: 60px;
+}
+
+#page-edit-plat .form-group select.form-control,
+#page-edit-plat .form-group input.form-control,
+#page-creation-plat .form-group select.form-control,
+#page-creation-plat .form-group input.form-control,
 #page-mon-compte-chef .form-group select.form-control,
 #page-mon-compte-chef .form-group input.form-control,
 #page-mon-compte .form-group select.form-control,
@@ -795,9 +842,12 @@ section#contact .form-group textarea {
 #page-feedback .form-group input.form-control,
 #page-contact .form-group input.form-control,
 section#contact .form-group input.form-control {
-    height: auto;
+    /*height: auto;*/
+    height: 40px;
 }
 
+#page-edit-plat .form-group textarea.form-control,
+#page-creation-plat .form-group textarea.form-control,
 #page-mon-compte-chef .form-group textarea.form-control,
 #page-mon-compte .form-group textarea.form-control,
 #page-feedback .form-group textarea.form-control,
@@ -810,10 +860,14 @@ section#contact .form-group textarea.form-control {
     height: 250px;
 }
 
+#page-edit-plat .form-group textarea.form-control,
+#page-creation-plat .form-group textarea.form-control,
 #page-mon-compte-chef .form-group textarea.form-control{
     height: 200px;
 }
 
+#page-edit-plat .text-danger,
+#page-creation-plat .text-danger,
 #page-mon-compte-chef .text-danger,
 #page-mon-compte .text-danger,
 #page-feedback .text-danger,

@@ -105,9 +105,9 @@ class Utilisateur implements UserInterface //, EquatableInterface
      */
     private $salt;
     /**
-     * @var boolean
+     * @var int
      *
-     * @ORM\Column(name="newsletter", nullable=true)
+     * @ORM\Column(name="newsletter", type="boolean", nullable=true)
      */
     private $newsletter;
 

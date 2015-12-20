@@ -73,7 +73,8 @@
     font-size: 12px;
 }
 
-.glyphicon{
+#selection-plat .glyphicon,
+#index-plat .glyphicon{
     color:#ff4848;
 }
 
@@ -259,9 +260,10 @@
     background-image: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header5.jpg);
 }
 
+/*
 #header-index-plat{
     background-image: radial-gradient(rgba(0,0,0,0),black 400%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg);
-}
+}*/
 
 #page-feedback,
 #page-contact {
@@ -269,12 +271,23 @@
 }
 
 #header-mon-compte{
-    background: radial-gradient(rgba(0,0,0,0.1),black 200%), url(../img/plats/patisserie.jpg) center no-repeat;
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/patisserie.jpg) center no-repeat;
     background-size: cover;
 }
 
 #header-mon-compte-chef{
-    background: radial-gradient(rgba(0,0,0,0.1),black 200%), url(../img/chef/couteau.jpg) center no-repeat;
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/chef/couteau.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-edit-plat,
+#header-creation-plat{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/creation.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-liste-plat{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/liste.jpg) center no-repeat;
     background-size: cover;
 }
 
@@ -516,11 +529,11 @@ section#contact .glyphicon-perso {
     border: #c4c4c4 1px solid;
     font-size: 16px;
     margin-bottom:20px;
-    padding: 9.5px 30px;
+    padding: 12px 30px;
 }
 
-#filter-form .btn-filtre{
-    width: 20%;
+#index-plat .btn-filtre{
+    width: 100%;
 }
 
 
@@ -554,6 +567,9 @@ section#contact .glyphicon-perso {
     padding: 10px;
 }
 
+#page-creation-plat .fa-1x,
+#page-edit-plat .fa-1x,
+#page-liste-plat .fa-1x,
 #index-plat .fa-1x,
 #selection-plat .fa-1x{
     color:#ffada2;
@@ -592,12 +608,21 @@ section#contact .glyphicon-perso {
     }
 }
 
-#selection-plat .carte-fixe{
-    position: sticky;
-    position: -webkit-sticky;
-    top: 70px;
-    margin-bottom: 20px;
+@media (min-width: 1280px) {
+    #index-plat .carte-fixe,
+    #selection-plat .carte-fixe {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 70px;
+        margin-bottom: 20px;
+    }
+    #index-plat .carte-fixe{
+        top: 50px;
+        margin-bottom: 400px;
+    }
 }
+
+
 
 @media (min-width: 1300px) {
     .container {
@@ -606,7 +631,7 @@ section#contact .glyphicon-perso {
 }
 
 #selection-plat input{
-    height: 43px;
+    height: 49px;
 }
 
 @media (min-width: 768px) {
@@ -626,7 +651,8 @@ section#contact .glyphicon-perso {
 }
 
 .dropdown-menu hr,
-#index-plat hr {
+#index-plat .panier hr,
+#index-plat .well hr{
     max-width: none;
     margin-top: 0;
     margin-bottom: 15px;
@@ -646,12 +672,6 @@ section#contact .glyphicon-perso {
 #index-plat .thumbnail {
     margin-bottom: 0;
     margin-top: 10px;
-}
-
-
-#index-plat .petite-carte,
-#index-plat .mini-carte{
-    margin-top: 20px;
 }
 
 
@@ -742,7 +762,6 @@ section#contact .glyphicon-perso {
 
 .page-header {
     margin-bottom:0;
-    margin-top: 0;
 }
 
 .description-adresse{
@@ -763,9 +782,7 @@ section#contact .glyphicon-perso {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin: auto;
-    text-align: center;
-    margin-bottom: 15px;
+    transition: 0.5s ease-in-out;
 }
 
 .cercle:hover{
@@ -797,24 +814,15 @@ section#contact .glyphicon-perso {
     }
 }
 
-#panier-dynamique p{
+#index-plat .panier p{
     margin-bottom: 0px;
     font-size: 17px;
 }
 
-#panier-dynamique hr{
+#index-plat .panier hr{
     margin-top: 10px;
 }
 
-/*
-@media(max-width:360px) {
-    #index-plat .bouton-fixe {
-        position: sticky;
-        position: -webkit-sticky;
-        top: 70px;
-        z-index: 2;
-    }
-}*/
 
 #index-plat .panier-fixe{
     position: sticky;
@@ -895,6 +903,9 @@ section#contact .glyphicon-perso {
     padding: 20px;
 }
 
+#page-edit-plat .img-circle,
+#page-liste-plat .img-circle,
+#page-creation-plat .img-circle,
 #page-mon-compte-chef .img-circle,
 #page-mon-compte .img-circle {
     width: 130px;
@@ -906,6 +917,9 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:360px) {
+    #page-edit-plat .img-circle,
+    #page-liste-plat .img-circle,
+    #page-creation-plat .img-circle,
     #page-mon-compte-chef .img-circle,
     #page-mon-compte .img-circle {
         left: 31%;
@@ -913,6 +927,9 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:768px) {
+    #page-edit-plat .img-circle,
+    #page-liste-plat .img-circle,
+    #page-creation-plat .img-circle,
     #page-mon-compte-chef .img-circle,
     #page-mon-compte .img-circle {
         left: 41%;
@@ -921,6 +938,9 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:768px) {
+    #page-edit-plat .img-circle,
+    #page-liste-plat .img-circle,
+    #page-creation-plat .img-circle,
     #page-mon-compte-chef .img-circle,
     #page-mon-compte .img-circle {
         left: 41%;
@@ -929,6 +949,9 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:1280px) {
+    #page-edit-plat .img-circle,
+    #page-liste-plat .img-circle,
+    #page-creation-plat .img-circle,
     #page-mon-compte-chef .img-circle,
     #page-mon-compte .img-circle {
         width: 145px;
@@ -936,23 +959,35 @@ section#contact .glyphicon-perso {
         left: 44%;
         top: -125px;
     }
+
+    #label-blog,
+    #label-temps,
+    #comment{
+        top:-19px;
+    }
+
+    #label-pro,
+    #label-rib,
+    #label-siret,
+    #disposez{
+        top:-8px;
+    }
+
+    #page-edit-plat .titre-compte p ,
+    #page-creation-plat .titre-compte p {
+        padding: 0 220px;
+    }
+    #page-mon-compte-chef .titre-compte p{
+        padding: 0 360px;
+    }
+    #page-mon-compte .titre-compte p{
+        padding: 0 55px;
+    }
+
 }
 
 .photo-mon-compte{
     position: relative;
-}
-
-#label-pro,
-#label-blog,
-#label-temps,
-#comment{
-    top:-19px;
-}
-
-#label-rib,
-#label-siret,
-#disposez{
-    top:-8px;
 }
 
 
@@ -965,26 +1000,46 @@ section#contact .glyphicon-perso {
     margin-bottom: 30px;
 }
 
-#page-mon-compte-chef,
-#page-mon-compte {
+#page-edit-plat,
+#page-liste-plat,
+#page-creation-plat,
+#page-mon-compte,
+#page-mon-compte-chef{
     padding: 50px 0;
-    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/logo/avekapeti-logo-RVB-02.png) no-repeat center ;
-    background-size: cover;
 }
 
+#page-mon-compte-chef{
+    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/MAMIE.png)  center ;
+}
+
+#page-mon-compte {
+    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/FEMME-HOMME.png) center ;
+}
+
+#page-edit-plat,
+#page-creation-plat {
+    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/PLAT.png)  center ;
+}
+
+#page-liste-plat {
+    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/plats.jpg)  center ;
+}
+
+#page-mon-compte .form-group img,
 #page-mon-compte-chef .form-group img {
     width: 50%;
-    border-radius: 5%;
+    border-radius: 1%;
 }
 
+#page-edit-plat .form-group img,
+#page-creation-plat .form-group img{
+    width: 100%;
+    border-radius: 1%;
+}
+
+#page-mon-compte .form-group .rond,
 #page-mon-compte-chef .form-group .rond{
     border-radius: 50%;
-}
-
-@media(min-width:1280px) {
-    #page-mon-compte-chef .form-group img {
-        width: 100%;
-    }
 }
 
 .portfolio-part{
@@ -1022,5 +1077,100 @@ section#contact .glyphicon-perso {
 .souligner{
     text-decoration: underline;
 }
+
+#index-plat .pull-right .btn-xl{
+    margin-top: 0;
+    padding: 13px;
+}
+
+#index-plat  .thumbnail .caption-full img {
+    margin-bottom: 15px;
+}
+
+.bandeau-icon p {
+    font-size: 15px;
+}
+
+.help-block {
+    font-size: 15px;
+}
+
+#ligne-active{
+    background: rgba(2,201,164,0.1);
+}
+
+#ligne-desactive{
+    background: rgba(229,73,95,0.1);
+}
+
+.tableau-plats .row{
+    border-bottom: 1px solid #DCE0E0;
+}
+
+#page-liste-plat .cellule-img img {
+    width: 100%;
+    border-radius: 2%;
+}
+
+#page-liste-plat .table-responsive{
+    font-size: 16px;
+    padding: 20px;
+}
+
+#page-liste-plat td{
+    padding: 20px;
+}
+
+.label-actif{
+    background: #00cfb3 ;
+}
+
+.label-inactif{
+    background: #ff4848 ;
+}
+
+.cellule-img{
+    padding: 20px 0px;
+}
+
+.cellule-titre{
+    padding: 5px 10px;
+}
+
+.cellule-modifier{
+    padding: 30px 0;
+}
+
+.tableau-plats{
+    padding-bottom: 40px;
+}
+
+.img-background{
+    width: 100%;
+    height: 350px;
+    left:0;
+    position: absolute;
+}
+
+@media(min-width:768px) {
+    .img-background {
+        height: 500px;
+        left:0;
+        top:-250px;
+    }
+}
+
+.fix{
+    position: fixed;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    padding: 10px 20px
+}
+
+
+
+
 
 

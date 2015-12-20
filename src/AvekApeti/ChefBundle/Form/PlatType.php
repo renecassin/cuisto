@@ -19,7 +19,7 @@ class PlatType extends AbstractType
             ->add('name')
             ->add('content')
             ->add('price')
-            ->add('quantity')
+            ->add('quantity', null, array('attr' => array('min' =>0)))
             ->add('active')
             ->add('unableWhile')
             ->add('specialite', 'entity',  array(
@@ -36,6 +36,12 @@ class PlatType extends AbstractType
             ))
             ->add('tcoms', 'entity',  array(
                 'class' => 'AvekApetiBackBundle:TypeCommande',
+                'choice_label' => 'name',
+                "multiple" => true,
+                "expanded" => false
+            ))
+            ->add('tlivs', 'entity',  array(
+                'class' => 'AvekApetiBackBundle:TypeLivraison',
                 'choice_label' => 'name',
                 "multiple" => true,
                 "expanded" => false

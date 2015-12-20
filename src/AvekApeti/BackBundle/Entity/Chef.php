@@ -61,7 +61,7 @@ class Chef
      *
      * @ORM\Column(name="professionel", type="boolean", nullable=true)
      */
-    private $professionel;
+    private $professionnel;
     /**
      * @var string
      *
@@ -240,27 +240,27 @@ class Chef
     }
 
     /**
-     * Set professionel
+     * Set professionnel
      *
-     * @param boolean $professionel
+     * @param boolean $professionnel
      *
      * @return Chef
      */
-    public function setProfessionel($professionel)
+    public function setProfessionnel($professionnel)
     {
-        $this->professionel = $professionel;
+        $this->professionnel = $professionnel;
 
         return $this;
     }
 
     /**
-     * Get professionel
+     * Get professionnel
      *
      * @return boolean
      */
-    public function getProfessionel()
+    public function getProfessionnel()
     {
-        return $this->professionel;
+        return $this->professionnel;
     }
 
     /**

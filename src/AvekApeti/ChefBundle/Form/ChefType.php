@@ -19,7 +19,11 @@ class ChefType extends AbstractType
             ->add('city')
             ->add('cp')
             ->add('zoneKm')
-            ->add('professionel')
+            ->add('professionnel', 'choice', array(
+                'choices' => array(
+                    'Yes' => 'Oui',
+                    'No' => 'Non',
+                )))
             ->add('siret')
 
         ;

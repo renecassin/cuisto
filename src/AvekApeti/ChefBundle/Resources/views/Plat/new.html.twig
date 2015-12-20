@@ -1,15 +1,228 @@
-{% extends '::base.html.twig' %}
+{%  extends 'GourmetBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Plat creation</h1>
+{% block titre %}Créer un plat {{ parent() }}{% endblock %}
 
-    {{ form(form) }}
+{% block content %}
+    <header class="header-inscription" id="header-creation-plat">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Créer un plat</h1>
+                <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
+            </div>
+        </div>
+    </header>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('chef_plat') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
-{% endblock %}
+    <section id="page-creation-plat">
+        <div class="container">
+
+            <div class="col-sm-12 text-center photo-mon-compte ">
+                <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+            </div>
+
+            <div class="row">
+                {{ form_start(form, { 'action': path('chef_plat'), 'attr':{class: "form-horizontal"} } ) }}
+                <div class="col-lg-12 text-center titre-compte">
+                    <h3 class="section-heading">Éveillez les papilles</h3>
+                    <hr class="primary">
+                    <p>Chaque plat sur Avekapeti est unique. Mettez en avant ce qui rend votre plat appétissant pour que les gourmets qui veulent déguster vos spécialités le remarquent.</p>
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.name, 'Nom', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.name,
+                                {
+                                    attr:{class: "form-control",placeholder: "Nom",id: "nom",required: 'data-validation-required-message= "Veuillez entrer le nom du plat."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.name) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.price, 'Prix en €', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.price,
+                                {
+                                    attr:{class: "form-control",placeholder: "Prix", id: "prix",required: 'data-validation-required-message= "Veuillez entrer le prix du plat."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.price) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.image, 'Photo du plat', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {#
+                                <input type="file" id="exampleInputFile3">
+                                <p class="help-block text-danger"></p>
+                                #}
+                                {{ form_widget(form.image,
+                                {
+                                    attr:{id: "photo-plat",required: 'data-validation-required-message= "Veuillez sélectionner la photo du plat"'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.image) }}</p>
+                            </div>
+                            <div class="col-md-8 col-md-offset-3">
+                                <img src={{ asset('bundles/gourmet/img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg') }} alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.quantity, 'Nombre de parts', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.quantity,
+                                {
+                                    attr:{class: "form-control",placeholder: "0" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.quantity) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.categorie, 'Categorie', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.categorie,
+                                {
+                                    attr:{class: "form-control",id: "categorie"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.categorie) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.specialite, 'Spécialité', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.specialite,
+                                {
+                                    attr:{class: "form-control",id: "specialite"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.specialite) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.tcoms, 'Type de commande', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.tcoms,
+                                {
+                                    attr:{class: "form-control",id: "type-commande"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.tcoms) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.content, 'Description', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.content,
+                                {
+                                    attr:{class: "form-control",placeholder: "Description",id: "description",required: 'data-validation-required-message= "Veuillez entrer la description de votre plat."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.content) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label for="ingredients" class="col-md-3 control-label">Ingrédients</label>
+                            <div class="col-md-8">
+                                <textarea id="ingredients" class="form-control" placeholder='-Ingrédient1                                                                  -Ingrédient2 ...' id="ingredients" required data-validation-required-message="Veuillez entrer vos ingrédients."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.unableWhile, 'Disponibilité', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.unableWhile,
+                                {
+                                    attr:{ type:"date",id: "dispo"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.unableWhile) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.tlivs, 'Type de disponibilité', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.tlivs,
+                                {
+                                    attr:{class: "form-control",id: "type-livraison"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.tlivs) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <div class="col-md-3 col-md-offset-3">
+                                <div class="checkbox">
+                                    <label>
+                                    {{ form_widget(form.active,
+                                    {
+                                        attr:{type:"checkbox",id: "actif"}
+                                    })
+                                    }}J'active ce plat
+                                    </label>
+                                </div>
+                                <p class="help-block text-danger">{{ form_errors(form.active) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+
+
+                <div class="col-md-6 text-right">
+                    <div id="success"></div>
+                    <button type="submit" class="btn btn-default btn-xl">Créer ce plat</button>
+                </div>
+                {{ form_end(form) }}
+
+                <div class="col-md-6 text-left">
+                    <div id="success"></div>
+                    <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
+                </div>
+            
+                {#<a href="{{ path('chef_plat') }}">Voir la liste des plats</a>#}
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+

@@ -18,7 +18,7 @@ class PlatType extends AbstractType
             ->add('name')
             ->add('content')
             ->add('price')
-            ->add('quantity')
+            ->add('quantity', null, array('attr' => array('min' =>0)))
             ->add('active')
             ->add('unableWhile')
             ->add('dateStart')
