@@ -794,14 +794,13 @@ section#contact p{
     color: #fff;
 }
 
-/*
-#page-mon-compte-chef .form-group,
-#page-mon-compte .form-group,
+
+
 #page-feedback .form-group,
 #page-contact .form-group,
 section#contact .form-group {
     margin-bottom: 25px;
-}*/
+}
 
 #page-edit-plat .form-group input,
 #page-edit-plat .form-group textarea,
@@ -843,7 +842,7 @@ section#contact .form-group textarea {
 #page-contact .form-group input.form-control,
 section#contact .form-group input.form-control {
     /*height: auto;*/
-    height: 40px;
+    height: 42px;
 }
 
 #page-edit-plat .form-group textarea.form-control,
