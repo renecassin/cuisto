@@ -20,10 +20,10 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->_em->createQueryBuilder($User_id,$id)
             ->select("p")
             ->from("AvekApetiBackBundle:Plat", "p")
-            ->where('p.id = :id AND p.Utilisateur = :User_id AND supp != :supp')
+            ->where('p.id = :id AND p.Utilisateur = :User_id AND p.supp != :supp')
             ->setParameter('User_id',$User_id)
             ->setParameter('id',$id)
-            ->setParameter('supp',"1")
+            ->setParameter('supp','1')
             ->getQuery();
 
         return $query->getSingleResult();
@@ -35,8 +35,9 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->_em->createQueryBuilder($User_id)
             ->select("p")
             ->from("AvekApetiBackBundle:Plat", "p")
-            ->where('p.Utilisateur = :User_id AND supp != :supp')
+            ->where('p.Utilisateur = :User_id AND p.supp = :supp')
             ->setParameter('User_id',$User_id)
+            ->setParameter('supp','0')
             ->getQuery();
 
         return $query->getResult();

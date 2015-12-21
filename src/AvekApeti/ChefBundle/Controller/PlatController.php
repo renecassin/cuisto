@@ -44,12 +44,15 @@ class PlatController extends Controller
         $form->handleRequest($request);
 
         $image = $entity->getImage();
-        $image->setUser($user->getId());
-        $entity->setImage($image);
+        if(is_object($image)) {
+            $image->setUser($user->getId());
+            $entity->setImage($image);
+        }
         $entity->setUtilisateur($user);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setSupp("0");
             $em->persist($entity);
             $em->flush();
 
