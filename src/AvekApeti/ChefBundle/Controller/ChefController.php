@@ -19,6 +19,8 @@ class ChefController extends Controller
 
         $entity = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($id);
 
+
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Chef .');
         }
@@ -33,6 +35,7 @@ class ChefController extends Controller
 
         return $this->render('ChefBundle:Chef:profil.html.twig', array(
             'entity'      => $entity,
+            'entityGourmet'      => $user,
             'edit_form'   => $editForm->createView(),
 
         ));

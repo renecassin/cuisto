@@ -983,7 +983,6 @@ section#contact .glyphicon-perso {
     #page-mon-compte .titre-compte p{
         padding: 0 55px;
     }
-
 }
 
 .photo-mon-compte{
@@ -1009,20 +1008,20 @@ section#contact .glyphicon-perso {
 }
 
 #page-mon-compte-chef{
-    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/MAMIE.png)  center ;
+    background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/MAMIE.png)  center ;
 }
 
 #page-mon-compte {
-    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/FEMME-HOMME.png) center ;
+    background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/FEMME-HOMME.png) center ;
 }
 
 #page-edit-plat,
 #page-creation-plat {
-    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/PLAT.png)  center ;
+    background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/PLAT.png)  center ;
 }
 
 #page-liste-plat {
-    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/design/plats.jpg)  center ;
+    background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/plats.jpg)  center ;
 }
 
 #page-mon-compte .form-group img,
@@ -1033,7 +1032,7 @@ section#contact .glyphicon-perso {
 
 #page-edit-plat .form-group img,
 #page-creation-plat .form-group img{
-    width: 100%;
+    width: 200px;
     border-radius: 1%;
 }
 
@@ -1108,7 +1107,8 @@ section#contact .glyphicon-perso {
 }
 
 #page-liste-plat .cellule-img img {
-    width: 100%;
+    width: 300px;
+    height: 200px;
     border-radius: 2%;
 }
 

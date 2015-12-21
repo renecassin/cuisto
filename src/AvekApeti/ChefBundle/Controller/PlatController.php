@@ -23,10 +23,10 @@ class PlatController extends Controller
      */
     public function indexAction()
     {
-        $User = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findIfChef($User->getId());
+        $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findIfChef($user->getId());
 
         return $this->render('ChefBundle:Plat:index.html.twig', array(
             'entities' => $entities,
@@ -57,6 +57,7 @@ class PlatController extends Controller
         }
 
         return $this->render('ChefBundle:Plat:new.html.twig', array(
+            'entityChef' => $user,
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -87,10 +88,13 @@ class PlatController extends Controller
      */
     public function newAction()
     {
+        $user = $this->get('security.context')->getToken()->getUser();
+
         $entity = new Plat();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('ChefBundle:Plat:new.html.twig', array(
+            'entityChef' => $user,
             'entity' => $entity,
             'form'   => $form->createView(),
         ));

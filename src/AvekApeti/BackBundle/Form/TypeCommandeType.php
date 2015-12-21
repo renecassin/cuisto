@@ -17,6 +17,7 @@ class TypeCommandeType extends AbstractType
         $builder
             ->add('name')
             ->add('content')
+
         ;
     }
     

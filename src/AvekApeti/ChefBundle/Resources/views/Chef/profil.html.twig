@@ -16,7 +16,7 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-                <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+                <img src="{{ asset(entityGourmet.image.webPath('thumb-small')) }}" alt="" class="img-circle">
             </div>
 
             <div class="row">
@@ -93,6 +93,7 @@
                 <div class="col-md-12">
 
                     <div class="row">
+                        {#
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
                                 <label for="exampleInputFile1" class="col-md-3 control-label">Photo de profil</label>
@@ -102,6 +103,16 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-3">
                                     <img class="rond" src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="">
+                                </div>
+                            </div>
+                        </div>
+                        #}
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <label for="description" class="col-md-3 control-label">Votre description</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" placeholder="Dites quelques mots sur vous aux gourmets, donnez-leur envie de vous rencontrer ..." id="description"  data-validation-required-message="Veuillez entrer votre description."></textarea>
+                                    <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                         </div>
@@ -200,26 +211,17 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+
+                        <div class="col-md-12 ">
                             <div class="form-group has-feedback">
-                                <label for="description" class="col-md-3 control-label">Votre description</label>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" placeholder="Dites quelques mots sur vous aux gourmets, donnez-leur envie de vous rencontrer ..." id="description"  data-validation-required-message="Veuillez entrer votre description."></textarea>
-                                    <p class="help-block text-danger"></p>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="remember-me" checked>J’accepte de recevoir des recettes astuces et bon plans culinaires
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                <div class="col-sm-offset-3 col-md-8">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="remember" type="checkbox" value="remember-me" checked>J’accepte de recevoir des recettes astuces et bon plans culinaires
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
                 </div>

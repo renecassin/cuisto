@@ -860,9 +860,12 @@ section#contact .form-group textarea.form-control {
 }
 
 #page-edit-plat .form-group textarea.form-control,
-#page-creation-plat .form-group textarea.form-control,
-#page-mon-compte-chef .form-group textarea.form-control{
+#page-creation-plat .form-group textarea.form-control{
     height: 200px;
+}
+
+#page-mon-compte-chef .form-group textarea.form-control{
+    height: 250px;
 }
 
 #page-edit-plat .text-danger,

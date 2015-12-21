@@ -30,16 +30,15 @@
                                                         attr:{name: "remember", value: "Remember Me"}
                                                     })
                                                     }}
-
-                                                    <!-- <input name="remember"  type="checkbox" value="Remember Me">-->J’accepte de recevoir des recettes astuces et bon plans culinaires
+                                                    J’accepte de recevoir des recettes astuces et bon plans culinaires
                                                 </label>
                                             </div>
-                                           <!-- {{ form_widget(form.submit,{label:"Devenir Chef",
+                                           {#{{ form_widget(form.submit,{label:"Devenir Chef",
                                                 attr:{class:"btn btn-primary btn-xl btn-valider-inscription"},
                                                 id:"Envoyer"
                                             })
-                                            }}-->
-                                            <button class="btn btn-primary btn-xl btn-valider-inscription"><a href={{ path('chef_enregistrement') }}>Devenir Chef</a></button>
+                                            }}#}
+                                            <a href="{{ path('chef_enregistrement') }}" id="envoyer" class="btn btn-primary btn-xl btn-valider-inscription">Devenir Chef</a>
                                             <div class="form-group">
                                                 <p class="acceptation">En cliquant sur Créer un compte, vous acceptez les <a href="#">Conditions générales</a>  et la <a href="#">Politique de confidentialité</a> d'Avekapeti.</p>
                                             </div>

@@ -16,7 +16,9 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-                <img src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="" class="img-circle">
+                {#<img src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="" class="img-circle">#}
+                <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+
             </div>
 
             <div class="row">
@@ -174,7 +176,8 @@
                                 <p class="help-block text-danger">{{ form_errors(edit_form.image) }}</p>
                             </div>
                             <div class="col-md-8 col-md-offset-3">
-                                <img class="rond" src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="">
+                                {#<img class="rond" src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="">#}
+                                <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
                             </div>
                         </div>
 

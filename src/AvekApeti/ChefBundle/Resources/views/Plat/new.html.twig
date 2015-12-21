@@ -16,11 +16,15 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-                <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+            {% if entityChef.image %}
+                <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+            {% else %}
+                <img src={{ asset('bundles/gourmet/img/defaut-icon.png') }} alt="" class="img-circle">
+            {% endif %}
             </div>
 
             <div class="row">
-                {{ form_start(form, { 'action': path('chef_plat'), 'attr':{class: "form-horizontal"} } ) }}
+                {{ form_start(form, {'attr':{class: "form-horizontal"} } ) }}
                 <div class="col-lg-12 text-center titre-compte">
                     <h3 class="section-heading">Éveillez les papilles</h3>
                     <hr class="primary">
@@ -72,7 +76,11 @@
                                 <p class="help-block text-danger">{{ form_errors(form.image) }}</p>
                             </div>
                             <div class="col-md-8 col-md-offset-3">
-                                <img src={{ asset('bundles/gourmet/img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg') }} alt="">
+                                {% if entity.image %}
+                                    <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
+                                {% else %}
+                                    <img src={{ asset('bundles/gourmet/img/defaut.png') }} alt="">
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -174,7 +182,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group has-feedback">
-                            {{ form_label(form.tlivs, 'Type de disponibilité', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            {{ form_label(form.tlivs, 'Type de livraison', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                             <div class="col-md-8">
                                 {{ form_widget(form.tlivs,
                                 {
