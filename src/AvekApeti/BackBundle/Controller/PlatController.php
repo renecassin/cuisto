@@ -51,6 +51,7 @@ class PlatController extends Controller
         }
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setSupp("0");
             $em->persist($entity);
             $em->flush();
 
