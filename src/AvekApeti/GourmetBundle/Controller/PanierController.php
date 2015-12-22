@@ -3,19 +3,23 @@
 namespace AvekApeti\GourmetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use GourmetBundle\Entity\Plat;
-use GourmetBundle\Entity\Menu;
-use GourmetBundle\Entity\Panier;
+use AvekApeti\GourmetBundle\Entity\Plat;
+use AvekApeti\GourmetBundle\Entity\Menu;
+use AvekApeti\GourmetBundle\Entity\Panier;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
 class PanierController extends Controller
 {
     public function indexAction()
     {
+
         $Panier = false;
-            if(ISSET($_SESSION['Panier']))
+            if($this->getUser()->hasAttribute('Panier'))
             {
-                $Panier = $_SESSION['Panier'];
+
+                $Panier = $this->getUser()->getAttribute('Panier');
             }
+
         return $this->render('GourmetBundle:Panier:index.html.twig', array(
                 'panier' => $Panier
             ));
@@ -23,13 +27,15 @@ class PanierController extends Controller
 
     public function ajoutPlatPanierAction($idPlat)
     {
-        if($idPlat)
+
+
+        if($idPlat == null)
             return $this->Redirection_origine();
 
         $em = $this->getDoctrine()->getManager();
         $Plat = $em->getRepository('AvekApetiBackBundle:Plat')->find($idPlat);
-        $Panier = $_SESSION['Panier'];
-        if($Panier)
+        $Panier = $this->getUser()->getAttribute('Panier');
+        if($this->getUser()->hasAttribute('Panier'))
         {
             if($Panier->getChefSelect()->getUtilisateur() == $Plat->getUtilisateur())
             {
@@ -43,6 +49,9 @@ class PanierController extends Controller
             }
 
         }else{
+
+
+
             $Panier = new Panier;
             $platPanier = new PlatPanier;
             $platPanier->setPlat($Plat);
@@ -54,23 +63,22 @@ class PanierController extends Controller
 
         }
 
-         $_SESSION['Panier']=$Panier;
+         //$_SESSION['Panier']=$Panier;
+        $this->getUser()->setAttribute('Panier',$Panier);
 
-        $url = $this->container->get('request')->headers->get('referer');
-        if(empty($url)) {
-            $url = $this->container->get('router')->generate('myapp_accueil');
-        }
         return $this->Redirection_origine();
 
     }
     public function suppPlatPanierAction($idPlat)
     {
-        if($idPlat)
+
+
+        if($idPlat == null)
             return $this->Redirection_origine();
 
         $em = $this->getDoctrine()->getManager();
         $Plat = $em->getRepository('AvekApetiBackBundle:Plat')->find($idPlat);
-        $Panier = $_SESSION['Panier'];
+        $Panier =  $this->getUser()->getAttribute('Panier');
         if($Panier)
         {
             platSuppr($Plat,$Panier->getTableauPlats());
@@ -85,7 +93,8 @@ class PanierController extends Controller
     }
     public function resetPanierAction()
     {
-        unset($_SESSION['Panier']);
+
+        $this->getUser()->setAttribute('Panier', null);
         return $this->Redirection_origine();
     }
 

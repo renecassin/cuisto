@@ -1,6 +1,6 @@
 <?php
 
-namespace GourmetBundle\Entity;
+namespace AvekApeti\GourmetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
