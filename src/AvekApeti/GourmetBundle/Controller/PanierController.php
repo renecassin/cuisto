@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use GourmetBundle\Entity\Plat;
 use GourmetBundle\Entity\Menu;
 use GourmetBundle\Entity\Panier;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
 class PanierController extends Controller
 {
     public function indexAction()
@@ -24,7 +24,7 @@ class PanierController extends Controller
     public function ajoutPlatPanierAction($idPlat)
     {
         if($idPlat)
-            return Redirection_origine();
+            return $this->Redirection_origine();
 
         $em = $this->getDoctrine()->getManager();
         $Plat = $em->getRepository('AvekApetiBackBundle:Plat')->find($idPlat);
@@ -39,7 +39,7 @@ class PanierController extends Controller
             {
                 //L'utilisateur commande des plats de different chef
                 //Different message d'erreur en fonction
-                return Redirection_origine();
+                return $this->Redirection_origine();
             }
 
         }else{
@@ -60,13 +60,13 @@ class PanierController extends Controller
         if(empty($url)) {
             $url = $this->container->get('router')->generate('myapp_accueil');
         }
-        return Redirection_origine();
+        return $this->Redirection_origine();
 
     }
     public function suppPlatPanierAction($idPlat)
     {
         if($idPlat)
-            return Redirection_origine();
+            return $this->Redirection_origine();
 
         $em = $this->getDoctrine()->getManager();
         $Plat = $em->getRepository('AvekApetiBackBundle:Plat')->find($idPlat);
@@ -79,14 +79,14 @@ class PanierController extends Controller
         {
             //L'utilisateur commande des plats de different chef
             //Different message d'erreur en fonction
-            return Redirection_origine();
+            return $this->Redirection_origine();
         }
-        return Redirection_origine();
+        return $this->Redirection_origine();
     }
     public function resetPanierAction()
     {
-        $_SESSION['Panier']='';
-        return Redirection_origine();
+        unset($_SESSION['Panier']);
+        return $this->Redirection_origine();
     }
 
     private function platExiste($Plat,$tableauPlat)
@@ -121,11 +121,12 @@ class PanierController extends Controller
     }
     private function Redirection_origine()
     {
-        $url = $this->container->get('request')->headers->get('referer');
-        if(empty($url)) {
-            $url = $this->container->get('router')->generate('gourmet_homepage');
+        $referer = $this->getRequest()->headers->get('referer');
+        if(empty($referer)) {
+            $referer = $this->container->get('router')->generate('gourmet_homepage');
         }
-        return new RedirectResponse($url);
+        //Referer ne fonctionne pas avec une adresse entrer a la main ou externe au site
+        return new RedirectResponse($referer);
     }
 
 }
