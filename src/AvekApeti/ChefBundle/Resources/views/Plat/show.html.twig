@@ -17,7 +17,9 @@
                 <h3 class="adresse-selection">Chef Ludo94</h3>
             </div>
             #}
+            {% if entity.image.id is defined %}
             <img class="img-background" src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" >
+            {% endif %}
         </div>
     </header>
 
@@ -692,6 +694,12 @@
                     <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}">
                         Edit
                     </a>
+                </li>
+                <li>
+                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}">
+                        delete
+                    </a>-->
+                    {{ form(delete_form) }}
                 </li>
             </ul>
 

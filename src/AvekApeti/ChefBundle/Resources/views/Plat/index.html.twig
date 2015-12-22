@@ -34,7 +34,9 @@
                             <div class="col-sm-4">
                                 <div class="cellule-img">
                                     <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
+                                        {% if entity.image.id is defined %}
                                         <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
+                                            {% endif %}
                                     </a>
                                 </div>
                             </div>
@@ -69,7 +71,8 @@
                             <div class="col-sm-3">
                                 <div class="cellule-modifier">
                                     <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-pencil"></i>Modifier</a>
-                                    <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-trash"></i>Supprimer</a>
+                                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-trash"></i>Supprimer</a>-->
+
                                 </div>
                             </div>
                         </div>
