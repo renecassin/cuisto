@@ -5,236 +5,62 @@ namespace GourmetBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 
-class Menu
+class MenuPanier
 {
 
-    private $id;
+    private $menu;
 
-    private $name;
+    private $quantity;
 
-    private $plats;
+    public $tliv;
 
-    private $UtilisateurId;
+    public $tcoms;
 
-    private $tlivs;
 
-    public function getId()
+    public function setMenu(\AvekApeti\BackBundle\Entity\Menu $menu)
     {
-        return $this->id;
-    }
-    public function setId($id)
-    {
-        $this->id = $id;
+        $this->menu = $menu;
 
         return $this;
     }
 
-    public function setName($name)
+    public function getMenu()
     {
-        $this->name = $name;
+        return $this->menu;
+    }
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getQuantity()
     {
-        return $this->name;
+        return $this->quantity;
     }
 
-    /**
-     * Set content
-     *
-     * @param string $content
-     *
-     * @return Menu
-     */
-    public function setContent($content)
+    public function setTliv(\AvekApeti\BackBundle\Entity\TypeLivraison $tliv = null)
     {
-        $this->content = $content;
+        $this->tliv = $tliv;
 
         return $this;
     }
 
-    /**
-     * Get content
-     *
-     * @return string
-     */
-    public function getContent()
+    public function getTliv()
     {
-        return $this->content;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->plats = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tlivs = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->tliv;
     }
 
-    /**
-     * Add plat
-     *
-     * @param \AvekApeti\BackBundle\Entity\Plat $plat
-     *
-     * @return Menu
-     */
-    public function addPlat(\AvekApeti\BackBundle\Entity\Plat $plat)
+    public function setTcoms(\AvekApeti\BackBundle\Entity\TypeCommande $tcoms = null)
     {
-        $this->plats[] = $plat;
+        $this->tcoms = $tcoms;
 
         return $this;
     }
 
-    /**
-     * Remove plat
-     *
-     * @param \AvekApeti\BackBundle\Entity\Plat $plat
-     */
-    public function removePlat(\AvekApeti\BackBundle\Entity\Plat $plat)
+    public function getTcoms()
     {
-        $this->plats->removeElement($plat);
-    }
-
-    /**
-     * Get plats
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlats()
-    {
-        return $this->plats;
-    }
-
-    /**
-     * Set utilisateur
-     *
-     * @param \AvekApeti\BackBundle\Entity\Utilisateur $utilisateur
-     *
-     * @return Menu
-     */
-    public function setUtilisateur(\AvekApeti\BackBundle\Entity\Utilisateur $utilisateur = null)
-    {
-        $this->Utilisateur = $utilisateur;
-
-        return $this;
-    }
-
-    /**
-     * Get utilisateur
-     *
-     * @return \AvekApeti\BackBundle\Entity\Utilisateur
-     */
-    public function getUtilisateur()
-    {
-        return $this->Utilisateur;
-    }
-
-    /**
-     * Add tliv
-     *
-     * @param \AvekApeti\BackBundle\Entity\TypeLivraison $tliv
-     *
-     * @return Menu
-     */
-    public function addTliv(\AvekApeti\BackBundle\Entity\TypeLivraison $tliv)
-    {
-        $this->tlivs[] = $tliv;
-
-        return $this;
-    }
-
-    /**
-     * Remove tliv
-     *
-     * @param \AvekApeti\BackBundle\Entity\TypeLivraison $tliv
-     */
-    public function removeTliv(\AvekApeti\BackBundle\Entity\TypeLivraison $tliv)
-    {
-        $this->tlivs->removeElement($tliv);
-    }
-
-    /**
-     * Get tlivs
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTlivs()
-    {
-        return $this->tlivs;
-    }
-
-    /**
-     * Add commande
-     *
-     * @param \AvekApeti\BackBundle\Entity\Commande $commande
-     *
-     * @return Menu
-     */
-    public function addCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
-    {
-        $this->commande[] = $commande;
-
-        return $this;
-    }
-
-    /**
-     * Remove commande
-     *
-     * @param \AvekApeti\BackBundle\Entity\Commande $commande
-     */
-    public function removeCommande(\AvekApeti\BackBundle\Entity\Commande $commande)
-    {
-        $this->commande->removeElement($commande);
-    }
-
-    /**
-     * Get commande
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCommande()
-    {
-        return $this->commande;
-    }
-
-    /**
-     * Add commandeMenu
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu
-     *
-     * @return Menu
-     */
-    public function addCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu)
-    {
-        $this->commandeMenu[] = $commandeMenu;
-
-        return $this;
-    }
-
-    /**
-     * Remove commandeMenu
-     *
-     * @param \AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu
-     */
-    public function removeCommandeMenu(\AvekApeti\BackBundle\Entity\CommandeMenu $commandeMenu)
-    {
-        $this->commandeMenu->removeElement($commandeMenu);
-    }
-
-    /**
-     * Get commandeMenu
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCommandeMenu()
-    {
-        return $this->commandeMenu;
+        return $this->tcoms;
     }
 }

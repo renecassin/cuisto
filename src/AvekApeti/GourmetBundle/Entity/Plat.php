@@ -5,74 +5,29 @@ namespace GourmetBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 
-class Plat
+class PlatPanier
 {
 
-    private $id;
-
-
-    private $name;
-
-    private $price;
+    private $plat;
 
     private $quantity;
-
-    private $UtilisateurId;
-
 
     public $tliv;
 
     public $tcoms;
 
-    private $image;
 
-
-    public function getId()
+    public function setPlat(\AvekApeti\BackBundle\Entity\Plat $plat)
     {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Plat
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+        $this->plat = $plat;
 
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getPlat()
     {
-        return $this->name;
+        return $this->plat;
     }
-
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
@@ -83,20 +38,6 @@ class Plat
     public function getQuantity()
     {
         return $this->quantity;
-    }
-
-
-
-    public function setUtilisateurId(\AvekApeti\BackBundle\Entity\Utilisateur $utilisateur = null)
-    {
-        $this->UtilisateurId = $utilisateur->getId();
-
-        return $this;
-    }
-
-    public function getUtilisateurId()
-    {
-        return $this->UtilisateurId;
     }
 
     public function setTliv(\AvekApeti\BackBundle\Entity\TypeLivraison $tliv = null)
@@ -121,18 +62,6 @@ class Plat
     public function getTcoms()
     {
         return $this->tcoms;
-    }
-
-    public function setImage(\AvekApeti\BackBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getImage()
-    {
-        return $this->image;
     }
 
 }

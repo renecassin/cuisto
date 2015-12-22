@@ -1,0 +1,17 @@
+panier_index:
+    path:     /
+    defaults: { _controller: "GourmetBundle:Panier:index" }
+panier_plat_ajout:
+    path:     /ajout/plat/{id}
+    defaults: { _controller: "GourmetBundle:Panier:ajoutPlatPanier" }
+
+panier_plat_suppr:
+    path:     /suppr/plat/{id}
+    defaults: { _controller: "GourmetBundle:Panier:ajoutPlatSuppr" }
+
+panier_reset:
+    path:     /reset
+    defaults: { _controller: "GourmetBundle:Panier:resetPanier" }
+
+
+
