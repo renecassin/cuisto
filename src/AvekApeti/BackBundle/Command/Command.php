@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use AvekApeti\BackBundle\Entity\Groupe;
 use AvekApeti\BackBundle\Entity\Utilisateur;
+use AvekApeti\BackBundle\Entity\Chef;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Application;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -107,7 +108,12 @@ private $commandes = array(
             $hash = $factory->getEncoder($user)->encodePassword($user->getPassword(),$user->getSalt());
 
             $user->setPassword($hash);
+
+            $entity = new Chef();
+            $entity->setUtilisateur($user);
+
             $em->persist($user);
+            $em->persist($entity);
             $em->flush();
         }
 
