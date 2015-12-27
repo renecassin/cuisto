@@ -5,10 +5,10 @@ namespace AvekApeti\GourmetBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 
-class MenuPanier
+class PlatPanier
 {
 
-    private $menu;
+    private $plat;
 
     private $quantity;
 
@@ -17,16 +17,16 @@ class MenuPanier
     public $tcoms;
 
 
-    public function setMenu(\AvekApeti\BackBundle\Entity\Menu $menu)
+    public function setPlat(\AvekApeti\BackBundle\Entity\Plat $plat)
     {
-        $this->menu = $menu;
+        $this->plat = $plat;
 
         return $this;
     }
 
-    public function getMenu()
+    public function getPlat()
     {
-        return $this->menu;
+        return $this->plat;
     }
     public function setQuantity($quantity)
     {
@@ -63,4 +63,5 @@ class MenuPanier
     {
         return $this->tcoms;
     }
+
 }

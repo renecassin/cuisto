@@ -24,6 +24,7 @@
                 <img class="img-background" src={{ asset('bundles/gourmet/img/defaut2.jpg') }} alt="">
             {% endif %}
             </div>
+
     </header>
 
     <!-- Page Content -->
@@ -621,6 +622,28 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
+=======
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('chef_plat') }}">
+                        Back to the list
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}">
+                        Edit
+                    </a>
+                </li>
+                <li>
+                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}">
+                        delete
+                    </a>-->
+                    {{ form(delete_form) }}
+                </li>
+            </ul>
+
+>>>>>>> b3806623da33f95f0dd23f5e4d5a0ac7f0a7b0d4
         </div>
         <!-- /.row -->
     </div>

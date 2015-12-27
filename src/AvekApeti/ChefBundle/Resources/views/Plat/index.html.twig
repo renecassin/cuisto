@@ -76,8 +76,9 @@
                             {#<div>{% if entity.unableWhile %}{{ entity.unableWhile|date('Y-m-d') }}{% endif %}</div>#}
                             <div class="col-sm-3">
                                 <div class="cellule-modifier">
-                                    <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
+                                    <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
                                     <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-pencil"></i>Modifier</a>
+                                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-trash"></i>Supprimer</a>-->
                                 </div>
                             </div>
                         </div>

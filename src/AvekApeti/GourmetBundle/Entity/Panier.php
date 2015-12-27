@@ -8,6 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Panier
 {
 
+    public function __construct()
+    {
+        $tableauPlats = [];
+        $tableauMenus = [];
+
+
+    }
+
     private $id ;
 
     private $chefSelect;
@@ -34,13 +42,14 @@ class Panier
     public function getTableauMenus(){
         return $this->tableauMenus;
     }
-    public function setTableauPlats($Plat){
-        array_push ($this->tableauPlats, $Plat);
+    public function addTableauPlats(\AvekApeti\GourmetBundle\Entity\PlatPanier $PlatPanier){
+        $this->tableauPlats[] = $PlatPanier;
         return $this;
     }
-    public function setTableauMenus($Menu){
-        array_push ($this->tableauMenus, $Menu);
+    public function addTableauMenus(\AvekApeti\GourmetBundle\Entity\MenuPanier $MenuPanier){
+        $this->tableauMenus[] = $MenuPanier;
         return $this;
     }
+
 }
 

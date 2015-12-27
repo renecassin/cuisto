@@ -25,6 +25,7 @@ class Utilisateur implements UserInterface //, EquatableInterface
         $this->groupe = $Groupe ; //Id de groupe par defaut doit correspondre a l'id du groupe d'un utilisateur enregistr� (gourmet)
         $this->salt = md5(uniqid(null, true)); // cr�ation d'un salt pour chaque utilisateur
         //$this->salt =null; // cr�ation d'un salt pour chaque utilisateur
+        $this->attribute = [];
     }
 
     /**
@@ -136,7 +137,7 @@ class Utilisateur implements UserInterface //, EquatableInterface
      * @ORM\OneToMany(targetEntity="Avis", mappedBy="utilisateurAvis", cascade={"remove"})
      */
     private $avis;
-
+    private $attribute;
     /**
      * Get id
      *
@@ -586,4 +587,20 @@ class Utilisateur implements UserInterface //, EquatableInterface
     {
         return ($this->getUsername() == $user->getUsername() && serialize($this->getRoles()) == serialize($user->getRoles()));
     }*/
+    public function getAttribute($nom)
+    {
+        return $this->attribute[$nom];
+    }
+    public function setAttribute($nom,$valeur)
+    {
+        $this->attribute[$nom] = $valeur;
+    }
+    public function hasAttribute($nom)
+    {
+        if(ISSET($this->attribute[$nom]))
+        {
+            return true;
+        }
+        return false;
+    }
 }

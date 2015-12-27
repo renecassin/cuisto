@@ -1,14 +1,5 @@
 {%  extends 'GourmetBundle::layout.html.twig' %}
 
-<script>
-    function uping(){
-        var doc=document.getElementById('contenu').value;
-        while(doc.indexOf("\n" )>0){
-            doc = doc.replace("\n","<br>" );
-        }
-        document.getElementById("result" ).innerHTML = doc;
-    }
-</script>
 
 {% block titre %}Nouveau message {{ parent() }}{% endblock %}
 
@@ -81,7 +72,7 @@
                             <div class="col-md-8">
                                 {{ form_widget(form.content,
                                 {
-                                    attr:{OnBlur="javascript:uping()", class: "form-control",placeholder: "Ajoutez un message personnel ici", id: "contenu",required: "data-validation-required-message= 'Veuillez entrer l'objet du message.'"}
+                                    attr:{ class: "form-control",placeholder: "Ajoutez un message personnel ici", id: "contenu",required: "data-validation-required-message= 'Veuillez entrer l'objet du message.'"}
                                 })
                                 }}
                                 <p class="help-block text-danger">{{ form_errors(form.content) }}</p>

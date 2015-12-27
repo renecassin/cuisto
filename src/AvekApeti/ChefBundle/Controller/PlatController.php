@@ -31,6 +31,7 @@ class PlatController extends Controller
         return $this->render('ChefBundle:Plat:index.html.twig', array(
             'entityChef' => $user,
             'entities' => $entities,
+
         ));
     }
     /**
@@ -211,12 +212,14 @@ class PlatController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
         $User = $this->get('security.context')->getToken()->getUser();
+        $plat = $em->getRepository('AvekApetiBackBundle:Plat')->findOneIfChef($User->getId(),$id);
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if ($form->isValid() && ($User == $plat->getUtilisateur()) ) {
+
             $entity = $em->getRepository('AvekApetiBackBundle:Plat')->findOneIfChef($User->getId(),$id);
 
             if (!$entity) {
@@ -227,7 +230,7 @@ class PlatController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('plat'));
+        return $this->redirect($this->generateUrl('chef_plat'));
     }
 
     /**
@@ -242,7 +245,7 @@ class PlatController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('chef_plat_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            /*->add('submit', 'submit', array('label' => 'Supprimer ce plat'))*/
+            ->add('submit', 'submit', array('label' => 'Supprimer ce plat'))
             ->getForm()
         ;
     }

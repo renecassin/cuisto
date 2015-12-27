@@ -104,7 +104,11 @@ class MessageController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AvekApetiBackBundle:Message')->getOneByED($user->getId(),$id);
+        //$entity = $em->getRepository('AvekApetiBackBundle:Message')->getOneByED($user->getId(),$id);
+        $result1 = $em->getRepository('AvekApetiBackBundle:Message')->getOneByED1($user->getId(),$id);
+        $result2 = $em->getRepository('AvekApetiBackBundle:Message')->getOneByED2($user->getId(),$id);
+        $entity = array_merge($result1,$result2)[0];
+      //  die(dump($entity));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Message entity.');

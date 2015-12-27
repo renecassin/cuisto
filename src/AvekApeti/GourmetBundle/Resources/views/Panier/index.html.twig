@@ -4,4 +4,10 @@
 
 {% block body %}
 <h1>Welcome to the Panier:index page</h1>
+    {% if panier %}
+    {{ dump(panier) }}
+    {% else %}
+        Votre panier est vide
+        <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }}>ajout</a>
+    {% endif %}
 {% endblock %}
