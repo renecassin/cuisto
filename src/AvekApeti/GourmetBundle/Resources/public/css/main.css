@@ -138,7 +138,7 @@
         font-size: 40px!important;
     }
     .nom-plat{
-        font-size: 18px;
+        font-size: 20px;
     }
     #selection-plat .ratings p{
         font-size: 16px;
@@ -148,12 +148,6 @@
     }
 }
 
-
-@media (min-width: 1280px) {
-    .nom-plat{
-        font-size: 20px;
-    }
-}
 
 
 .btn-semi-transparent {
@@ -260,10 +254,10 @@
     background-image: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header5.jpg);
 }
 
-/*
+
 #header-index-plat{
-    background-image: radial-gradient(rgba(0,0,0,0),black 400%), url(../img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg);
-}*/
+    background-image: radial-gradient(rgba(0,0,0,0),black 400%), url(../img/defaut/defaut2.jpg);
+}
 
 #page-feedback,
 #page-contact {
@@ -288,6 +282,31 @@
 
 #header-liste-plat{
     background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/liste.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-liste-msg{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/brownies.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-new-msg{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/tacos.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-voir-msg{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/gratin.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-liste-commande{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header3.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-voir-commande{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/plats/soupe.jpg) center no-repeat;
     background-size: cover;
 }
 
@@ -567,6 +586,11 @@ section#contact .glyphicon-perso {
     padding: 10px;
 }
 
+#page-voir-commande .fa-1x,
+#page-liste-commande .fa-1x,
+#page-voir-msg .fa-1x,
+#page-new-msg .fa-1x,
+#page-liste-msg .fa-1x,
 #page-creation-plat .fa-1x,
 #page-edit-plat .fa-1x,
 #page-liste-plat .fa-1x,
@@ -903,6 +927,11 @@ section#contact .glyphicon-perso {
     padding: 20px;
 }
 
+#page-voir-commande .img-circle,
+#page-liste-commande .img-circle,
+#page-voir-msg .img-circle,
+#page-new-msg .img-circle,
+#page-liste-msg .img-circle,
 #page-edit-plat .img-circle,
 #page-liste-plat .img-circle,
 #page-creation-plat .img-circle,
@@ -917,6 +946,11 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:360px) {
+    #page-voir-commande .img-circle,
+    #page-liste-commande .img-circle,
+    #page-voir-msg .img-circle,
+    #page-new-msg .img-circle,
+    #page-liste-msg .img-circle,
     #page-edit-plat .img-circle,
     #page-liste-plat .img-circle,
     #page-creation-plat .img-circle,
@@ -927,6 +961,11 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:768px) {
+    #page-voir-commande .img-circle,
+    #page-liste-commande .img-circle,
+    #page-voir-msg .img-circle,
+    #page-new-msg .img-circle,
+    #page-liste-msg .img-circle,
     #page-edit-plat .img-circle,
     #page-liste-plat .img-circle,
     #page-creation-plat .img-circle,
@@ -938,6 +977,11 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:768px) {
+    #page-voir-commande .img-circle,
+    #page-liste-commande .img-circle,
+    #page-voir-msg .img-circle,
+    #page-new-msg .img-circle,
+    #page-liste-msg .img-circle,
     #page-edit-plat .img-circle,
     #page-liste-plat .img-circle,
     #page-creation-plat .img-circle,
@@ -949,6 +993,11 @@ section#contact .glyphicon-perso {
 }
 
 @media(min-width:1280px) {
+    #page-voir-commande .img-circle,
+    #page-liste-commande .img-circle,
+    #page-voir-msg .img-circle,
+    #page-new-msg .img-circle,
+    #page-liste-msg .img-circle,
     #page-edit-plat .img-circle,
     #page-liste-plat .img-circle,
     #page-creation-plat .img-circle,
@@ -999,6 +1048,11 @@ section#contact .glyphicon-perso {
     margin-bottom: 30px;
 }
 
+#page-voir-commande,
+#page-liste-commande,
+#page-voir-msg,
+#page-new-msg,
+#page-liste-msg,
 #page-edit-plat,
 #page-liste-plat,
 #page-creation-plat,
@@ -1024,16 +1078,15 @@ section#contact .glyphicon-perso {
     background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/plats.jpg)  center ;
 }
 
-#page-mon-compte .form-group img,
-#page-mon-compte-chef .form-group img {
-    width: 50%;
-    border-radius: 1%;
+#page-voir-msg,
+#page-new-msg,
+#page-liste-msg {
+    background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/IMMEUBLES.png)  center ;
 }
 
-#page-edit-plat .form-group img,
-#page-creation-plat .form-group img{
-    width: 200px;
-    border-radius: 1%;
+#page-voir-commande,
+#page-liste-commande {
+    background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/ville.jpg)  center ;
 }
 
 #page-mon-compte .form-group .rond,
@@ -1102,23 +1155,49 @@ section#contact .glyphicon-perso {
     background: rgba(229,73,95,0.1);
 }
 
+#ligne-intermediaire{
+    /*background: rgba(233,196,164,0.1);*/
+    background: rgba(238,164,151,0.1);
+
+}
+
+.tableau-msg .row,
 .tableau-plats .row{
     border-bottom: 1px solid #DCE0E0;
 }
 
 #page-liste-plat .cellule-img img {
     width: 300px;
-    height: 200px;
-    border-radius: 2%;
+    height: 160px;
+    border-radius: 1%;
 }
 
-#page-liste-plat .table-responsive{
-    font-size: 16px;
-    padding: 20px;
+#page-voir-commande .cellule-img img,
+#page-liste-commande .cellule-img img,
+#page-voir-msg .cellule-img img,
+#page-liste-msg .cellule-img img {
+    width: 50%;
+    height: auto;
+    border-radius: 50%;
+}
+@media(min-width:768px) {
+    #page-voir-commande .cellule-img img,
+    #page-voir-msg .cellule-img img,
+    #page-liste-msg .cellule-img img {
+        width: 80%;
+    }
+    #page-liste-commande .cellule-img img{
+        width: 60%;
+    }
 }
 
-#page-liste-plat td{
-    padding: 20px;
+#page-creation-plat .form-group img,
+#page-edit-plat .form-group img,
+#page-mon-compte .form-group img,
+#page-mon-compte-chef .form-group img{
+    width: 35%;
+    height: auto;
+    border-radius: 1%;
 }
 
 .label-actif{
@@ -1129,34 +1208,62 @@ section#contact .glyphicon-perso {
     background: #ff4848 ;
 }
 
+.label-intermediaire{
+    background: #ffada2 ;
+}
+
 .cellule-img{
     padding: 20px 0px;
 }
 
-.cellule-titre{
+.cellule-contenu{
+    padding: 20px 30px;
+}
+
+#page-liste-plat .cellule-titre{
     padding: 5px 10px;
 }
 
-.cellule-modifier{
-    padding: 30px 0;
+#page-liste-msg .cellule-titre {
+    padding: 18px 0px;
+}
+
+#page-liste-plat .cellule-modifier{
+    padding: 31px 15px;
+}
+
+#page-liste-commande .cellule-modifier{
+    padding: 39px 20px;
+}
+
+@media(max-width:361px) {
+    #page-liste-msg .cellule-modifier,
+    #page-liste-commande .cellule-modifier {
+        padding-top: 0;
+    }
+}
+
+#page-liste-msg .cellule-modifier{
+    padding: 28px 0;
 }
 
 .tableau-plats{
     padding-bottom: 40px;
 }
 
+.cadre-img-background{
+    position: relative;
+    height: 350px;
+}
+
 .img-background{
     width: 100%;
-    height: 350px;
-    left:0;
-    position: absolute;
+    height: 100%;
 }
 
 @media(min-width:768px) {
-    .img-background {
-        height: 500px;
-        left:0;
-        top:-250px;
+    .cadre-img-background {
+        height: 600px;
     }
 }
 
@@ -1169,6 +1276,74 @@ section#contact .glyphicon-perso {
     padding: 10px 20px
 }
 
+.defaut-img{
+    width: 50%;
+}
+
+.panier h4{
+    margin-top: 35px;
+}
+
+.show-mes-plats{
+    width: 100%;
+    padding: 15px 0px;
+}
+
+.cellule-titre p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+#page-liste-commande .cellule-modifier .btn-filtre,
+#page-liste-msg .cellule-modifier .btn-filtre {
+    margin-bottom: 0;
+}
+
+@media(min-width:768px) {
+    .tableau-msg{
+        padding: 0 30px 40px;
+    }
+}
+
+#page-liste-commande h5,
+#page-liste-msg h5{
+    color: #808080;
+}
+
+.img-voir-commande,
+.img-voir-msg{
+    width: 100%;
+    height:auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+#page-voir-commande p,
+#page-voir-msg p{
+    margin-bottom: 30px;
+}
+
+#page-voir-msg h2{
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DCE0E0;
+}
+
+.ligne-titre-commande{
+    margin-top: 50px;
+    border-bottom: 1px solid #DCE0E0;
+}
+
+.ligne-voir-msg{
+    padding: 15px 0;
+}
+
+#page-voir-commande li{
+    font-size: 18px;
+}
 
 
 

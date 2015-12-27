@@ -10,15 +10,16 @@
 {% block content %}
 
     <header class="header" id="header-index-plat">
-        <div class="header-content header-content-transform">
+        {#<div class="header-content header-content-transform">
             {#
             <div class="header-content-inner disparition">
                 <h2 class="h1-page">Roti de boeuf Esterhazy<br>9 €</h2>
                 <h3 class="adresse-selection">Chef Ludo94</h3>
             </div>
             #}
-            <img class="img-background" src={{ asset('bundles/gourmet/img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg') }} alt="" >
-        </div>
+            <div class="cadre-img-background">
+                <img class="img-background" src={{ asset('bundles/gourmet/img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg') }} alt="" >
+            </div>
     </header>
 
     <!-- Page Content -->

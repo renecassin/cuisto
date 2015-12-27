@@ -1,18 +1,111 @@
-{% extends '::base.html.twig' %}
+{%  extends 'GourmetBundle::layout.html.twig' %}
 
-{% block body -%}
+<script>
+    function uping(){
+        var doc=document.getElementById('contenu').value;
+        while(doc.indexOf("\n" )>0){
+            doc = doc.replace("\n","<br>" );
+        }
+        document.getElementById("result" ).innerHTML = doc;
+    }
+</script>
+
+{% block titre %}Nouveau message {{ parent() }}{% endblock %}
+
+{% block content %}
+    <header class="header-inscription" id="header-new-msg">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Nouveau message</h1>
+                <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
+            </div>
+        </div>
+    </header>
+
     {% if User_dest is defined %}
         <span>Le destinataire n'a pas ete trouvé</span>
     {% endif %}
-    <h1>Message creation</h1>
 
-    {{ form(form) }}
+<section id="page-new-msg">
+    <div class="container">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('gourmet_message') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
-{% endblock %}
+        <div class="col-sm-12 text-center photo-mon-compte ">
+            {% if entityUser.image %}
+                <img src="{{ asset(entityUser.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+            {% else %}
+                <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+            {% endif %}
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center titre-compte">
+                <h3 class="section-heading">Discutez avec un Chef ou un Gourmet</h3>
+                <hr class="primary">
+                <p>Pour votre sécurité, maintenez toutes vos communications et vos transactions sur Avekapeti.</p>
+            </div>
+
+            {{ form_start(form, {'attr':{class: "form-horizontal"} } ) }}
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.destinataire, 'À', {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.destinataire,
+                                {
+                                    attr:{class: "form-control",placeholder: "Pseudo du destinataire",id: "destinataire",required: 'data-validation-required-message= "Veuillez entrer le pseudo du destinataire."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.destinataire) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.item, 'Objet', {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.item,
+                                {
+                                    attr:{class: "form-control",placeholder: "Objet du message", id: "objet",required: "data-validation-required-message= 'Veuillez entrer l'objet du message.'"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.item) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.content, 'Message', {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                            <div class="col-md-8">
+                                {{ form_widget(form.content,
+                                {
+                                    attr:{OnBlur="javascript:uping()", class: "form-control",placeholder: "Ajoutez un message personnel ici", id: "contenu",required: "data-validation-required-message= 'Veuillez entrer l'objet du message.'"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.content) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-md-6 text-right">
+                <div id="success"></div>
+                <a href="{{ path('gourmet_message') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
+            </div>
+
+            <div class="col-md-6 text-left">
+                <div id="success"></div>
+                <button type="submit" class="btn btn-default btn-xl">Envoyer</button>
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</section>
+{% endblock content %}

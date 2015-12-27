@@ -17,8 +17,11 @@
 
             <div class="col-sm-12 text-center photo-mon-compte ">
                 {#<img src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="" class="img-circle">#}
-                <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" class="img-circle">
-
+                {% if entity.image %}
+                    <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
             </div>
 
             <div class="row">
@@ -176,8 +179,12 @@
                                 <p class="help-block text-danger">{{ form_errors(edit_form.image) }}</p>
                             </div>
                             <div class="col-md-8 col-md-offset-3">
-                                {#<img class="rond" src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="">#}
-                                <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
+
+                                {% if entity.image %}
+                                    <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
+                                {% else %}
+                                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="">
+                                {% endif %}
                             </div>
                         </div>
 

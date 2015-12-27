@@ -1,40 +1,72 @@
-{% extends '::base.html.twig' %}
+{%  extends 'GourmetBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Message</h1>
+{% block titre %}{{ entity.item }} {{ parent() }}{% endblock %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Item</th>
-                <td>{{ entity.item }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ entity.content }}</td>
-            </tr>
-            <tr>
-                <th>Datecreated</th>
-                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Acclecture</th>
-                <td>{{ entity.accLecture }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block content %}
+<header class="header-inscription" id="header-voir-msg">
+    <div class="header-content header-content-transform">
+        <div class="header-content-inner">
+            <h1 class="h1-page">Mon message</h1>
+            <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
+        </div>
+    </div>
+</header>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('gourmet_message') }}">
-            Back to the list
-        </a>
-    </li>
+<section id="page-voir-msg">
+    <div class="container">
+
+        <div class="col-sm-12 text-center photo-mon-compte ">
+            {% if entityUser.image %}
+                <img src="{{ asset(entityUser.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+            {% else %}
+                <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+            {% endif %}
+        </div>
 
 
-</ul>
-{% endblock %}
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>{{ entity.item }}</h2>
+                    </div>
+                </div>
+                <div class="row ligne-voir-msg">
+                    <div class="col-xs-8 col-md-2">
+                        <h4>De :
+                            <a href="{{ path('chef_plat_show', { 'id': entity.emetteuruser.id }) }}">{{ entity.emetteuruser.login }}</a>
+                        </h4>
+                    </div>
+                    <div class="col-xs-4 col-md-2">
+                        <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
+                            <img src="{{ asset(entity.emetteuruser.image.webPath('thumb-small')) }}" alt="" class="img-voir-msg">
+                        </a>
+                    </div>
+                    <div class="col-xs-8 col-md-2 col-md-push-1">
+                        <h4>À :
+                            <a href="{{ path('chef_plat_show', { 'id': entity.destuser.id }) }}">{{ entity.destuser.login }}</a>
+                        </h4>
+                    </div>
+                    <div class="col-xs-4 col-md-2 col-md-push-1">
+                        <a href="{{ path('chef_plat_show', { 'id': entity.destuser.id }) }}">
+                            <img src="{{ asset(entity.destuser.image.webPath('thumb-small')) }}" alt="" class="img-voir-msg">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-md-3 col-md-push-2">
+                        <h4>le {{ entity.dateCreated|date('d/m/Y') }}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>{{ entity.content|nl2br  }}</p>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col-md-12 text-center">
+            <div id="success"></div>
+            <a href="{{ path('gourmet_message') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
+        </div>
+
+    </div>
+</section>
+{% endblock content %}

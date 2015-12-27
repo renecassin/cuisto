@@ -5,20 +5,25 @@
     <script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}" xmlns="http://www.w3.org/1999/html"></script>
 {%  endblock foot_scripts %}
 
-{% block titre %}Plat{{ parent() }}{% endblock %}
+{% block titre %}{{ entity.name }}{{ parent() }}{% endblock %}
 
 {% block content %}
 
     <header class="header" id="header-index-plat">
-        <div class="header-content header-content-transform">
-            {#
+            {#<div class="header-content header-content-transform">
+            {
             <div class="header-content-inner disparition">
                 <h2 class="h1-page">Roti de boeuf Esterhazy<br>9 €</h2>
                 <h3 class="adresse-selection">Chef Ludo94</h3>
             </div>
             #}
-            <img class="img-background" src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" >
-        </div>
+            <div class="cadre-img-background">
+            {% if entity.image %}
+                <img class="img-background" src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" >
+            {% else %}
+                <img class="img-background" src={{ asset('bundles/gourmet/img/defaut2.jpg') }} alt="">
+            {% endif %}
+            </div>
     </header>
 
     <!-- Page Content -->
@@ -29,9 +34,9 @@
             <div class="col-md-3 text-center carte-fixe">
                 <div class="portrait-chef">
                     <a href=# class="lien-portrait-chef" >
-                        <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
-                        <h4 class="nom-plat lien-hover grande-recherche">Chef Ludo94</h4>
-                        <p class="description-adresse grande-recherche">Rue Boileau, Paris</p>
+                        <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                        <h4 class="nom-plat lien-hover grande-recherche">Chef {{ entityChef.login }}</h4>
+                        <p class="description-adresse grande-recherche">{{ entityChef.adress }}, {{ entityChef.city }}</p>
                     </a>
                     <a href=# class="lien-portrait-chef grande-recherche" >
                         <h5 class="lien-hover souligner">Voir le chef en action</h5>
@@ -49,7 +54,7 @@
 
                             <div class="col-sm-10 texte-centre">
                                 <h1>{{ entity.name }}</h1>
-                                <div class="ratings"  data-target="#MonCollapsePlus1" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                                <div class="ratings"  data-target="#MonCollapsePlus" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
                                     <p>
                                         <span class="glyphicon glyphicon-heart"></span>
                                         <span class="glyphicon glyphicon-heart"></span>
@@ -66,7 +71,7 @@
                             <div class="col-sm-2 text-center">
                                 <button class="cercle">
                                     <div >
-                                        <h3>9€</h3>
+                                        <h3>{{ entity.price }}€</h3>
                                     </div>
                                 </button>
                             </div>
@@ -78,14 +83,35 @@
                             <div class="col-md-12">
                                 <div class="row bandeau-icon">
                                     <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-cutlery"></i>
-                                        <p>Plat</p>
+                                        {% if entity.categorie.name == "Entrée" %}
+                                            <i class="fa fa-2x fa-sign-in"></i>
+                                        {% elseif entity.categorie.name == "Dessert" %}
+                                            <i class="fa fa-2x fa-birthday-cake"></i>
+                                        {% elseif entity.categorie.name == "Menu" %}
+                                            <i class="fa fa-2x fa-book"></i>
+                                        {% else %}
+                                            <i class="fa fa-2x fa-cutlery"></i>
+                                        {% endif %}
+                                        <p>{{ entity.categorie.name }}</p>
                                     </div>
                                     <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-globe"></i>
-                                        <p>Africaine</p>
+                                        {% if entity.specialite.name == "Occidentale" %}
+                                            <i class="fa fa-2x fa-umbrella"></i>
+                                        {% elseif entity.specialite.name == "Orientale" %}
+                                            <i class="fa fa-2x fa-try"></i>
+                                        {% elseif entity.specialite.name == "Asiatique" %}
+                                            <i class="fa fa-2x fa-jpy"></i>
+                                        {% else %}
+                                            <i class="fa fa-2x fa-globe"></i>
+                                        {% endif %}
+                                        <p>{{ entity.specialite.name }}</p>
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
+                                        {#{% if entity.specificite.name == "Végétarien" %}
+                                            <i class="fa fa-2x fa-tree"></i>
+                                        {% else %}
+                                            <i class="fa fa-2x fa-certificate"></i>
+                                        {% endif %}#}
                                         <i class="fa fa-2x fa-certificate"></i>
                                         <p>Sans porc</p>
                                     </div>
@@ -94,8 +120,12 @@
                                         <p>{{ entity.quantity }} parts / 8 </p>
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
-                                        <i class="fa fa-2x fa-home"></i>
-                                        <p>Livraison</p>
+                                        {% if entity.tcoms.name == "Retrait" %}
+                                            <i class="fa fa-2x fa-bicycle"></i>
+                                        {% else %}
+                                            <i class="fa fa-2x fa-home"></i>
+                                        {% endif %}
+                                        <p>{{ entity.tcoms.name }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,22 +135,16 @@
                             </div>
 
                             <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4 col-md-push-6">
-                                        <button class="btn btn-default btn-xl">Ajouter au panier</button>
-
-                                    </div>
-                                    <div class="col-md-4 col-md-pull-2">
-                                        <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus1" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
-                                            <i class="fa fa-1x fa-plus"></i>En savoir plus
-                                        </button>
-                                    </div>
+                                <div class="col-md-4 col-md-push-4">
+                                    <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                                        <i class="fa fa-1x fa-plus"></i>En savoir plus
+                                    </button>
                                 </div>
                             </div>
 
                             <div class="col-md-12 ">
 
-                                <div id="MonCollapsePlus1" class="collapse">
+                                <div id="MonCollapsePlus" class="collapse">
 
                                     <p class="description-plat souligner">Ingrédients (pour 4 personnes) :</p>
                                     <ul>
@@ -214,295 +238,208 @@
                                     </div>
                                 </div>
                             </div>
+                            {#<div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4 col-md-push-6">
+                                        <button class="btn btn-default btn-xl">Ajouter au panier</button>
+                                        <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xl">Modifier</a>
+                                    </div>
+                                    <div class="col-md-4 col-md-pull-2">
+                                        <a href="{{ path('chef_plat') }}" class="btn btn-default btn-xl">Mes plats</a>
+                                    </div>
+                                </div>
+                            </div>#}
                         </div>
 
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">Chef Ludo94 propose aussi ...</h2>
+                        <h2 class="section-heading">Chef {{ entityChef.login }} propose aussi ...</h2>
                         <hr>
                     </div>
                 </div>
+                {% set i=0 %}
+                {% for entit in entities %}
+                    {% if entit.id != entity.id %}
+                        {% set i=i+1 %}
+                        <div class="thumbnail">
+                            <div class="caption-full">
 
-                <div class="thumbnail">
-                    <div class="caption-full">
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <img src={{ asset('bundles/gourmet/img/plats/selection-plat/raviolesAuFromage.jpg') }} alt="" >
-                            </div>
-
-                            <div class="col-sm-10 texte-centre">
-                                <h1>Ravioles au fromage</h1>
-                                <div class="ratings"  data-target="#MonCollapsePlus2" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
-                                    <p>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 1 commentaire
-                                    </p>
-                                </div>
-
-                            </div>
-
-                            <div class="col-sm-2 text-center">
-                                <button class="cercle">
-                                    <div >
-                                        <h3>7€</h3>
-                                    </div>
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row bandeau-icon">
-                                    <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-sign-in"></i>
-                                        <p>Entrée</p>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-jpy"></i>
-                                        <p>Asiatique</p>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-tree"></i>
-                                        <p>Végétarien</p>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-adjust"></i>
-                                        <p>4 parts / 5 </p>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-12 text-center">
-                                        <i class="fa fa-2x fa-bicycle"></i>
-                                        <p>Retrait</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <p class="description-plat">La cuisine de Carinthie fait la part belle aux céréales, produits laitiers, viandes et poissons des lacs. L’une des spécialités les plus connues sont les Kasnudeln : ces ravioles au fromage exigent un bon tour de main si l’on veut que leur rebord soit joliment crénelé.</p>
-                            </div>
-
-
-                            <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-4 col-md-push-6">
-                                        <button class="btn btn-default btn-xl">Ajouter au panier</button>
+                                    <div class="col-sm-12">
+                                        {% if entit.image %}
+                                            <img src="{{ asset(entit.image.webPath('thumb-small')) }}" alt="" >
+                                        {% else %}
+                                            <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
+                                        {% endif %}
                                     </div>
-                                    <div class="col-md-4 col-md-pull-2">
-                                        <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus2" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
-                                            <i class="fa fa-1x fa-plus"></i>En savoir plus
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-12 ">
-
-                                <div id="MonCollapsePlus2" class="collapse">
-
-                                    <p class="description-plat souligner">Ingrédients (pour 4 personnes) :</p>
-                                    <ul>
-                                        <li>300 g de farine de type T55</li>
-                                        <li>1 œuf</li>
-                                        <li>1 trait d’huile</li>
-                                        <li>1 pincée de sel</li>
-                                        <li>Eau si nécessaire</li>
-                                        <li>Blanc d’œuf pour enduire</li>
-                                        <li>100 à150 g de beurre brun pour arroser</li>
-                                    </ul>
-
-                                    <div class="well">
-
-                                        <div class="row">
-                                            <div class="col-md-2 text-center">
-                                                <a href=# class="" >
-                                                    <div class="panel-image-chef">
-                                                        <img src={{ asset('bundles/gourmet/img/gourmet/angelina.jpg') }} alt="" class="img-circle">
-                                                    </div>
-                                                    <p>Angelina</p>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-10">
+                                    <div class="col-sm-10 texte-centre">
+                                        <h2>{{ entit.name }}</h2>
+                                        <div class="ratings"  data-target="#MonCollapsePlus{{i}}" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                                            <p>
                                                 <span class="glyphicon glyphicon-heart"></span>
                                                 <span class="glyphicon glyphicon-heart"></span>
                                                 <span class="glyphicon glyphicon-heart"></span>
                                                 <span class="glyphicon glyphicon-heart"></span>
                                                 <span class="glyphicon glyphicon-heart-empty"></span>
-                                                <span class="pull-right">novembre 2015</span>
-                                                <p>J’ai gouté ce roti de boeuf de Ludo94, il était excellent, on s’est régalé au bureau ! On recommande vivement !</p>
-                                            </div>
+                                                - 1 commentaire
+                                            </p>
                                         </div>
 
                                     </div>
 
-                                    <div class="col-md-6 col-md-offset-6">
-                                        <a class="btn btn-default btn-filtre ">
-                                            <i class="fa fa-1x fa-comment"></i>Laisser un commentaire
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="thumbnail">
-                    <div class="caption-full">
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <img src={{ asset('bundles/gourmet/img/plats/selection-plat/gateauChocolat.jpg') }} alt="" >
-                            </div>
-
-                            <div class="col-sm-10 texte-centre">
-                                <h1>Gâteau au chocolat</h1>
-                                <div class="ratings"  data-target="#MonCollapsePlus3" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
-                                    <p>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 2 commentaires
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-sm-2 text-center">
-                                <button class="cercle">
-                                    <div >
-                                        <h3>4€</h3>
-                                    </div>
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row bandeau-icon">
-                                    <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-birthday-cake"></i>
-                                        <p>Dessert</p>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-umbrella"></i>
-                                        <p>Occidentale</p>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-adjust"></i>
-                                        <p>5 parts / 5 </p>
-                                    </div>
-                                    <div class="col-sm-3 col-xs-6 text-center">
-                                        <i class="fa fa-2x fa-home"></i>
-                                        <i class="fa fa-2x fa-bicycle"></i>
-                                        <p>Livraison / Retrait</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <p class="description-plat">En 1832, lorsque le jeune apprenti Franz Sacher créa la Sachertorte à la cour du Prince Metternich, il n’imaginait pas l’impact qu’aurait son gâteau sur les amateurs de chocolat des quatre coins du monde.</p>
-                            </div>
-
-
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4 col-md-push-6">
-                                        <button class="btn btn-default btn-xl">Ajouter au panier</button>
-                                    </div>
-                                    <div class="col-md-4 col-md-pull-2">
-                                        <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus3" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
-                                            <i class="fa fa-1x fa-plus"></i>En savoir plus
+                                    <div class="col-sm-2 text-center">
+                                        <button class="cercle">
+                                            <div >
+                                                <h3>{{ entit.price }}€</h3>
+                                            </div>
                                         </button>
                                     </div>
+
                                 </div>
-                            </div>
 
-                            <div class="col-md-12 ">
-
-                                <div id="MonCollapsePlus3" class="collapse">
-
-                                    <p class="description-plat souligner">Ingrédients :</p>
-                                    <ul>
-                                        <li>200 g de nappage au chocolat noir ou de chocolat noir à pâtisserie</li>
-                                        <li>250 g de sucre</li>
-                                        <li>150 à 170 ml d’eau</li>
-                                    </ul>
-
-                                    <div class="well">
-
-                                        <div class="row">
-                                            <div class="col-md-2 text-center">
-                                                <a href=# class="" >
-                                                    <div class="panel-image-chef">
-                                                        <img src={{ asset('bundles/gourmet/img/gourmet/angelina.jpg') }} alt="" class="img-circle">
-                                                    </div>
-                                                    <p>Angelina</p>
-                                                </a>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row bandeau-icon">
+                                            <div class="col-sm-2 col-xs-6 text-center">
+                                                {% if entity.categorie.name == "Entrée" %}
+                                                    <i class="fa fa-2x fa-sign-in"></i>
+                                                {% elseif entity.categorie.name == "Dessert" %}
+                                                    <i class="fa fa-2x fa-birthday-cake"></i>
+                                                {% elseif entity.categorie.name == "Menu" %}
+                                                    <i class="fa fa-2x fa-book"></i>
+                                                {% else %}
+                                                    <i class="fa fa-2x fa-cutlery"></i>
+                                                {% endif %}
+                                                <p>{{ entity.categorie.name }}</p>
                                             </div>
-                                            <div class="col-md-10">
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart-empty"></span>
-                                                <span class="pull-right">novembre 2015</span>
-                                                <p>J’ai gouté ce roti de boeuf de Ludo94, il était excellent, on s’est régalé au bureau ! On recommande vivement !</p>
+                                            <div class="col-sm-2 col-xs-6 text-center">
+                                                {% if entity.specialite.name == "Occidentale" %}
+                                                    <i class="fa fa-2x fa-umbrella"></i>
+                                                {% elseif entity.specialite.name == "Orientale" %}
+                                                    <i class="fa fa-2x fa-try"></i>
+                                                {% elseif entity.specialite.name == "Asiatique" %}
+                                                    <i class="fa fa-2x fa-jpy"></i>
+                                                {% else %}
+                                                    <i class="fa fa-2x fa-globe"></i>
+                                                {% endif %}
+                                                <p>{{ entity.specialite.name }}</p>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-4 text-center">
+                                                {#{% if entity.specificite.name == "Végétarien" %}
+                                                    <i class="fa fa-2x fa-tree"></i>
+                                                {% else %}
+                                                    <i class="fa fa-2x fa-certificate"></i>
+                                                {% endif %}#}
+                                                <i class="fa fa-2x fa-certificate"></i>
+                                                <p>Sans porc</p>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-4 text-center">
+                                                <i class="fa fa-2x fa-adjust"></i>
+                                                <p>{{ entity.quantity }} parts / 8 </p>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-4 text-center">
+                                                {% if entity.tcoms.name == "Retrait" %}
+                                                    <i class="fa fa-2x fa-bicycle"></i>
+                                                {% else %}
+                                                    <i class="fa fa-2x fa-home"></i>
+                                                {% endif %}
+                                                <p>{{ entity.tcoms.name }}</p>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <hr>
+                                    <div class="col-md-12">
+                                        <p class="description-plat">{{ entit.content }}</p>
+                                    </div>
 
+
+                                    <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-2 text-center">
+                                            {#<div class="col-md-4 col-md-push-6">
+                                                <button class="btn btn-default btn-xl">Ajouter au panier</button>
+                                            </div>#}
+                                            <div class="col-md-4 col-md-push-4">
+                                                <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus{{i}}" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                                                    <i class="fa fa-1x fa-plus"></i>En savoir plus
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 ">
+
+                                        <div id="MonCollapsePlus{{i}}" class="collapse">
+
+                                            <p class="description-plat souligner">Ingrédients (pour 4 personnes) :</p>
+                                            <ul>
+                                                <li>300 g de farine de type T55</li>
+                                                <li>1 œuf</li>
+                                                <li>1 trait d’huile</li>
+                                                <li>1 pincée de sel</li>
+                                                <li>Eau si nécessaire</li>
+                                                <li>Blanc d’œuf pour enduire</li>
+                                                <li>100 à150 g de beurre brun pour arroser</li>
+                                            </ul>
+
+                                            <div class="well">
+
                                                 <div class="row">
-                                                    <a href=# class="" >
-                                                        <div class="panel-image-chef">
-                                                            <img src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="" class="img-circle">
-                                                        </div>
-                                                        <p>Brad</p>
-                                                    </a>
+                                                    <div class="col-md-2 text-center">
+                                                        <a href=# class="" >
+                                                            <div class="panel-image-chef">
+                                                                <img src={{ asset('bundles/gourmet/img/gourmet/angelina.jpg') }} alt="" class="img-circle">
+                                                            </div>
+                                                            <p>Angelina</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <span class="glyphicon glyphicon-heart"></span>
+                                                        <span class="glyphicon glyphicon-heart"></span>
+                                                        <span class="glyphicon glyphicon-heart"></span>
+                                                        <span class="glyphicon glyphicon-heart"></span>
+                                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                                        <span class="pull-right">novembre 2015</span>
+                                                        <p>J’ai gouté ce roti de boeuf de Ludo94, il était excellent, on s’est régalé au bureau ! On recommande vivement !</p>
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                            <div class="col-md-10">
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart"></span>
-                                                <span class="glyphicon glyphicon-heart-empty"></span>
-                                                <span class="pull-right">octobre 2015</span>
-                                                <p>Un pur délice ! La cuisson était parfaite, la viande fond dans la bouche. Bravo Ludo94 ! Nous allons nous revoir très vite ;)</p>
+
+                                            <div class="col-md-6 col-md-offset-6">
+                                                <a class="btn btn-default btn-filtre ">
+                                                    <i class="fa fa-1x fa-comment"></i>Laisser un commentaire
+                                                </a>
                                             </div>
                                         </div>
-
-                                    </div>
-
-                                    <div class="col-md-6 col-md-offset-6">
-                                        <a class="btn btn-default btn-filtre ">
-                                            <i class="fa fa-1x fa-comment"></i>Laisser un commentaire
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+
             </div>
 
 
             <aside class="col-md-3 text-center ">
                 {#<p class="nbre-part">Attention il ne reste que 3 parts !</p>#}
                 <div class="panier">
-                    <button class="btn btn-default btn-xl grande-recherche">Ajouter au panier</button>
+                    <h4>Ce plat est
+                        {% if entity.active %}
+                            <span class="label label-actif">Actif</span>
+                        {% else %}
+                            <span class="label label-inactif">Inactif</span>
+                        {% endif %}
+                    </h4>
+                    <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xl no-margin-bottom">Modifier ce plat</a>
+                    <a href="{{ path('chef_plat') }}" class="btn btn-default show-mes-plats">Afficher mes plats</a>
+
+                    {#<button class="btn btn-default btn-xl grande-recherche">Ajouter au panier</button>
                     <div class="fix">
                         <button class="btn btn-default btn-xl petite-recherche">Ajouter au panier</button>
                     </div>
@@ -543,7 +480,9 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-default btn-xl">Commander</a>
+                    <a class="btn btn-default btn-xl">Commander</a> #}
+
+
                 </div>
             </aside>
 
@@ -681,19 +620,6 @@
                     </div>
                 </div>
             </div>
-
-            <ul class="record_actions">
-                <li>
-                    <a href="{{ path('chef_plat') }}">
-                        Back to the list
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}">
-                        Edit
-                    </a>
-                </li>
-            </ul>
 
         </div>
         <!-- /.row -->

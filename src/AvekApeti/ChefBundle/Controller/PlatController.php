@@ -29,6 +29,7 @@ class PlatController extends Controller
         $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findIfChef($user->getId());
 
         return $this->render('ChefBundle:Plat:index.html.twig', array(
+            'entityChef' => $user,
             'entities' => $entities,
         ));
     }
@@ -109,10 +110,12 @@ class PlatController extends Controller
      */
     public function showAction($id)
     {
-        $User = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AvekApetiBackBundle:Plat')->findOneIfChef($User->getId(),$id);
+        $entity = $em->getRepository('AvekApetiBackBundle:Plat')->findOneIfChef($user->getId(),$id);
+
+        $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findIfChef($user->getId());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Plat entity.');
@@ -121,6 +124,8 @@ class PlatController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ChefBundle:Plat:show.html.twig', array(
+            'entities'      => $entities,
+            'entityChef'      => $user,
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));

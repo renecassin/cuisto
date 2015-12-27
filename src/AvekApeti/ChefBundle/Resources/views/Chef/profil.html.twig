@@ -16,7 +16,11 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-                <img src="{{ asset(entityGourmet.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                {% if entityChef.image %}
+                    <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
             </div>
 
             <div class="row">

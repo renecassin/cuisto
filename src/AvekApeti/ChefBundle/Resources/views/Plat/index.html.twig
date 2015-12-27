@@ -16,7 +16,11 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-                <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+                {% if entityChef.image %}
+                    <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
             </div>
 
             <div class="row">
@@ -34,7 +38,11 @@
                             <div class="col-sm-4">
                                 <div class="cellule-img">
                                     <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
-                                        <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
+                                        {% if entity.image %}
+                                            <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" >
+                                        {% else %}
+                                            <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
+                                        {% endif %}
                                     </a>
                                 </div>
                             </div>
@@ -68,8 +76,8 @@
                             {#<div>{% if entity.unableWhile %}{{ entity.unableWhile|date('Y-m-d') }}{% endif %}</div>#}
                             <div class="col-sm-3">
                                 <div class="cellule-modifier">
+                                    <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
                                     <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-pencil"></i>Modifier</a>
-                                    <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-trash"></i>Supprimer</a>
                                 </div>
                             </div>
                         </div>

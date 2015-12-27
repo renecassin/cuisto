@@ -11,13 +11,14 @@ class MessageController extends Controller
 {
     public function indexAction()
     {
-        $User = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AvekApetiBackBundle:Message')->getByEmetteur($User->getId());
-        $entities2 = $em->getRepository('AvekApetiBackBundle:Message')->getByDest($User->getId());
+        $entities = $em->getRepository('AvekApetiBackBundle:Message')->getByEmetteur($user->getId());
+        $entities2 = $em->getRepository('AvekApetiBackBundle:Message')->getByDest($user->getId());
 
         return $this->render('GourmetBundle:Message:index.html.twig', array(
+            'entityUser' => $user,
             'entities' => $entities,
             'entities2' => $entities2,
         ));
@@ -28,21 +29,21 @@ class MessageController extends Controller
      */
     public function createAction(Request $request)
     {
-        $User = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         $postData = $request->request->get('gourmetbundle_message');
 
 
         $em = $this->getDoctrine()->getManager();
-        $User_dest = $em->getRepository('AvekApetiBackBundle:Utilisateur')->findOneByLogin($postData['destinataire']);
+        $user_dest = $em->getRepository('AvekApetiBackBundle:Utilisateur')->findOneByLogin($postData['destinataire']);
 
         $entity = new Message();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid() && $User_dest) {
+        if ($form->isValid() && $user_dest) {
 
-            $entity->setEmetteurUser($User);
-            $entity->setDestUser($User_dest);
+            $entity->setEmetteurUser($user);
+            $entity->setDestUser($user_dest);
             $em->persist($entity);
             $em->flush();
 
@@ -50,6 +51,7 @@ class MessageController extends Controller
         }
 
         return $this->render('GourmetBundle:Message:new.html.twig', array(
+            'entityUser' => $user,
             'entity' => $entity,
             'form'   => $form->createView(),
             'User_dest' => true
@@ -70,7 +72,7 @@ class MessageController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        /*$form->add('submit', 'submit', array('label' => 'Create'));*/
 
         return $form;
     }
@@ -81,10 +83,13 @@ class MessageController extends Controller
      */
     public function newAction()
     {
+        $user = $this->get('security.context')->getToken()->getUser();
+
         $entity = new Message();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('GourmetBundle:Message:new.html.twig', array(
+            'entityUser' => $user,
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -96,10 +101,10 @@ class MessageController extends Controller
      */
     public function showAction($id)
     {
-        $User = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AvekApetiBackBundle:Message')->getOneByED($User->getId(),$id);
+        $entity = $em->getRepository('AvekApetiBackBundle:Message')->getOneByED($user->getId(),$id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Message entity.');
@@ -110,8 +115,8 @@ class MessageController extends Controller
             $em->flush();
         }
 
-
         return $this->render('GourmetBundle:Message:show.html.twig', array(
+            'entityUser' => $user,
             'entity'      => $entity,
 
         ));
