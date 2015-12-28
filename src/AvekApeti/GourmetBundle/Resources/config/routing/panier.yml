@@ -20,5 +20,7 @@ panier_menu_ajout:
 panier_menu_suppr:
     path:     /suppr/menu/{idMenu}
     defaults: { _controller: "GourmetBundle:Panier:suppMenuPanier" }
-
+panier_widget_panier:
+    path:     /widget
+    defaults: { _controller: "GourmetBundle:Panier:widgetPanier" }
 

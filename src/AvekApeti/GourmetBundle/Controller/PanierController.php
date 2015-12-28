@@ -263,4 +263,7 @@ class PanierController extends Controller
             }
         }
     }
+    public function widgetPanierAction(){
+        return $this->render('GourmetBundle:Panier:widgetPanier.html.twig');
+    }
 }

@@ -1,0 +1,6 @@
+{% if  app.user.hasAttribute('Panier',app.request) %}
+    {% set panier = app.user.getAttribute('Panier',app.request) %}
+    {{ dump(panier) }}
+{% else %}
+    Votre panier est vide
+{% endif %}
