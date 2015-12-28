@@ -62,7 +62,7 @@ class Menu
      *   }
      *)
      */
-    private $tlivs;
+    private $tliv;
 
     /**
      * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="id")
@@ -71,7 +71,7 @@ class Menu
     /**
      * @var integer
      *
-     * @ORM\Column(name="delete", type="boolean", nullable=true)
+     * @ORM\Column(name="supp", type="boolean", nullable=true)
      */
     private $supp;
 
@@ -299,5 +299,29 @@ class Menu
     public function getCommandeMenu()
     {
         return $this->commandeMenu;
+    }
+
+    /**
+     * Set supp
+     *
+     * @param boolean $supp
+     *
+     * @return Menu
+     */
+    public function setSupp($supp)
+    {
+        $this->supp = $supp;
+
+        return $this;
+    }
+
+    /**
+     * Get supp
+     *
+     * @return boolean
+     */
+    public function getSupp()
+    {
+        return $this->supp;
     }
 }

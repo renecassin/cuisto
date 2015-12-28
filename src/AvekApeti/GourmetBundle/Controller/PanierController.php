@@ -4,7 +4,7 @@ namespace AvekApeti\GourmetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AvekApeti\GourmetBundle\Entity\PlatPanier;
-use AvekApeti\GourmetBundle\Entity\Menu;
+use AvekApeti\GourmetBundle\Entity\MenuPanier;
 use AvekApeti\GourmetBundle\Entity\Panier;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -112,11 +112,13 @@ class PanierController extends Controller
     private function platExiste($Plat,$Panier)
     {
         $tableauPlat = $Panier->getTableauPlats();
-        foreach ($tableauPlat as $platPanier){
-            if($platPanier->getPlat()->getId() == $Plat->getId()){
+        if (count($tableauPlat) != 0) {
+            foreach ($tableauPlat as $platPanier) {
+                if ($platPanier->getPlat()->getId() == $Plat->getId()) {
 
-                $platPanier->setQuantity($platPanier->getQuantity()+1);
-                return true;
+                    $platPanier->setQuantity($platPanier->getQuantity() + 1);
+                    return true;
+                }
             }
         }
         $platPanier = new PlatPanier;
@@ -151,5 +153,114 @@ class PanierController extends Controller
         //Referer ne fonctionne pas avec une adresse entrer a la main ou externe au site
         return new RedirectResponse($referer);
     }
+    public function ajoutMenuPanierAction($idMenu, Request $request)
+    {
 
+
+        if($idMenu == null)
+            return $this->Redirection_origine();
+
+        $em = $this->getDoctrine()->getManager();
+        $Menu = $em->getRepository('AvekApetiBackBundle:Menu')->find($idMenu);
+        $Panier = $this->getUser()->getAttribute('Panier',$request);
+        if($this->getUser()->hasAttribute('Panier',$request))
+        {
+
+            if($Panier->getChefSelect()->getId() == $Menu->getUtilisateur()->getId())
+            {
+
+                $this->menuExiste($Menu,$Panier);
+                $this->getUser()->setAttribute('Panier',$Panier,$request);
+
+            }else
+            {
+
+                //L'utilisateur commande des plats de different chef
+                //Different message d'erreur en fonction
+
+            }
+            return $this->Redirection_origine();
+        }else{
+
+
+
+            $Panier = new Panier;
+            $menuPanier = new PlatPanier;
+            $menuPanier->setPlat($Menu);
+            $menuPanier->setQuantity('1');
+            $menuPanier->setTliv($Menu->getTliv());
+            $menuPanier->setTcoms($Menu->getTcoms());
+
+            $Panier->addTableauPlats($menuPanier);
+            $Panier->setChefSelect($Menu->getUtilisateur());
+        }
+
+        //$_SESSION['Panier']=$Panier;
+        $this->getUser()->setAttribute('Panier',$Panier,$request);
+
+        //$session = $request->getSession();
+        //$session->set('Panier', $Panier);
+
+        return $this->Redirection_origine();
+
+    }
+    public function suppMenuPanierAction($idMenu,Request $request)
+    {
+
+
+        if($idMenu == null)
+            return $this->Redirection_origine();
+
+        $em = $this->getDoctrine()->getManager();
+        $Plat = $em->getRepository('AvekApetiBackBundle:Plat')->find($idMenu);
+        $Panier =  $this->getUser()->getAttribute('Panier',$request);
+        if($Panier)
+        {
+            $this->menuSuppr($Plat,$Panier);
+            $this->getUser()->setAttribute('Panier',$Panier,$request);
+
+        }else
+        {
+            //L'utilisateur commande des plats de different chef
+            //Different message d'erreur en fonction
+            return $this->Redirection_origine();
+        }
+        return $this->Redirection_origine();
+    }
+
+    private function menuExiste($Menu,$Panier)
+    {
+        $tableauMenu = $Panier->getTableauMenus();
+        if (count($tableauMenu) != 0) {
+            foreach ($tableauMenu as $menuPanier) {
+                if ($menuPanier->getMenu()->getId() == $Menu->getId()) {
+
+                    $menuPanier->setQuantity($menuPanier->getQuantity() + 1);
+                    return true;
+                }
+            }
+        }
+        $menuPanier = new MenuPanier;
+        $menuPanier->setMenu($Menu);
+        $menuPanier->setQuantity(1);
+        $menuPanier->setTliv();
+        $menuPanier->setTcoms();
+
+        $Panier->addTableauMenus($menuPanier);
+        return false;
+    }
+    private function  menuSuppr($Menu,$Panier)
+    {
+        $tableauMenu = $Panier->getTableauMenus();
+        foreach ($tableauMenu as $menuPanier){
+            if($menuPanier->getMenu()->getId() == $Menu->getId()) {
+                if ($menuPanier->getQuantity() > 1) {
+                    $menuPanier->setQuantity($menuPanier->getQuantity() - 1);
+                }else
+                {
+                    array_splice($tableauMenu, 0,1);
+                }
+            }
+        }
+    }
 }

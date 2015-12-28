@@ -62,7 +62,7 @@ class Menu
      *   }
      *)
      */
-    private $tlivs;
+    private $tliv;
 
     /**
      * @ORM\OneToMany(targetEntity="CommandeMenu", mappedBy="id")
@@ -323,5 +323,15 @@ class Menu
     public function getSupp()
     {
         return $this->supp;
+    }
+
+    /**
+     * Get tliv
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTliv()
+    {
+        return $this->tliv;
     }
 }

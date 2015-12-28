@@ -13,5 +13,12 @@ panier_reset:
     path:     /reset
     defaults: { _controller: "GourmetBundle:Panier:resetPanier" }
 
+panier_menu_ajout:
+    path:     /ajout/menu/{idMenu}
+    defaults: { _controller: "GourmetBundle:Panier:ajoutMenuPanier" }
+
+panier_menu_suppr:
+    path:     /suppr/menu/{idMenu}
+    defaults: { _controller: "GourmetBundle:Panier:suppMenuPanier" }
 
 

@@ -8,9 +8,17 @@
     {{ dump(panier) }}
     {% else %}
         Votre panier est vide
-
     {% endif %}
-    <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }}>ajout</a>
-    <a href={{ path('panier_reset') }}>reset</a>
-    <a href={{ path('panier_plat_suppr',{idPlat:'1'}) }}>supprimer</a>
+    <br>
+    <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }}>ajout Plat</a>
+    <a href={{ path('panier_plat_suppr',{idPlat:'1'}) }}>supprimer Plat</a>
+    <a href={{ path('panier_menu_ajout',{idMenu:'1'}) }}>ajout Menu</a>
+    <a href={{ path('panier_menu_suppr',{idMenu:'1'}) }}>supprimer Menu</a>
+    <a href={{ path('panier_reset') }}>reset</a><br>
+     <span class="Panier_nb">{% if  app.user.hasAttribute('Panier',app.request) %}
+    {{ app.user.getAttribute('Panier',app.request).getCount() }}
+        {% else %}
+        0
+    {% endif %}</span>
+    <a href="">Commaner</a>
 {% endblock %}

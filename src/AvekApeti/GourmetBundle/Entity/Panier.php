@@ -54,6 +54,20 @@ class Panier
         $this->tableauMenus[] = $MenuPanier;
         return $this;
     }
+    public function getCount(){
+        $c=0;
+        if(count($this->getTableauPlats()) != 0) {
+            foreach ($this->getTableauPlats() as $platPanier) {
+                $c = $c + $platPanier->getQuantity();
+            }
+        }
+      if(count($this->getTableauMenus()) != 0){
+        foreach ($this->getTableauMenus() as $menuPanier){
+            $c = $c + $menuPanier->getQuantity();
+        }
+      }
+        return $c;
+    }
 
 }
 
