@@ -35,7 +35,9 @@
             <div class="col-md-3 text-center carte-fixe">
                 <div class="portrait-chef">
                     <a href=# class="lien-portrait-chef" >
+                        {% if entityChef.image is not null %}
                         <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                        {% endif %}
                         <h4 class="nom-plat lien-hover grande-recherche">Chef {{ entityChef.login }}</h4>
                         <p class="description-adresse grande-recherche">{{ entityChef.adress }}, {{ entityChef.city }}</p>
                     </a>
