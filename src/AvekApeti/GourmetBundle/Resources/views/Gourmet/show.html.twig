@@ -36,11 +36,8 @@
                 <div class="col-xs-8 col-sm-3">
                     <h4>
                         <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
-                            {% if (is_granted('ROLE_CHEF')) and entity.utilisateur %}
-                                <h3>Chef {{ entity.utilisateur.login }}</h3>
-                            {% endif %}
                             {% if (is_granted('ROLE_GOURMET')) and entity.chef %}
-                                <h3>{{ entity.chef.login }}</h3>
+                                <h3>Chef {{ entity.utilisateur.login }}</h3>
                             {% endif %}
                         </a>
                     </h4>
@@ -48,10 +45,9 @@
                 <div class="col-xs-4 col-sm-2">
                     <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
                         {% if (is_granted('ROLE_GOURMET')) and entity.utilisateur %}
+                         {% if entity.utilisateur.image is not null %}
                             <img src="{{ asset(entity.utilisateur.image.webPath('thumb-small')) }}" alt=""  class="img-voir-msg">
-                        {% endif %}
-                        {% if (is_granted('ROLE_CHEF')) and entity.chef %}
-                            <img src="{{ asset(entity.chef.image.webPath('thumb-small')) }}" alt=""  class="img-voir-msg">
+                         {% endif %}
                         {% endif %}
                     </a>
                 </div>

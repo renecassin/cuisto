@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\HttpFoundation\Request;
 /**
  * Utilisateur
  *
@@ -587,20 +588,43 @@ class Utilisateur implements UserInterface //, EquatableInterface
     {
         return ($this->getUsername() == $user->getUsername() && serialize($this->getRoles()) == serialize($user->getRoles()));
     }*/
-    public function getAttribute($nom)
+  /*  public function getAttribute($nom)
     {
         return $this->attribute[$nom];
+    }*/
+
+    public function getAttribute($nom,Request $request)
+    {
+        $session = $request->getSession();
+        $session->get($nom);
+        return $session->get($nom);
     }
-    public function setAttribute($nom,$valeur)
+
+   /* public function setAttribute($nom,$valeur)
     {
         $this->attribute[$nom] = $valeur;
-    }
-    public function hasAttribute($nom)
+    }*/
+
+    public function setAttribute($nom,$valeur,Request $request)
     {
-        if(ISSET($this->attribute[$nom]))
+        $session = $request->getSession();
+        $session->set($nom,$valeur);
+
+       // $this->attribute[$nom] = $valeur;
+    }
+    public function hasAttribute($nom,Request $request)
+    {
+        $session = $request->getSession();
+
+        if($session->has($nom))
         {
             return true;
         }
         return false;
+    }
+    public function resetAttribute($nom,Request $request)
+    {
+        $session = $request->getSession();
+        $session->remove($nom);
     }
 }

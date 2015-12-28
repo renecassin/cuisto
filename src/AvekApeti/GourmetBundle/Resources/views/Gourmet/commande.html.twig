@@ -39,10 +39,9 @@
                         <div class="cellule-img">
                             <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
                                 {% if (is_granted('ROLE_GOURMET')) and entity.utilisateur %}
-                                    <img src="{{ asset(entity.utilisateur.image.webPath('thumb-small')) }}" alt="" >
-                                {% endif %}
-                                {% if (is_granted('ROLE_CHEF')) and entity.chef %}
-                                    <img src="{{ asset(entity.chef.image.webPath('thumb-small')) }}" alt="" >
+                                     {% if entity.utilisateur.image is not null %}
+                                        <img src="{{ asset(entity.utilisateur.image.webPath('thumb-small')) }}" alt="" >
+                                    {% endif %}
                                 {% endif %}
                             </a>
                         </div>
@@ -50,11 +49,8 @@
                     <div class="col-sm-2 col-xs-6 text-center">
                         <div class="cellule-img">
                             <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
-                                {% if (is_granted('ROLE_CHEF')) and entity.utilisateur %}
-                                    <h3>Chef {{ entity.utilisateur.login }}</h3>
-                                {% endif %}
                                 {% if (is_granted('ROLE_GOURMET')) and entity.chef %}
-                                    <h3>{{ entity.chef.login }}</h3>
+                                    {{ entity.utilisateur.login }}
                                 {% endif %}
                             </a>
                             {% if entity.dateCreated %}<h5>{{ entity.dateCreated|date('d/m/Y') }}</h5>{% endif %}

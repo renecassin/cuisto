@@ -8,6 +8,9 @@
     {{ dump(panier) }}
     {% else %}
         Votre panier est vide
-        <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }}>ajout</a>
+
     {% endif %}
+    <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }}>ajout</a>
+    <a href={{ path('panier_reset') }}>reset</a>
+    <a href={{ path('panier_plat_suppr',{idPlat:'1'}) }}>supprimer</a>
 {% endblock %}

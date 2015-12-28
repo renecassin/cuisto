@@ -60,7 +60,7 @@ class Image
     private $file;
     //Variable permettant de savoir si on est en mode edition ou non
     private $oldName;
-    private $routewebdir ="uploads/";
+    public $routewebdir ="uploads/";
 
     /**
      * Get id

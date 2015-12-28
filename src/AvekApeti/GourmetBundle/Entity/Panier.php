@@ -36,6 +36,10 @@ class Panier
         return $this->chefSelect;
 
     }
+    public function setChefSelect($Chef){
+        $this->chefSelect = $Chef;
+
+    }
     public function getTableauPlats(){
         return $this->tableauPlats;
     }

@@ -7,7 +7,7 @@ panier_plat_ajout:
 
 panier_plat_suppr:
     path:     /suppr/plat/{idPlat}
-    defaults: { _controller: "GourmetBundle:Panier:ajoutPlatSuppr" }
+    defaults: { _controller: "GourmetBundle:Panier:suppPlatPanier" }
 
 panier_reset:
     path:     /reset
