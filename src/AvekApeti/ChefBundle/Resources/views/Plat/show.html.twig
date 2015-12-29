@@ -19,9 +19,9 @@
             #}
             <div class="cadre-img-background">
             {% if entity.image %}
-                <img class="img-background" src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" >
+                <img class="img-background" src="{{ entity.image.webPath|imagine_filter('plat_picture_big') }}" alt="" >
             {% else %}
-                <img class="img-background" src={{ asset('bundles/gourmet/img/defaut2.jpg') }} alt="">
+                <img class="img-background" src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
             {% endif %}
             </div>
 
@@ -35,7 +35,11 @@
             <div class="col-md-3 text-center carte-fixe">
                 <div class="portrait-chef">
                     <a href=# class="lien-portrait-chef" >
-                        <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                        {% if entityChef.image %}
+                            <img src="{{ asset(entityChef.image.webPath|imagine_filter('profil_picture_small')) }}" alt="" class="img-circle">
+                        {% else %}
+                            <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                        {% endif %}
                         <h4 class="nom-plat lien-hover grande-recherche">Chef {{ entityChef.login }}</h4>
                         <p class="description-adresse grande-recherche">{{ entityChef.adress }}, {{ entityChef.city }}</p>
                     </a>
@@ -84,6 +88,7 @@
                             <div class="col-md-12">
                                 <div class="row bandeau-icon">
                                     <div class="col-sm-2 col-xs-6 text-center">
+                                    {% if entity.categorie %}
                                         {% if entity.categorie.name == "Entrée" %}
                                             <i class="fa fa-2x fa-sign-in"></i>
                                         {% elseif entity.categorie.name == "Dessert" %}
@@ -94,8 +99,10 @@
                                             <i class="fa fa-2x fa-cutlery"></i>
                                         {% endif %}
                                         <p>{{ entity.categorie.name }}</p>
+                                    {% endif %}
                                     </div>
                                     <div class="col-sm-2 col-xs-6 text-center">
+                                    {% if entity.specialite %}
                                         {% if entity.specialite.name == "Occidentale" %}
                                             <i class="fa fa-2x fa-umbrella"></i>
                                         {% elseif entity.specialite.name == "Orientale" %}
@@ -106,6 +113,7 @@
                                             <i class="fa fa-2x fa-globe"></i>
                                         {% endif %}
                                         <p>{{ entity.specialite.name }}</p>
+                                    {% endif %}
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
                                         {#{% if entity.specificite.name == "Végétarien" %}
@@ -121,18 +129,20 @@
                                         <p>{{ entity.quantity }} parts / 8 </p>
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
+                                    {% if entity.tcoms %}
                                         {% if entity.tcoms.name == "Retrait" %}
                                             <i class="fa fa-2x fa-bicycle"></i>
                                         {% else %}
                                             <i class="fa fa-2x fa-home"></i>
                                         {% endif %}
                                         <p>{{ entity.tcoms.name }}</p>
+                                    {% endif %}
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
-                                <p class="description-plat">{{ entity.content }}</p>
+                                <p class="description-plat">{{ entity.content|nl2br }}</p>
                             </div>
 
                             <div class="col-md-12">
@@ -271,7 +281,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         {% if entit.image %}
-                                            <img src="{{ asset(entit.image.webPath('thumb-small')) }}" alt="" >
+                                            <img src="{{ entit.image.webPath|imagine_filter('plat_picture_medium') }}" alt="" >
                                         {% else %}
                                             <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
                                         {% endif %}
@@ -306,28 +316,32 @@
                                     <div class="col-md-12">
                                         <div class="row bandeau-icon">
                                             <div class="col-sm-2 col-xs-6 text-center">
-                                                {% if entity.categorie.name == "Entrée" %}
-                                                    <i class="fa fa-2x fa-sign-in"></i>
-                                                {% elseif entity.categorie.name == "Dessert" %}
-                                                    <i class="fa fa-2x fa-birthday-cake"></i>
-                                                {% elseif entity.categorie.name == "Menu" %}
-                                                    <i class="fa fa-2x fa-book"></i>
-                                                {% else %}
-                                                    <i class="fa fa-2x fa-cutlery"></i>
+                                                {% if entity.categorie %}
+                                                    {% if entity.categorie.name == "Entrée" %}
+                                                        <i class="fa fa-2x fa-sign-in"></i>
+                                                    {% elseif entity.categorie.name == "Dessert" %}
+                                                        <i class="fa fa-2x fa-birthday-cake"></i>
+                                                    {% elseif entity.categorie.name == "Menu" %}
+                                                        <i class="fa fa-2x fa-book"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-2x fa-cutlery"></i>
+                                                    {% endif %}
+                                                    <p>{{ entity.categorie.name }}</p>
                                                 {% endif %}
-                                                <p>{{ entity.categorie.name }}</p>
                                             </div>
                                             <div class="col-sm-2 col-xs-6 text-center">
-                                                {% if entity.specialite.name == "Occidentale" %}
-                                                    <i class="fa fa-2x fa-umbrella"></i>
-                                                {% elseif entity.specialite.name == "Orientale" %}
-                                                    <i class="fa fa-2x fa-try"></i>
-                                                {% elseif entity.specialite.name == "Asiatique" %}
-                                                    <i class="fa fa-2x fa-jpy"></i>
-                                                {% else %}
-                                                    <i class="fa fa-2x fa-globe"></i>
+                                                {% if entity.specialite %}
+                                                    {% if entity.specialite.name == "Occidentale" %}
+                                                        <i class="fa fa-2x fa-umbrella"></i>
+                                                    {% elseif entity.specialite.name == "Orientale" %}
+                                                        <i class="fa fa-2x fa-try"></i>
+                                                    {% elseif entity.specialite.name == "Asiatique" %}
+                                                        <i class="fa fa-2x fa-jpy"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-2x fa-globe"></i>
+                                                    {% endif %}
+                                                    <p>{{ entity.specialite.name }}</p>
                                                 {% endif %}
-                                                <p>{{ entity.specialite.name }}</p>
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
                                                 {#{% if entity.specificite.name == "Végétarien" %}
@@ -343,18 +357,20 @@
                                                 <p>{{ entity.quantity }} parts / 8 </p>
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
-                                                {% if entity.tcoms.name == "Retrait" %}
-                                                    <i class="fa fa-2x fa-bicycle"></i>
-                                                {% else %}
-                                                    <i class="fa fa-2x fa-home"></i>
+                                                {% if entity.tcoms %}
+                                                    {% if entity.tcoms.name == "Retrait" %}
+                                                        <i class="fa fa-2x fa-bicycle"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-2x fa-home"></i>
+                                                    {% endif %}
+                                                    <p>{{ entity.tcoms.name }}</p>
                                                 {% endif %}
-                                                <p>{{ entity.tcoms.name }}</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
-                                        <p class="description-plat">{{ entit.content }}</p>
+                                        <p class="description-plat">{{ entit.content|nl2br }}</p>
                                     </div>
 
 
@@ -437,8 +453,13 @@
                             <span class="label label-inactif">Inactif</span>
                         {% endif %}
                     </h4>
-                    <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xl no-margin-bottom">Modifier ce plat</a>
-                    <a href="{{ path('chef_plat') }}" class="btn btn-default show-mes-plats">Afficher mes plats</a>
+                    <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xl-plat show-mes-plats">Modifier ce plat</a>
+                    {{ form_start(delete_form) }}
+                        <button type="submit" class="btn btn-default  show-mes-plats">Supprimer ce plat</button>
+                    {{ form_end(delete_form) }}
+                    <a href="{{ path('chef_plat') }}" class="btn btn-default  btn-filtre btn-xl">
+                        <i class="fa fa-1x fa-th-list"></i> Afficher mes plats
+                    </a>
 
                     {#<button class="btn btn-default btn-xl grande-recherche">Ajouter au panier</button>
                     <div class="fix">
@@ -622,28 +643,6 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-=======
-            <ul class="record_actions">
-                <li>
-                    <a href="{{ path('chef_plat') }}">
-                        Back to the list
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}">
-                        Edit
-                    </a>
-                </li>
-                <li>
-                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}">
-                        delete
-                    </a>-->
-                    {{ form(delete_form) }}
-                </li>
-            </ul>
-
->>>>>>> b3806623da33f95f0dd23f5e4d5a0ac7f0a7b0d4
         </div>
         <!-- /.row -->
     </div>

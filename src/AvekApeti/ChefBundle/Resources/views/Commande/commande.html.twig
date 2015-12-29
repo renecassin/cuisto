@@ -1,33 +1,100 @@
-{% extends '::base.html.twig' %}
+{%  extends 'GourmetBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Commande list</h1>
+{% block titre %}Mes commandes {{ parent() }}{% endblock %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Datecreated</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.id }}</a></td>
-                <td>{% if entity.dateCreated %}{{ entity.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.total }}</td>
-                <td>{{ entity.status }}</td>
-                <td>
+{% block content %}
+    <header class="header-inscription" id="header-liste-commande">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Mes commandes</h1>
+                <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
+            </div>
+        </div>
+    </header>
 
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <section id="page-liste-commande">
+        <div class="container">
+
+            <div class="col-sm-12 text-center photo-mon-compte ">
+                {% if entityUser.image %}
+                    <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
+            </div>
+
+            <div class="row">
+
+                {% if entities|length == 0 %}
+                    <div class="col-lg-12 text-center titre-compte">
+                        <h3 class="section-heading">Vous n'avez pas encore de commande</h3>
+                        <hr class="primary">
+                    </div>
+                {% else %}
+                    <div class="col-lg-12 text-center titre-compte">
+                        <h3 class="section-heading">Visualisez toutes vos commandes</h3>
+                        <hr class="primary">
+                        <p>Vous pouvez retrouver vos commandes validées, en attente ou abandonnées</p>
+                    </div>
+                {% endif %}
 
 
-    {% endblock %}
+                <div class="col-sm-12 col-md-10 col-md-offset-1 tableau-plats">
+                    {% for entity in entities %}
+
+                        <div class="row" {% if entity.status == "Validée" %} id="ligne-active" {% elseif entity.status == "Abandonnée" %} id="ligne-desactive" {% else %} id="ligne-intermediaire" {% endif %}>
+                            <div class="col-sm-2 col-xs-6 text-center">
+                                <div class="cellule-img">
+                                    <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
+                                        {% if  entity.utilisateur.image %}
+                                            <img src="{{ entity.utilisateur.image.webPath|imagine_filter('profil_picture_small') }}" alt="" >
+                                        {% else %}
+                                            <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" >
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-xs-6 text-center">
+                                <div class="cellule-img">
+                                    <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
+                                        <h3>{{ entity.utilisateur.login }}</h3>
+                                    </a>
+                                    {% if entity.dateCreated %}<h5>{{ entity.dateCreated|date('d/m/Y') }}</h5>{% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 col-sm-push-1">
+                                <div class="cellule-contenu nom-plat">
+                                    <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
+                                        <h3 class="lien-hover">
+                                            {% if entity.status == "Validée" %}
+                                                <span class="label label-actif">{{ entity.status }}</span>
+                                            {% elseif entity.status == "Abandonnée" %}
+                                                <span class="label label-inactif">{{ entity.status }}</span>
+                                            {% else %}
+                                                <span class="label label-intermediaire">{{ entity.status }}</span>
+                                            {% endif %}
+                                        </h3>
+
+                                    </a>
+                                    <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
+                                        <h4>{{ entity.total }} €</h4>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-sm-push-2">
+                                <div class="cellule-modifier">
+                                    <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock content %}
+

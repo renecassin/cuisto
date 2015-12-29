@@ -22,7 +22,7 @@
 
         <div class="col-sm-12 text-center photo-mon-compte ">
             {% if entityUser.image %}
-                <img src="{{ asset(entityUser.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
             {% else %}
                 <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
             {% endif %}

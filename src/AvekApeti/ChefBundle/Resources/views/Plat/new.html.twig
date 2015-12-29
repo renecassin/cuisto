@@ -16,11 +16,11 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-            {% if entityChef.image %}
-                <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
-            {% else %}
-                <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
-            {% endif %}
+                {% if entityChef.image %}
+                    <img src="{{ entityChef.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
             </div>
 
             <div class="row">
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-3">
                                     {% if entity.image %}
-                                        <img  src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="">
+                                        <img  src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
                                     {% else %}
                                         <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
                                     {% endif %}

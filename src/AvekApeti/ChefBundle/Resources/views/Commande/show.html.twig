@@ -1,41 +1,92 @@
-{% extends '::base.html.twig' %}
+{%  extends 'GourmetBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Commande</h1>
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Datecreated</th>
-                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <td>{{ entity.total }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ entity.status }}</td>
-            </tr>
-            <tr>
-                <th>plat</th>
-                <td> {% for plat in entity.plat %}
-                        {{ plat.name }}<br>
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+{% block titre %}{{ entity.status }} {{ parent() }}{% endblock %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('chef_commande') }}">
-            Back to the list
-        </a>
-    </li>
+{% block content %}
+    <header class="header-inscription" id="header-voir-commande">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Ma commande</h1>
+                <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
+            </div>
+        </div>
+    </header>
 
-</ul>
-{% endblock %}
+    <section id="page-voir-commande">
+        <div class="container">
+
+            <div class="col-sm-12 text-center photo-mon-compte ">
+                {% if entityUser.image %}
+                    <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
+            </div>
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row ligne-titre-commande">
+                    <div class="col-xs-8">
+                        <h2>{{ entity.status }}</h2>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        <h2>{{ entity.total }} €</h2>
+                    </div>
+                </div>
+                <div class="row ligne-voir-msg">
+                    <div class="col-xs-8 col-sm-3">
+                        <h4>
+                            <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
+                                {% if entity.utilisateur %}
+                                    <h3>{{ entity.utilisateur.login }}</h3>
+                                {% endif %}
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
+                            {% if  entity.utilisateur.image %}
+                                <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture_small') }}" alt="" class="img-voir-msg">
+                            {% else %}
+                                <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" class="img-voir-msg">
+                            {% endif %}
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-7 text-right">
+                        <h4>le {{ entity.dateCreated|date('d/m/Y') }}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Type de livraison : {% if entity.livraison %}{{ entity.livraison.name}}{% endif %}</li>
+                            <li>Type de commande : {% if entity.typecommande %}{{ entity.typecommande.name}}{% endif %}</li>
+                            <li>Description : {{ entity.content|nl2br  }}</li>
+                            <li>Validation : {{ entity.contentvalidation}}</li>
+                            <li>Plats :
+                                {#{% for plat in entity.commandeplat.plats %}
+                                    <p> {{ plat.name }}</p>
+                                    <p> {{ plat.quantity }}</p>
+                                {% endfor %}
+                                </li>
+                                <li>Menus :
+                                    {% for menu in entity.commandemenu.menus %}
+                                        <p> {{ menu.menus.name }}</p>
+                                        <p> {{ menu.quantity }}</p>
+                                    {% endfor %}
+                                </li>#}
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <div id="success"></div>
+                <a href="{{ path('chef_commande') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
+            </div>
+
+        </div>
+    </section>
+{% endblock content %}

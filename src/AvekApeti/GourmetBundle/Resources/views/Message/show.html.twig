@@ -17,50 +17,60 @@
 
         <div class="col-sm-12 text-center photo-mon-compte ">
             {% if entityUser.image %}
-                <img src="{{ asset(entityUser.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
             {% else %}
                 <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
             {% endif %}
         </div>
 
 
-            <div class="col-md-8 col-md-offset-2">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>{{ entity.item }}</h2>
-                    </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>{{ entity.item }}</h2>
                 </div>
-                <div class="row ligne-voir-msg">
-                    <div class="col-xs-8 col-md-2">
-                        <h4>De :
-                            <a href="{{ path('chef_plat_show', { 'id': entity.emetteuruser.id }) }}">{{ entity.emetteuruser.login }}</a>
-                        </h4>
-                    </div>
-                    <div class="col-xs-4 col-md-2">
-                        <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
-                            <img src="{{ asset(entity.emetteuruser.image.webPath('thumb-small')) }}" alt="" class="img-voir-msg">
-                        </a>
-                    </div>
-                    <div class="col-xs-8 col-md-2 col-md-push-1">
-                        <h4>À :
-                            <a href="{{ path('chef_plat_show', { 'id': entity.destuser.id }) }}">{{ entity.destuser.login }}</a>
-                        </h4>
-                    </div>
-                    <div class="col-xs-4 col-md-2 col-md-push-1">
-                        <a href="{{ path('chef_plat_show', { 'id': entity.destuser.id }) }}">
-                            <img src="{{ asset(entity.destuser.image.webPath('thumb-small')) }}" alt="" class="img-voir-msg">
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-md-3 col-md-push-2">
-                        <h4>le {{ entity.dateCreated|date('d/m/Y') }}</h4>
-                    </div>
+            </div>
+            <div class="row ligne-voir-msg">
+                <div class="col-xs-8 col-md-2">
+                    <h4>De :
+                        <a href="{{ path('chef_plat_show', { 'id': entity.emetteuruser.id }) }}">{{ entity.emetteuruser.login }}</a>
+                    </h4>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="col-xs-4 col-md-2">
+                    <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
+                        {% if entity.emetteuruser.image %}
+                            <img src="{{ entity.emetteuruser.image.webPath|imagine_filter('profil_picture_small') }}" alt="" class="img-voir-msg">
+                        {% else %}
+                            <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" class="img-voir-msg">
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="col-xs-8 col-md-2 col-md-push-1">
+                    <h4>À :
+                        <a href="{{ path('chef_plat_show', { 'id': entity.destuser.id }) }}">{{ entity.destuser.login }}</a>
+                    </h4>
+                </div>
+                <div class="col-xs-4 col-md-2 col-md-push-1">
+                    <a href="{{ path('chef_plat_show', { 'id': entity.destuser.id }) }}">
+                        {% if entity.destuser.image %}
+                            <img src="{{ entity.destuser.image.webPath|imagine_filter('profil_picture_small') }}" alt="" class="img-voir-msg">
+                        {% else %}
+                            <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" class="img-voir-msg">
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3 col-md-push-2">
+                    <h4>le {{ entity.dateCreated|date('d/m/Y') }}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contenu-msg">
                         <p>{{ entity.content|nl2br  }}</p>
                     </div>
                 </div>
             </div>
+        </div>
 
         <div class="col-md-12 text-center">
             <div id="success"></div>

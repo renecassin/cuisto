@@ -18,15 +18,16 @@ class CommandeController extends Controller
         $entities = $em->getRepository('AvekApetiBackBundle:Commande')->findByChef($entity);
 
         return $this->render('ChefBundle:Commande:commande.html.twig', array(
+            'entityUser' => $user,
             'entities' => $entities,
         ));
 
     }
     public function showAction($id)
     {
-        $User = $this->get('security.context')->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
-        $Chef = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($User->getId());
+        $Chef = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($user->getId());
 
         $entity = $em->getRepository('AvekApetiBackBundle:Commande')->getOneByC($Chef->getId(),$id);
 
@@ -36,6 +37,7 @@ class CommandeController extends Controller
 
 
         return $this->render('ChefBundle:Commande:show.html.twig', array(
+            'entityUser' => $user,
             'entity'      => $entity,
         ));
     }

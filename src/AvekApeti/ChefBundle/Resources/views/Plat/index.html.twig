@@ -17,7 +17,7 @@
 
             <div class="col-sm-12 text-center photo-mon-compte ">
                 {% if entityChef.image %}
-                    <img src="{{ asset(entityChef.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                    <img src="{{ entityChef.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
                 {% else %}
                     <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
                 {% endif %}
@@ -25,11 +25,18 @@
 
             <div class="row">
 
-                <div class="col-lg-12 text-center titre-compte">
-                    <h3 class="section-heading">Visualisez vos plats</h3>
-                    <hr class="primary">
-                    <p>Vous pouvez activer ou désactiver un plat comme bon vous semble.</p>
-                </div>
+                {% if entities|length == 0 %}
+                    <div class="col-lg-12 text-center titre-compte">
+                        <h3 class="section-heading">Vous n'avez pas encore de plat</h3>
+                        <hr class="primary">
+                    </div>
+                {% else %}
+                    <div class="col-lg-12 text-center titre-compte">
+                        <h3 class="section-heading">Visualisez vos plats</h3>
+                        <hr class="primary">
+                        <p>Vous pouvez activer ou désactiver un plat comme bon vous semble.</p>
+                    </div>
+                {% endif %}
 
                 <div class="col-sm-12 col-md-10 col-md-offset-1 tableau-plats">
 
@@ -39,7 +46,7 @@
                                 <div class="cellule-img">
                                     <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
                                         {% if entity.image %}
-                                            <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" >
+                                            <img src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt="" >
                                         {% else %}
                                             <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
                                         {% endif %}

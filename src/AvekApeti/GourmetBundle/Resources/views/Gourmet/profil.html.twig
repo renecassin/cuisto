@@ -16,9 +16,8 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-                {#<img src={{ asset('bundles/gourmet/img/gourmet/brad.jpg') }} alt="" class="img-circle">#}
                 {% if entity.image %}
-                    <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                    <img src="{{ entity.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
                 {% else %}
                     <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
                 {% endif %}
@@ -181,7 +180,7 @@
                             <div class="col-md-8 col-md-offset-3">
 
                                 {% if entity.image %}
-                                    <img src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
+                                    <img src="{{ entity.image.webPath|imagine_filter('profil_picture') }}" alt="">
                                 {% else %}
                                     <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="">
                                 {% endif %}

@@ -598,6 +598,12 @@ fieldset[disabled] .btn-primary.active {
     padding: 15px 40px;
 }
 
+.btn-xl-plat {
+    padding: 20px 40px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 #index-plat .btn-xl {
     width: 100%;
     margin-bottom: 20px;

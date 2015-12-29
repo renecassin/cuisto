@@ -1149,22 +1149,25 @@ section#contact .glyphicon-perso {
 
 #ligne-active{
     background: rgba(2,201,164,0.1);
+    border-bottom: 1px solid #DCE0E0;
 }
 
 #ligne-desactive{
     background: rgba(229,73,95,0.1);
+    border-bottom: 1px solid #DCE0E0;
 }
 
 #ligne-intermediaire{
     /*background: rgba(233,196,164,0.1);*/
     background: rgba(238,164,151,0.1);
-
+    border-bottom: 1px solid #DCE0E0;
 }
 
+/*
 .tableau-msg .row,
 .tableau-plats .row{
     border-bottom: 1px solid #DCE0E0;
-}
+}*/
 
 #page-liste-plat .cellule-img img {
     width: 300px;
@@ -1176,18 +1179,17 @@ section#contact .glyphicon-perso {
 #page-liste-commande .cellule-img img,
 #page-voir-msg .cellule-img img,
 #page-liste-msg .cellule-img img {
-    width: 50%;
-    height: auto;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
 @media(min-width:768px) {
+    #page-liste-commande .cellule-img img,
     #page-voir-commande .cellule-img img,
     #page-voir-msg .cellule-img img,
     #page-liste-msg .cellule-img img {
-        width: 80%;
-    }
-    #page-liste-commande .cellule-img img{
-        width: 60%;
+        width: 90px;
+        height: 90px;
     }
 }
 
@@ -1282,11 +1284,12 @@ section#contact .glyphicon-perso {
 
 .panier h4{
     margin-top: 35px;
+    margin-bottom: 20px;
 }
 
 .show-mes-plats{
     width: 100%;
-    padding: 15px 0px;
+    padding: 20px 0px;
 }
 
 .cellule-titre p{
@@ -1343,6 +1346,10 @@ section#contact .glyphicon-perso {
 
 #page-voir-commande li{
     font-size: 18px;
+}
+
+.contenu-msg{
+    overflow: auto;
 }
 
 

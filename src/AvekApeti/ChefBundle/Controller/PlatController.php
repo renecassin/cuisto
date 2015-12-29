@@ -245,7 +245,7 @@ class PlatController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('chef_plat_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer ce plat'))
+            //->add('submit', 'submit', array('label' => 'Supprimer ce plat'))
             ->getForm()
         ;
     }

@@ -121,6 +121,30 @@ class Image
     }
 
     /**
+     * Set routewebdir
+     *
+     * @param string $routewebdir
+     *
+     * @return string
+     */
+    public function setRoutewebdir($routewebdir)
+    {
+        $this->routewebdir = $routewebdir;
+
+        return $this;
+    }
+
+    /**
+     * Get routewebdir
+     *
+     * @return string
+     */
+    public function getRoutewebdir()
+    {
+        return $this->routewebdir;
+    }
+
+    /**
      * Set userId
      *
      * @param integer $userId

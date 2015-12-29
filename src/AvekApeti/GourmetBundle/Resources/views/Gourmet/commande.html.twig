@@ -17,7 +17,7 @@
 
         <div class="col-sm-12 text-center photo-mon-compte ">
             {% if entityUser.image %}
-                <img src="{{ asset(entityUser.image.webPath('thumb-small')) }}" alt="" class="img-circle">
+                <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
             {% else %}
                 <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
             {% endif %}
@@ -25,11 +25,18 @@
 
         <div class="row">
 
-            <div class="col-lg-12 text-center titre-compte">
-                <h3 class="section-heading">Visualisez toutes vos commandes</h3>
-                <hr class="primary">
-                <p>Vous pouvez retrouver vos commandes validées, en attente ou abandonnées</p>
-            </div>
+            {% if entities|length == 0 %}
+                <div class="col-lg-12 text-center titre-compte">
+                    <h3 class="section-heading">Vous n'avez pas encore de commande</h3>
+                    <hr class="primary">
+                </div>
+            {% else %}
+                <div class="col-lg-12 text-center titre-compte">
+                    <h3 class="section-heading">Visualisez toutes vos commandes</h3>
+                    <hr class="primary">
+                    <p>Vous pouvez retrouver vos commandes validées, en attente ou abandonnées</p>
+                </div>
+            {% endif %}
 
             <div class="col-sm-12 col-md-10 col-md-offset-1 tableau-plats">
             {% for entity in entities %}
@@ -38,11 +45,10 @@
                     <div class="col-sm-2 col-xs-6 text-center">
                         <div class="cellule-img">
                             <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
-                                {% if (is_granted('ROLE_GOURMET')) and entity.utilisateur %}
-                                    <img src="{{ asset(entity.utilisateur.image.webPath('thumb-small')) }}" alt="" >
-                                {% endif %}
-                                {% if (is_granted('ROLE_CHEF')) and entity.chef %}
-                                    <img src="{{ asset(entity.chef.image.webPath('thumb-small')) }}" alt="" >
+                                {% if  entity.chef.utilisateur.image %}
+                                    <img src="{{ entity.chef.utilisateur.image.webPath|imagine_filter('profil_picture_small') }}" alt="" >
+                                {% else %}
+                                    <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" >
                                 {% endif %}
                             </a>
                         </div>
@@ -50,12 +56,7 @@
                     <div class="col-sm-2 col-xs-6 text-center">
                         <div class="cellule-img">
                             <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
-                                {% if (is_granted('ROLE_CHEF')) and entity.utilisateur %}
-                                    <h3>Chef {{ entity.utilisateur.login }}</h3>
-                                {% endif %}
-                                {% if (is_granted('ROLE_GOURMET')) and entity.chef %}
-                                    <h3>{{ entity.chef.login }}</h3>
-                                {% endif %}
+                                <h3>{{ entity.chef.utilisateur.login }}</h3>
                             </a>
                             {% if entity.dateCreated %}<h5>{{ entity.dateCreated|date('d/m/Y') }}</h5>{% endif %}
                         </div>
