@@ -91,7 +91,7 @@ class PanierController extends Controller
         $Panier =  $this->getUser()->getAttribute('Panier',$request);
         if($Panier)
         {
-            $this->platSuppr($Plat,$Panier);
+            $Panier = $this->platSuppr($Plat,$Panier);
             $this->getUser()->setAttribute('Panier',$Panier,$request);
 
         }else
@@ -133,16 +133,23 @@ class PanierController extends Controller
     private function  platSuppr($Plat,$Panier)
     {
         $tableauPlat = $Panier->getTableauPlats();
+        $c = 0;
         foreach ($tableauPlat as $platPanier){
             if($platPanier->getPlat()->getId() == $Plat->getId()) {
                 if ($platPanier->getQuantity() > 1) {
                 $platPanier->setQuantity($platPanier->getQuantity() - 1);
                  }else
                 {
-                    array_splice($tableauPlat, 0,1);
+
+                   // array_splice($tableauPlat, $c,1);
+                    $Panier->supTableauPlats($c);
                 }
             }
+            $c++;
         }
+
+
+        return $Panier;
     }
     private function Redirection_origine()
     {
@@ -216,7 +223,7 @@ class PanierController extends Controller
         $Panier =  $this->getUser()->getAttribute('Panier',$request);
         if($Panier)
         {
-            $this->menuSuppr($Plat,$Panier);
+            $Panier = $this->menuSuppr($Plat,$Panier);
             $this->getUser()->setAttribute('Panier',$Panier,$request);
 
         }else
@@ -252,16 +259,20 @@ class PanierController extends Controller
     private function  menuSuppr($Menu,$Panier)
     {
         $tableauMenu = $Panier->getTableauMenus();
+        $c = 0;
         foreach ($tableauMenu as $menuPanier){
             if($menuPanier->getMenu()->getId() == $Menu->getId()) {
                 if ($menuPanier->getQuantity() > 1) {
                     $menuPanier->setQuantity($menuPanier->getQuantity() - 1);
                 }else
                 {
-                    array_splice($tableauMenu, 0,1);
+
+                    $Panier->supTableauMenus($c);
                 }
             }
+            $c++;
         }
+        return $Panier;
     }
     public function widgetPanierAction(){
         return $this->render('GourmetBundle:Panier:widgetPanier.html.twig');

@@ -1,8 +1,15 @@
 
-function affichagePanier(){
-    $.get( "widget", function(data) {
+function affichagePanier(data){
+    if( typeof(data) == 'undefined' ){
+        $.get( "widget", function(data) {
+
+            $("#widgetPanier").html(data);
+        });
+    }else
+    {
         $("#widgetPanier").html(data);
-    });
+    }
+
 }
 
 //Il faudra ajouter une balise data et y placer l'id
@@ -50,9 +57,9 @@ function ajoutPlat(Id){
         .fail(function() {
             //      alert( "error" );
         })
-        .always(function() {
+        .always(function(data) {
             //      alert( "finished" );
-            affichagePanier();
+            affichagePanier(data);
         });
 
 }
@@ -65,8 +72,8 @@ function ajoutMenu(Id){
         .fail(function() {
             //        alert( "error" );
         })
-        .always(function() {
-            affichagePanier();
+        .always(function(data) {
+            affichagePanier(data);
         });
 
 }
@@ -79,8 +86,8 @@ function supprMenu(Id){
         .fail(function() {
             //        alert( "error" );
         })
-        .always(function() {
-            affichagePanier();
+        .always(function(data) {
+            affichagePanier(data);
         });
 
 }
@@ -93,8 +100,8 @@ function supprPlat(Id){
         .fail(function() {
             //       alert( "error" );
         })
-        .always(function() {
-            affichagePanier();
+        .always(function(data) {
+            affichagePanier(data);
         });
 
 }
