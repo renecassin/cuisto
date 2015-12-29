@@ -42,12 +42,13 @@ class PlatType extends AbstractType
                 "multiple" => false,
                 "expanded" => false
             ))
-            ->add('tlivs', 'entity',  array(
+            ->add('tliv', 'entity',  array(
                 'class' => 'AvekApetiBackBundle:TypeLivraison',
                 'choice_label' => 'name',
                 "multiple" => false,
                 "expanded" => false
             ))
+
             ->add('image',new ImageType(), array('required' => false))
         ;
     }

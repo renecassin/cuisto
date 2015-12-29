@@ -38,6 +38,7 @@
                         <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
                             {% if entity.chef.utilisateur %}
                                 <h3>Chef {{ entity.chef.utilisateur.login }}</h3>
+
                             {% endif %}
                         </a>
                     </h4>

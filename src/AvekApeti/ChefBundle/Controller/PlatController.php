@@ -152,6 +152,7 @@ class PlatController extends Controller
 
         return $this->render('ChefBundle:Plat:edit.html.twig', array(
             'entity'      => $entity,
+            'entityChef'      => $User,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -245,6 +246,7 @@ class PlatController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('chef_plat_delete', array('id' => $id)))
             ->setMethod('DELETE')
+            //->add('submit', 'submit', array('label' => 'Supprimer ce plat'))
             //->add('submit', 'submit', array('label' => 'Supprimer ce plat'))
             ->getForm()
         ;

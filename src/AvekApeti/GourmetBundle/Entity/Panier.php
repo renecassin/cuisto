@@ -36,6 +36,10 @@ class Panier
         return $this->chefSelect;
 
     }
+    public function setChefSelect($Chef){
+        $this->chefSelect = $Chef;
+
+    }
     public function getTableauPlats(){
         return $this->tableauPlats;
     }
@@ -50,6 +54,47 @@ class Panier
         $this->tableauMenus[] = $MenuPanier;
         return $this;
     }
+    public function supTableauPlats($index){
+        unset($this->tableauPlats[$index]);
+        $this->tableauPlats = array_values($this->tableauPlats);
+        if(count($this->tableauPlats) == 0)
+        {
+            $this->tableauPlats = null;
+        }
+        $this->verifNull();
+        return $this;
+    }
+    public function supTableauMenus($index){
+        unset($this->tableauMenus[$index]);
+        $this->tableauMenus = array_values($this->tableauMenus);
+        if(count($this->tableauMenus) == 0)
+        {
+            $this->tableauMenus = null;
+        }
+        $this->verifNull();
+        return $this;
+    }
+    public function getCount(){
+        $c=0;
+        if(count($this->getTableauPlats()) != 0) {
+            foreach ($this->getTableauPlats() as $platPanier) {
+                $c = $c + $platPanier->getQuantity();
+            }
+        }
+      if(count($this->getTableauMenus()) != 0){
+        foreach ($this->getTableauMenus() as $menuPanier){
+            $c = $c + $menuPanier->getQuantity();
+        }
+      }
+        return $c;
+    }
 
+    private function verifNull()
+    {
+        if($this->tableauMenus == null && $this->tableauPlats == null)
+        {
+            $this->chefSelect = null;
+        }
+    }
 }
 

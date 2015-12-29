@@ -263,20 +263,8 @@ class Image
         return $this->file;
     }
 
-    public function webPath($thumb = null)
+    public function webPath()
     {
-        if ($thumb)
-        {
-            if (file_exists(__DIR__.'/../../../../web/'.$this->routewebdir.'/'.$thumb.'-'.$this->name))
-            {
-                return $this->routewebdir.'/'.$thumb.'-'.$this->name;
-            }
-        }
-        if (file_exists(__DIR__.'/../../../../web/'.$this->routewebdir.$this->name))
-        {
-            return $this->routewebdir.$this->name;
-        }
-        // Photo par défaut
-        return null;
+        return $this->routewebdir.$this->name;
     }
 }

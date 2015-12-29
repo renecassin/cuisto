@@ -7,11 +7,20 @@ panier_plat_ajout:
 
 panier_plat_suppr:
     path:     /suppr/plat/{idPlat}
-    defaults: { _controller: "GourmetBundle:Panier:ajoutPlatSuppr" }
+    defaults: { _controller: "GourmetBundle:Panier:suppPlatPanier" }
 
 panier_reset:
     path:     /reset
     defaults: { _controller: "GourmetBundle:Panier:resetPanier" }
 
+panier_menu_ajout:
+    path:     /ajout/menu/{idMenu}
+    defaults: { _controller: "GourmetBundle:Panier:ajoutMenuPanier" }
 
+panier_menu_suppr:
+    path:     /suppr/menu/{idMenu}
+    defaults: { _controller: "GourmetBundle:Panier:suppMenuPanier" }
+panier_widget_panier:
+    path:     /widget
+    defaults: { _controller: "GourmetBundle:Panier:widgetPanier" }
 

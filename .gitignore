@@ -9,9 +9,6 @@
 /composer.phar
 /vendor/
 /web/bundles/
-<<<<<<< HEAD
 /.idea/*
-=======
 .idea/
-/.idea/*
->>>>>>> b3806623da33f95f0dd23f5e4d5a0ac7f0a7b0d4
+/web/uploads/*

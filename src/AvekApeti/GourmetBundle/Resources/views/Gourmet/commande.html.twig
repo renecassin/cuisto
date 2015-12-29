@@ -49,6 +49,7 @@
                                     <img src="{{ entity.chef.utilisateur.image.webPath|imagine_filter('profil_picture_small') }}" alt="" >
                                 {% else %}
                                     <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" >
+
                                 {% endif %}
                             </a>
                         </div>
@@ -57,6 +58,7 @@
                         <div class="cellule-img">
                             <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
                                 <h3>{{ entity.chef.utilisateur.login }}</h3>
+
                             </a>
                             {% if entity.dateCreated %}<h5>{{ entity.dateCreated|date('d/m/Y') }}</h5>{% endif %}
                         </div>

@@ -4,10 +4,27 @@
 
 {% block body %}
 <h1>Welcome to the Panier:index page</h1>
-    {% if panier %}
-    {{ dump(panier) }}
-    {% else %}
-        Votre panier est vide
-        <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }}>ajout</a>
-    {% endif %}
+    <div id="widgetPanier">
+        {{ render(controller('GourmetBundle:Panier:widgetPanier')) }}
+    </div>
+    <br>
+    <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }} data-id="1" class="ajout_plat_panier">ajout Plat</a>
+    <a href={{ path('panier_plat_suppr',{idPlat:'1'}) }} data-id="1" class="suppr_plat_panier">supprimer Plat</a>
+    <a href={{ path('panier_menu_ajout',{idMenu:'1'}) }} data-id="1" class="ajout_menu_panier">ajout Menu</a>
+    <a href={{ path('panier_menu_suppr',{idMenu:'1'}) }} data-id="1" class="suppr_menu_panier">supprimer Menu</a>
+    <a href={{ path('panier_reset') }} class="reset_panier">reset</a><br>
+     <span class="Panier_nb">
+         {% if  app.user.hasAttribute('Panier',app.request) %}
+             {{ app.user.getAttribute('Panier',app.request).getCount() }}
+         {% else %}
+             0
+         {% endif %}
+     </span>
+    <a href="">Commander</a>
+
+{% block foot_scripts %}
+    {{ parent() }}
+<script type="text/javascript" src="{{ asset('bundles/gourmet/js/Panier.js') }}"></script>
+
+{% endblock %}
 {% endblock %}
