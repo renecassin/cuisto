@@ -200,8 +200,10 @@
             {% endif %}
                 <li class="">
                     <a  class="ion-ios-cart" style="font-size: 25px;"  href="{{ path('panier_index') }}">
+                        {% if  app.user %}
                         {% if  app.user.hasAttribute('Panier',app.request) %}
                             <span class="Panier_nb">{{ app.user.getAttribute('Panier',app.request).getCount() }}</span>
+                        {% endif %}
                         {% endif %}
                     </a>
                 </li>
