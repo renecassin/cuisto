@@ -3,6 +3,7 @@
 namespace AvekApeti\BackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PLat
@@ -32,6 +33,8 @@ class Plat
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * )
      */
     private $name;
 
@@ -39,6 +42,11 @@ class Plat
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     *
+     * @Assert\Length(
+     *      max = 150,
+     *      maxMessage = "La description du plat ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $content;
 

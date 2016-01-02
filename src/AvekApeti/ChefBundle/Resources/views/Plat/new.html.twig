@@ -1,5 +1,18 @@
 {%  extends 'GourmetBundle::layout.html.twig' %}
 
+{% block foot_scripts %}
+    {{ parent() }}
+    <script>
+        $('#myStateButton').on('click', function () {
+            var btn = $(this)
+            btn.button('complete')
+            setTimeout(function () {
+                btn.button('reset')
+            }, 2000)
+        })
+    </script>
+{%  endblock foot_scripts %}
+
 {% block titre %}Créer un plat {{ parent() }}{% endblock %}
 
 {% block content %}
@@ -83,7 +96,7 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-3">
                                     {% if entity.image %}
-                                        <img  src="{{ asset(entity.image.webPath('thumb-small')) }}" alt="">
+                                        <img  src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt="">
                                     {% else %}
                                         <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
                                     {% endif %}
@@ -97,7 +110,7 @@
                                 <div class="col-md-8">
                                     {{ form_widget(form.quantity,
                                     {
-                                        attr:{class: "form-control",placeholder: "0" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
+                                        attr:{maxlength:"50", class: "form-control",placeholder: "1" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(form.quantity) }}</p>
@@ -132,13 +145,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <label for="connu" class="col-md-3 control-label" id="label-piment">Ce plat est-il pimenté ?</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="connu">
+                                        <option>Pas du tout</option>
+                                        <option>Un peu</option>
+                                        <option>Beaucoup</option>
+                                        <option>Piments mis à part</option>
+                                    </select>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(form.tcoms, 'Type de commande', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(form.tcoms, 'Type de repas', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(form.tcoms,
                                     {
@@ -152,7 +179,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(form.tliv, 'Type de livraison', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(form.tliv, 'Mode de remise', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(form.tliv,
                                     {
@@ -168,7 +195,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(form.content, 'Description', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(form.content, 'Description (150 caractères maximum)', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(form.content,
                                     {
@@ -183,7 +210,7 @@
                             <div class="form-group has-feedback">
                                 <label for="ingredients" class="col-md-3 control-label">Ingrédients</label>
                                 <div class="col-md-8">
-                                    <textarea id="ingredients" class="form-control" placeholder='-Ingrédient1                                                                  -Ingrédient2 ...' id="ingredients" required data-validation-required-message="Veuillez entrer vos ingrédients."></textarea>
+                                    <textarea id="ingredients" class="form-control" placeholder='-Ingrédient1                                                                  -Ingrédient2 ...' id="ingredients"></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -191,8 +218,6 @@
                     </div>
 
                     <div class="row">
-
-
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
@@ -238,7 +263,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                <div class="col-md-3 col-md-offset-3">
+                                <div class="col-md-9 col-md-offset-3">
                                     <div class="checkbox">
                                         <label>
                                         {{ form_widget(form.active,
@@ -252,24 +277,60 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <div class="col-md-9 col-md-push-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" value="remember-me" data-target="#MonCollapseBoisson" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">Je propose une boisson
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="MonCollapseBoisson" class="collapse">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label for="boisson" class="col-md-3 control-label" id="label-boisson">Boisson</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="boisson" class="form-control" placeholder="Boisson">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label for="prix-boisson" class="col-md-3 control-label" id="label-prix-boisson">Prix boisson en €</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="prix-boisson" class="form-control" placeholder="Prix boisson en €">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
                 <div class="clearfix"></div>
 
-                <div class="col-md-6 text-right">
-                    <div id="success"></div>
-                    <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
+                <div class="row bandeau-btn">
+                    <div class="col-md-5 text-right">
+                        <div id="success"></div>
+                        <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
+                    </div>
+
+                    <div class="col-md-7 text-left">
+                        <div id="success"></div>
+                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création..." autocomplete="off">Créer ce plat</button>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
 
-                <div class="col-md-6 text-left">
-                    <div id="success"></div>
-                    <button type="submit" class="btn btn-default btn-xl">Créer ce plat</button>
-                </div>
-                {{ form_end(form) }}
-            
-                {#<a href="{{ path('chef_plat') }}">Voir la liste des plats</a>#}
+
             </div>
         </div>
     </section>

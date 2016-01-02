@@ -1,5 +1,17 @@
 {%  extends 'GourmetBundle::layout.html.twig' %}
 
+{% block foot_scripts %}
+    {{ parent() }}
+    <script>
+        $('#myStateButton').on('click', function () {
+            var btn = $(this)
+            btn.button('complete')
+            setTimeout(function () {
+                btn.button('reset')
+            }, 2000)
+        })
+    </script>
+{%  endblock foot_scripts %}
 
 {% block titre %}Nouveau message {{ parent() }}{% endblock %}
 
@@ -91,7 +103,7 @@
 
             <div class="col-md-6 text-left">
                 <div id="success"></div>
-                <button type="submit" class="btn btn-default btn-xl">Envoyer</button>
+                <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Envoi..." autocomplete="off">Envoyer</button>
             </div>
 
             {{ form_end(form) }}

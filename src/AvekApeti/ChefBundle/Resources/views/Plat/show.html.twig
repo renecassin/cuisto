@@ -88,7 +88,7 @@
 
                             <div class="col-md-12">
                                 <div class="row bandeau-icon">
-                                    <div class="col-sm-2 col-xs-6 text-center">
+                                    <div class="col-sm-2 col-xs-4 text-center">
                                     {% if entity.categorie %}
                                         {% if entity.categorie.name == "Entrée" %}
                                             <i class="fa fa-2x fa-sign-in"></i>
@@ -102,7 +102,7 @@
                                         <p>{{ entity.categorie.name }}</p>
                                     {% endif %}
                                     </div>
-                                    <div class="col-sm-2 col-xs-6 text-center">
+                                    <div class="col-sm-2 col-xs-4 text-center">
                                     {% if entity.specialite %}
                                         {% if entity.specialite.name == "Occidentale" %}
                                             <i class="fa fa-2x fa-umbrella"></i>
@@ -115,6 +115,17 @@
                                         {% endif %}
                                         <p>{{ entity.specialite.name }}</p>
                                     {% endif %}
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4 text-center">
+                                        {#{% if entity.pimente %}
+                                            {% if entity.pimente.name == "Pimente" %}#}
+                                                <i class="fa fa-2x fa-bomb"></i>
+                                            {#{% else %}
+                                                <i class="fa fa-2x fa-smile-o"></i>
+                                            {% endif %}#}
+                                            {#<p>{{ entity.pimente.name }}</p>#}
+                                            <p>Pimenté</p>
+                                        {#{% endif %}#}
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
                                         {#{% if entity.specificite.name == "Végétarien" %}
@@ -143,7 +154,9 @@
                             </div>
 
                             <div class="col-md-12">
-                                <p class="description-plat">{{ entity.content|nl2br }}</p>
+                                <div class="contenu-msg">
+                                    <p class="description-plat">{{ entity.content|nl2br }}</p>
+                                </div>
                             </div>
 
                             <div class="col-md-12">
@@ -444,19 +457,39 @@
             </div>
 
 
-            <aside class="col-md-3 text-center ">
+            <aside class="col-md-3 ">
                 {#<p class="nbre-part">Attention il ne reste que 3 parts !</p>#}
                 <div class="panier">
-                    <h4>Ce plat est
+                    <h3 class="text-center">Ce plat est
                         {% if entity.active %}
                             <span class="label label-actif">Actif</span>
                         {% else %}
                             <span class="label label-inactif">Inactif</span>
                         {% endif %}
-                    </h4>
+                    </h3>
                     <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xl-plat show-mes-plats">Modifier ce plat</a>
+                    <button  class="btn btn-default show-mes-plats" data-toggle="modal" data-target=".bs-example-modal-sm">
+                        Supprimer ce plat
+                    </button>
                     {{ form_start(delete_form) }}
-                        <button type="submit" class="btn btn-default  show-mes-plats">Supprimer ce plat</button>
+
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Suppression de {{ entity.name }}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Etes-vous sur de vouloir supprimer ce plat ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                        <button type="submit" class="btn btn-primary">Valider</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {{ form_end(delete_form) }}
                     <a href="{{ path('chef_plat') }}" class="btn btn-default  btn-filtre btn-xl">
                         <i class="fa fa-1x fa-th-list"></i> Afficher mes plats

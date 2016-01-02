@@ -600,6 +600,13 @@ section#contact .glyphicon-perso {
     padding-right:5px;
 }
 
+#page-mon-compte .fa-2x,
+#page-mon-compte-chef .fa-2x{
+    color:#ffada2;
+    padding:5px 0;
+}
+
+
 #selection-plat input{
     margin-left: -1px;
 }
@@ -838,10 +845,11 @@ section#contact .glyphicon-perso {
     }
 }
 
+/*
 #index-plat .panier p{
     margin-bottom: 0px;
     font-size: 17px;
-}
+}*/
 
 #index-plat .panier hr{
     margin-top: 10px;
@@ -1015,6 +1023,8 @@ section#contact .glyphicon-perso {
         top:-19px;
     }
 
+    #label-piment,
+    #label-rayon,
     #label-pro,
     #label-rib,
     #label-siret,
@@ -1061,18 +1071,21 @@ section#contact .glyphicon-perso {
     padding: 50px 0;
 }
 
+#page-edit-plat,
+#page-creation-plat,
 #page-mon-compte-chef{
-    background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/MAMIE.png)  center ;
+    background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/logo/avekapeti-logo-svg-02.svg) center no-repeat;
 }
 
 #page-mon-compte {
     background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/FEMME-HOMME.png) center ;
 }
 
+/*
 #page-edit-plat,
 #page-creation-plat {
     background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/PLAT.png)  center ;
-}
+}*/
 
 #page-liste-plat {
     background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/plats.jpg)  center ;
@@ -1169,11 +1182,21 @@ section#contact .glyphicon-perso {
     border-bottom: 1px solid #DCE0E0;
 }*/
 
+#page-creation-plat .form-group img,
+#page-edit-plat .form-group img,
 #page-liste-plat .cellule-img img {
     width: 300px;
     height: 160px;
     border-radius: 1%;
 }
+
+#page-mon-compte-chef .form-group img,
+#page-mon-compte .form-group img{
+    width: 100%;
+    height: auto;
+    border-radius: 1%;
+}
+
 
 #page-voir-commande .cellule-img img,
 #page-liste-commande .cellule-img img,
@@ -1193,14 +1216,6 @@ section#contact .glyphicon-perso {
     }
 }
 
-#page-creation-plat .form-group img,
-#page-edit-plat .form-group img,
-#page-mon-compte .form-group img,
-#page-mon-compte-chef .form-group img{
-    width: 35%;
-    height: auto;
-    border-radius: 1%;
-}
 
 .label-actif{
     background: #00cfb3 ;
@@ -1282,9 +1297,9 @@ section#contact .glyphicon-perso {
     width: 50%;
 }
 
-.panier h4{
+.panier h3{
     margin-top: 35px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .show-mes-plats{
@@ -1349,7 +1364,20 @@ section#contact .glyphicon-perso {
 }
 
 .contenu-msg{
-    overflow: auto;
+    word-wrap: break-word;
+}
+
+.bandeau-btn{
+    margin-top: 40px;
+}
+
+.modal.in .modal-dialog {
+    transform: translate(0px, 50%);
+}
+
+.tooltip-inner{
+    padding: 10px;
+    font-size: 16px;
 }
 
 

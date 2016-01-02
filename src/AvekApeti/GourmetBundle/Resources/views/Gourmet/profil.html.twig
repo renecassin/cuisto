@@ -1,5 +1,23 @@
 {%  extends 'GourmetBundle::layout.html.twig' %}
 
+{% block foot_scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $('#myStateButton').on('click', function () {
+            var btn = $(this)
+            btn.button('complete')
+            setTimeout(function () {
+                btn.button('reset')
+            }, 12000)
+        })
+    </script>
+{%  endblock foot_scripts %}
+
 {% block titre %}Mon compte{{ parent() }}{% endblock %}
 
 {% block content %}
@@ -37,6 +55,7 @@
 
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.firstname, 'Prénom', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.firstname,
                                 {
@@ -48,6 +67,7 @@
                         </div>
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.lastname, 'Nom', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="right" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.lastname,
                                 {
@@ -71,18 +91,20 @@
 
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.email, 'Adresse e-mail', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="right" title="Privé" ></i>
                             <div class="col-md-8">
-                                    {{ form_widget(edit_form.email,
-                                    {
-                                        attr:{class: "form-control",placeholder: "Adresse e-mail : nom@exemple.com",id: "email",required: 'data-validation-required-message= "Veuillez entrer votre email."'}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(edit_form.email) }}</p>
+                                {{ form_widget(edit_form.email,
+                                {
+                                    attr:{class: "form-control",placeholder: "Adresse e-mail : nom@exemple.com",id: "email",required: 'data-validation-required-message= "Veuillez entrer votre email."'}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.email) }}</p>
                             </div>
                         </div>
 
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.password, 'Mot de passe', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="right" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.password,
                                 {
@@ -95,6 +117,7 @@
 
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.phone, 'Téléphone', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="right" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.phone,
                                 {
@@ -106,6 +129,7 @@
                         </div>
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.adress, 'Adresse', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="right" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.adress,
                                 {
@@ -117,6 +141,7 @@
                         </div>
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.city, 'Ville', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="right" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.city,
                                 {
@@ -128,6 +153,7 @@
                         </div>
                         <div class="form-group has-feedback">
                             {{ form_label(edit_form.cp, 'Code postal', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="bottom" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.cp,
                                 {
@@ -177,7 +203,7 @@
                                 }}
                                 <p class="help-block text-danger">{{ form_errors(edit_form.image) }}</p>
                             </div>
-                            <div class="col-md-8 col-md-offset-3">
+                            <div class="col-md-4 col-md-offset-3">
 
                                 {% if entity.image %}
                                     <img src="{{ entity.image.webPath|imagine_filter('profil_picture') }}" alt="">
@@ -220,9 +246,9 @@
 
 
                     </div>
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center bandeau-btn   ">
                         <div id="success"></div>
-                        <button type="submit" class="btn btn-default btn-xl">Enregistrer</button>
+                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Enregistrement..." autocomplete="off">Enregistrer</button>
                     </div>
                 {{ form_end(edit_form) }}
             </div>

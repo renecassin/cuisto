@@ -1,14 +1,14 @@
 
 function affichagePanier(data){
-    if( typeof(data) == 'undefined' ){
+    //if( typeof(data) == 'undefined' ){
         $.get( "widget", function(data) {
 
             $("#widgetPanier").html(data);
         });
-    }else
-    {
-        $("#widgetPanier").html(data);
-    }
+    //}else
+    //{
+        //$("#widgetPanier").html(data);
+    //}
 
 }
 
