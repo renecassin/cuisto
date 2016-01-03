@@ -63,7 +63,7 @@ class Commande
      * @ORM\ManyToMany(targetEntity="Plat", mappedBy="Commande")
      */
     /**
-     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="Id",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="plats",cascade={"persist"})
      */
     private $commandeplat;
    /* /**

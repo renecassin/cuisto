@@ -54,6 +54,11 @@ class Plat
      * @var float
      *
      * @ORM\Column(name="price", type="float")
+     *
+     * @Assert\Range(
+     *      max = 7,
+     *      maxMessage = "Le prix d'un plat ne doit pas dépasser {{ limit }}€"
+     * )
      */
     private $price;
 
@@ -61,6 +66,7 @@ class Plat
      * @var \DateTime
      *
      * @ORM\Column(name="dateCreated", type="datetime")
+     *
      */
     private $dateCreated;
 
@@ -139,7 +145,7 @@ class Plat
      *)
      */
     /**
-     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="CommandePlat", mappedBy="plats_id")
      */
     private $commandePlat;
     /**

@@ -23,7 +23,7 @@ class CommandePlat
 
     /**
      * @ORM\ManyToOne(targetEntity="Plat")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, )
      */
     private $plats;
 

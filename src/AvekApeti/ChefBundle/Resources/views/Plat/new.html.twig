@@ -44,6 +44,7 @@
                     <p>Chaque plat sur Avekapeti est unique. Mettez en avant ce qui rend votre plat appétissant pour que les gourmets qui veulent déguster vos spécialités le remarquent.</p>
                 </div>
 
+                {% form_theme form 'form/form_errors.html.twig' %}
                 {{ form_start(form, {'attr':{class: "form-horizontal"} } ) }}
 
                 <div class="col-md-12">
@@ -72,6 +73,14 @@
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(form.price) }}</p>
+                                    {#{% if entity.categorie == "Entrée" %}#}
+                                    <p class="help-block">Le prix maximum d'une entrée est de 2 €</p>
+                                    {#{% elseif entity.categorie == "Plat" %}#}
+                                    <p class="help-block">Le prix maximum d'une plat principal est de 7 €</p>
+                                    {#{% elseif entity.categorie == "Dessert" %}#}
+                                    <p class="help-block">Le prix maximum d'un dessert est de 2 €</p>
+                                    {#{% endif %}#}
+                                    <p class="help-block">Le prix maximum d'une boisson est de 0,50 €</p>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +119,7 @@
                                 <div class="col-md-8">
                                     {{ form_widget(form.quantity,
                                     {
-                                        attr:{maxlength:"50", class: "form-control",placeholder: "1" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
+                                        attr:{maxlength:"50", class: "form-control",'value': "1" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(form.quantity) }}</p>
@@ -249,7 +258,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(form.unableWhile, 'Disponibilité', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(form.unableWhile, 'Fermeture des commandes', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(form.unableWhile,
                                     {
@@ -282,7 +291,7 @@
                                 <div class="col-md-9 col-md-push-3">
                                     <div class="checkbox">
                                         <label>
-                                            <input name="remember" type="checkbox" value="remember-me" data-target="#MonCollapseBoisson" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">Je propose une boisson
+                                            <input name="remember" type="checkbox" value="remember-me" data-target="#MonCollapseBoisson" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">Je propose aussi une boisson
                                         </label>
                                     </div>
                                 </div>
@@ -317,7 +326,7 @@
 
                 <div class="clearfix"></div>
 
-                <div class="row bandeau-btn">
+                <div class="bandeau-btn">
                     <div class="col-md-5 text-right">
                         <div id="success"></div>
                         <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
@@ -325,7 +334,7 @@
 
                     <div class="col-md-7 text-left">
                         <div id="success"></div>
-                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création..." autocomplete="off">Créer ce plat</button>
+                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création du plat..." autocomplete="off">Créer ce plat</button>
                     </div>
                     {{ form_end(form) }}
                 </div>

@@ -17,7 +17,7 @@
 
             <div class="col-sm-12 text-center photo-mon-compte ">
                 {% if entityUser.image %}
-                    <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                    <img src="{{ entityUser.image.webPath('thumb-small')|imagine_filter('profil_picture') }}" alt="" class="img-circle">
                 {% else %}
                     <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
                 {% endif %}
@@ -45,7 +45,7 @@
                     <div class="col-xs-4 col-sm-2">
                         <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
                             {% if  entity.utilisateur.image %}
-                                <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture_small') }}" alt="" class="img-voir-msg">
+                                <img src="{{ entityUser.image.webPath('thumb-small')|imagine_filter('profil_picture_small') }}" alt="" class="img-voir-msg">
                             {% else %}
                                 <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" class="img-voir-msg">
                             {% endif %}
@@ -57,27 +57,95 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <ul>
-                            <li>Type de livraison : {% if entity.livraison %}{{ entity.livraison.name}}{% endif %}</li>
-                            <li>Type de commande : {% if entity.typecommande %}{{ entity.typecommande.name}}{% endif %}</li>
-                            <li>Description : {{ entity.content|nl2br  }}</li>
-                            <li>Validation : {{ entity.contentvalidation}}</li>
-                            <li>Plats :
-                                {#{% for plat in entity.commandeplat.plats %}
-                                    <p> {{ plat.name }}</p>
-                                    <p> {{ plat.quantity }}</p>
-                                {% endfor %}
-                                </li>
-                                <li>Menus :
-                                    {% for menu in entity.commandemenu.menus %}
-                                        <p> {{ menu.menus.name }}</p>
-                                        <p> {{ menu.quantity }}</p>
+                    <div class="col-md-12 ">
+                        <div class="col-xs-6 col-md-3 text-center">
+                            {% if entity.livraison %}
+                                {% if entity.livraison.name == "Retrait" %}
+                                    <i class="fa fa-2x fa-bicycle"></i>
+                                {% else %}
+                                    <i class="fa fa-2x fa-home"></i>
+                                {% endif %}
+                                <p>{{ entity.livraison.name }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-xs-6 col-md-3 text-center">
+                            {% if entity.typecommande %}
+                                {% if entity.typecommande.name == "Petit-déjeuner" %}
+                                    <i class="fa fa-2x fa-bed"></i>
+                                {% elseif entity.typecommande.name == "Déjeuner" %}
+                                    <i class="fa fa-2x fa-sun-o"></i>
+                                {% elseif entity.typecommande.name == "Goûter" %}
+                                    <i class="fa fa-2x fa-coffee"></i>
+                                {% elseif entity.typecommande.name == "Diner" %}
+                                    <i class="fa fa-2x fa-moon-o"></i>
+                                {% else %}
+                                    <i class="fa fa-2x fa-calendar"></i>
+                                {% endif %}
+                                <p>{{ entity.typecommande.name }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 text-center">
+                            {% if entity.content %}
+                                <i class=" fa fa-2x fa-comment"></i>
+                                <p >{{ entity.content|nl2br }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-12">
+                            {% if listePlats is defined %}
+                                <ul class="liste-plats-commande">
+                                    {% for commandePlat in listePlats %}
+                                        <div class="row" {% if entity.status == "Validée" %} id="ligne-active" {% elseif entity.status == "Abandonnée" %} id="ligne-desactive" {% else %} id="ligne-intermediaire" {% endif %}>
+                                            <div class="col-sm-6">
+                                                <a href="#">
+                                                    <h2>{{ commandePlat.plats.name }}</h2>
+                                                </a>
+                                                <li class="col-md-offset-1">Prix d'une part : {{ commandePlat.plats.price }} €</li>
+                                                <li class="col-md-offset-1">Nombre de parts : x{{ commandePlat.quantity }}</li>
+                                                <h3 class="text-right">{{ commandePlat.plats.price * commandePlat.quantity }} €</h3>
+                                            </div>
+                                            <div class="col-sm-5 col-sm-push-1">
+                                                <div class="cellule-img">
+                                                    <a href="#">
+                                                        {% if commandePlat.plats.image %}
+                                                            <img  src="{{ commandePlat.plats.image.webPath|imagine_filter('plat_picture_small') }}" alt="">
+                                                        {% else %}
+                                                            <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
+                                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% endfor %}
-                                </li>#}
-
-
-                        </ul>
+                                </ul>
+                            {% endif %}
+                            {% if listeMenus is defined %}
+                                <ul class="liste-plats-commande">
+                                    {% for commandeMenu in listeMenus %}
+                                        <div class="row" {% if entity.status == "Validée" %} id="ligne-active" {% elseif entity.status == "Abandonnée" %} id="ligne-desactive" {% else %} id="ligne-intermediaire" {% endif %}>
+                                            <div class="col-sm-6">
+                                                <a href="#">
+                                                    <h2>{{ commandeMenu.plats.name }}</h2>
+                                                </a>
+                                                <li class="col-md-offset-1">Prix d'une part : {{ commandeMenu.plats.price }} €</li>
+                                                <li class="col-md-offset-1">Nombre de parts : x{{ commandeMenu.quantity }}</li>
+                                                <h3 class="text-right">{{ commandeMenu.plats.price * commandeMenu.quantity }} €</h3>
+                                            </div>
+                                            <div class="col-sm-5 col-sm-push-1">
+                                                <div class="cellule-img">
+                                                    <a href="#">
+                                                        {% if commandeMenu.plats.image %}
+                                                            <img  src="{{ commandePlat.plats.image.webPath|imagine_filter('plat_picture_small') }}" alt="">
+                                                        {% else %}
+                                                            <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
+                                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

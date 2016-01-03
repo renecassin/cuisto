@@ -36,6 +36,12 @@ class CommandeType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'required' => false))
+            ->add('livraison','entity', array(
+                'class' => 'AvekApetiBackBundle:TypeLivraison',
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => false,
+                'required' => false))
           /*  ->add('plat','entity', array(
                 'class' => 'AvekApetiBackBundle:Plat',
                 'choice_label' => 'name',

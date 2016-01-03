@@ -31,6 +31,16 @@ class CommandeController extends Controller
 
         $entity = $em->getRepository('AvekApetiBackBundle:Commande')->getOneByC($Chef->getId(),$id);
 
+        $listCommandeMenus = $em
+            ->getRepository('AvekApetiBackBundle:CommandeMenu')
+            ->findBy(array('commande' => $entity))
+        ;
+
+        $listCommandePlats = $em
+            ->getRepository('AvekApetiBackBundle:CommandePlat')
+            ->findBy(array('commande' => $entity))
+        ;
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Commande entity.');
         }
@@ -39,6 +49,8 @@ class CommandeController extends Controller
         return $this->render('ChefBundle:Commande:show.html.twig', array(
             'entityUser' => $user,
             'entity'      => $entity,
+            'listePlats'      => $listCommandePlats,
+            'ListeMenus'      => $listCommandeMenus,
         ));
     }
 }

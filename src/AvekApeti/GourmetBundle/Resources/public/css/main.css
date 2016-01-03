@@ -600,6 +600,7 @@ section#contact .glyphicon-perso {
     padding-right:5px;
 }
 
+#page-voir-commande .fa-2x,
 #page-mon-compte .fa-2x,
 #page-mon-compte-chef .fa-2x{
     color:#ffada2;
@@ -1190,6 +1191,12 @@ section#contact .glyphicon-perso {
     border-radius: 1%;
 }
 
+#page-voir-commande .cellule-img img{
+    width: 100%;
+    height: auto;
+    border-radius: 1%;
+}
+
 #page-mon-compte-chef .form-group img,
 #page-mon-compte .form-group img{
     width: 100%;
@@ -1198,7 +1205,6 @@ section#contact .glyphicon-perso {
 }
 
 
-#page-voir-commande .cellule-img img,
 #page-liste-commande .cellule-img img,
 #page-voir-msg .cellule-img img,
 #page-liste-msg .cellule-img img {
@@ -1206,9 +1212,9 @@ section#contact .glyphicon-perso {
     height: 80px;
     border-radius: 50%;
 }
+
 @media(min-width:768px) {
     #page-liste-commande .cellule-img img,
-    #page-voir-commande .cellule-img img,
     #page-voir-msg .cellule-img img,
     #page-liste-msg .cellule-img img {
         width: 90px;
@@ -1235,6 +1241,10 @@ section#contact .glyphicon-perso {
 
 .cellule-contenu{
     padding: 20px 30px;
+}
+
+#page-liste-commande .cellule-contenu{
+    padding: 30px;
 }
 
 #page-liste-plat .cellule-titre{
@@ -1307,7 +1317,7 @@ section#contact .glyphicon-perso {
     padding: 20px 0px;
 }
 
-.cellule-titre p{
+#page-liste-msg .cellule-titre p{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1369,6 +1379,12 @@ section#contact .glyphicon-perso {
 
 .bandeau-btn{
     margin-top: 40px;
+}
+
+.liste-plats-commande{
+    margin-bottom: 30px;
+    padding-left: 0px;
+    padding-right: 15px;
 }
 
 .modal.in .modal-dialog {

@@ -64,9 +64,9 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-3 col-sm-push-1">
+                    <div class="col-sm-3 col-xs-6 text-center">
                         <div class="cellule-contenu nom-plat">
-                            <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
+                            <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
                                 <h3 class="lien-hover">
                                     {% if entity.status == "Validée" %}
                                         <span class="label label-actif">{{ entity.status }}</span>
@@ -76,15 +76,18 @@
                                         <span class="label label-intermediaire">{{ entity.status }}</span>
                                     {% endif %}
                                 </h3>
-
                             </a>
-                            <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
-                                <h4>{{ entity.total }} €</h4>
-                            </a>
-
                         </div>
                     </div>
-                    <div class="col-sm-3 col-sm-push-2">
+                    <div class="col-sm-2 col-xs-6 text-center">
+                        <div class="cellule-contenu nom-plat">
+
+                            <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
+                                <h3>{{ entity.total }} €</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
                         <div class="cellule-modifier">
                             <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
                         </div>

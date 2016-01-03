@@ -141,13 +141,13 @@
                                         <p>{{ entity.quantity }} parts / 8 </p>
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
-                                    {% if entity.tcoms %}
-                                        {% if entity.tcoms.name == "Retrait" %}
+                                    {% if entity.tliv %}
+                                        {% if entity.tliv.name == "Retrait" %}
                                             <i class="fa fa-2x fa-bicycle"></i>
                                         {% else %}
                                             <i class="fa fa-2x fa-home"></i>
                                         {% endif %}
-                                        <p>{{ entity.tcoms.name }}</p>
+                                        <p>{{ entity.tliv.name }}</p>
                                     {% endif %}
                                     </div>
                                 </div>
@@ -371,13 +371,13 @@
                                                 <p>{{ entity.quantity }} parts / 8 </p>
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
-                                                {% if entity.tcoms %}
-                                                    {% if entity.tcoms.name == "Retrait" %}
+                                                {% if entity.tliv %}
+                                                    {% if entity.tliv.name == "Retrait" %}
                                                         <i class="fa fa-2x fa-bicycle"></i>
                                                     {% else %}
                                                         <i class="fa fa-2x fa-home"></i>
                                                     {% endif %}
-                                                    <p>{{ entity.tcoms.name }}</p>
+                                                    <p>{{ entity.tliv.name }}</p>
                                                 {% endif %}
                                             </div>
                                         </div>
