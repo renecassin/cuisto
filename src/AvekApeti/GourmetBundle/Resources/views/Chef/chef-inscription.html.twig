@@ -6,18 +6,21 @@
     <header class="header-inscription " id="chef-inscription">
         <div class="header-content header-content-transform">
 
-                <div class="col-md-5 col-md-offset-1">
-                    <div class="row">
-                        <div class="bloc-titre-inscription">
-                            <h1 class="h1-page">Faites profiter vos voisins de vos talents culinaires</h1>
-                            <p class="description-inscription">Gagnez de l'argent en toute simplicité sur AVEKAPETI ! Vous cuisinez quand vous le souhaitez, vous préparez vos plats préférés et vous gagnez de l'argent pour chaque commande. Devenez Chef avec AVEKAPETI, inscrivez-vous maintenant !</p>
-                        </div>
-                    </div>
-                </div>
+
                 {% if (is_granted('ROLE_GOURMET')) %}
+
                     {% if (is_granted('ROLE_CHEF')) %}
-                        (A METTRE EN FORME) Vous etes deja un chef
+                        <h1>Vous êtes deja Chef !</h1>
                     {% else %}
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="row">
+                                <div class="bloc-titre-inscription">
+                                    <h1 class="h1-page">Faites profiter vos voisins de vos talents culinaires</h1>
+                                    <p class="description-inscription">Gagnez de l'argent en toute simplicité sur AVEKAPETI ! Vous cuisinez quand vous le souhaitez, vous préparez vos plats préférés et vous gagnez de l'argent pour chaque commande. Devenez Chef avec AVEKAPETI, inscrivez-vous maintenant !</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-4 col-md-offset-1" >
                             <div class="row">
                                 <div class="login-panel panel panel-default panel-perso">
@@ -40,7 +43,7 @@
                                             }}#}
                                             <a href="{{ path('chef_enregistrement') }}" id="envoyer" class="btn btn-primary btn-xl btn-valider-inscription">Devenir Chef</a>
                                             <div class="form-group">
-                                                <p class="acceptation">En cliquant sur Créer un compte, vous acceptez les <a href="#">Conditions générales</a>  et la <a href="#">Politique de confidentialité</a> d'Avekapeti.</p>
+                                                <p class="acceptation">En cliquant sur Créer un compte, j'accepte les <a href="#">Conditions générales</a> d'Avekapeti et certifie être majeur..</p>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -49,6 +52,15 @@
                         </div>
                     {% endif %}
                 {% else %}
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="row">
+                        <div class="bloc-titre-inscription">
+                            <h1 class="h1-page">Faites profiter vos voisins de vos talents culinaires</h1>
+                            <p class="description-inscription">Gagnez de l'argent en toute simplicité sur AVEKAPETI ! Vous cuisinez quand vous le souhaitez, vous préparez vos plats préférés et vous gagnez de l'argent pour chaque commande. Devenez Chef avec AVEKAPETI, inscrivez-vous maintenant !</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-4 col-md-offset-1" >
                     <div class="row">
 

@@ -251,4 +251,11 @@ class PlatController extends Controller
             ->getForm()
         ;
     }
+
+    public function renderFormDeleteAction($id)
+    {
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('ChefBundle:Plat:renderFormDelete.html.twig', ['delete_form' => $deleteForm->createView(), 'id' => $id]);
+    }
 }

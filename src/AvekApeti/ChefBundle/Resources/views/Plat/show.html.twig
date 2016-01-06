@@ -76,8 +76,9 @@
 
                             <div class="col-sm-2 text-center">
                                 <button class="cercle">
-                                    <div >
-                                        <h3>{{ entity.price }}€</h3>
+                                    <div>
+                                        {% set prix_final = entity.price * 1.12 %}
+                                        <h3>{{  prix_final|number_format(2, ',', ' ') }}€</h3>
                                     </div>
                                 </button>
                             </div>
@@ -138,7 +139,7 @@
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
                                         <i class="fa fa-2x fa-adjust"></i>
-                                        <p>{{ entity.quantity }} parts / 8 </p>
+                                        <p>{{ entity.quantity }} part(s) / 8 </p>
                                     </div>
                                     <div class="col-sm-2 col-xs-4 text-center">
                                     {% if entity.tliv %}
@@ -368,7 +369,7 @@
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
                                                 <i class="fa fa-2x fa-adjust"></i>
-                                                <p>{{ entity.quantity }} parts / 8 </p>
+                                                <p>{{ entity.quantity }} part(s) / 8 </p>
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
                                                 {% if entity.tliv %}
@@ -494,6 +495,11 @@
                     <a href="{{ path('chef_plat') }}" class="btn btn-default  btn-filtre btn-xl">
                         <i class="fa fa-1x fa-th-list"></i> Afficher mes plats
                     </a>
+                    <ul >
+                        <h4>Détails du prix :</h4>
+                        <li><h5>Prix défini par le Chef {{ entityChef.login }} : {{ entity.price|number_format(2, ',', ' ') }} €</h5></li>
+                        <li><h5>Prix final affiché aux Gourmets : {{ prix_final|number_format(2, ',', ' ')  }} €</h5></li>
+                    </ul>
 
                     {#<button class="btn btn-default btn-xl grande-recherche">Ajouter au panier</button>
                     <div class="fix">

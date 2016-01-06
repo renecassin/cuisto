@@ -164,7 +164,7 @@ aside {
     .navbar-default .nav>li>a:focus {
         color: white;
         height: 65px;
-        padding-top: 20px;
+        /*padding-top: 20px;*/
     }
 
     .navbar-default .nav > li>a:hover,
@@ -191,7 +191,7 @@ aside {
     .navbar-default.affix .nav > li>a,
     .navbar-default.affix .nav>li>a:focus {
         height: 65px;
-        padding-top: 20px;
+        padding-top: 10px;
     }
 
     .navbar-default.affix .nav > li>a:hover,
@@ -199,7 +199,6 @@ aside {
         color: #ffada2;
     }
     .navbar-right {
-        margin-right: 0;
         height: 65px;
     }
 
@@ -286,13 +285,13 @@ header .header-content {
 #header-liste-commande .header-content-transform,
 #header-voir-msg .header-content-transform,
 #header-liste-msg .header-content-transform,
-#header-liste-plat .header-content-transform,
-#header-mon-compte .header-content-transform{
+#header-liste-plat .header-content-transform{
     -webkit-transform: translateY(150%);
     -ms-transform: translateY(150%);
     transform: translateY(150%);
 }
 
+#header-mon-compte .header-content-transform,
 #header-mon-compte-chef .header-content-transform{
     -webkit-transform: translateY(90%);
     -ms-transform: translateY(90%);

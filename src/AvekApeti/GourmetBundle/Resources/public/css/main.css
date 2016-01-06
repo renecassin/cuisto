@@ -587,13 +587,13 @@ section#contact .glyphicon-perso {
 }
 
 #page-voir-commande .fa-1x,
-#page-liste-commande .fa-1x,
+#page-liste-commande  .fa-1x,
 #page-voir-msg .fa-1x,
 #page-new-msg .fa-1x,
 #page-liste-msg .fa-1x,
 #page-creation-plat .fa-1x,
 #page-edit-plat .fa-1x,
-#page-liste-plat .fa-1x,
+#page-liste-plat .cellule-modifier .fa-1x,
 #index-plat .fa-1x,
 #selection-plat .fa-1x{
     color:#ffada2;
@@ -607,6 +607,9 @@ section#contact .glyphicon-perso {
     padding:5px 0;
 }
 
+#mainNav .fa-3x{
+    padding-left:10px;
+}
 
 #selection-plat input{
     margin-left: -1px;
@@ -617,6 +620,8 @@ section#contact .glyphicon-perso {
 }
 
 @media(max-width:980px) {
+    #mainNav img,
+    #mainNav .fa-3x,
     #selection-plat iframe{
         display: none;
     }
@@ -761,16 +766,21 @@ section#contact .glyphicon-perso {
 #mainNav .img-circle,
 #index-plat .img-circle,
 #selection-plat .img-circle{
-    border: 2px solid white;
+    border: 2px solid ;
     vertical-align: middle;
     transition: all .4s ease-in-out;
 }
 
-#mainNav .img-circle,
 .well .img-circle,
 .thumbnail .img-circle{
     width: 65px;
     height: 65px;
+}
+
+#mainNav .img-circle{
+    width: 45px;
+    height: 45px;
+    margin-left:10px;
 }
 
 .thumbnail .img-circle:hover{
@@ -811,8 +821,8 @@ section#contact .glyphicon-perso {
 .cercle{
     background-color: white;
     border: 2px solid;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     transition: 0.5s ease-in-out;
 }
@@ -914,6 +924,7 @@ section#contact .glyphicon-perso {
 .navbar-nav > li > .dropdown-menu {
     padding: 0px 25px;
     margin-top: -1px;
+    width: 250px;
 }
 
 .dropdown-menu > li > a {
@@ -922,7 +933,7 @@ section#contact .glyphicon-perso {
  }
 
 .dropdown-menu > li > a:hover {
-    color: #00cfb3;
+    padding-left: 10px;
     background: none;
 }
 
@@ -935,7 +946,10 @@ section#contact .glyphicon-perso {
 .panel-body {
     padding: 20px;
 }
-
+/*
+left: 50%;
+transform: translateX(-50%);
+*/
 #page-voir-commande .img-circle,
 #page-liste-commande .img-circle,
 #page-voir-msg .img-circle,
@@ -1024,6 +1038,7 @@ section#contact .glyphicon-perso {
         top:-19px;
     }
 
+    #label-adresse,
     #label-piment,
     #label-rayon,
     #label-pro,
@@ -1072,17 +1087,18 @@ section#contact .glyphicon-perso {
     padding: 50px 0;
 }
 
+#page-mon-compte,
 #page-edit-plat,
 #page-creation-plat,
 #page-mon-compte-chef{
     background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/logo/avekapeti-logo-svg-02.svg) center no-repeat;
 }
 
+/*
 #page-mon-compte {
     background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/FEMME-HOMME.png) center ;
 }
 
-/*
 #page-edit-plat,
 #page-creation-plat {
     background: radial-gradient(rgba(255,255,255,0.95),white 100%), url(../img/design/PLAT.png)  center ;
@@ -1274,7 +1290,7 @@ section#contact .glyphicon-perso {
     padding: 28px 0;
 }
 
-.tableau-plats{
+#tableau-plats{
     padding-bottom: 40px;
 }
 
@@ -1395,6 +1411,28 @@ section#contact .glyphicon-perso {
     padding: 10px;
     font-size: 16px;
 }
+
+@media(min-width:981px) {
+    .titre-menu{
+        top: 10px;
+        position: relative;
+        float: left;
+    }
+}
+
+@media(max-width:767px) {
+    .navbar-nav .open .dropdown-menu .dropdown-header, .navbar-nav .open .dropdown-menu > li > a {
+        padding: 10px 15px 5px 10px;
+        font-size: 16px;
+    }
+}
+
+#fleche{
+    color: inherit;
+    padding: 0 5px;
+    font-size: 22px;
+}
+
 
 
 

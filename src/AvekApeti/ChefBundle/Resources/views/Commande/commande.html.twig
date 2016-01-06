@@ -38,7 +38,7 @@
                     </div>
                 {% endif %}
 
-
+                {% if entities|length > 0 %}
                 <div class="col-sm-12 col-md-10 col-md-offset-1 tableau-plats">
                     {% for entity in entities %}
 
@@ -95,6 +95,8 @@
 
                     {% endfor %}
                 </div>
+                {% endif %}
+
             </div>
 
         </div>

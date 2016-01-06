@@ -4,6 +4,7 @@ namespace AvekApeti\GourmetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 use AvekApeti\BackBundle\Entity\Utilisateur;
 use AvekApeti\GourmetBundle\Form\UtilisateurType;
@@ -28,7 +29,7 @@ class ChefController extends Controller
         //Le groupe doit exister en base de donné
         $em = $this->getDoctrine()->getManager();
         $Groupe =$em->getRepository("AvekApetiBackBundle:Groupe")
-            ->findOneByRole('ROLE_GOURMET');
+            ->findOneByRole('ROLE_CHEF');
 
         //Groupe est inject� pour definir le droit de l'utilisateur
         $entity = new Utilisateur($Groupe);
@@ -46,7 +47,13 @@ class ChefController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            //connection automatique
+            $token = new UsernamePasswordToken($entity, null, 'main', array('ROLE_CHEF'));
+            $this->get('security.context')->setToken($token);
+
             return $this->redirect($this->generateUrl('gourmet_homepage'));
+
+            //return $this->redirect($this->generateUrl('gourmet_loginpage'));
         }
 
         return $this->render('GourmetBundle:Chef:chef-inscription.html.twig', array(
@@ -95,13 +102,8 @@ class ChefController extends Controller
            $em->persist($user);
            $em->flush();
           // $user->isEqualTo($user);
-        }else
-       {
-           $em = $this->getDoctrine()->getManager();
-           $entity =$em->getRepository("AvekApetiBackBundle:Chef")
-               ->findOneByUtilisateur($user->getId());
        }
-        return $this->redirect($this->generateUrl('chef_profil'));
+        return $this->redirect($this->generateUrl('gourmet_homepage'));
 
 
 

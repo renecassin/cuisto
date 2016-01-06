@@ -18,13 +18,13 @@
     </script>
 {%  endblock foot_scripts %}
 
-{% block titre %}Mon compte{{ parent() }}{% endblock %}
+{% block titre %}Modifier mon profil {{ parent() }}{% endblock %}
 
 {% block content %}
     <header class="header-inscription" id="header-mon-compte">
         <div class="header-content header-content-transform">
                 <div class="header-content-inner">
-                    <h1 class="h1-page">Mon compte</h1>
+                    <h1 class="h1-page">Modifier mon profil</h1>
                     <h2 class="adresse-selection">{{ app.user.username }}</h2>
                 </div>
         </div>
@@ -128,12 +128,12 @@
                             </div>
                         </div>
                         <div class="form-group has-feedback">
-                            {{ form_label(edit_form.adress, 'Adresse', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                            {{ form_label(edit_form.adress, "Adresse de l'entreprise", {'label_attr': {'id': 'label-adresse', 'class': 'col-md-3 control-label'}}) }}
                             <i class="fa fa-2x fa-lock" data-toggle="tooltip" data-placement="right" title="Privé" ></i>
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.adress,
                                 {
-                                    attr:{class: "form-control",placeholder: "Adresse",id: "adresse",required: 'data-validation-required-message= "Veuillez entrer votre adresse."'}
+                                    attr:{class: "form-control",placeholder: "Adresse de livraison",id: "adresse",required: 'data-validation-required-message= "Veuillez entrer votre adresse."'}
                                 })
                                 }}
                                 <p class="help-block text-danger">{{ form_errors(edit_form.adress) }}</p>
@@ -248,7 +248,7 @@
                     </div>
                     <div class="col-md-12 text-center bandeau-btn   ">
                         <div id="success"></div>
-                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Enregistrement..." autocomplete="off">Enregistrer</button>
+                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Chargement..." autocomplete="off">Enregistrer</button>
                     </div>
                 {{ form_end(edit_form) }}
             </div>

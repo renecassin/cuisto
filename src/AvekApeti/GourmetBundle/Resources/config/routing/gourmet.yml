@@ -1,6 +1,7 @@
 gourmet_profil:
     path:     /profil
     defaults: { _controller: "GourmetBundle:Gourmet:profil" }
+
 gourmet_update:
     path:     /update
     defaults: { _controller: "GourmetBundle:Gourmet:update" }
@@ -9,9 +10,11 @@ gourmet_update:
 chef_enregistrement:
     path:     /chef_enregistrement
     defaults: { _controller: "GourmetBundle:Chef:enregistrement" }
+
 gourmet_commande:
     path:     /commande
     defaults: { _controller: "GourmetBundle:Commande:index" }
+
 gourmet_commande_details:
     path:     /commande/{id}/show
     defaults: { _controller: "GourmetBundle:Commande:show" }

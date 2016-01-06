@@ -18,13 +18,13 @@
     </script>
 {%  endblock foot_scripts %}
 
-{% block titre %}Mon compte Chef{{ parent() }}{% endblock %}
+{% block titre %}Modifier mon profil Chef{{ parent() }}{% endblock %}
 
 {% block content %}
     <header class="header-inscription" id="header-mon-compte-chef">
         <div class="header-content header-content-transform">
             <div class="header-content-inner">
-                <h1 class="h1-page">Mon compte Chef</h1>
+                <h1 class="h1-page">Modifier mon profil Chef</h1>
                 <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
             </div>
         </div>
@@ -100,7 +100,7 @@
                             <div class="col-md-8">
                                 {{ form_widget(edit_form.zoneKm,
                                 {
-                                    attr:{class: "form-control",placeholder: "Zone de livraison en km",id: "zoneKm",required: 'data-validation-required-message= "Veuillez entrer votre rayon en km."'}
+                                    attr:{class: "form-control",placeholder: "Choisissez votre rayon de livraison",id: "zoneKm",required: 'data-validation-required-message= "Veuillez entrer votre rayon en km."'}
                                 })
                                 }}
                                 <p class="help-block text-danger">{{ form_errors(edit_form.zoneKm) }}</p>
@@ -287,7 +287,7 @@
 
                 <div class="col-md-12 text-center bandeau-btn">
                     <div id="success"></div>
-                    <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Enregistrement..." autocomplete="off">Enregistrer</button>
+                    <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Chargement..." autocomplete="off">Enregistrer</button>
                 </div>
                 {{ form_end(edit_form) }}
             </div>

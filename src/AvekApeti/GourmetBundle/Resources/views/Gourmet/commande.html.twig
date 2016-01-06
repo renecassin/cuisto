@@ -7,7 +7,7 @@
     <div class="header-content header-content-transform">
         <div class="header-content-inner">
             <h1 class="h1-page">Mes commandes</h1>
-            <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
+            <h2 class="adresse-selection">{{ app.user.username }}</h2>
         </div>
     </div>
 </header>
@@ -30,6 +30,10 @@
                     <h3 class="section-heading">Vous n'avez pas encore de commande</h3>
                     <hr class="primary">
                 </div>
+
+                <div class="col-sm-12 text-center">
+                    <a href="{{ path('gourmet_selection_platpage') }}" class="btn btn-default btn-xl">Rechercher un plat</a>
+                </div>
             {% else %}
                 <div class="col-lg-12 text-center titre-compte">
                     <h3 class="section-heading">Visualisez toutes vos commandes</h3>
@@ -38,64 +42,67 @@
                 </div>
             {% endif %}
 
+            {% if entities|length > 0 %}
             <div class="col-sm-12 col-md-10 col-md-offset-1 tableau-plats">
-            {% for entity in entities %}
+                {% for entity in entities %}
 
-                <div class="row" {% if entity.status == "Validée" %} id="ligne-active" {% elseif entity.status == "Abandonnée" %} id="ligne-desactive" {% else %} id="ligne-intermediaire" {% endif %}>
-                    <div class="col-sm-2 col-xs-6 text-center">
-                        <div class="cellule-img">
-                            <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
-                                {% if  entity.chef.utilisateur.image %}
-                                    <img src="{{ entity.chef.utilisateur.image.webPath|imagine_filter('profil_picture_small') }}" alt="" >
-                                {% else %}
-                                    <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" >
-
-                                {% endif %}
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-6 text-center">
-                        <div class="cellule-img">
-                            <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
-                                <h3>{{ entity.chef.utilisateur.login }}</h3>
-
-                            </a>
-                            {% if entity.dateCreated %}<h5>{{ entity.dateCreated|date('d/m/Y') }}</h5>{% endif %}
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3 col-xs-6 text-center">
-                        <div class="cellule-contenu nom-plat">
-                            <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
-                                <h3 class="lien-hover">
-                                    {% if entity.status == "Validée" %}
-                                        <span class="label label-actif">{{ entity.status }}</span>
-                                    {% elseif entity.status == "Abandonnée" %}
-                                        <span class="label label-inactif">{{ entity.status }}</span>
+                    <div class="row" {% if entity.status == "Validée" %} id="ligne-active" {% elseif entity.status == "Abandonnée" %} id="ligne-desactive" {% else %} id="ligne-intermediaire" {% endif %}>
+                        <div class="col-sm-2 col-xs-6 text-center">
+                            <div class="cellule-img">
+                                <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
+                                    {% if  entity.chef.utilisateur.image %}
+                                        <img src="{{ entity.chef.utilisateur.image.webPath|imagine_filter('profil_picture_small') }}" alt="" >
                                     {% else %}
-                                        <span class="label label-intermediaire">{{ entity.status }}</span>
+                                        <img src="{{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }}" alt="" >
+
                                     {% endif %}
-                                </h3>
-                            </a>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-6 text-center">
-                        <div class="cellule-contenu nom-plat">
+                        <div class="col-sm-2 col-xs-6 text-center">
+                            <div class="cellule-img">
+                                <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}">
+                                    <h3>{{ entity.chef.utilisateur.login }}</h3>
 
-                            <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
-                                <h3>{{ entity.total }} €</h3>
-                            </a>
+                                </a>
+                                {% if entity.dateCreated %}<h5>{{ entity.dateCreated|date('d/m/Y') }}</h5>{% endif %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3 ">
-                        <div class="cellule-modifier">
-                            <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
-                        </div>
-                    </div>
-                </div>
 
-            {% endfor %}
+                        <div class="col-sm-3 col-xs-6 text-center">
+                            <div class="cellule-contenu nom-plat">
+                                <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
+                                    <h3 class="lien-hover">
+                                        {% if entity.status == "Validée" %}
+                                            <span class="label label-actif">{{ entity.status }}</span>
+                                        {% elseif entity.status == "Abandonnée" %}
+                                            <span class="label label-inactif">{{ entity.status }}</span>
+                                        {% else %}
+                                            <span class="label label-intermediaire">{{ entity.status }}</span>
+                                        {% endif %}
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-6 text-center">
+                            <div class="cellule-contenu nom-plat">
+
+                                <a href="{{ path('chef_commande_details', { 'id': entity.id }) }}">
+                                    <h3>{{ entity.total }} €</h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <div class="cellule-modifier">
+                                <a href="{{ path('gourmet_commande_details', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
             </div>
+            {% endif %}
+
         </div>
 
     </div>

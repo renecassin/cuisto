@@ -1,15 +1,37 @@
 {%  extends 'GourmetBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/datetimepicker.css') }}" type="text/css">
+{% endblock stylesheets %}
+
 {% block foot_scripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/datetimepicker.min.js') }}"></script>
     <script>
-        $('#myStateButton').on('click', function () {
-            var btn = $(this)
-            btn.button('complete')
-            setTimeout(function () {
-                btn.button('reset')
-            }, 2000)
-        })
+        $(document).ready(function()
+        {
+            $('#myStateButton').on('click', function () {
+                var btn = $(this)
+                btn.button('complete')
+                setTimeout(function () {
+                    btn.button('reset')
+                }, 2000)
+            });
+
+            $('#avekapeti_backbundle_plat_categorie').change(function()
+            {
+                $('.specialite-price').addClass('hidden');
+                $('.specialite-price-'+$(this).val()).removeClass('hidden');
+            });
+
+            $('.timepicker').datetimepicker({
+                datepicker:false,
+                format:'H:i',
+                lang:'fr',
+                step:30
+            });
+        });
     </script>
 {%  endblock foot_scripts %}
 
@@ -74,11 +96,11 @@
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(form.price) }}</p>
                                     {#{% if entity.categorie == "Entrée" %}#}
-                                    <p class="help-block">Le prix maximum d'une entrée est de 2 €</p>
+                                    <p class="help-block specialite-price specialite-price-1">Le prix maximum d'une entrée est de 2 €</p>
                                     {#{% elseif entity.categorie == "Plat" %}#}
-                                    <p class="help-block">Le prix maximum d'une plat principal est de 7 €</p>
+                                    <p class="help-block specialite-price specialite-price-2 hidden">Le prix maximum d'une plat principal est de 7 €</p>
                                     {#{% elseif entity.categorie == "Dessert" %}#}
-                                    <p class="help-block">Le prix maximum d'un dessert est de 2 €</p>
+                                    <p class="help-block specialite-price specialite-price-3 hidden">Le prix maximum d'un dessert est de 2 €</p>
                                     {#{% endif %}#}
                                     <p class="help-block">Le prix maximum d'une boisson est de 0,50 €</p>
                                 </div>
@@ -230,11 +252,11 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(form.dateStart, 'Date de début', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(form.dateStart, 'Heure de début', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(form.dateStart,
                                     {
-                                        attr:{ type:"date",id: "date_debut"}
+                                        attr:{ type:"date",id: "date_debut", class:"timepicker"}
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(form.dateStart) }}</p>
@@ -244,11 +266,11 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(form.dateEnd, 'Date de fin', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(form.dateEnd, 'Heure de fin', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(form.dateEnd,
                                     {
-                                        attr:{ type:"date",id: "date_fin"}
+                                        attr:{ type:"date",id: "date_fin", class:"timepicker"}
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(form.dateEnd) }}</p>
@@ -327,12 +349,12 @@
                 <div class="clearfix"></div>
 
                 <div class="bandeau-btn">
-                    <div class="col-md-5 text-right">
+                    <div class="col-md-6 text-right">
                         <div id="success"></div>
                         <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
                     </div>
 
-                    <div class="col-md-7 text-left">
+                    <div class="col-md-6 text-left">
                         <div id="success"></div>
                         <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création du plat..." autocomplete="off">Créer ce plat</button>
                     </div>

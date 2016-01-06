@@ -4,6 +4,7 @@ namespace AvekApeti\GourmetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 use AvekApeti\BackBundle\Entity\Utilisateur;
 use AvekApeti\BackBundle\Entity\Image;
@@ -45,6 +46,12 @@ class GourmetController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            //return $this->redirect($this->generateUrl('gourmet_loginpage'));
+
+            //connection automatique
+            $token = new UsernamePasswordToken($entity, null, 'main', array('ROLE_GOURMET'));
+            $this->get('security.context')->setToken($token);
 
             return $this->redirect($this->generateUrl('gourmet_homepage'));
         }

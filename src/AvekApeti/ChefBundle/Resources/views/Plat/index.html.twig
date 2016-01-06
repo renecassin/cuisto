@@ -38,7 +38,8 @@
                     </div>
                 {% endif %}
 
-                <div class="col-sm-12 col-md-10 col-md-offset-1 tableau-plats">
+                {% if entities|length > 0 %}
+                <div id="tableau-plats" class="col-sm-12 col-md-10 col-md-offset-1 ">
 
                     {% for entity in entities %}
                         <div class="row" {% if entity.active == 1 %} id="ligne-active" {% else %} id="ligne-desactive" {% endif %}>
@@ -59,10 +60,11 @@
                                         <h3 class="lien-hover">{{ entity.name }}</h3>
                                     </a>
                                     <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
-                                        <h4>{{ entity.price }} €</h4>
+                                        {% set prix_final = entity.price * 1.12 %}
+                                        <h4>{{ entity.price|number_format(2, ',', ' ') }} €  <i id="fleche" class="fa fa-1x fa-long-arrow-right "></i> {{ prix_final|number_format(2, ',', ' ') }} €</h4>
                                     </a>
                                     <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
-                                        <h4>{{ entity.quantity }} part(s) / 4</h4>
+                                        <h4>{{ entity.quantity }} {% if entity.quantity>1 %} parts {% else %} part {% endif %} / 4</h4>
                                     </a>
                                     {% if entity.active %}
                                         <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
@@ -85,13 +87,16 @@
                                 <div class="cellule-modifier">
                                     <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
                                     <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-pencil"></i>Modifier</a>
-                                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-trash"></i>Supprimer</a>-->
+                                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres delete"><i class="fa fa-1x fa-trash"></i>Supprimer</a>-->
+                                    {{ render(controller('ChefBundle:Plat:renderFormDelete', {id: entity.id})) }}
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
 
                 </div>
+                {% endif %}
+
             </div>
 
             <div class="col-sm-12 text-center">
@@ -101,3 +106,8 @@
         </div>
     </section>
 {% endblock content %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+    <script src="{{ asset("js/product.js") }}"></script>
+{% endblock foot_scripts %}

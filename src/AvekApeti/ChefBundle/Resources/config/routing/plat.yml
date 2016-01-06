@@ -28,3 +28,6 @@ chef_plat_delete:
     path:     /{id}/delete
     defaults: { _controller: "ChefBundle:Plat:delete" }
     methods:  [POST, DELETE]
+    requirements:
+      id : \d+
+
