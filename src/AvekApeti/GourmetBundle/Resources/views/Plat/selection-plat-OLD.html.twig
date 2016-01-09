@@ -1,0 +1,693 @@
+{%  extends 'GourmetBundle::layout.html.twig' %}
+
+{% block foot_scripts %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}"></script>
+{%  endblock foot_scripts %}
+
+{% block titre %}Près de chez vous{{ parent() }}{% endblock %}
+
+{% block content %}
+
+    <header class="header" id="header-selection-plat">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Du côté de chez vous</h1>
+                <h2 class="adresse-selection">178 avenue de Versailles, Paris</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container petite-section" id="selection-plat">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-2 ">
+                        <button class="btn btn-default btn-filtre btn-plus-filtres" type="button" data-target="#MonCollapseFiltre" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                            <i class="fa fa-1x fa-filter"></i>Filtres
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-filtre" type="button">
+                                    <i class="fa fa-1x fa-search"></i><span class="grande-recherche">Recherche</span>
+                                </button>
+                            </span>
+                            <input type="search" class="form-control" placeholder="ex. Risotto, Tajine, Salade">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-filtre" type="button">
+                                    <i class="fa fa-1x fa-exchange"></i><span class="grande-recherche">Nouvelle adresse</span>
+                                </button>
+                            </span>
+                            <input type="search" class="form-control" placeholder="ex. 178 avenue de Versailles, Paris">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <div class="col-md-12">
+                    <div id="MonCollapseFiltre" class="collapse">
+                        <form name="sentFilter" id="filter-form" novalidate>
+                            <div class="bloc-filtre">
+{#
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Prix</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="plat-simple" autocomplete="off">
+                                            <i class="fa fa-1x fa-smile-o"></i>Plat simple
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="plat-cuisiné" autocomplete="off">
+                                            <i class="fa fa-1x fa-shopping-cart"></i>Plat cuisiné
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="gastronomie" autocomplete="off">
+                                            <i class="fa fa-1x fa-eur"></i>Gastronomie
+                                        </label>
+                                    </div>
+                                </div>
+                                #}
+                                {#
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Type de cuisine</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="viande" autocomplete="off">
+                                            <i class="fa fa-1x fa-fire"></i>Viande
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="poisson" autocomplete="off">
+                                            <i class="fa fa-1x fa-eye"></i>Poisson
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="vegetarien" autocomplete="off">
+                                            <i class="fa fa-1x fa-tree"></i>Végétarien
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="dessert" autocomplete="off">
+                                            <i class="fa fa-1x fa-birthday-cake"></i>Dessert
+                                        </label>
+                                    </div>
+                                </div>
+                                #}
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Repas</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="petit-dejeuner" autocomplete="off">
+                                            <i class="fa fa-1x fa-bed"></i>Petit-déjeuner
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="dejeuner" autocomplete="off">
+                                            <i class="fa fa-1x fa-sun-o"></i>Déjeuner
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="gouter" autocomplete="off">
+                                            <i class="fa fa-1x fa-coffee "></i>Goûter
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="diner" autocomplete="off">
+                                            <i class="fa fa-1x fa-moon-o"></i>Diner
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="plus-tard" autocomplete="off">
+                                            <i class="fa fa-1x fa-calendar"></i>Plus tard
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Nature</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="entree" autocomplete="off">
+                                            <i class="fa fa-1x fa-sign-in"></i>Entrée
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="plat" autocomplete="off">
+                                            <i class="fa fa-1x fa-cutlery"></i>Plat
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="dessert" autocomplete="off">
+                                            <i class="fa fa-1x fa-birthday-cake"></i>Dessert
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="menu" autocomplete="off">
+                                            <i class="fa fa-1x fa-book"></i>Menu
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Spécialité</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="occidentale" autocomplete="off">
+                                            <i class="fa fa-1x fa-umbrella"></i>Occidentale
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="africaine" autocomplete="off">
+                                            <i class="fa fa-1x fa-globe "></i>Africaine
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="orientale" autocomplete="off">
+                                            <i class="fa fa-1x fa-try "></i>Orientale
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="asiatique" autocomplete="off">
+                                            <i class="fa fa-1x fa-jpy "></i>Asiatique
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="latino" autocomplete="off">
+                                            <i class="fa fa-1x fa-globe "></i>Latino
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Spécificité</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="vegetarienne" autocomplete="off">
+                                            <i class="fa fa-1x fa-tree"></i>Végétarien
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="sans-porc" autocomplete="off">
+                                            <i class="fa fa-1x fa-certificate "></i>Sans porc
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="pauvre-mg" autocomplete="off">
+                                            <i class="fa fa-1x fa-certificate "></i>Pauvre en matière grasse
+                                        </label>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Commande</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="occidentale" autocomplete="off">
+                                            <i class="fa fa-1x fa-home"></i>Livraison
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="africaine" autocomplete="off">
+                                            <i class="fa fa-1x fa-bicycle "></i>Retrait
+                                        </label>
+                                    </div>
+                                </div>
+                                {#
+                                <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
+                                    <p>Rayon</p>
+                                    <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="en-bas" autocomplete="off">
+                                            <i class="fa fa-1x fa-home"></i>En bas de chez moi
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="a-pied" autocomplete="off">
+                                            <i class="fa fa-1x fa-bicycle"></i>10 min à pied
+                                        </label>
+                                        <label class="btn btn-primary btn-filtre">
+                                            <input type="radio" name="options" id="metro" autocomplete="off">
+                                            <i class="fa fa-1x fa-subway"></i>Métro
+                                        </label>
+                                        </label>
+                                    </div>
+                                </div>
+                                #}
+
+
+                                <div>
+                                    <div id="success"></div>
+                                    <button type="submit" class="btn btn-default btn-xl">Appliquer les filtres</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Ludo94
+                                            </div>
+                                            <div class="project-name">
+                                                Rue Boileau, Paris
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>3 parts restantes <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg') }} alt="">
+                                </div>
+                            </a>
+                            <div class="caption">
+                                    <a href=# class="lien-image-chef" >
+                                        <div class="panel-image-chef">
+                                            <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
+                                        </div>
+                                    </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Roti de boeuf Esterhazy</span> - 9 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Africaine -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        - 3 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Max75
+                                            </div>
+                                            <div class="project-name">
+                                                Chef professionel<br>Boulevard Exelmans, Paris
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>4 parts restantes <i class="fa fa-1x fa-home"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/porcBraiseAuxLegumesRacines.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef9.jpeg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Porc braisé aux légumes</span> - 8 €</a> </h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Occidentale -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 11 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Luc95
+                                            </div>
+                                            <div class="project-name">
+                                                Avenue Victor Hugo, Boulogne-Billancourt
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>2 parts restantes <i class="fa fa-1x fa-home"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/SaladeDePouletPané.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef8.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Salade de poulet pané</span> - 6 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Orientale -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 4 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Ludo94
+                                            </div>
+                                            <div class="project-name">
+                                                Rue Boileau, Paris
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>8 parts restantes <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/filetDeTruiteAuxChampignons.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Filet de truite</span> - 10 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Asiatique -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        - 15 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Max75
+                                            </div>
+                                            <div class="project-name">
+                                                Boulevard Exelmans, Paris
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>5 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/raviolesAuFromage.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef7.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Ravioles au fromage</span> - 7 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Végétarienne -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 1 commentaire
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Luc95
+                                            </div>
+                                            <div class="project-name">
+                                                Avenue Victor Hugo, Boulogne-Billancourt
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>9 parts restantes <i class="fa fa-1x fa-home"><i class="fa fa-1x fa-bicycle"></i></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/knodelsAuLard.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Knodels au lard</span> - 8 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Latino -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 5 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Max75
+                                            </div>
+                                            <div class="project-name">
+                                                Boulevard Exelmans, Paris
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>3 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/kasknople.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef7.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Kasknople</span> - 6 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Sans porc -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 0 commentaire
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Ludo94
+                                            </div>
+                                            <div class="project-name">
+                                                Rue Boileau, Paris
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>4 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/ombleChevalierFaconMeuniere.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef8.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Omble chevalier</span> - 11 €</a> </h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Asiatique -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 18 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Luc95
+                                            </div>
+                                            <div class="project-name">
+                                                Avenue Victor Hugo, Boulogne-Billancourt
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>6 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/gateauChocolat.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef9.jpeg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Gâteau au chocolat</span> - 4 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Occidentale -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 27 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="thumbnail">
+                            <a href={{ path('gourmet_platpage') }}>
+                                <div class="monde-zoom">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <div class="project-category ">
+                                                Chef Luc95
+                                            </div>
+                                            <div class="project-name">
+                                                Avenue Victor Hugo, Boulogne-Billancourt
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-part">
+                                        <p>3 parts restantes <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
+                                    </div>
+                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/tarteDeLinz.jpg') }} alt="" >
+                                </div>
+                            </a>
+                            <div class="caption">
+                                <a href=# class="lien-image-chef" >
+                                    <div class="panel-image-chef">
+                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
+                                    </div>
+                                </a>
+                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Tarte de Linz</span> - 3 €</a></h4>
+                            </div>
+                            <div class="ratings">
+                                <a href="{{ path('gourmet_platpage') }}">
+                                    <p>Occidentale -
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        <span class="glyphicon glyphicon-heart-empty"></span>
+                                        - 8 commentaires
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 carte-fixe">
+                <iframe class="grande-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="400" height="640" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="630" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+{% endblock content %}
+

@@ -15,8 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\UtilisateurRepository")
- * @UniqueEntity("login", message="Login deja utilise")
- * @UniqueEntity("email", message="Email deja utilise")
+ * @UniqueEntity("login", message="Login déjà utilisé")
+ * @UniqueEntity("email", message="E-mail déjà utilisé")
  */
 class Utilisateur implements UserInterface //, EquatableInterface
 {

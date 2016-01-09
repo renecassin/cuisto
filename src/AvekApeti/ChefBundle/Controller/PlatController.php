@@ -196,15 +196,21 @@ class PlatController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $image = $entity->getImage();
+            if(is_object($image)) {
+                $image->setUser($User->getId());
+                $entity->setImage($image);
+            }
             $em->flush();
 
-            return $this->redirect($this->generateUrl('chef_plat_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('chef_plat'));
         }
 
         return $this->render('ChefBundle:Plat:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'entityChef'      => $User,
         ));
     }
     /**
@@ -254,8 +260,13 @@ class PlatController extends Controller
 
     public function renderFormDeleteAction($id)
     {
+        $User = $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AvekApetiBackBundle:Plat')->findOneIfChef($User->getId(),$id);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ChefBundle:Plat:renderFormDelete.html.twig', ['delete_form' => $deleteForm->createView(), 'id' => $id]);
+        return $this->render('ChefBundle:Plat:renderFormDelete.html.twig',
+            ['delete_form' => $deleteForm->createView(), 'id' => $id,'entity'      => $entity]);
     }
 }

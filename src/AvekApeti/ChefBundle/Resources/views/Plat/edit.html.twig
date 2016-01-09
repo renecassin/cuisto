@@ -1,19 +1,43 @@
 {%  extends 'GourmetBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/gourmet/css/datetimepicker.css') }}" type="text/css">
+{% endblock stylesheets %}
+
 {% block foot_scripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/datetimepicker.min.js') }}"></script>
     <script>
-        $('#myStateButton').on('click', function () {
-            var btn = $(this)
-            btn.button('complete')
-            setTimeout(function () {
-                btn.button('reset')
-            }, 2000)
-        })
+        $(document).ready(function()
+        {
+            $('#myStateButton').on('click', function () {
+                var btn = $(this)
+                btn.button('complete')
+                setTimeout(function () {
+                    btn.button('reset')
+                }, 2000)
+            });
+
+            $('#avekapeti_backbundle_plat_categorie').change(function()
+            {
+                $('.specialite-price').addClass('hidden');
+                $('.specialite-price-'+$(this).val()).removeClass('hidden');
+            });
+
+            $('.timepicker-hour').datetimepicker({
+                datepicker:false,
+                format:'H:i',
+                lang:'fr',
+                step:30
+            });
+
+            $('.datepicker').datetimepicker();
+        });
     </script>
 {%  endblock foot_scripts %}
 
-{% block titre %}Mes plats {{ parent() }}{% endblock %}
+{% block titre %}Modifier un plat {{ parent() }}{% endblock %}
 
 {% block content %}
     <header class="header-inscription" id="header-edit-plat">
@@ -148,7 +172,22 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(edit_form.tcoms, 'Type de commande', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                <label for="connu" class="col-md-3 control-label" id="label-piment">Ce plat est-il pimenté ?</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="connu">
+                                        <option>Pas du tout</option>
+                                        <option>Un peu</option>
+                                        <option>Beaucoup</option>
+                                        <option>Piments mis à part</option>
+                                    </select>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                {{ form_label(edit_form.tcoms, 'Type de repas', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(edit_form.tcoms,
                                     {
@@ -166,11 +205,11 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(edit_form.unableWhile, 'Disponibilité', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(edit_form.unableWhile, 'Fermeture des commandes', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(edit_form.unableWhile,
                                     {
-                                        attr:{ type:"date",id: "dispo"}
+                                        attr:{ type:"date",id: "dispo", class:"datepicker"}
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(edit_form.unableWhile) }}</p>
@@ -179,7 +218,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(edit_form.tliv, 'Type de livraison', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(edit_form.tliv, 'Mode de remise', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(edit_form.tliv,
                                     {
@@ -196,11 +235,11 @@
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(edit_form.dateStart, 'Date de début', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(edit_form.dateStart, 'Heure de début', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(edit_form.dateStart,
                                     {
-                                        attr:{ type:"date",id: "date-debut"}
+                                        attr:{ type:"date",id: "date-debut", class:"timepicker-hour"}
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(edit_form.dateStart) }}</p>
@@ -209,11 +248,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(edit_form.dateEnd, 'Date de fin', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(edit_form.dateEnd, 'Heure de fin', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(edit_form.dateEnd,
                                     {
-                                        attr:{ type:"date",id: "date-fin"}
+                                        attr:{ type:"date",id: "date-fin", class:"timepicker-hour"}
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(edit_form.dateEnd) }}</p>
@@ -226,7 +265,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                {{ form_label(edit_form.content, 'Description', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                {{ form_label(edit_form.content, 'Description (150 caractères maximum)', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                                 <div class="col-md-8">
                                     {{ form_widget(edit_form.content,
                                     {

@@ -102,7 +102,7 @@
                                 <div class="col-sm-2 col-xs-6 text-center">
                                     <div class="cellule-img">
                                         <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
-                                            {% if entity.destuser.image %}
+                                            {% if entityUser.image %}
                                                 <img src="{{ entityUser.image.webPath|imagine_filter('profil_picture_small') }}" alt="" >
                                             {% else %}
                                                 <img id="defaut-img" src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="">

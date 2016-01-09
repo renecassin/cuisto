@@ -23,8 +23,10 @@ gourmet_gourmet_inscription_create:
     defaults: { _controller: GourmetBundle:Gourmet:create }
 
 gourmet_platpage:
-    path:     /plat
+    path:     /{id}/plat
     defaults: { _controller: GourmetBundle:Plat:index}
+    requirements:
+              id : \d+
 
 gourmet_selection_platpage:
     path:     /selection_plat

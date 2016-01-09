@@ -242,442 +242,75 @@
                     </div>
                 </div>
 
+                {% if entities|length == 0 %}
+                    <div class="col-lg-12 text-center titre-compte">
+                        <h2 class="section-heading">Nous sommes désolés...</h2>
+                        <h3 class="section-heading">Nous n'avons aucun plat à vous proposer</h3>
+                        <hr class="primary">
+                        <p>Réessayer en <a href={{ path('gourmet_homepage') }}>modifiant votre adresse</a></p>
 
+                    </div>
+                {% else %}
 
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
 
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Ludo94
-                                            </div>
-                                            <div class="project-name">
-                                                Rue Boileau, Paris
+                    {% for entity in entities %}
+                        <div class="col-sm-6">
+                            <div class="thumbnail">
+
+                                <a href="{{ path('gourmet_platpage', { 'id': entity.id }) }}">
+                                    <div class="monde-zoom">
+                                        <div class="portfolio-hover">
+                                            <div class="portfolio-hover-content">
+                                                <div class="project-category ">
+                                                    {{ entity.utilisateur.login }}
+                                                </div>
+                                                <div class="project-name">
+                                                    {{ entity.utilisateur.adress }}, {{ entity.utilisateur.city }}
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="portfolio-part">
+                                            <p>{{ entity.quantity }} {% if entity.quantity>1 %} parts restantes {% else %} part restante {% endif %} <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
+                                        </div>
+                                        {% if entity.image %}
+                                            <img src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt="" >
+                                        {% else %}
+                                            <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} class="img-defaut" alt="">
+                                        {% endif %}
                                     </div>
-                                    <div class="portfolio-part">
-                                        <p>3 parts restantes <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/rotiDeBoeufEsterhazy.jpg') }} alt="">
+                                </a>
+                                <div class="caption">
+                                        <a href=# class="lien-image-chef" >
+                                            <div class="panel-image-chef">
+                                                {% if entity.utilisateur.image %}
+                                                    <img src="{{ entity.utilisateur.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                                                {% else %}
+                                                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                                                {% endif %}
+                                            </div>
+                                        </a>
+                                    <h4 class="nom-plat"><a href="{{ path('gourmet_platpage', { 'id': entity.id }) }}"><span class="lien-hover">{{ entity.name }}</span> - {{ entity.price }} €</a></h4>
                                 </div>
-                            </a>
-                            <div class="caption">
-                                    <a href=# class="lien-image-chef" >
-                                        <div class="panel-image-chef">
-                                            <img src={{ asset('bundles/gourmet/img/chef/chef1.jpg') }} alt="" class="img-circle">
-                                        </div>
+                                <div class="ratings">
+                                    <a href="{{ path('gourmet_platpage', { 'id': entity.id }) }}">
+                                        <p>Africaine -
+                                            <span class="glyphicon glyphicon-heart"></span>
+                                            <span class="glyphicon glyphicon-heart"></span>
+                                            <span class="glyphicon glyphicon-heart"></span>
+                                            <span class="glyphicon glyphicon-heart"></span>
+                                            <span class="glyphicon glyphicon-heart"></span>
+                                            - 3 commentaires
+                                        </p>
                                     </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Roti de boeuf Esterhazy</span> - 9 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Africaine -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        - 3 commentaires
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Max75
-                                            </div>
-                                            <div class="project-name">
-                                                Chef professionel<br>Boulevard Exelmans, Paris
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>4 parts restantes <i class="fa fa-1x fa-home"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/porcBraiseAuxLegumesRacines.jpg') }} alt="" >
                                 </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef9.jpeg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Porc braisé aux légumes</span> - 8 €</a> </h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Occidentale -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 11 commentaires
-                                    </p>
-                                </a>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Luc95
-                                            </div>
-                                            <div class="project-name">
-                                                Avenue Victor Hugo, Boulogne-Billancourt
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>2 parts restantes <i class="fa fa-1x fa-home"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/SaladeDePouletPané.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef8.jpg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Salade de poulet pané</span> - 6 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Orientale -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 4 commentaires
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Ludo94
-                                            </div>
-                                            <div class="project-name">
-                                                Rue Boileau, Paris
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>8 parts restantes <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/filetDeTruiteAuxChampignons.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Filet de truite</span> - 10 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Asiatique -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        - 15 commentaires
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Max75
-                                            </div>
-                                            <div class="project-name">
-                                                Boulevard Exelmans, Paris
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>5 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/raviolesAuFromage.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef7.jpg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Ravioles au fromage</span> - 7 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Végétarienne -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 1 commentaire
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Luc95
-                                            </div>
-                                            <div class="project-name">
-                                                Avenue Victor Hugo, Boulogne-Billancourt
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>9 parts restantes <i class="fa fa-1x fa-home"><i class="fa fa-1x fa-bicycle"></i></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/knodelsAuLard.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Knodels au lard</span> - 8 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Latino -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 5 commentaires
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Max75
-                                            </div>
-                                            <div class="project-name">
-                                                Boulevard Exelmans, Paris
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>3 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/kasknople.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef7.jpg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Kasknople</span> - 6 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Sans porc -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 0 commentaire
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Ludo94
-                                            </div>
-                                            <div class="project-name">
-                                                Rue Boileau, Paris
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>4 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/ombleChevalierFaconMeuniere.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef8.jpg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Omble chevalier</span> - 11 €</a> </h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Asiatique -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 18 commentaires
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Luc95
-                                            </div>
-                                            <div class="project-name">
-                                                Avenue Victor Hugo, Boulogne-Billancourt
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>6 parts restantes <i class="fa fa-1x fa-bicycle"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/gateauChocolat.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef9.jpeg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Gâteau au chocolat</span> - 4 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Occidentale -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 27 commentaires
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="thumbnail">
-                            <a href={{ path('gourmet_platpage') }}>
-                                <div class="monde-zoom">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <div class="project-category ">
-                                                Chef Luc95
-                                            </div>
-                                            <div class="project-name">
-                                                Avenue Victor Hugo, Boulogne-Billancourt
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portfolio-part">
-                                        <p>3 parts restantes <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
-                                    </div>
-                                    <img src={{ asset('bundles/gourmet/img/plats/selection-plat/tarteDeLinz.jpg') }} alt="" >
-                                </div>
-                            </a>
-                            <div class="caption">
-                                <a href=# class="lien-image-chef" >
-                                    <div class="panel-image-chef">
-                                        <img src={{ asset('bundles/gourmet/img/chef/chef3.jpg') }} alt="" class="img-circle">
-                                    </div>
-                                </a>
-                                <h4 class="nom-plat"><a href="{{ path('gourmet_platpage') }}"><span class="lien-hover">Tarte de Linz</span> - 3 €</a></h4>
-                            </div>
-                            <div class="ratings">
-                                <a href="{{ path('gourmet_platpage') }}">
-                                    <p>Occidentale -
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart-empty"></span>
-                                        - 8 commentaires
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                 </div>
+                {% endif %}
+
 
             </div>
 

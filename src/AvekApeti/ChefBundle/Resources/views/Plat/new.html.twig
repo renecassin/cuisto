@@ -25,11 +25,15 @@
                 $('.specialite-price-'+$(this).val()).removeClass('hidden');
             });
 
-            $('.timepicker').datetimepicker({
+            $('.timepicker-hour').datetimepicker({
                 datepicker:false,
                 format:'H:i',
                 lang:'fr',
                 step:30
+            });
+
+            $('.datepicker').datetimepicker({
+                    lang:'fr'
             });
         });
     </script>
@@ -102,7 +106,6 @@
                                     {#{% elseif entity.categorie == "Dessert" %}#}
                                     <p class="help-block specialite-price specialite-price-3 hidden">Le prix maximum d'un dessert est de 2 €</p>
                                     {#{% endif %}#}
-                                    <p class="help-block">Le prix maximum d'une boisson est de 0,50 €</p>
                                 </div>
                             </div>
                         </div>
@@ -190,9 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
@@ -204,6 +205,20 @@
                                     })
                                     }}
                                     <p class="help-block text-danger">{{ form_errors(form.tcoms) }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.unableWhile, 'Fermeture des commandes', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.unableWhile,
+                                    {
+                                        attr:{ type:"date",id: "dispo", class:"datepicker"}
+                                    })
+                                    }}
+                                    <p class="help-block text-danger">{{ form_errors(form.unableWhile) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -222,6 +237,39 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.dateStart, 'Heure de début', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.dateStart,
+                                    {
+                                        attr:{ type:"date",id: "date_debut", class:"timepicker-hour"}
+                                    })
+                                    }}
+                                    <p class="help-block text-danger">{{ form_errors(form.dateStart) }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.dateEnd, 'Heure de fin', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.dateEnd,
+                                    {
+                                        attr:{ type:"date",id: "date_fin", class:"timepicker-hour"}
+                                    })
+                                    }}
+                                    <p class="help-block text-danger">{{ form_errors(form.dateEnd) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
 
                     <div class="row">
                         <div class="col-md-6">
@@ -249,48 +297,6 @@
                     </div>
 
                     <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.dateStart, 'Heure de début', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.dateStart,
-                                    {
-                                        attr:{ type:"date",id: "date_debut", class:"timepicker"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.dateStart) }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.dateEnd, 'Heure de fin', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.dateEnd,
-                                    {
-                                        attr:{ type:"date",id: "date_fin", class:"timepicker"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.dateEnd) }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.unableWhile, 'Fermeture des commandes', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.unableWhile,
-                                    {
-                                        attr:{ type:"date",id: "dispo"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.unableWhile) }}</p>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
@@ -338,6 +344,7 @@
                                     <div class="col-md-8">
                                         <input type="text" id="prix-boisson" class="form-control" placeholder="Prix boisson en €">
                                         <p class="help-block text-danger"></p>
+                                        <p class="help-block">Le prix maximum d'une boisson est de 0,50 €</p>
                                     </div>
                                 </div>
                             </div>
@@ -349,12 +356,12 @@
                 <div class="clearfix"></div>
 
                 <div class="bandeau-btn">
-                    <div class="col-md-6 text-right">
+                    <div class="col-md-5 text-right">
                         <div id="success"></div>
                         <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
                     </div>
 
-                    <div class="col-md-6 text-left">
+                    <div class="col-md-7 text-left">
                         <div id="success"></div>
                         <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création du plat..." autocomplete="off">Créer ce plat</button>
                     </div>

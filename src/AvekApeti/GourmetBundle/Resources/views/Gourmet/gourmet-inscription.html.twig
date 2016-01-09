@@ -23,7 +23,8 @@
                         <div class="login-panel panel panel-default panel-perso">
                             <div class="panel-body">
                                 <!--<form role="form">-->
-                                    {{ form_start(form) }}
+                                {% form_theme form 'form/form_errors.html.twig' %}
+                                {{ form_start(form) }}
                                     {#
                                     <div class=" panel-heading-perso ">
                                         <a href="#" class="btn btn-primary btn-xl btn-facebook-inscription"><i class="fa fa-2x fa-facebook logo-facebook"></i>Inscription avec Facebook</a>

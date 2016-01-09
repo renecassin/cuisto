@@ -54,7 +54,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-4 col-md-5">
                                 <div class="cellule-titre nom-plat">
                                     <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}">
                                         <h3 class="lien-hover">{{ entity.name }}</h3>
@@ -83,11 +83,10 @@
                             </div>
                                 {#<div>{% if entity.dateCreated %}{{ entity.dateCreated|date('Y-m-d') }}{% endif %}</div>#}
                             {#<div>{% if entity.unableWhile %}{{ entity.unableWhile|date('Y-m-d') }}{% endif %}</div>#}
-                            <div class="col-sm-3">
+                            <div class="col-sm-4 col-md-3">
                                 <div class="cellule-modifier">
-                                    <a href="{{ path('chef_plat_show', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>
+                                    {#<a href="{{ path('chef_plat_show', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-eye"></i>Voir</a>#}
                                     <a href="{{ path('chef_plat_edit', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres"><i class="fa fa-1x fa-pencil"></i>Modifier</a>
-                                   <!-- <a href="{{ path('chef_plat_delete', { 'id': entity.id }) }}" class="btn btn-default btn-filtre btn-plus-filtres delete"><i class="fa fa-1x fa-trash"></i>Supprimer</a>-->
                                     {{ render(controller('ChefBundle:Plat:renderFormDelete', {id: entity.id})) }}
                                 </div>
                             </div>
