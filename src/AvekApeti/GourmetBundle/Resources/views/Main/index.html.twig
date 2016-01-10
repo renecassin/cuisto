@@ -6,6 +6,9 @@
         var banListe=['1','2','3','4'];
         document.getElementsByTagName('header')[0].className += 'header' + banListe[Math.floor(Math.random()*banListe.length)];
     </script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/search.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYTi5aSKJ1iyKx-zEJKA3lRIzfdcSQfE&signed_in=true&libraries=places&callback=initMap"
+    async defer></script>
 {%  endblock foot_scripts %}
 
 {% block titre %}Avekapeti{% endblock %}
@@ -17,10 +20,10 @@
                 <h1 id="h1-home">Envie d'un bon petit plat maison ?</h1>
                 <p>Bientôt vous pourrez commander en quelques clics un plat fait maison sur Avekapeti <br> Préparez-vous une révolution arrive !</p>
                 <a href="#mode-emploi" class="btn btn-xl btn-semi-transparent page-scroll ">Mode d'emploi</a>
-                <form class="form-inline form-recherche" action={{ path('gourmet_selection_platpage') }}>
+                <form class="form-inline form-recherche" action="{{ path('gourmet_selection_platpage') }}" method="GET">
                     <div class="form-adresse">
                         <label for="adressInput"></label>
-                        <input type="text" class="address-input" id="adressInput" placeholder="Où êtes-vous ?">
+                        <input type="text" class="address-input" id="adressInput" placeholder="Où êtes-vous ?" name="q">
                     </div>
                     <button type="submit" class="btn btn-primary btn-xl">
                         <span class="glyphicon glyphicon-search glyphycon-loupe petite-recherche" aria-hidden="true"></span>

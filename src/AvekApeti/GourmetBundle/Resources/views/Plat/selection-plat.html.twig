@@ -1,8 +1,11 @@
 {%  extends 'GourmetBundle::layout.html.twig' %}
 
 {% block foot_scripts %}
-{{ parent() }}
-<script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}"></script>
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/search.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYTi5aSKJ1iyKx-zEJKA3lRIzfdcSQfE&signed_in=true&libraries=places&callback=initMap"
+    async defer></script>
 {%  endblock foot_scripts %}
 
 {% block titre %}Près de chez vous{{ parent() }}{% endblock %}
@@ -13,7 +16,20 @@
         <div class="header-content header-content-transform">
             <div class="header-content-inner">
                 <h1 class="h1-page">Du côté de chez vous</h1>
-                <h2 class="adresse-selection">178 avenue de Versailles, Paris</h2>
+                {% if app.request.query.get("q") %}
+                        <h2 class="adresse-selection">{{ app.request.query.get("q") }}</h2>
+                    {% else %}
+                        <form class="form-inline form-recherche" action="{{ path('gourmet_selection_platpage') }}" method="GET">
+                            <div class="form-adresse">
+                                <label for="adressInput"></label>
+                                <input type="text" class="address-input" id="adressInput" placeholder="Où êtes-vous ?" name="q">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-xl">
+                                <span class="glyphicon glyphicon-search glyphycon-loupe petite-recherche" aria-hidden="true"></span>
+                                <span class="grande-recherche">Rechercher un plat</span>
+                            </button>
+                        </form>
+                    {% endif %}
             </div>
         </div>
     </header>
