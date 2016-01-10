@@ -4,6 +4,7 @@ namespace AvekApeti\GourmetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Serializer;
 
 class PlatController extends Controller
 {
@@ -55,6 +56,7 @@ class PlatController extends Controller
 
         return $this->render('GourmetBundle:Plat:selection-plat.html.twig', array(
             'entities' => $entities,
+            'entitiesJson' => json_encode($entities)
 
         ));
     }

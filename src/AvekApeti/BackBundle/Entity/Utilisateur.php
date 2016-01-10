@@ -139,6 +139,14 @@ class Utilisateur implements UserInterface //, EquatableInterface
      */
     private $avis;
     private $attribute;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="Chef", mappedBy="utilisateur")
+     */
+    private $chef;
+
+
     /**
      * Get id
      *
@@ -519,6 +527,19 @@ class Utilisateur implements UserInterface //, EquatableInterface
     {
         return $this->newsletter;
     }
+
+    public function getChef()
+    {
+        return $this->chef;
+    }
+
+    public function setChef($chef)
+    {
+        $this->chef = $chef;
+
+        return $this;
+    }
+
     public function getRoles()
     {
         // TODO: Implement getRoles() method.

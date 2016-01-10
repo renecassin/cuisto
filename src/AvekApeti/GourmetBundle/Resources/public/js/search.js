@@ -1,6 +1,6 @@
 function initMap()
 {
-  
+  var $geolocPlat = $('.geoloc');
   var options = {
     componentRestrictions: {country: 'fr'}
   };
@@ -27,8 +27,7 @@ function initMap()
     if(address==''){
       address='Paris, France';
     }
-    console.log('hello');
-    console.log(geocoder);
+
     geocoder.geocode( { 'address': address}, function(results, status)
     {
       if (status == google.maps.GeocoderStatus.OK)
@@ -42,7 +41,16 @@ function initMap()
           map: map,
         });
         */
-        //search();
+        $geolocPlat.each(function(){
+          
+          var that = $(this);
+          new google.maps.Marker({
+            position: {lat: parseFloat(that.attr('data-lat')), lng: parseFloat(that.attr('data-lng'))},
+            map: map
+          });
+
+        });
+
       }
     });
   }

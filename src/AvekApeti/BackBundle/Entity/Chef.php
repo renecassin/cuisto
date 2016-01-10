@@ -48,9 +48,10 @@ class Chef
      * @ORM\Column(name="cp", type="string", length=255, nullable=true)
      */
     private $cp;
+
     /**
      *
-     * @ORM\OneToOne(targetEntity="Utilisateur")
+     * @ORM\OneToOne(targetEntity="Utilisateur", inversedBy="chef")
      */
     private $utilisateur;
 

@@ -51,7 +51,7 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
 
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addRootEntityFromClassMetadata('AvekApetiBackBundle:Plat', 'p');
-        $sql = 'SELECT p.*,
+        $sql = 'SELECT p.*, c.lat, c.lng,
                 ( 6371 * ACOS(COS( RADIANS(:latitude) ) * 
                     COS(RADIANS( c.lat ) ) * COS(RADIANS( c.lng ) - RADIANS(:longitude) ) +
                     SIN( RADIANS(:latitude) ) * SIN(RADIANS( c.lat ) ) )) AS distance
