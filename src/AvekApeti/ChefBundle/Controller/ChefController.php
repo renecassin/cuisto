@@ -52,12 +52,20 @@ class ChefController extends Controller
         $editForm = $this->createForm(new ChefType(), $entity, array(
             'action' => $this->generateUrl('chef_chef_update'),
             'method' => 'PUT',
+            'validation_groups' => array('Default', 'geoloc')
         ));
         $editForm->add('submit', 'submit', array('label' => 'Update'));
 
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            // TODO : HasLifecycleCallbacks
+            $curl     = new \Ivory\HttpAdapter\CurlHttpAdapter();
+            $geocoder = new \Geocoder\Provider\GoogleMaps($curl);
+            $dataGeo = $geocoder->geocode($editForm->get('adress')->getData().', '.$editForm->get('cp')->getData().', '.$editForm->get('city')->getData())->first();
+            $entity->setLng($dataGeo->getLongitude());
+            $entity->setLat($dataGeo->getLatitude());
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('chef_profil'));
@@ -66,6 +74,7 @@ class ChefController extends Controller
         return $this->render('ChefBundle:Chef:profil.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
+            'entityChef'      => $user
         ));
     }
 

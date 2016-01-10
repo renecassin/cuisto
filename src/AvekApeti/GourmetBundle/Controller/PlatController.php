@@ -3,6 +3,7 @@
 namespace AvekApeti\GourmetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class PlatController extends Controller
 {
@@ -25,15 +26,41 @@ class PlatController extends Controller
         ));
     }
 
-    public function selectionAction()
+    public function selectionAction(Request $request)
     {
+        $address = $request->query->get('q');
+        $entities = [];
+
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findAll();
+        $urlGoogle = 'http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address);
+        if ($this->get_http_response_code($urlGoogle) == '200')
+        {
+            $json = file_get_contents($urlGoogle);
+            $parsedjson = json_decode($json, true);
+            if (!empty($parsedjson['status']) && 'OK' == $parsedjson['status'])
+            {
+                $curl     = new \Ivory\HttpAdapter\CurlHttpAdapter();
+                $geocoder = new \Geocoder\Provider\GoogleMaps($curl);
+                $dataGeo = $geocoder->geocode($address)->first();
+                $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findAllPlatWithGeoloc($dataGeo->getLatitude(), $dataGeo->getLongitude());
+            }
+        }
+
+        if (!$entities)
+        {
+            // center of Paris (longitude and latitude)
+            $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findAllPlatWithGeoloc(48.856614, 2.3522219);
+        }
 
         return $this->render('GourmetBundle:Plat:selection-plat.html.twig', array(
             'entities' => $entities,
 
         ));
+    }
+
+    private function get_http_response_code($url) {
+        $headers = get_headers($url);
+        return substr($headers[0], 9, 3);
     }
 }

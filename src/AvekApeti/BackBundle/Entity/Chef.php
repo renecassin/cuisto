@@ -3,6 +3,8 @@
 namespace AvekApeti\BackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Chef
@@ -68,6 +70,22 @@ class Chef
      * @ORM\Column(name="siret", type="string", length=255, nullable=true)
      */
     private $siret;
+
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lng", type="float", nullable=true)
+     */
+    private $lng;
+
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lat", type="float", nullable=true)
+     */
+    private $lat;
     /**
      * Get id
      *
@@ -197,6 +215,29 @@ class Chef
     {
         return $this->cp;
     }
+
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    public function getLat()
+    {
+        return $this->lat;
+    }
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
     /**
      * Constructor
      */
@@ -286,4 +327,36 @@ class Chef
     {
         return $this->siret;
     }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context)
+    {   
+        if (!empty($this->adress) && !empty($this->city) && !empty($this->cp))
+        {
+            $urlGoogle = 'http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($this->adress.', '.$this->cp.', '.$this->city);
+            if ($this->get_http_response_code($urlGoogle) == '200')
+            {
+                $json = file_get_contents($urlGoogle);
+                $parsedjson = json_decode($json, true);
+                if (!empty($parsedjson['status']) && 'OK' == $parsedjson['status'])
+                {
+                    return;
+                }
+            }
+        }
+
+        $context->buildViolation('Veuillez vérifier votre adresse, code postal et ville')
+                ->atPath('adress')
+                ->addViolation();
+    }
+
+
+    private function get_http_response_code($url) {
+        $headers = get_headers($url);
+        return substr($headers[0], 9, 3);
+    }
 }
+
+

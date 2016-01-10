@@ -2,7 +2,7 @@
 
 {% block foot_scripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/home/js/home.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/home.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/gourmet/js/search.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYTi5aSKJ1iyKx-zEJKA3lRIzfdcSQfE&signed_in=true&libraries=places&callback=initMap"
     async defer></script>
@@ -17,19 +17,18 @@
             <div class="header-content-inner">
                 <h1 class="h1-page">Du côté de chez vous</h1>
                 {% if app.request.query.get("q") %}
-                        <h2 class="adresse-selection">{{ app.request.query.get("q") }}</h2>
-                    {% else %}
-                        <form class="form-inline form-recherche" action="{{ path('gourmet_selection_platpage') }}" method="GET">
-                            <div class="form-adresse">
-                                <label for="adressInput"></label>
-                                <input type="text" class="address-input" id="adressInput" placeholder="Où êtes-vous ?" name="q">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-xl">
-                                <span class="glyphicon glyphicon-search glyphycon-loupe petite-recherche" aria-hidden="true"></span>
-                                <span class="grande-recherche">Rechercher un plat</span>
-                            </button>
-                        </form>
-                    {% endif %}
+                    <h2 class="adresse-selection">{{ app.request.query.get("q") }}</h2>
+                {% endif %}
+                <form class="form-inline form-recherche{% if app.request.query.get("q") %} hide{%endif%}" action="{{ path('gourmet_selection_platpage') }}" method="GET">
+                    <div class="form-adresse">
+                        <label for="adressInput"></label>
+                        <input type="text" class="address-input" id="adressInput" placeholder="Où êtes-vous ?" name="q" value="{{ app.request.query.get("q") }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-xl">
+                        <span class="glyphicon glyphicon-search glyphycon-loupe petite-recherche" aria-hidden="true"></span>
+                        <span class="grande-recherche">Rechercher un plat</span>
+                    </button>
+                </form>
             </div>
         </div>
     </header>
@@ -331,8 +330,9 @@
             </div>
 
             <div class="col-md-4 carte-fixe">
-                <iframe class="grande-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="400" height="640" frameborder="0" style="border:0" allowfullscreen></iframe>
-                <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="630" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <div class="carte-fixe-container">
+                    <div id="map"></div>
+                </div>
             </div>
         </div>
 

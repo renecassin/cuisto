@@ -11,6 +11,7 @@ namespace AvekApeti\BackBundle\Repository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 class UtilisateurRepository extends \Doctrine\ORM\EntityRepository implements UserProviderInterface
 {

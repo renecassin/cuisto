@@ -655,6 +655,17 @@ section#contact .glyphicon-perso {
         top: 50px;
         margin-bottom: 400px;
     }
+    #selection-plat .carte-fixe {
+        height: 500px;
+    }
+    #selection-plat .carte-fixe .carte-fixe-container {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #selection-plat .carte-fixe .carte-fixe-container #map {
+        height: 100%;
+      }
 }
 
 
