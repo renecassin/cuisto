@@ -31,7 +31,7 @@ class GourmetController extends Controller
         $Groupe =$em->getRepository("AvekApetiBackBundle:Groupe")
             ->findOneByRole('ROLE_GOURMET');
 
-        //Groupe est inject� pour definir le droit de l'utilisateur
+        //Groupe est injecte pour definir le droit de l'utilisateur
         $entity = new Utilisateur($Groupe);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);

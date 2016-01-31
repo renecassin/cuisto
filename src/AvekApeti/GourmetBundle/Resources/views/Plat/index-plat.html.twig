@@ -32,6 +32,14 @@
 
         <div class="row">
 
+            {% for message in app.session.flashBag.get('addPanier') %}
+                <p class="alert alert-success">Votre plat a bien été ajouté</p>
+            {% endfor %}
+
+            {% for message in app.session.flashBag.get('addPanierOtherChef') %}
+                <p class="alert alert-danger">Vous ne pouvez pas ajouter un plat d'un autre chef</p>
+            {% endfor %}
+
             <div class="col-md-3 text-center carte-fixe">
                 <div class="portrait-chef">
                     <a href=# class="lien-portrait-chef" >
@@ -160,7 +168,7 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4 col-md-push-6">
-                                        <button class="btn btn-default btn-xl">Ajouter au panier</button>
+                                        <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl">Ajouter au panier</a>
 
                                     </div>
                                     <div class="col-md-4 col-md-pull-2">
@@ -389,7 +397,7 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-4 col-md-push-6">
-                                                <button class="btn btn-default btn-xl">Ajouter au panier</button>
+                                                <a href="{{ path('panier_plat_ajout', {idPlat: entit.id }) }}" class="btn btn-default btn-xl">Ajouter au panier</a>
                                             </div>
                                             <div class="col-md-4 col-md-pull-2">
                                                 <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus{{i}}" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
@@ -454,9 +462,9 @@
             <aside class="col-md-3 text-center ">
                 {#<p class="nbre-part">Attention il ne reste que 3 parts !</p>#}
                 <div class="panier">
-                    <button class="btn btn-default btn-xl grande-recherche">Ajouter au panier</button>
+                    <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl grande-recherche">Ajouter au panier</a>
                     <div class="fix">
-                        <button class="btn btn-default btn-xl petite-recherche">Ajouter au panier</button>
+                        <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl petite-recherche">Ajouter au panier</a>
                     </div>
                     <div id="panier-dynamique">
                         <div class="row">

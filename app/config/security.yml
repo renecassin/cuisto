@@ -44,3 +44,4 @@ security:
     - { path: ^/Admin, role: ROLE_ADMIN }
     - { path: ^/chef, role: ROLE_CHEF }
     - { path: ^/gourmet, role: ROLE_GOURMET }
+    - { path: ^/paiement, role: ROLE_GOURMET }

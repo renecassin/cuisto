@@ -22,6 +22,8 @@ class Panier
 
     private $tableauPlats;
 
+    private $tableauPlatsTotal = 0;
+
     private $tableauMenus;
     /**
      * Get id
@@ -95,6 +97,32 @@ class Panier
         {
             $this->chefSelect = null;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTableauPlatsTotal()
+    {
+        return $this->tableauPlatsTotal;
+    }
+
+    /**
+     * @param mixed $tableauPlatsTotal
+     */
+    public function setTableauPlatsTotal($tableauPlatsTotal)
+    {
+        $this->tableauPlatsTotal = $tableauPlatsTotal;
+    }
+
+    public function addTableauPlatsTotal($price)
+    {
+        $this->tableauPlatsTotal += $price;
+    }
+
+    public function supTableauPlatsTotal($price)
+    {
+        $this->tableauPlatsTotal -= $price;
     }
 }
 

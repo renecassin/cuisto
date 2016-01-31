@@ -21,6 +21,13 @@ function initMap()
       }
   }
 
+  google.maps.event.addListener(map, "dragend", function() {
+    //center = map.getCenter();
+    //actual_page = 1;
+    //search();
+    // TODO: Reload result search when user "drag" the map
+  });
+
   
   function setPositionFromAddress(address)
   {

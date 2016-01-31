@@ -10,6 +10,7 @@ use AvekApeti\BackBundle\Entity\Utilisateur;
 use AvekApeti\GourmetBundle\Form\UtilisateurType;
 use AvekApeti\BackBundle\Entity\Chef;
 use AvekApeti\GourmetBundle\Form\ChefType;
+
 class ChefController extends Controller
 {
     public function chefInscriptionAction()
@@ -31,7 +32,7 @@ class ChefController extends Controller
         $Groupe =$em->getRepository("AvekApetiBackBundle:Groupe")
             ->findOneByRole('ROLE_CHEF');
 
-        //Groupe est inject� pour definir le droit de l'utilisateur
+        //Groupe est injecte pour definir le droit de l'utilisateur
         $entity = new Utilisateur($Groupe);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);

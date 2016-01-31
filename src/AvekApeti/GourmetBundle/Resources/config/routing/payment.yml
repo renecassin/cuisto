@@ -1,0 +1,15 @@
+gourmet_payment:
+    path:     /
+    defaults: { _controller: GourmetBundle:Payment:index}
+
+gourmet_payment_done:
+    path:     /done
+    defaults: { _controller: GourmetBundle:Payment:donePayment}
+
+gourmet_payment_cancel:
+    path:     /cancel
+    defaults: { _controller: GourmetBundle:Payment:cancelPayment}
+
+gourmet_payment_error:
+    path:     /error
+    defaults: { _controller: GourmetBundle:Payment:errorPayment}

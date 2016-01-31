@@ -49,12 +49,12 @@ class PanierController extends Controller
 
             }else
             {
-
-                //L'utilisateur commande des plats de different chef
-                //Different message d'erreur en fonction
-
+                $this->addFlash(
+                    'addPanierOtherChef',
+                    true
+                );
             }
-            return $this->Redirection_origine();
+
         }else{
 
 
@@ -67,6 +67,7 @@ class PanierController extends Controller
             $platPanier->setTcoms($Plat->getTcoms());
 
             $Panier->addTableauPlats($platPanier);
+            $Panier->addTableauPlatsTotal($Plat->getPrice());
             $Panier->setChefSelect($Plat->getUtilisateur());
         }
 
@@ -75,6 +76,11 @@ class PanierController extends Controller
 
         //$session = $request->getSession();
         //$session->set('Panier', $Panier);
+
+        $this->addFlash(
+            'addPanier',
+            true
+        );
 
         return $this->Redirection_origine();
 
@@ -94,12 +100,8 @@ class PanierController extends Controller
             $Panier = $this->platSuppr($Plat,$Panier);
             $this->getUser()->setAttribute('Panier',$Panier,$request);
 
-        }else
-        {
-            //L'utilisateur commande des plats de different chef
-            //Different message d'erreur en fonction
-            return $this->Redirection_origine();
         }
+
         return $this->Redirection_origine();
     }
     public function resetPanierAction(Request $request)
@@ -111,6 +113,8 @@ class PanierController extends Controller
 
     private function platExiste($Plat,$Panier)
     {
+        $Panier->addTableauPlatsTotal($Plat->getPrice());
+
         $tableauPlat = $Panier->getTableauPlats();
         if (count($tableauPlat) != 0) {
             foreach ($tableauPlat as $platPanier) {
@@ -128,24 +132,31 @@ class PanierController extends Controller
         $platPanier->setTcoms();
 
         $Panier->addTableauPlats($platPanier);
+
         return false;
     }
     private function  platSuppr($Plat,$Panier)
     {
         $tableauPlat = $Panier->getTableauPlats();
         $c = 0;
-        foreach ($tableauPlat as $platPanier){
-            if($platPanier->getPlat()->getId() == $Plat->getId()) {
-                if ($platPanier->getQuantity() > 1) {
-                $platPanier->setQuantity($platPanier->getQuantity() - 1);
-                 }else
-                {
+        if ($tableauPlat) {
+            foreach ($tableauPlat as $platPanier) {
+                if ($platPanier->getPlat()->getId() == $Plat->getId()) {
+                    if ($platPanier->getQuantity() > 1) {
+                        $platPanier->setQuantity($platPanier->getQuantity() - 1);
+                    } else {
 
-                   // array_splice($tableauPlat, $c,1);
-                    $Panier->supTableauPlats($c);
+                        // array_splice($tableauPlat, $c,1);
+                        $Panier->supTableauPlats($c);
+                    }
+                    $Panier->supTableauPlatsTotal($Plat->getPrice());
                 }
+                $c++;
             }
-            $c++;
+        }
+        if ($c == 0)
+        {
+            $Panier->setTableauPlatsTotal(0);
         }
 
 
@@ -155,7 +166,7 @@ class PanierController extends Controller
     {
         $referer = $this->getRequest()->headers->get('referer');
         if(empty($referer)) {
-            $referer = $this->container->get('router')->generate('gourmet_homepage');
+            $referer = $this->container->get('router')->generate('panier_index');
         }
         //Referer ne fonctionne pas avec une adresse entrer a la main ou externe au site
         return new RedirectResponse($referer);

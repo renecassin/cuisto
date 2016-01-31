@@ -49,3 +49,7 @@ gourmet_message:
 gourmet_panier:
     resource: "@GourmetBundle/Resources/config/routing/panier.yml"
     prefix:   /gourmet/panier
+
+gourmet_payment_resource:
+    resource: "@GourmetBundle/Resources/config/routing/payment.yml"
+    prefix:   /paiement

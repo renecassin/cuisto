@@ -24,8 +24,8 @@ class Utilisateur implements UserInterface //, EquatableInterface
     {
         $this->dateCreated = new \DateTime("now");
         $this->groupe = $Groupe ; //Id de groupe par defaut doit correspondre a l'id du groupe d'un utilisateur enregistr� (gourmet)
-        $this->salt = md5(uniqid(null, true)); // cr�ation d'un salt pour chaque utilisateur
-        //$this->salt =null; // cr�ation d'un salt pour chaque utilisateur
+        $this->salt = md5(uniqid(null, true)); // creation d'un salt pour chaque utilisateur
+        //$this->salt =null; // creation d'un salt pour chaque utilisateur
         $this->attribute = [];
     }
 
@@ -146,6 +146,12 @@ class Utilisateur implements UserInterface //, EquatableInterface
      */
     private $chef;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="wallet_lemon_way", type="string", length=255, nullable=true)
+     */
+    private $walletLemonWay;
 
     /**
      * Get id
@@ -647,5 +653,21 @@ class Utilisateur implements UserInterface //, EquatableInterface
     {
         $session = $request->getSession();
         $session->remove($nom);
+    }
+
+    /**
+     * @return string
+     */
+    public function getWalletLemonWay()
+    {
+        return $this->walletLemonWay;
+    }
+
+    /**
+     * @param string $walletLemonWay
+     */
+    public function setWalletLemonWay($walletLemonWay)
+    {
+        $this->walletLemonWay = $walletLemonWay;
     }
 }
