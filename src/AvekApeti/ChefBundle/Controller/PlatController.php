@@ -249,6 +249,7 @@ class PlatController extends Controller
      */
     private function createDeleteForm($id)
     {
+
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('chef_plat_delete', array('id' => $id)))
             ->setMethod('DELETE')

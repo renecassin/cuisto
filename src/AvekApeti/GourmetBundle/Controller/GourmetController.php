@@ -107,6 +107,26 @@ class GourmetController extends Controller
         ));
     }
 
+    public function profilPublicAction()
+    {
+        //Recuperation de l'utilisateur connecté et recuperation de son id
+        $user =$this->get('security.context')->getToken()->getUser();
+        $id = $user->getId();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AvekApetiBackBundle:Utilisateur')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Utilisateur .');
+        }
+
+        return $this->render('GourmetBundle:Gourmet:profil-public.html.twig', array(
+            'entity'      => $entity,
+
+        ));
+    }
+
     /* public function updateAction(Request $request)
      {
 
@@ -204,9 +224,9 @@ class GourmetController extends Controller
                 $user->setPassword($encoder->encodePassword($user->getPassword(), $user->getSalt()));
             }
           //  if($isNewImage){
-                $image = $user->getImage();
-                $image->setUser($user->getId());
-                $user->setImage($image);
+          //     $image = $user->getImage();
+          //      $image->setUser($user->getId());
+           //     $user->setImage($image);
            // }
 
             $em->persist($user);

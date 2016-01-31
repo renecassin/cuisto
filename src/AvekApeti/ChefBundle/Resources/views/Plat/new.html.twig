@@ -25,11 +25,57 @@
                 $('.specialite-price-'+$(this).val()).removeClass('hidden');
             });
 
+            $('#menu').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-1').removeClass('hidden');
+            });
+            $('#avekapeti_backbundle_plat_name').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-2').removeClass('hidden');
+            });
+            $('#avekapeti_backbundle_plat_image_file').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-3').removeClass('hidden');
+            });
+            $('#ingredients').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-4').removeClass('hidden');
+            });
+            $('#avekapeti_backbundle_plat_price').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-5').removeClass('hidden');
+            });
+            $('#avekapeti_backbundle_plat_content').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-6').removeClass('hidden');
+            });
+            $('#avekapeti_backbundle_plat_tliv').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-7').removeClass('hidden');
+            });
+            $('#avekapeti_backbundle_plat_dateStart').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-8').removeClass('hidden');
+            });
+            $('#avekapeti_backbundle_plat_unableWhile').click(function()
+            {
+                $('.description-input').addClass('hidden');
+                $('.description-input-9').removeClass('hidden');
+            });
+
             $('.timepicker-hour').datetimepicker({
                 datepicker:false,
                 format:'H:i',
                 lang:'fr',
-                step:30
+                step:15
             });
 
             $('.datepicker').datetimepicker({
@@ -62,292 +108,330 @@
                 {% endif %}
             </div>
 
+            {% form_theme form 'form/form_errors.html.twig' %}
+            {{ form_start(form, {'attr':{class: "form-horizontal"} } ) }}
+
             <div class="row">
 
                 <div class="col-lg-12 text-center titre-compte">
-                    <h3 class="section-heading">Éveillez les papilles</h3>
+                    <h3 class="section-heading">Quel plat/entrée/dessert nous concoctez-vous?</h3>
                     <hr class="primary">
                     <p>Chaque plat sur Avekapeti est unique. Mettez en avant ce qui rend votre plat appétissant pour que les gourmets qui veulent déguster vos spécialités le remarquent.</p>
                 </div>
 
-                {% form_theme form 'form/form_errors.html.twig' %}
-                {{ form_start(form, {'attr':{class: "form-horizontal"} } ) }}
-
-                <div class="col-md-12">
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.name, 'Nom', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.name,
-                                    {
-                                        attr:{class: "form-control",placeholder: "Nom",id: "nom",required: 'data-validation-required-message= "Veuillez entrer le nom du plat."'}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.name) }}</p>
+                {% if entityChef.adress is empty %}
+                    {% for flash_message in app.session.flashbag.get('notice') %}
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="flash-notice">
+                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Conseil : </strong> {{ flash_message }}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.price, 'Prix en €', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.price,
-                                    {
-                                        attr:{class: "form-control",placeholder: "Prix", id: "prix",required: 'data-validation-required-message= "Veuillez entrer le prix du plat."'}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.price) }}</p>
-                                    {#{% if entity.categorie == "Entrée" %}#}
-                                    <p class="help-block specialite-price specialite-price-1">Le prix maximum d'une entrée est de 2 €</p>
-                                    {#{% elseif entity.categorie == "Plat" %}#}
-                                    <p class="help-block specialite-price specialite-price-2 hidden">Le prix maximum d'une plat principal est de 7 €</p>
-                                    {#{% elseif entity.categorie == "Dessert" %}#}
-                                    <p class="help-block specialite-price specialite-price-3 hidden">Le prix maximum d'un dessert est de 2 €</p>
-                                    {#{% endif %}#}
-                                </div>
-                            </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="col-md-6 well">
+
+                    <div class="form-group has-feedback">
+                        <label for="menu" class="col-md-4 control-label" id="label-menu">Nom du menu</label>
+                        <div class="col-md-7">
+                            <input type="text" id="menu" class="form-control des-input" placeholder="Nom du menu">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <p class="help-block description-input description-input-1 hidden">Pour sortir du lot, soyez original, choisissez un nom court décalé et percutant pour attirer l’attention, par exemple un jeu de mot « il steak haché », ou encore « caramba! » pour un menu latino, « A vos baguettes! » pour un menu asiatique</p>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.name, 'Nom de l’entrée/plat/dessert', {'label_attr': {'class': 'col-md-4 control-label', 'id':'label-nom'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.name,
+                            {
+                                attr:{class: "form-control",placeholder: "Nom de l’entrée/plat/dessert",id: "nom",required: 'data-validation-required-message= "Veuillez entrer le nom du plat."'}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.name) }}</p>
+                            <p class="help-block description-input description-input-2 hidden">Court et significatif :-)</p>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.categorie, 'Catégorie', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.categorie,
+                            {
+                                attr:{class: "form-control",id: "categorie"}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.categorie) }}</p>
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.image, 'Photo du plat', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {#
-                                    <input type="file" id="exampleInputFile3">
-                                    <p class="help-block text-danger"></p>
-                                    #}
-                                    {{ form_widget(form.image,
-                                    {
-                                        attr:{id: "photo-plat",required: 'data-validation-required-message= "Veuillez sélectionner la photo du plat"'}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.image) }}</p>
-                                </div>
-                                <div class="col-md-8 col-md-offset-3">
-                                    {% if entity.image %}
-                                        <img  src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt="">
-                                    {% else %}
-                                        <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.quantity, 'Nombre de parts', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.quantity,
-                                    {
-                                        attr:{maxlength:"50", class: "form-control",'value': "1" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.quantity) }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.categorie, 'Categorie', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.categorie,
-                                    {
-                                        attr:{class: "form-control",id: "categorie"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.categorie) }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.specialite, 'Spécialité', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.specialite,
-                                    {
-                                        attr:{class: "form-control",id: "specialite"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.specialite) }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                <label for="connu" class="col-md-3 control-label" id="label-piment">Ce plat est-il pimenté ?</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" id="connu">
-                                        <option>Pas du tout</option>
-                                        <option>Un peu</option>
-                                        <option>Beaucoup</option>
-                                        <option>Piments mis à part</option>
-                                    </select>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.tcoms, 'Type de repas', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.tcoms,
-                                    {
-                                        attr:{class: "form-control",id: "type-commande"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.tcoms) }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.unableWhile, 'Fermeture des commandes', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.unableWhile,
-                                    {
-                                        attr:{ type:"date",id: "dispo", class:"datepicker"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.unableWhile) }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.tliv, 'Mode de remise', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.tliv,
-                                    {
-                                        attr:{class: "form-control",id: "type-livraison"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.tliv) }}</p>
-                                </div>
-                            </div>
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.specialite, 'Spécialité', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.specialite,
+                            {
+                                attr:{class: "form-control",id: "specialite"}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.specialite) }}</p>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.dateStart, 'Heure de début', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.dateStart,
-                                    {
-                                        attr:{ type:"date",id: "date_debut", class:"timepicker-hour"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.dateStart) }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.dateEnd, 'Heure de fin', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.dateEnd,
-                                    {
-                                        attr:{ type:"date",id: "date_fin", class:"timepicker-hour"}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.dateEnd) }}</p>
-                                </div>
-                            </div>
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.tcoms, 'Type de repas', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.tcoms,
+                            {
+                                attr:{class: "form-control",id: "type-commande"}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.tcoms) }}</p>
                         </div>
                     </div>
 
-
-
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                {{ form_label(form.content, 'Description (150 caractères maximum)', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                                <div class="col-md-8">
-                                    {{ form_widget(form.content,
-                                    {
-                                        attr:{class: "form-control",placeholder: "Description",id: "description",required: 'data-validation-required-message= "Veuillez entrer la description de votre plat."'}
-                                    })
-                                    }}
-                                    <p class="help-block text-danger">{{ form_errors(form.content) }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                <label for="ingredients" class="col-md-3 control-label">Ingrédients</label>
-                                <div class="col-md-8">
-                                    <textarea id="ingredients" class="form-control" placeholder='-Ingrédient1                                                                  -Ingrédient2 ...' id="ingredients"></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
+                    <div class="form-group has-feedback">
+                        <label for="connu" class="col-md-4 control-label" id="label-piment">Ce plat est-il pimenté ?</label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="connu">
+                                <option>Pas du tout</option>
+                                <option>Un peu</option>
+                                <option>Beaucoup</option>
+                                <option>Piments mis à part</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.image, 'Photo du plat', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {#
+                            <input type="file" id="exampleInputFile3">
+                            <p class="help-block text-danger"></p>
+                            #}
+                            {{ form_widget(form.image,
+                            {
+                                attr:{id: "photo-plat",required: 'data-validation-required-message= "Veuillez sélectionner la photo du plat"'}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.image) }}</p>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <p class="help-block description-input description-input-3 hidden">Une photo appétissante est très très importante pour donner envie aux gourmets de commander. Le photographe professionnel Florent Aceto vous donne ses précieux conseils pour des photos réussies : <a href="http://www.florentaceto.com/" target="_blank" style="text-decoration: underline">cliquez ici</a></p>
+                        </div>
+                            {#
+                            <div class="col-md-8 col-md-offset-3">
+                                {% if entity.image %}
+                                    <img  src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt="">
+                                {% else %}
+                                    <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
+                                {% endif %}
+                            </div>#}
+                    </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                <div class="col-md-9 col-md-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                        {{ form_widget(form.active,
-                                        {
-                                            attr:{type:"checkbox",id: "actif"}
-                                        })
-                                        }}J'active ce plat
-                                        </label>
-                                    </div>
-                                    <p class="help-block text-danger">{{ form_errors(form.active) }}</p>
-                                </div>
+
+                </div>
+
+                <div class="col-md-6 well pull-right">
+
+                    <div class="form-group has-feedback">
+                        <label for="ingredients" class="col-md-4 control-label">Ingrédients</label>
+                        <div class="col-md-7">
+                            <textarea id="ingredients" class="form-control des-input" placeholder="Ingrédients"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <p class="help-block description-input description-input-4 hidden">Les gourmets sont curieux et adorent les produits locaux. Indiquez tous les ingrédients, très important pour les personnes allergiques ou avec certaines habitudes alimentaires! Si vous avez acheté des produits locaux, bio ou même provenant du boucher ou du primeur , n’hésitez pas à l’indiquer :-) Vous pouvez consulter la liste des ingrédients susceptibles de causer des allergies en <a href=# target="_blank" style="text-decoration: underline">cliquant ici</a> (n’oubliez pas de les mentionner)</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.quantity, 'Nombre de parts', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.quantity,
+                            {
+                                attr:{maxlength:"50", class: "form-control",'placeholder': "1" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.quantity) }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.price, 'Prix en €', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.price,
+                            {
+                                attr:{class: "form-control",placeholder: "Prix en € pour une part", id: "prix",required: 'data-validation-required-message= "Veuillez entrer le prix du plat."'}
+                            })
+                            }}
+                            {#
+                            <p class="alert alert-warning help-block specialite-price specialite-price-1" role="alert">Le prix maximum d'une entrée est de 2 €</p>
+                            <p class="alert alert-warning help-block specialite-price specialite-price specialite-price-2 hidden" role="alert">Le prix maximum d'une plat principal est de 7 €</p>
+                            <p class="alert alert-warning help-block specialite-price specialite-price specialite-price-3 hidden" role="alert">Le prix maximum d'un dessert est de 2 €</p>
+                            #}
+                            <p class="help-block text-danger">{{ form_errors(form.price) }}</p>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <p class="help-block description-input description-input-5 hidden">(= portion généreuse pour une personne) Le prix est très important, n’oubliez pas que les gourmets ne peuvent pas utiliser leurs tickets restaurant, le prix doit être attractif. Pour avoir du succès, nous vous conseillons: 7€ maximum pour un plat principal, 2€ maximum pour une entrée ou un dessert. Préférez un plat simple et peu couteux à un plat sophistiqué qui vous prend du temps : Les gourmets seront ravis de manger du riz aux légumes fait maison à 5€ par exemple.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.content, 'Description', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.content,
+                            {
+                                attr:{class: "form-control",placeholder: "Description",id: "description",required: 'data-validation-required-message= "Veuillez entrer la description de votre plat."'}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.content) }}</p>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <p class="help-block description-input description-input-6 hidden">Dites-en nous plus sur votre bon petit plat, mettez le en valeur, si votre prix est au-dessus des prix conseillés, justifiez-le ici en indiquant par exemple la qualité de vos ingrédients</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 text-center titre-compte">
+                    <h3 class="section-heading">Quelles sont les modalités de remise du plat?</h3>
+                    <hr class="primary">
+                </div>
+
+
+                <div class="col-md-6 well">
+
+                    <div class="form-group has-feedback">
+                        {{ form_label(form.tliv, 'Mode de remise', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(form.tliv,
+                            {
+                                attr:{class: "form-control",id: "type-livraison"}
+                            })
+                            }}
+                            <p class="help-block text-danger">{{ form_errors(form.tliv) }}</p>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <p class="help-block description-input description-input-7 hidden">Pour optimiser vos chances, nous vous conseillons de proposer la livraison.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.dateStart, 'Heure de début', {'label_attr': {'class': 'col-md-7 control-label'}}) }}
+                            <div class="col-md-5">
+                                {{ form_widget(form.dateStart,
+                                {
+                                    attr:{ type:"date",id: "date_debut", class:"form-control timepicker-hour"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.dateStart) }}</p>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                <div class="col-md-9 col-md-push-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="remember" type="checkbox" value="remember-me" data-target="#MonCollapseBoisson" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">Je propose aussi une boisson
-                                        </label>
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.dateEnd, 'Heure de fin', {'label_attr': {'class': 'col-md-5 control-label'}}) }}
+                            <div class="col-md-5">
+                                {{ form_widget(form.dateEnd,
+                                {
+                                    attr:{ type:"date",id: "date_fin", class:"form-control timepicker-hour"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.dateEnd) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <p class="help-block description-input description-input-8 hidden">Renseignez ici vos disponibilités pour remettre le plat: le créneau horaire où vous pouvez accueillir les gourmets (en cas de retrait chez le chef) ou leur livrer le plat. Vous conviendrez ensuite directement avec le gourmet de l’heure exacte. N’oubliez pas que vous pouvez également proposer aux gourmets des plats à récupérer en fin de journée (18/19h) pour leur diner.</p>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-6 well pull-right">
+
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.unableWhile, 'Fermeture des commandes', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
+                            <div class="col-md-7">
+                                {{ form_widget(form.unableWhile,
+                                {
+                                    attr:{ type:"date",id: "dispo", class:"form-control datepicker"}
+                                })
+                                }}
+                                <p class="help-block text-danger">{{ form_errors(form.unableWhile) }}</p>
+                            </div>
+                            <div class="col-md-10 col-md-offset-1">
+                                <p class="help-block description-input description-input-9 hidden">Après ce moment, les gourmets ne pourront plus commander, nous vous conseillons de fermer les commandes à la dernière minute : lorsque vous commencez à préparer l’emballage des plats, juste avant de livrer/accueillir les gourmets.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 text-center titre-compte">
+                    <h3 class="section-heading">Composez un menu comme un chef !</h3>
+                    <hr class="primary">
+                </div>
+
+                <div class="col-md-6 col-md-offset-3 well">
+
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="remember-me" data-target="#MonCollapseBoisson" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">Je propose aussi une boisson
+                                    <p class="help-block">Vous pouvez proposer une bouteille d’eau, un soda ou un jus... Proposez le au prix auquel vous l’avez acheter, l’objectif est de proposer un menu complet et de séduire les gourmets.</p>
+                                </label>
                             </div>
                         </div>
                     </div>
 
                     <div id="MonCollapseBoisson" class="collapse">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group has-feedback">
-                                    <label for="boisson" class="col-md-3 control-label" id="label-boisson">Boisson</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="boisson" class="form-control" placeholder="Boisson">
-                                        <p class="help-block text-danger"></p>
-                                    </div>
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback">
+                                <label for="boisson" class="col-md-3 control-label" id="label-boisson">Boisson</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="boisson" class="form-control" placeholder="Boisson">
+                                    <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group has-feedback">
-                                    <label for="prix-boisson" class="col-md-3 control-label" id="label-prix-boisson">Prix boisson en €</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="prix-boisson" class="form-control" placeholder="Prix boisson en €">
-                                        <p class="help-block text-danger"></p>
-                                        <p class="help-block">Le prix maximum d'une boisson est de 0,50 €</p>
-                                    </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback">
+                                <label for="prix-boisson" class="col-md-3 control-label" id="label-prix-boisson">Prix boisson en €</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="prix-boisson" class="form-control" placeholder="Prix boisson en €">
+                                    <p class="help-block text-danger"></p>
+                                    <p class="help-block">Le prix maximum d'une boisson est de 0,50 €</p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <div class="checkbox">
+                                <label>
+                                    {{ form_widget(form.active,
+                                    {
+                                        attr:{type:"checkbox",id: "actif"}
+                                    })
+                                    }}J'active ce plat
+                                </label>
+                            </div>
+                            <p class="help-block text-danger">{{ form_errors(form.active) }}</p>
                         </div>
                     </div>
 
@@ -363,13 +447,15 @@
 
                     <div class="col-md-7 text-left">
                         <div id="success"></div>
-                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création du plat..." autocomplete="off">Créer ce plat</button>
+                        <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création du plat..." autocomplete="off">Publier mon chef d'oeuvre</button>
                     </div>
-                    {{ form_end(form) }}
                 </div>
 
-
             </div>
+
+
+            {{ form_end(form) }}
+
         </div>
     </section>
 {% endblock content %}

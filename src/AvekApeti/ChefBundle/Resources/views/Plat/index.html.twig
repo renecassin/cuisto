@@ -19,7 +19,7 @@
                 {% if entityChef.image %}
                     <img src="{{ entityChef.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
                 {% else %}
-                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png'|imagine_filter('profil_picture')) }} alt="" class="img-circle">
                 {% endif %}
             </div>
 
@@ -49,7 +49,7 @@
                                         {% if entity.image %}
                                             <img src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt="" >
                                         {% else %}
-                                            <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
+                                            <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg' | imagine_filter('plat_picture_small')) }} alt="">
                                         {% endif %}
                                     </a>
                                 </div>

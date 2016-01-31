@@ -1189,16 +1189,16 @@
         },
         {
             "name": "liip/imagine-bundle",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "19eda155dd4dd71fa1428efcdebecbb9142b0388"
+                "reference": "22d625e92337c1c25338922dc08706182be9b02f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/19eda155dd4dd71fa1428efcdebecbb9142b0388",
-                "reference": "19eda155dd4dd71fa1428efcdebecbb9142b0388",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/22d625e92337c1c25338922dc08706182be9b02f",
+                "reference": "22d625e92337c1c25338922dc08706182be9b02f",
                 "shasum": ""
             },
             "require": {
@@ -1228,6 +1228,7 @@
             "suggest": {
                 "amazonwebservices/aws-sdk-for-php": "Add it if you'd like to use aws v1 resolver",
                 "aws/aws-sdk-php": "Add it if you'd like to use aws v2 or v3 resolver",
+                "league/flysystem": "If you'd want to use Flysystem binary loader",
                 "monolog/monolog": "If you'd want to write logs",
                 "twig/twig": "If you'd want to use some handy twig filters, version 1.12 or greater required"
             },
@@ -1258,7 +1259,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2015-12-29 09:47:49"
+            "time": "2016-01-14 07:16:25"
         },
         {
             "name": "monolog/monolog",
@@ -1945,16 +1946,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.23.1",
+            "version": "v1.23.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6"
+                "reference": "ae53fc2c312fdee63773b75cb570304f85388b08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
-                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ae53fc2c312fdee63773b75cb570304f85388b08",
+                "reference": "ae53fc2c312fdee63773b75cb570304f85388b08",
                 "shasum": ""
             },
             "require": {
@@ -2002,7 +2003,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-11-05 12:49:06"
+            "time": "2016-01-11 14:02:19"
         },
         {
             "name": "willdurand/geocoder",

@@ -47,6 +47,10 @@
                                 <li>
                                     <a href={{ path('chef_profil') }}>Modifier mon profil Chef</a>
                                 </li>
+                                <hr>
+                                <li>
+                                    <a href={{ path('chef_profil_public') }}>Mon profil Chef</a>
+                                </li>
                             </ul>
                     </li>
                 {% else %}
@@ -88,12 +92,7 @@
                             </li>
                             <hr>
                             <li>
-                                <a>Mon profil</a>
-                            </li>
-                            <hr>
-
-                            <li>
-                                <a>Mes favoris</a>
+                                <a href={{ path('gourmet_profil_public') }}>Mon profil</a>
                             </li>
                             <hr>
                             <li>

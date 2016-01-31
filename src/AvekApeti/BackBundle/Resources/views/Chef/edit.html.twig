@@ -1,16 +1,81 @@
-{% extends '::base.html.twig' %}
+{% extends "AvekApetiBackBundle:Main:index.html.twig" %}
 
-{% block body -%}
-    <h1>Chef edit</h1>
+{% block titre %} {{ parent() }}{% endblock %}
 
-    {{ form(edit_form) }}
+{% block content -%}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('chef') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
-{% endblock %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edition de #{{ entity.id }}</h1>
+        </div>
+
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {{ form_start(edit_form) }}
+                            <div class="form-group">
+                                {{ form_label(edit_form.utilisateur, 'Gourmet') }}
+                                {{ form_widget(edit_form.utilisateur, {'attr': {'class': 'form-control', 'placeholder':"Gourmet"}}) }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.utilisateur) }}</p>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(edit_form.adress, 'Adresse') }}
+                                {{ form_widget(edit_form.adress, {'attr': {'class': 'form-control', 'placeholder':"Adresse"}}) }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.adress) }}</p>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(edit_form.city, 'Ville') }}
+                                {{ form_widget(edit_form.city, {'attr': {'class': 'form-control', 'placeholder':"Ville"}}) }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.city) }}</p>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(edit_form.cp, 'Code postal') }}
+                                {{ form_widget(edit_form.cp, {'attr': {'class': 'form-control', 'placeholder':"Code postal"}}) }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.cp) }}</p>
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(edit_form.zoneKm, 'Zone en (km)') }}
+                                {{ form_widget(edit_form.zoneKm, {'attr': {'class': 'form-control', 'placeholder':"Zone (en km)"}}) }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.zoneKm) }}</p>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(edit_form.siret, 'Siret') }}
+                                {{ form_widget(edit_form.siret, {'attr': {'class': 'form-control', 'placeholder':"SIret"}}) }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.siret) }}</p>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(edit_form.professionnel, 'Professionnel') }}
+                                {{ form_widget(edit_form.professionnel, {'attr': {'type': 'checkbox'}}) }}
+                                <p class="help-block text-danger">{{ form_errors(edit_form.professionnel) }}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <div id="success"></div>
+                                <a href="{{ path('chef') }}" class="btn btn-info">Retour à la liste</a>
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <hr>
+                                {{ form(delete_form) }}
+                            </div>
+
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+{% endblock content %}
+

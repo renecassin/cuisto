@@ -1,59 +1,69 @@
-{% extends '::base.html.twig' %}
+{% extends "AvekApetiBackBundle:Main:index.html.twig" %}
 
-{% block body -%}
-    <h1>Utilisateur list</h1>
+{% block titre %} {{ parent() }}{% endblock %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Login</th>
-                <th>Password</th>
-                <th>Adress</th>
-                <th>City</th>
-                <th>Cp</th>
-                <th>Phone</th>
-                <th>Salt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('utilisateur_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.firstname }}</td>
-                <td>{{ entity.lastname }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{{ entity.login }}</td>
-                <td>{{ entity.password }}</td>
-                <td>{{ entity.adress }}</td>
-                <td>{{ entity.city }}</td>
-                <td>{{ entity.cp }}</td>
-                <td>{{ entity.phone }}</td>
-                <td>{{ entity.salt }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('utilisateur_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('utilisateur_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block content -%}
 
-        <ul>
-        <li>
-            <a href="{{ path('utilisateur_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+    <div class="row">
+        <div class="col-lg-10">
+            <h1 class="page-header">Liste des Gourmets</h1>
+        </div>
+        <div class="col-lg-2">
+            <a href="{{ path('utilisateur_new') }}" class="btn btn-success page-header">Ajouter un gourmet</a>
+        </div>
+
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>E-mail</th>
+                                    <th>Pseudo</th>
+                                    <th>Adresse</th>
+                                    <th>Ville</th>
+                                    <th>Code postal</th>
+                                    <th>Téléphone</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entity in entities %}
+                                    <tr class="odd gradeX">
+                                        <td><a href="{{ path('utilisateur_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                        <td>{{ entity.firstname }}</td>
+                                        <td>{{ entity.lastname }}</td>
+                                        <td>{{ entity.email }}</td>
+                                        <td>{{ entity.login }}</td>
+                                        <td>{{ entity.adress }}</td>
+                                        <td>{{ entity.city }}</td>
+                                        <td>{{ entity.cp }}</td>
+                                        <td>{{ entity.phone }}</td>
+                                        <td>
+                                            <a href="{{ path('utilisateur_show', { 'id': entity.id }) }}" class="btn btn-primary">Voir</a>
+                                            <a href="{{ path('utilisateur_edit', { 'id': entity.id }) }}" class="btn btn-info">Edit</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+{% endblock content %}

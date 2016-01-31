@@ -55,9 +55,7 @@ class Plat
      *
      * @ORM\Column(name="price", type="float")
      *
-     * @Assert\Range(
-     *      max = 7,
-     *      maxMessage = "Le prix d'un plat ne doit pas dépasser {{ limit }}€"
+     *
      * )
      */
     private $price;
