@@ -73,10 +73,12 @@
     font-size: 12px;
 }
 
+#page-mon-compte-chef-public .glyphicon,
 #selection-plat .glyphicon,
 #index-plat .glyphicon{
     color:#ff4848;
 }
+
 
 @media (min-width: 360px) {
     #h1-home{
@@ -143,6 +145,7 @@
     #selection-plat .ratings p{
         font-size: 16px;
     }
+    #page-mon-compte-chef-public .ratings p,
     #index-plat .ratings p{
         font-size: 17px;
     }
@@ -269,8 +272,18 @@
     background-size: cover;
 }
 
+#header-mon-compte-public{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/gourmet/profil-public.jpg) center no-repeat;
+    background-size: cover;
+}
+
 #header-mon-compte-chef{
     background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/chef/couteau.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-mon-compte-chef-public{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/chef/profil-public-chef.jpg) center no-repeat;
     background-size: cover;
 }
 
@@ -601,6 +614,8 @@ section#contact .glyphicon-perso {
 }
 
 #page-voir-commande .fa-2x,
+#page-mon-compte-public .fa-2x,
+#page-mon-compte-chef-public .fa-2x,
 #page-mon-compte .fa-2x,
 #page-mon-compte-chef .fa-2x{
     color:#ffada2;
@@ -698,6 +713,7 @@ section#contact .glyphicon-perso {
 
 .dropdown-menu hr,
 #index-plat .panier hr,
+#page-mon-compte-chef-public .well hr,
 #index-plat .well hr{
     max-width: none;
     margin-top: 0;
@@ -711,8 +727,8 @@ section#contact .glyphicon-perso {
 }
 
 .well{
-    border:0;
-    margin-top: 30px;
+    /*border:0;*/
+    /*margin-top: 30px;*/
 }
 
 #index-plat .thumbnail {
@@ -777,6 +793,10 @@ section#contact .glyphicon-perso {
 #selection-plat .img-circle{
     border: 2px solid ;
     vertical-align: middle;
+}
+
+#index-plat .img-circle,
+#selection-plat .img-circle{
     transition: all .4s ease-in-out;
 }
 
@@ -801,10 +821,9 @@ section#contact .glyphicon-perso {
     transform: scale(1.05);
 }
 
-
 .portrait-chef{
-    padding-top: 20px;
-    padding-bottom: 10px;
+    /*padding-top: 20px;*/
+    padding-bottom: 20px;
 }
 
 .lien-portrait-chef .img-circle{
@@ -972,62 +991,17 @@ transform: translateX(-50%);
 #page-edit-plat .img-circle,
 #page-liste-plat .img-circle,
 #page-creation-plat .img-circle,
+#page-mon-compte-chef-public .img-circle,
+#page-mon-compte-public .img-circle,
 #page-mon-compte-chef .img-circle,
 #page-mon-compte .img-circle {
     width: 130px;
     height: 130px;
     border: 2px solid #FFF;
     position: absolute;
-    left: 29%;
-    top: -118px;
+    transform: translate(-50%, -85%);
 }
 
-@media(min-width:360px) {
-    #page-voir-commande .img-circle,
-    #page-liste-commande .img-circle,
-    #page-voir-msg .img-circle,
-    #page-new-msg .img-circle,
-    #page-liste-msg .img-circle,
-    #page-edit-plat .img-circle,
-    #page-liste-plat .img-circle,
-    #page-creation-plat .img-circle,
-    #page-mon-compte-chef .img-circle,
-    #page-mon-compte .img-circle {
-        left: 31%;
-    }
-}
-
-@media(min-width:768px) {
-    #page-voir-commande .img-circle,
-    #page-liste-commande .img-circle,
-    #page-voir-msg .img-circle,
-    #page-new-msg .img-circle,
-    #page-liste-msg .img-circle,
-    #page-edit-plat .img-circle,
-    #page-liste-plat .img-circle,
-    #page-creation-plat .img-circle,
-    #page-mon-compte-chef .img-circle,
-    #page-mon-compte .img-circle {
-        left: 41%;
-        top: -126px;
-    }
-}
-
-@media(min-width:768px) {
-    #page-voir-commande .img-circle,
-    #page-liste-commande .img-circle,
-    #page-voir-msg .img-circle,
-    #page-new-msg .img-circle,
-    #page-liste-msg .img-circle,
-    #page-edit-plat .img-circle,
-    #page-liste-plat .img-circle,
-    #page-creation-plat .img-circle,
-    #page-mon-compte-chef .img-circle,
-    #page-mon-compte .img-circle {
-        left: 41%;
-        top: -126px;
-    }
-}
 
 @media(min-width:1280px) {
     #page-voir-commande .img-circle,
@@ -1038,28 +1012,30 @@ transform: translateX(-50%);
     #page-edit-plat .img-circle,
     #page-liste-plat .img-circle,
     #page-creation-plat .img-circle,
+    #page-mon-compte-chef-public .img-circle,
+    #page-mon-compte-public .img-circle,
     #page-mon-compte-chef .img-circle,
     #page-mon-compte .img-circle {
         width: 145px;
         height: 145px;
-        left: 44%;
-        top: -125px;
     }
 
-    #label-blog,
-    #label-temps,
-    #comment{
-        top:-19px;
-    }
-
+    #label-prix,
+    #label-nom,
     #label-adresse,
     #label-piment,
     #label-rayon,
-    #label-pro,
-    #label-rib,
-    #label-siret,
     #disposez{
         top:-8px;
+    }
+
+    #label-comment{
+        top:-16px;
+    }
+
+
+    #label-rib{
+        top:8px
     }
 
     #page-edit-plat .titre-compte p ,
@@ -1078,7 +1054,6 @@ transform: translateX(-50%);
     position: relative;
 }
 
-
 .form-horizontal .checkbox, .form-horizontal .radio {
     font-size: 16px;
 }
@@ -1096,6 +1071,8 @@ transform: translateX(-50%);
 #page-edit-plat,
 #page-liste-plat,
 #page-creation-plat,
+#page-mon-compte-public,
+#page-mon-compte-chef-public,
 #page-mon-compte,
 #page-mon-compte-chef{
     padding: 50px 0;
@@ -1108,8 +1085,10 @@ transform: translateX(-50%);
 #page-liste-msg,
 #page-liste-plat,
 #page-mon-compte,
+#page-mon-compte-public,
 #page-edit-plat,
 #page-creation-plat,
+#page-mon-compte-chef-public,
 #page-mon-compte-chef{
     background: radial-gradient(rgba(255,255,255,0.9),white 100%), url(../img/logo/avekapeti-logo-RVB-02.png) center no-repeat;
 }
@@ -1140,6 +1119,8 @@ transform: translateX(-50%);
 }
 */
 
+#page-mon-compte-public .rond,
+#page-mon-compte-chef-public .rond,
 #page-mon-compte .form-group .rond,
 #page-mon-compte-chef .form-group .rond{
     border-radius: 50%;
@@ -1187,7 +1168,7 @@ transform: translateX(-50%);
 }
 
 #index-plat  .thumbnail .caption-full img {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
 }
 
 .bandeau-icon p {
@@ -1465,8 +1446,47 @@ transform: translateX(-50%);
     height: 215.1px;
 }
 
+.help-block{
+    font-size: 14px;
+}
 
+.embed-responsive{
+    margin-top: 20px;
+}
 
+#dites-nous .well,
+#page-edit-plat .well,
+#page-creation-plat .well{
+    width: 48%;
+}
 
+#page-mon-compte .well {
+    width: 98%;
+    background: rgba(2,201,164,0.05);
 
+}
 
+.well{
+    background: rgba(229,73,95,.05);
+}
+
+#page-mon-compte-chef-public .well{
+    padding: 19px 19px 0;
+}
+
+.italique{
+    font-style: italic;
+}
+
+#page-mon-compte-chef-public img,
+#page-mon-compte-public img{
+    width: 100%;
+}
+
+#page-mon-compte-chef-public .well img{
+    width: 70px;
+    height: 70px;
+    border: 2px solid ;
+    vertical-align: middle;
+    color: white;
+}

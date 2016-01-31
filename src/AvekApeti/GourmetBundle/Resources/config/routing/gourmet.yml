@@ -18,3 +18,7 @@ gourmet_commande:
 gourmet_commande_details:
     path:     /commande/{id}/show
     defaults: { _controller: "GourmetBundle:Commande:show" }
+
+gourmet_profil_public:
+    path:     /profil-public
+    defaults: { _controller: "GourmetBundle:Gourmet:profilPublic" }

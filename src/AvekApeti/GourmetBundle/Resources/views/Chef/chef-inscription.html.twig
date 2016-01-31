@@ -10,7 +10,7 @@
                 {% if (is_granted('ROLE_GOURMET')) %}
 
                     {% if (is_granted('ROLE_CHEF')) %}
-                        <h1>Vous êtes deja Chef !</h1>
+                        <h1>Vous êtes déjà Chef !</h1>
                     {% else %}
                         <div class="col-md-5 col-md-offset-1">
                             <div class="row">
@@ -66,6 +66,7 @@
 
                         <div class="login-panel panel panel-default panel-perso">
                             <div class="panel-body">
+                                {% form_theme form 'form/form_errors.html.twig' %}
                                 {{ form_start(form) }}
                                 {#
                                 <div class=" panel-heading-perso ">

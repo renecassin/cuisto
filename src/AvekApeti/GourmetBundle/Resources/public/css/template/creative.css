@@ -55,7 +55,6 @@ p {
     line-height: 1.5;
 }
 
-
 section {
     padding: 50px 0;
 }
@@ -252,6 +251,8 @@ header {
 #header-creation-plat,
 #header-mon-compte-chef,
 #header-mon-compte,
+#header-mon-compte-chef-public,
+#header-mon-compte-public,
 #header-selection-plat {
     height: 300px;
 }
@@ -287,6 +288,8 @@ header .header-content {
     transform: translateY(100%);
 }
 
+#header-mon-compte-public .header-content-transform,
+#header-mon-compte-chef-public .header-content-transform,
 #header-creation-plat .header-content-transform,
 #header-voir-commande .header-content-transform,
 #header-liste-commande .header-content-transform,
@@ -297,6 +300,7 @@ header .header-content {
     -ms-transform: translateY(150%);
     transform: translateY(150%);
 }
+
 
 #header-mon-compte .header-content-transform,
 #header-mon-compte-chef .header-content-transform{
@@ -320,6 +324,8 @@ header .header-content {
         transform: translateY(60%);
     }
 
+    #header-mon-compte-chef-public .header-content-transform,
+    #header-mon-compte-public .header-content-transform,
     #header-mon-compte-chef .header-content-transform,
     #header-mon-compte .header-content-transform{
         -webkit-transform: translateY(125%);
@@ -328,11 +334,13 @@ header .header-content {
     }
 }
 
+#page-mon-compte-chef,
 #page-mon-compte,
+#page-mon-compte-chef-public,
 #page-feedback,
 #page-contact,
 #connexion ,
-#gourmet-inscription ,
+#gourmet-inscription,
 #chef-inscription {
     min-height: 100%;
 }
@@ -370,6 +378,8 @@ header .header-content .header-content-inner p {
     #header-creation-plat .header-content,
     #header-mon-compte-chef .header-content,
     #header-mon-compte .header-content,
+    #header-mon-compte-chef-public .header-content,
+    #header-mon-compte-public .header-content,
     #header-landing .header-content,
     #header-index-plat .header-content-transform,
     #header-selection-plat .header-content,
@@ -420,6 +430,8 @@ header .header-content .header-content-inner p {
     #header-edit-plat,
     #header-liste-plat,
     #header-creation-plat,
+    #header-mon-compte-chef-public,
+    #header-mon-compte-public,
     #header-mon-compte-chef,
     #header-mon-compte,
     #header-selection-plat {
@@ -621,8 +633,10 @@ fieldset[disabled] .btn-primary.active {
     #page-new-msg .btn-filtre,
     #page-edit-plat .btn-filtre,
     #page-creation-plat .btn-filtre,
-    #page-mon-chef .btn-xl,
+    #page-mon-compte-chef .btn-xl,
     #page-mon-compte .btn-xl,
+    #page-mon-compte-chef-public .btn-xl,
+    #page-mon-compte-public .btn-xl,
     #page-feedback .btn-xl,
     #page-contact .btn-xl,
     section .btn-xl {
@@ -871,6 +885,7 @@ section#contact .form-group input.form-control {
     height: 42px;
 }
 
+#page-mon-compte-chef .form-group textarea.form-control,
 #page-new-msg .form-group textarea.form-control,
 #page-edit-plat .form-group textarea.form-control,
 #page-creation-plat .form-group textarea.form-control,
@@ -884,8 +899,6 @@ section#contact .form-group textarea.form-control {
 
 #page-edit-plat .form-group textarea.form-control,
 #page-creation-plat .form-group textarea.form-control,
-#page-mon-compte-chef .form-group textarea.form-control,
-#page-mon-compte-chef .form-group textarea.form-control,
 #page-mon-compte .form-group textarea.form-control {
     height: 150px;
 }
@@ -899,6 +912,8 @@ section#contact .form-group textarea.form-control {
 #page-new-msg .text-danger,
 #page-edit-plat .text-danger,
 #page-creation-plat .text-danger,
+#page-mon-compte-chef-public .text-danger,
+#page-mon-compte-public .text-danger,
 #page-mon-compte-chef .text-danger,
 #page-mon-compte .text-danger,
 #page-feedback .text-danger,

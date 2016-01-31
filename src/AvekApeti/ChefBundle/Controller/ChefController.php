@@ -37,6 +37,28 @@ class ChefController extends Controller
         ));
     }
 
+    public function profilPublicAction()
+    {
+        //Recuperation de l'utilisateur connecté et recuperation de son id
+        $user =$this->get('security.context')->getToken()->getUser();
+        $id = $user->getId();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Chef .');
+        }
+
+        /*$editForm->add('submit', 'submit', array('label' => 'Update'));*/
+
+        return $this->render('ChefBundle:Chef:profil-public.html.twig', array(
+            'entity'      => $entity,
+            'entityChef'      => $user,
+        ));
+    }
+
     public function updateAction(Request $request)
     {
         $user =$this->get('security.context')->getToken()->getUser();

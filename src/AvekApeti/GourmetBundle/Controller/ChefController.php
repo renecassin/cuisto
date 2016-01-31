@@ -51,6 +51,11 @@ class ChefController extends Controller
             $token = new UsernamePasswordToken($entity, null, 'main', array('ROLE_CHEF'));
             $this->get('security.context')->setToken($token);
 
+            $this->addFlash(
+                'notice',
+                'N\'oubliez pas de renseigner votre adresse (dans la rubrique "Modifier mon profil") si vous voulez que les gourmets vous retrouvent :-)'
+            );
+
             return $this->redirect($this->generateUrl('gourmet_homepage'));
 
             //return $this->redirect($this->generateUrl('gourmet_loginpage'));
@@ -103,10 +108,13 @@ class ChefController extends Controller
            $em->flush();
           // $user->isEqualTo($user);
        }
+
+        $this->addFlash(
+            'notice',
+            'N\'oubliez pas de renseigner votre adresse (dans la rubrique "Modifier mon profil") si vous voulez que les gourmets vous retrouvent :-)'
+        );
+
         return $this->redirect($this->generateUrl('gourmet_homepage'));
-
-
-
     }
 
 }

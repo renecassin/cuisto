@@ -25,7 +25,7 @@ class ChefType extends AbstractType
             ->add('city')
             ->add('cp')
             ->add('zoneKm')
-            ->add('professionel')
+            ->add('professionnel')
             ->add('siret')
         ;
     }

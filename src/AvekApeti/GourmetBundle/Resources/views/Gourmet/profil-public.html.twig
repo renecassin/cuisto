@@ -1,0 +1,54 @@
+{%  extends 'GourmetBundle::layout.html.twig' %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $('#myStateButton').on('click', function () {
+            var btn = $(this)
+            btn.button('complete')
+            setTimeout(function () {
+                btn.button('reset')
+            }, 12000)
+        })
+    </script>
+{%  endblock foot_scripts %}
+
+{% block titre %}Mon profil {{ parent() }}{% endblock %}
+
+{% block content %}
+    <header class="header-inscription" id="header-mon-compte-public">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Mon profil</h1>
+                <h2 class="adresse-selection">{{ app.user.username }}</h2>
+            </div>
+        </div>
+    </header>
+
+    <section id="page-mon-compte-public">
+        <div class="container">
+
+            <div class="col-sm-12 text-center photo-mon-compte ">
+                {% if entity.image %}
+                    <img src="{{ entity.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 col-md-offset-3 titre-compte italique text-center">
+                    <p>Bonjour, J'adore le couscous ! Une bonne semoule de blé dur préparée à la main à l'huile d'olive... des légumes cuits juste à leurs niveaux, ça réclame un travail non négligeable mais : quel pied !..... j'adoooooooore !</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
