@@ -1,52 +1,41 @@
-{% extends '::base.html.twig' %}
+{% extends "AvekApetiBackBundle:Main:index.html.twig" %}
 
-{% block body -%}
-    <h1>Plat</h1>
+{% block titre %} {{ parent() }}{% endblock %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ entity.content }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ entity.price }}</td>
-            </tr>
-            <tr>
-                <th>Datecreated</th>
-                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Quantity</th>
-                <td>{{ entity.quantity }}</td>
-            </tr>
-            <tr>
-                <th>Unablewhile</th>
-                <td>{{ entity.unableWhile|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block content -%}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('plat') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('plat_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Affichage de #{{ entity.id }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p><span class="gras">Id :</span> {{ entity.id }}</p>
+            <p><span class="gras">Nom :</span> {{ entity.name }}</p>
+            <p><span class="gras">Description :</span> {{ entity.content }}</p>
+            <p><span class="gras">Prix :</span> {{ entity.price }} €</p>
+            <p><span class="gras">Quantité :</span> {{ entity.quantity }}</p>
+            <p><span class="gras">Actif :</span> {% if entity.active %}Oui {% else %}Non {% endif %}</p>
+            <p><span class="gras">Fermeture des commandes :</span> {{ entity.unableWhile|date('Y-m-d H:i:s') }}</p>
+            <p><span class="gras">Heure de début :</span> {{ entity.dateStart|date('Y-m-d H:i:s') }}</p>
+            <p><span class="gras">Heure de fin :</span> {{ entity.dateEnd|date('Y-m-d H:i:s') }}</p>
+            <p><span class="gras">Chef :</span> {{ entity.utilisateur.login }}</p>
+            <p><span class="gras">Spécialité :</span> {{ entity.specialite.name }}</p>
+            <p><span class="gras">Catégorie :</span> {{ entity.categorie.name }}</p>
+            <p><span class="gras">Type de repas :</span> {{ entity.tcoms.name }}</p>
+            <p><span class="gras">Mode de remise :</span> {{ entity.tliv.name }}</p>
+            <p><span class="gras">Date de création :</span> {{ entity.dateCreated|date('Y-m-d H:i:s') }}</p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <a class="btn btn-info" href="{{ path('plat') }}">Retour à la liste</a>
+    <a class="btn btn-primary" href="{{ path('plat_edit', { 'id': entity.id }) }}">Modifier</a>
+    <hr>
+    {{ form(delete_form) }}
+
 {% endblock %}

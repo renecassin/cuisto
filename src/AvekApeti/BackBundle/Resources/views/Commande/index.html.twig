@@ -1,6 +1,6 @@
 {% extends "AvekApetiBackBundle:Main:index.html.twig" %}
 
-{% block titre %}Administration {{ parent() }}{% endblock %}
+{% block titre %} {{ parent() }}{% endblock %}
 
 {% block content -%}
 
@@ -39,8 +39,8 @@
                                     <td>{{ entity.total }}</td>
                                     <td>{{ entity.status }}</td>
                                     <td>
-                                        <a href="{{ path('chef_show', { 'id': entity.id }) }}" class="btn btn-primary">Voir</a>
-                                        <a href="{{ path('chef_edit', { 'id': entity.id }) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ path('commande_show', { 'id': entity.id }) }}" class="btn btn-primary">Voir</a>
+                                        <a href="{{ path('commande_edit', { 'id': entity.id }) }}" class="btn btn-info">Edit</a>
                                     </td>
                                 </tr>
                             {% endfor %}

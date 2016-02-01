@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AvekApeti\BackBundle\Repository\PlatRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Plat
 {
@@ -54,11 +55,15 @@ class Plat
      * @var float
      *
      * @ORM\Column(name="price", type="float")
-     *
-     *
-     * )
      */
     private $price;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price_net", type="float")
+     */
+    private $priceNet;
 
     /**
      * @var \DateTime
@@ -638,4 +643,31 @@ class Plat
     {
         return $this->supp;
     }
+
+    /**
+     * @return float
+     */
+    public function getPriceNet()
+    {
+        return $this->priceNet;
+    }
+
+    /**
+     * @param float $priceNet
+     */
+    public function setPriceNet($priceNet)
+    {
+        $this->priceNet = $priceNet;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function calculPriceNet()
+    {
+        $this->priceNet = $this->price * 1.12;
+    }
+
+
 }

@@ -2,6 +2,8 @@
 
 namespace AvekApeti\GourmetBundle\Controller;
 
+use AvekApeti\BackBundle\Entity\Commande;
+use AvekApeti\BackBundle\Entity\CommandePlat;
 use lib\LemonWay\LemonWayKit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,14 +31,49 @@ class PaymentController extends Controller
         */
 
         $panier = $user->getAttribute('Panier',$request);
-        die(dump($user, $panier, $panier->getTableauPlatsTotal()));
         $totalCommande = $panier->getTableauPlatsTotal();
         $commissionAvekapeti = $totalCommande * ( 12 / 100 );
+
+
+        /* ----------- CREATION COMMANDE ------------
+        $commande = new Commande();
+        $commande->setContent('A remplacer par le texte utilisateur lors de la commande');
+        $commande->setLivraison(NULL); //TODO : valider avec Fati que c'est dans le profil chef
+        $commande->setStatus("En attente");
+        $commande->setTotal($totalCommande);
+        $commande->setUtilisateur($user);
+
+        // Ajout de tous les plats
+        $em = $this->getDoctrine()->getManager();
+
+        foreach($panier->getTableauPlats() as $plat)
+        {
+            $commandePlat = new CommandePlat();
+            // get real plat
+            $currentPlat = $em->getRepository('AvekApetiBackBundle:Plat')->find($plat->getPlat()->getId());
+            $commandePlat->setCommande($commande);
+            $commandePlat->setPlats($currentPlat);
+            $commandePlat->setQuantity($plat->getQuantity());
+            $commande->addCommandeplat($commandePlat);
+        }
+
+        // get real chef
+        $chef = $em->getRepository("AvekApetiBackBundle:Chef")->find($panier->getChefSelect()->getChef()->getId());
+        $commande->setChef($chef);
+
+        //die(dump($commande));
+        $em->persist($commande);
+        $em->flush();
+        TODO : Ne pas oublier de créer un message standart lors de la commande
+        die('creation de la commande');
+
+        ----------- FIN CREATION COMMANDE ------------ */
+
 
         $res2 = LemonWayKit::MoneyInWebInit(array('wkToken'=>$this->getRandomId(),
             'wallet'=>$user->getWalletLemonWay(),
             'amountTot'=>$totalCommande,
-            'amountCom'=>'2.00',
+            'amountCom'=>$commissionAvekapeti,
             'comment'=>'commande avekapeti',
             'returnUrl'=>urlencode($this->generateUrl('')),
             'cancelUrl'=>urlencode($this->generateUrl('')),
@@ -56,6 +93,7 @@ class PaymentController extends Controller
      */
     public function donePaymentAction(Request $request)
     {
+        // TODO : redirection sur la page des commandes avec un message flash
         die('tout est ok');
     }
 

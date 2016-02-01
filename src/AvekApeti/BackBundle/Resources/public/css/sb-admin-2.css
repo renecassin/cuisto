@@ -360,3 +360,51 @@ table.dataTable thead .sorting:after {
 .ligne{
     display: inline-block;
 }
+
+a{
+    color:#ff4848;
+}
+
+.btn-warning{
+    background-color: #ff4848;
+    border-color: #ff4848;
+    margin-bottom: 20px;
+}
+
+.btn-primary{
+    background-color: #00cfb3;
+    border-color: #00cfb3;
+}
+
+.btn-info{
+    background-color: #8aece5;
+    border-color: #8aece5;
+}
+
+.btn-success{
+    background-color: #ffada2;
+    border-color: #ffada2;
+}
+
+.btn-warning:hover,
+.btn-primary:hover,
+.btn-info:hover,
+.btn-success:hover{
+    background-color: grey;
+    border-color: grey;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #ff4848;
+    border-color: #ff4848;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    color: #ff4848;
+}

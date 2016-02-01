@@ -1,36 +1,30 @@
-{% extends '::base.html.twig' %}
+{% extends "AvekApetiBackBundle:Main:index.html.twig" %}
 
-{% block body -%}
-    <h1>TypeCommande</h1>
+{% block titre %} {{ parent() }}{% endblock %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ entity.content }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block content -%}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('typecommande') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('typecommande_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Affichage de #{{ entity.id }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p><span class="gras">Id :</span> {{ entity.id }}</p>
+            <p><span class="gras">Nom :</span> {{ entity.name }}</p>
+            <p><span class="gras">Description :</span> {{ entity.content }}</p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <a class="btn btn-info" href="{{ path('typecommande') }}">Retour à la liste</a>
+    <a class="btn btn-primary" href="{{ path('typecommande', { 'id': entity.id }) }}">Modifier</a>
+    <hr>
+    {{ form(delete_form) }}
+
+
 {% endblock %}

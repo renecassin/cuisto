@@ -1,56 +1,41 @@
-{% extends '::base.html.twig' %}
+{% extends "AvekApetiBackBundle:Main:index.html.twig" %}
 
-{% block body -%}
-    <h1>Commande</h1>
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Datecreated</th>
-                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <td>{{ entity.total }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ entity.status }}</td>
-            </tr>
-            <tr>
-                <th>plat</th>
+{% block titre %} {{ parent() }}{% endblock %}
 
-            </tr>
-        </tbody>
-    </table>
-    <ul>
-        {% if listePlats is defined %}
-        {% for commandePlat in listePlats %}
-            <li>{{ commandePlat.plats.name }} : quantité {{ commandePlat.quantity }}</li>
-        {% endfor %}
-        {% endif %}
-    </ul>
-    <ul>
-        {% if listeMenus is defined %}
-        {% for commandeMenu in listeMenus %}
-            <li>{{ commandeMenu.menus.name }} : quantité {{ commandeMenu.quantity }}</li>
-        {% endfor %}
-        {% endif %}
-    </ul>
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('commande') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('commande_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{% block content -%}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Affichage de #{{ entity.id }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p><span class="gras">Id :</span> {{ entity.id }}</p>
+            <p><span class="gras">Total :</span> {{ entity.total }}</p>
+            <p><span class="gras">Statut :</span> {{ entity.status }}</p>
+            <p><span class="gras">Date de création :</span> {{ entity.dateCreated|date('Y-m-d H:i:s') }}</p>
+            {% if listePlats is defined %}
+                {% for commandePlat in listePlats %}
+                    <p><span class="gras">{{ commandePlat.plats.name }} :</span> quantité x{{ commandePlat.quantity }}</p>
+                {% endfor %}
+            {% endif %}
+            {% if listeMenus is defined %}
+                {% for commandeMenu in listeMenus %}
+                    <p><span class="gras">{{ commandeMenu.menus.name }} :</span> quantité x{{ commandeMenu.quantity }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <a class="btn btn-info" href="{{ path('commande') }}">Retour à la liste</a>
+    <a class="btn btn-primary" href="{{ path('commande_edit', { 'id': entity.id }) }}">Modifier</a>
+    <hr>
+    {{ form(delete_form) }}
+
 {% endblock %}
+

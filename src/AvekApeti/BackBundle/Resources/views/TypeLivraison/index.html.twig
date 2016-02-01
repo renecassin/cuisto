@@ -1,15 +1,15 @@
 {% extends "AvekApetiBackBundle:Main:index.html.twig" %}
 
-{% block titre %}Administration {{ parent() }}{% endblock %}
+{% block titre %} {{ parent() }}{% endblock %}
 
 {% block content -%}
 
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-9">
             <h1 class="page-header">Liste des Modes de remise</h1>
         </div>
-        <div class="col-lg-2">
-            <a href="{{ path('typelivraison_new') }}" class="btn btn-success page-header">Ajouter un chef</a>
+        <div class="col-lg-3">
+            <a href="{{ path('typelivraison_new') }}" class="btn btn-success page-header">Ajouter un mode de remise</a>
         </div>
 
         <!-- /.col-lg-12 -->

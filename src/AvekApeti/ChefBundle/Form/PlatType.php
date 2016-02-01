@@ -21,7 +21,7 @@ class PlatType extends AbstractType
             ->add('price')
             ->add('quantity', null, array('attr' => array('min' =>0)))
             ->add('active')
-            ->add('unableWhile', 'date', ['widget' => 'single_text'])
+            ->add('unableWhile', 'time', ['widget' => 'single_text'])
             ->add('dateStart', 'time', ['widget' => 'single_text'])
             ->add('dateEnd', 'time', ['widget' => 'single_text'])
             ->add('specialite', 'entity',  array(

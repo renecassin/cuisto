@@ -67,7 +67,7 @@ class PanierController extends Controller
             $platPanier->setTcoms($Plat->getTcoms());
 
             $Panier->addTableauPlats($platPanier);
-            $Panier->addTableauPlatsTotal($Plat->getPrice());
+            $Panier->addTableauPlatsTotal($Plat->getPriceNet());
             $Panier->setChefSelect($Plat->getUtilisateur());
         }
 
@@ -113,7 +113,7 @@ class PanierController extends Controller
 
     private function platExiste($Plat,$Panier)
     {
-        $Panier->addTableauPlatsTotal($Plat->getPrice());
+        $Panier->addTableauPlatsTotal($Plat->getPriceNet());
 
         $tableauPlat = $Panier->getTableauPlats();
         if (count($tableauPlat) != 0) {
@@ -149,7 +149,7 @@ class PanierController extends Controller
                         // array_splice($tableauPlat, $c,1);
                         $Panier->supTableauPlats($c);
                     }
-                    $Panier->supTableauPlatsTotal($Plat->getPrice());
+                    $Panier->supTableauPlatsTotal($Plat->getPriceNet());
                 }
                 $c++;
             }

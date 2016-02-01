@@ -109,7 +109,7 @@ class CommandeController extends Controller
                 $entity->addCommandemenu($commandeMenu);
             }
            // $entity->setCommandePlat();
-
+            die(dump($entity));
             $em->persist($entity);
             $em->flush();
 
@@ -303,7 +303,10 @@ class CommandeController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('commande_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array(
+                'label' => 'Supprimer',
+                'attr'  => array('class' => 'btn btn-warning')
+            ))
             ->getForm()
         ;
     }
