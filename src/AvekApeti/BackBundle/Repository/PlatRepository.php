@@ -44,6 +44,13 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Récupération des plats en fonction de la longitude lattide et de la disponibilité (quantité et date)
+     * @param $lat
+     * @param $lng
+     * @param int $page
+     * @return mixed
+     */
     public function findAllPlatWithGeoloc($lat, $lng, $page =1)
     {
 
@@ -54,13 +61,15 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
         $sql = 'SELECT p.*, c.lat, c.lng,
                 ( 6371 * ACOS(COS( RADIANS(:latitude) ) * 
                     COS(RADIANS( c.lat ) ) * COS(RADIANS( c.lng ) - RADIANS(:longitude) ) +
-                    SIN( RADIANS(:latitude) ) * SIN(RADIANS( c.lat ) ) )) AS distance
+                    SIN( RADIANS(:latitude) ) * SIN(RADIANS( c.lat ) ) )) AS distance,
+                    TIMESTAMPDIFF(MINUTE, DATE_FORMAT(unableWhile, "1970-01-01 %H:%i:%s"), DATE_FORMAT(NOW(), "1970-01-01 %H:%i:%s")) AS diff_hour
                 FROM plat p
                 JOIN utilisateur u ON p.utilisateur_id = u.id
                 JOIN chef c ON c.utilisateur_id = u.id
                 WHERE p.supp = 0
                 AND (c.lat BETWEEN :min_lat AND :max_lat) AND (c.lng BETWEEN :min_lng AND :max_lng)
-                HAVING distance < 10
+                AND p.quantity > 0
+                HAVING distance < 10 AND diff_hour > 0
                 ORDER BY distance ASC
                 ';
         $query = $this->_em->createNativeQuery($sql, $rsm);

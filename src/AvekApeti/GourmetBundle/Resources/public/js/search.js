@@ -1,6 +1,7 @@
 function initMap()
 {
   var $geolocPlat = $('.geoloc');
+  var markers = [];
   var options = {
     componentRestrictions: {country: 'fr'}
   };
@@ -22,10 +23,15 @@ function initMap()
   }
 
   google.maps.event.addListener(map, "dragend", function() {
-    //center = map.getCenter();
-    //actual_page = 1;
-    //search();
-    // TODO: Reload result search when user "drag" the map
+
+    // Remove markers
+    for (var i in markers) {
+      markers[i].setMap(null);
+    }
+    $geolocPlat = [];
+
+    // Search plat ajax
+    searchPlat();
   });
 
   
@@ -48,18 +54,44 @@ function initMap()
           map: map,
         });
         */
-        $geolocPlat.each(function(){
-          
-          var that = $(this);
-          new google.maps.Marker({
-            position: {lat: parseFloat(that.attr('data-lat')), lng: parseFloat(that.attr('data-lng'))},
-            map: map
-          });
-
-        });
+        displayMarker();
 
       }
     });
+  }
+
+  function displayMarker()
+  {
+    $geolocPlat.each(function(){
+
+      var that = $(this);
+      var currentMarker = new google.maps.Marker({
+        position: {lat: parseFloat(that.attr('data-lat')), lng: parseFloat(that.attr('data-lng'))},
+        map: map
+      });
+      markers.push(currentMarker);
+
+    });
+  }
+
+  function searchPlat()
+  {
+    center = map.getCenter();
+
+    var url = $('.form-recherche').attr('action');
+    $.ajax({
+      method: 'GET',
+      url: url,
+      data: { lat: center.lat(), lng: center.lng() },
+      dataType: 'json'
+    }).done(function(data)
+    {
+      var $resultSearchPlat = $('#result-search-plat');
+      $resultSearchPlat.empty();
+      $resultSearchPlat.html(data.html);
+      $geolocPlat = $('.geoloc');
+      displayMarker();
+    })
   }
 
 

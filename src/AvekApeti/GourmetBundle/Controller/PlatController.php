@@ -5,6 +5,7 @@ namespace AvekApeti\GourmetBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PlatController extends Controller
 {
@@ -29,22 +30,26 @@ class PlatController extends Controller
 
     public function selectionAction(Request $request)
     {
-        $address = $request->query->get('q');
-        $entities = [];
-
         $em = $this->getDoctrine()->getManager();
 
-        $urlGoogle = 'http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address);
-        if ($this->get_http_response_code($urlGoogle) == '200')
+        if ($request->isXmlHttpRequest())
         {
-            $json = file_get_contents($urlGoogle);
-            $parsedjson = json_decode($json, true);
-            if (!empty($parsedjson['status']) && 'OK' == $parsedjson['status'])
-            {
-                $curl     = new \Ivory\HttpAdapter\CurlHttpAdapter();
-                $geocoder = new \Geocoder\Provider\GoogleMaps($curl);
-                $dataGeo = $geocoder->geocode($address)->first();
-                $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findAllPlatWithGeoloc($dataGeo->getLatitude(), $dataGeo->getLongitude());
+            $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findAllPlatWithGeoloc($request->query->get('lat'), $request->query->get('lng'));
+        }
+        else {
+            $address = $request->query->get('q');
+            $entities = [];
+
+            $urlGoogle = 'http://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($address);
+            if ($this->get_http_response_code($urlGoogle) == '200') {
+                $json = file_get_contents($urlGoogle);
+                $parsedjson = json_decode($json, true);
+                if (!empty($parsedjson['status']) && 'OK' == $parsedjson['status']) {
+                    $curl = new \Ivory\HttpAdapter\CurlHttpAdapter();
+                    $geocoder = new \Geocoder\Provider\GoogleMaps($curl);
+                    $dataGeo = $geocoder->geocode($address)->first();
+                    $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findAllPlatWithGeoloc($dataGeo->getLatitude(), $dataGeo->getLongitude());
+                }
             }
         }
 
@@ -54,10 +59,13 @@ class PlatController extends Controller
             $entities = $em->getRepository('AvekApetiBackBundle:Plat')->findAllPlatWithGeoloc(48.856614, 2.3522219);
         }
 
-        return $this->render('GourmetBundle:Plat:selection-plat.html.twig', array(
-            'entities' => $entities,
-            'entitiesJson' => json_encode($entities)
+        if ($request->isXmlHttpRequest())
+        {
+            return new JsonResponse(['html' => $this->renderView('GourmetBundle:Plat:include-selection-plat.html.twig', ['entities' => $entities])]);
+        }
 
+        return $this->render('GourmetBundle:Plat:selection-plat.html.twig', array(
+            'entities' => $entities
         ));
     }
 
