@@ -14,6 +14,11 @@ chef_commande:
 chef_commande_details:
     path:     /commande/{id}/show
     defaults: { _controller: "ChefBundle:Commande:show" }
+
+chef_commande_code:
+    path:     /commande/{id}/validation-code/{code}
+    defaults: { _controller: "GourmetBundle:Payment:codeValidCommand" }
+
 chef_profil_public:
     path:     /profil-public
     defaults: { _controller: "ChefBundle:Chef:profilpublic" }

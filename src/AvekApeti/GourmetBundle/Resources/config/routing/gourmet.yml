@@ -19,6 +19,10 @@ gourmet_commande_details:
     path:     /commande/{id}/show
     defaults: { _controller: "GourmetBundle:Commande:show" }
 
+gourmet_commande_annuler:
+    path:     /commande/{id}/annuler
+    defaults: { _controller: "GourmetBundle:Payment:cancelCommandGourmet" }
+
 gourmet_profil_public:
     path:     /profil-public
     defaults: { _controller: "GourmetBundle:Gourmet:profilPublic" }

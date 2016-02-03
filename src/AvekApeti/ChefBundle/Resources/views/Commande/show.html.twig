@@ -25,6 +25,24 @@
 
             <div class="col-md-8 col-md-offset-2">
                 <div class="row ligne-titre-commande">
+
+                    {% for message in app.session.flashBag.get('error_cancel_command') %}
+                        <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+
+                    {% for message in app.session.flashBag.get('success_cancel_command') %}
+                        <p class="alert alert-success">{{ message }}</p>
+                    {% endfor %}
+
+                    {% for message in app.session.flashBag.get('error_code_command') %}
+                        <p class="alert alert-danger">{{ message }}</p>
+                    {% endfor %}
+
+                    {% for message in app.session.flashBag.get('success_code_command') %}
+                        <p class="alert alert-success">{{ message }}</p>
+                    {% endfor %}
+
+
                     <div class="col-xs-8">
                         <h2>{{ entity.status }}</h2>
                     </div>

@@ -1,6 +1,8 @@
 <?php
 namespace lib\LemonWay;
 
+use lib\LemonWay\models\LwError;
+
 class ApiResponse{
 	function __construct($xmlResponse) {
         $this->lwXml = $xmlResponse;

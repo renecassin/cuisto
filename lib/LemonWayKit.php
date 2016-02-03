@@ -2,8 +2,14 @@
 
 namespace lib\LemonWay;
 
+use lib\LemonWay\models\Iban;
+use lib\LemonWay\models\KycDoc;
+use lib\LemonWay\models\Operation;
+use lib\LemonWay\models\SddMandate;
+use lib\LemonWay\models\Wallet;
+
 class LemonWayKit{
-	
+
 	private static $printInputAndOutputXml = false;
 	
 	private static $accessConfig = array (
@@ -20,7 +26,7 @@ class LemonWayKit{
 		}
 		return $res;
 	}
-	public function MoneyIn($params) {
+	public static function MoneyIn($params) {
 		$res = self::sendRequest('MoneyIn', $params, '1.1');
 		if (!isset($res->lwError)){
 			$res->operations = array(new Operation($res->lwXml->TRANS->HPAY));
@@ -34,7 +40,7 @@ class LemonWayKit{
 		}
 		return $res;
 	}
-	public function GetWalletDetails($params) {
+	public static function GetWalletDetails($params) {
 		$res = self::sendRequest('GetWalletDetails', $params, '1.5');
 		if (!isset($res->lwError)){
 			$res->wallet = new Wallet($res->lwXml->WALLET);
@@ -97,7 +103,7 @@ class LemonWayKit{
 		}
 		return $res;
 	}
-	public function GetMoneyInTransDetails($params) {
+	public static function GetMoneyInTransDetails($params) {
 		$res = self::sendRequest('GetMoneyInTransDetails', $params, '1.6');
 		if (!isset($res->lwError)){
 			$res->operations = array();
@@ -117,7 +123,7 @@ class LemonWayKit{
 		}
 		return $res;
 	}
-	public function UploadFile($params) {
+	public static function UploadFile($params) {
 		$res = self::sendRequest('UploadFile', $params, '1.1');
 		if (!isset($res->lwError)){
 			$res->kycDoc = new KycDoc($res->lwXml->UPLOAD);
@@ -130,7 +136,7 @@ class LemonWayKit{
 	public function GetMoneyInIBANDetails($params) {
 		return self::sendRequest('GetMoneyInIBANDetails', $params, '1.4');
 	}
-	public function RefundMoneyIn($params) {
+	public static function RefundMoneyIn($params) {
 		return self::sendRequest('RefundMoneyIn', $params, '1.2');
 	}
 	public function GetBalances($params) {
@@ -165,7 +171,7 @@ class LemonWayKit{
 		return self::sendRequest('GetMoneyInChequeDetails', $params, '1.4');
 	}
 	
-	private function printDirectkitOutput($res){
+	private static function printDirectkitOutput($res){
 		if (self::$printInputAndOutputXml){
 			print '<br/>DEBUG OUTPUT START<br/>';
 			foreach ($res[0] as $keyLevel1=>$valueLevel1) {
@@ -207,7 +213,7 @@ class LemonWayKit{
 			$ip = $_SERVER['REMOTE_ADDR'];
 			
 		$xml_soap = '<?xml version="1.0" encoding="utf-8"?><soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"><soap12:Body><'.$methodName.' xmlns="Service_mb">';
-		
+
 		foreach ($params as $key => $value) {
 			$xml_soap .= '<'.$key.'>'.$value.'</'.$key.'>';
 		}
@@ -254,7 +260,7 @@ class LemonWayKit{
 					
 					$response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
 					$response = str_replace('xmlns="Service_mb"', '', $response); //suppress absolute uri warning
-					$xml = new SimpleXMLElement($response);
+					$xml = new \SimpleXMLElement($response);
 					$content = $xml->soapBody->{$methodName.'Response'}->{$methodName.'Result'};
 					
 					curl_close($ch);

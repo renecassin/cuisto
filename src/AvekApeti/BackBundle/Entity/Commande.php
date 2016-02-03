@@ -44,11 +44,33 @@ class Commande
     private $total;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="commission", type="float")
+     */
+    private $commission;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code_command", type="string", length=255)
+     */
+    private $codeCommand;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_lemon_way", type="integer")
+     */
+    private $idLemonWay;
+
     /**
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
@@ -393,5 +415,53 @@ class Commande
     public function getTypecommande()
     {
         return $this->typecommande;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCommission()
+    {
+        return $this->commission;
+    }
+
+    /**
+     * @param float $commission
+     */
+    public function setCommission($commission)
+    {
+        $this->commission = $commission;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeCommand()
+    {
+        return $this->codeCommand;
+    }
+
+    /**
+     * @param string $codeCommand
+     */
+    public function setCodeCommand($codeCommand)
+    {
+        $this->codeCommand = $codeCommand;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdLemonWay()
+    {
+        return $this->idLemonWay;
+    }
+
+    /**
+     * @param int $idLemonWay
+     */
+    public function setIdLemonWay($idLemonWay)
+    {
+        $this->idLemonWay = $idLemonWay;
     }
 }
