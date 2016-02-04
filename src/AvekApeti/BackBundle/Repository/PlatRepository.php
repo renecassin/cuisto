@@ -67,6 +67,7 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
                 JOIN utilisateur u ON p.utilisateur_id = u.id
                 JOIN chef c ON c.utilisateur_id = u.id
                 WHERE p.supp = 0
+                AND p.active = 1
                 AND (c.lat BETWEEN :min_lat AND :max_lat) AND (c.lng BETWEEN :min_lng AND :max_lng)
                 AND p.quantity > 0
                 HAVING distance < 10 AND diff_hour > 0

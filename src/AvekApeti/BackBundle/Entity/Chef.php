@@ -74,6 +74,14 @@ class Chef
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="iban", type="string", length=255, nullable=true)
+     */
+    private $iban;
+
+
+    /**
      * @var float
      *
      * @ORM\Column(name="lng", type="float", nullable=true)
@@ -327,6 +335,22 @@ class Chef
     public function getSiret()
     {
         return $this->siret;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIban()
+    {
+        return $this->iban;
+    }
+
+    /**
+     * @param string $iban
+     */
+    public function setIban($iban)
+    {
+        $this->iban = $iban;
     }
 
     /**

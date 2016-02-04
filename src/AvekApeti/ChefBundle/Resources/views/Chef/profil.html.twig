@@ -16,6 +16,28 @@
             }, 2000)
         })
     </script>
+    <script>
+        function initMap() {
+            var options = {
+                componentRestrictions: {country: 'fr'}
+            };
+            var input = document.getElementById('avekapeti_backbundle_chef_adress');
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+                input.value = place.name;
+
+                var ville = place.vicinity;
+                document.getElementById('avekapeti_backbundle_chef_city').value = ville;
+                var fullPlace = place.formatted_address.split(', ');
+                console.log(fullPlace);
+                var cp = fullPlace[1].replace(' '+ville, '');
+                document.getElementById('avekapeti_backbundle_chef_cp').value = cp;
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYTi5aSKJ1iyKx-zEJKA3lRIzfdcSQfE&signed_in=true&libraries=places&callback=initMap"
+            async defer></script>
 {%  endblock foot_scripts %}
 
 {% block titre %}Modifier mon profil Chef{{ parent() }}{% endblock %}
@@ -48,6 +70,18 @@
                             <hr class="primary">
                             <p>Vos coordonnées sont privées. Seuls les gourmets qui ont confirmé leur commande voient votre adresse exacte.</p>
                     </div>
+
+                    {% for flash_message in app.session.flashbag.get('notice_chef_compte') %}
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="flash-notice">
+                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Conseil : </strong> {{ flash_message }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
 
                     <div class="col-md-8 col-md-offset-2 well">
                         <div class="row">

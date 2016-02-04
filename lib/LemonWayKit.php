@@ -79,14 +79,14 @@ class LemonWayKit{
 		}
 		return $res;
 	}
-	public function RegisterIBAN($params) {
+	public static function RegisterIBAN($params) {
 		$res = self::sendRequest('RegisterIBAN', $params, '1.1');
 		if (!isset($res->lwError)){
 			$res->iban = new Iban($res->lwXml->IBAN);
 		}
 		return $res;
 	}
-	public function MoneyOut($params) {
+	public static function MoneyOut($params) {
 		$res = self::sendRequest('MoneyOut', $params, '1.3');
 		if (!isset($res->lwError)){
 			$res->operations = array(new Operation($res->lwXml->TRANS->HPAY));

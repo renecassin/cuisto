@@ -4,6 +4,7 @@ namespace AvekApeti\GourmetBundle\Controller;
 
 use AvekApeti\BackBundle\Entity\Commande;
 use AvekApeti\BackBundle\Entity\CommandePlat;
+use AvekApeti\BackBundle\Entity\Message;
 use lib\LemonWay\LemonWayKit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,7 +90,7 @@ class PaymentController extends Controller
         $commande = new Commande();
         $commande->setContent('A remplacer par le texte utilisateur lors de la commande');
         $commande->setLivraison(NULL);
-        $commande->setStatus("En attente");
+        $commande->setStatus(0);
         $commande->setTotal((string)$infoCommande->CRED);
         $commande->setUtilisateur($user);
         $commande->setCodeCommand(uniqid());
@@ -110,7 +111,7 @@ class PaymentController extends Controller
         }
 
         // get real chef
-        $chef = $em->getRepository("AvekApetiBackBundle:Chef")->find($panier->getChefSelect()->getChef()->getId());
+        $chef = $em->getRepository("AvekApetiBackBundle:Chef")->find($panier->getChefSelect()->getId());
         $commande->setChef($chef);
 
 
@@ -119,9 +120,33 @@ class PaymentController extends Controller
 
         $user->resetAttribute('Panier',$request);
 
-        // TODO : mail de confirmation de commande avec le code
+        /*
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Avekapeti - code de validation de la commande')
+            ->setFrom('contact@avekapeti.com')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'GourmetBundle:Email:commande-code.html.twig'
+                ),
+                'text/html'
+            )
+            ->addPart(
+                $this->renderView(
+                    'GourmetBundle:Email:commande-code.txt.twig'
+                ),
+                'text/plain'
+            );
 
-        // TODO : message de confirmation
+        $this->get('mailer')->send($message);
+        */
+
+
+        $messageChat = new Message();
+        $messageChat->setEmetteurUser($user);
+        $messageChat->setDestUser($chef);
+        $messageChat->setItem("Commande du ".date('Y-m-d H:i:s'));
+        $messageChat->setContent("Bonjour,\nJe viens de vous commander un plat");
 
         $this->addFlash('success_command', 'Votre commande a bien été prise en compte');
         return $this->redirectToRoute('gourmet_commande');
@@ -150,22 +175,19 @@ class PaymentController extends Controller
 
     public function codeValidCommandAction($id, $code)
     {
-        // TODO : faire un test pour savoir si on peut valider le code
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         $Chef = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($user->getId());
 
         $commande = $em->getRepository('AvekApetiBackBundle:Commande')->getOneByC($Chef->getId(),$id);
 
-        if ($commande->getCodeCommand() != $code)
+        if ($commande->getCodeCommand() != $code || $commande->getStatus() !== 0)
         {
             $this->addFlash('error_code_command', 'Le code est erroné');
         }
         else
         {
-            die('Vérifier débiteur et créditeur avec des utilisateurs différents');
-            $commande->setStatus('Validée');
-            // TODO : ajouter un state à la commande
+            $commande->setStatus(1);
             $res = LemonWayKit::SendPayment(
                 [
                     'debitWallet' => $commande->getUtilisateur()->getWalletLemonWay(),
@@ -181,24 +203,26 @@ class PaymentController extends Controller
 
     public function cancelCommandChefAction($id)
     {
-        // TODO : faire un test pour savoir si on peut annuler
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         $Chef = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($user->getId());
 
         $commande = $em->getRepository('AvekApetiBackBundle:Commande')->getOneByC($Chef->getId(),$id);
 
-        $res = LemonWayKit::RefundMoneyIn(['transactionId' => $commande->getIdLemonWay()]);
-        if (isset($res->lwError))
+        if ($commande->getStatus() !== 0)
         {
             $this->addFlash('error_cancel_command', 'Vous ne pouvez pas annuler cette commande');
         }
-        else
-        {
-            $commande->setStatus('Annulation du chef');
-            // TODO : ajouter un state à la commande
-            $this->addFlash('success_cancel_command', 'La commande a bien été annulée');
-            $em->flush();
+        else {
+
+            $res = LemonWayKit::RefundMoneyIn(['transactionId' => $commande->getIdLemonWay()]);
+            if (isset($res->lwError)) {
+                $this->addFlash('error_cancel_command', 'Vous ne pouvez pas annuler cette commande');
+            } else {
+                $commande->setStatus(2);
+                $this->addFlash('success_cancel_command', 'La commande a bien été annulée');
+                $em->flush();
+            }
         }
 
         return $this->redirectToRoute('chef_commande_details', ['id' => $id]);
@@ -206,25 +230,61 @@ class PaymentController extends Controller
 
     public function cancelCommandGourmetAction($id)
     {
-        // TODO : faire un test pour savoir si on peut annuler
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
         $commande = $em->getRepository('AvekApetiBackBundle:Commande')->getOneByG($user->getId(),$id);
 
-        $res = LemonWayKit::RefundMoneyIn(['transactionId' => $commande->getIdLemonWay(), 'amountToRefund' => number_format($commande->getCommission(), 2)]);
-        if (isset($res->lwError))
+        if ($commande->getStatus() !== 0)
         {
             $this->addFlash('error_cancel_command', 'Vous ne pouvez pas annuler cette commande');
         }
-        else
-        {
-            $commande->setStatus('Annulation du gourmet');
-            // TODO : ajouter un state à la commande
-            $this->addFlash('success_cancel_command', 'La commande a bien été annulée');
-            $em->flush();
+        else {
+            $res = LemonWayKit::RefundMoneyIn(['transactionId' => $commande->getIdLemonWay(), 'amountToRefund' => number_format($commande->getCommission(), 2)]);
+            if (isset($res->lwError)) {
+                $this->addFlash('error_cancel_command', 'Vous ne pouvez pas annuler cette commande');
+            } else {
+                $commande->setStatus(3);
+                $this->addFlash('success_cancel_command', 'La commande a bien été annulée');
+                $em->flush();
+            }
         }
         return $this->redirectToRoute('gourmet_commande_details', ['id' => $id]);
+    }
+
+    public function getMoneyChefAction()
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $Chef = $em->getRepository('AvekApetiBackBundle:Chef')->findOneByUtilisateur($user->getId());
+
+        if (!$Chef->getIban() || !$user->getWalletLemonWay())
+        {
+            $this->addFlash('error_money_recup', 'Vérifiez que vous avez rentré un IBAN');
+        }
+        else
+        {
+            $res = LemonWayKit::GetWalletDetails(
+                [
+                    'wallet' => $user->getWalletLemonWay(),
+                ]);
+
+            if (isset($res->lwError))
+            {
+                $this->addFlash('error_money_recup', "Problème avec votre wallet. Veuillez contactez l'équipe technique");
+            }
+            else
+            {
+                die(dump($res));
+                $res = LemonWayKit::RegisterWallet(
+                    [
+                        'wallet' => $user->getWalletLemonWay(),
+                        'amountTot' => 15.00
+                    ]);
+            }
+        }
+
+        die('récup du cash');
     }
 
     private function registerWallet($user)

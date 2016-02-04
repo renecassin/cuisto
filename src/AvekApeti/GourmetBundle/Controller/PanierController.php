@@ -31,7 +31,6 @@ class PanierController extends Controller
     public function ajoutPlatPanierAction($idPlat, Request $request)
     {
 
-
         if($idPlat == null)
             return $this->Redirection_origine();
 
@@ -68,7 +67,7 @@ class PanierController extends Controller
 
             $Panier->addTableauPlats($platPanier);
             $Panier->addTableauPlatsTotal($Plat->getPriceNet());
-            $Panier->setChefSelect($Plat->getUtilisateur());
+            $Panier->setChefSelect($Plat->getUtilisateur()->getChef());
         }
 
          //$_SESSION['Panier']=$Panier;

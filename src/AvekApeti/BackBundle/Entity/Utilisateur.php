@@ -565,6 +565,11 @@ class Utilisateur implements UserInterface //, EquatableInterface
       //  return $this->groupe;
     }
 
+    public function addRole($role)
+    {
+        $this->groupe[] = $role;
+    }
+
 
 
     public function getUsername()

@@ -88,6 +88,8 @@ class ChefController extends Controller
             $entity->setLng($dataGeo->getLongitude());
             $entity->setLat($dataGeo->getLatitude());
 
+            // TODO : RegisterIBAN pour lemonway
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('chef_profil'));
