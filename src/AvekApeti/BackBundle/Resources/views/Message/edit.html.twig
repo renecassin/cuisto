@@ -19,35 +19,36 @@
                     <div class="row">
                         <div class="col-lg-6">
                             {{ form_start(edit_form) }}
-                            <div class="form-group">
-                                {{ form_label(edit_form.item, 'Objet') }}
-                                {{ form_widget(edit_form.item, {'attr': {'class': 'form-control', 'placeholder':"Objet"}}) }}
-                                <p class="help-block text-danger">{{ form_errors(edit_form.item) }}</p>
-                            </div>
-                            <div class="form-group">
-                                {{ form_label(edit_form.content, 'Contenu') }}
-                                {{ form_widget(edit_form.content, {'attr': {'class': 'form-control', 'placeholder':"Contenu"}}) }}
-                                <p class="help-block text-danger">{{ form_errors(edit_form.content) }}</p>
-                            </div>
-                            <div class="form-group">
-                                {{ form_label(edit_form.emetteur_user, 'Emetteur') }}
-                                {{ form_widget(edit_form.emetteur_user, {'attr': {'class': 'form-control', 'placeholder':"Emetteur"}}) }}
-                                <p class="help-block text-danger">{{ form_errors(edit_form.emetteur_user) }}</p>
-                            </div>
-                            <div class="form-group">
-                                {{ form_label(edit_form.dest_user, 'Destinataire') }}
-                                {{ form_widget(edit_form.dest_user, {'attr': {'class': 'form-control', 'placeholder':"Destinataire"}}) }}
-                                <p class="help-block text-danger">{{ form_errors(edit_form.dest_user) }}</p>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="success"></div>
-                                <a href="{{ path('message') }}" class="btn btn-info">Retour à la liste</a>
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                <hr>
-                                {{ form(delete_form) }}
-                            </div>
+                                <div class="form-group">
+                                    {{ form_label(edit_form.item, 'Objet') }}
+                                    {{ form_widget(edit_form.item, {'attr': {'class': 'form-control', 'placeholder':"Objet"}}) }}
+                                    <p class="help-block text-danger">{{ form_errors(edit_form.item) }}</p>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(edit_form.content, 'Contenu') }}
+                                    {{ form_widget(edit_form.content, {'attr': {'class': 'form-control', 'placeholder':"Contenu"}}) }}
+                                    <p class="help-block text-danger">{{ form_errors(edit_form.content) }}</p>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(edit_form.emetteur_user, 'Emetteur') }}
+                                    {{ form_widget(edit_form.emetteur_user, {'attr': {'class': 'form-control', 'placeholder':"Emetteur"}}) }}
+                                    <p class="help-block text-danger">{{ form_errors(edit_form.emetteur_user) }}</p>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(edit_form.dest_user, 'Destinataire') }}
+                                    {{ form_widget(edit_form.dest_user, {'attr': {'class': 'form-control', 'placeholder':"Destinataire"}}) }}
+                                    <p class="help-block text-danger">{{ form_errors(edit_form.dest_user) }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="success"></div>
+                                    <a href="{{ path('message') }}" class="btn btn-info">Retour à la liste</a>
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    <hr>
+                                </div>
 
                             {{ form_end(edit_form) }}
+
+                            {{ form(delete_form) }}
                         </div>
                     </div>
                     <!-- /.row (nested) -->

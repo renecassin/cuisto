@@ -44,9 +44,6 @@ class Plat
      *
      * @ORM\Column(name="content", type="text")
      *
-     * @Assert\Length(
-     *      max = 150,
-     *      maxMessage = "La description du plat ne doit pas dépasser {{ limit }} caractères"
      * )
      */
     private $content;

@@ -25,6 +25,8 @@
             <p><span class="gras">Téléphone :</span> {{ entity.phone }}</p>
             <p><span class="gras">Mot de passe :</span> {{ entity.password }}</p>
             <p><span class="gras">Clé de salage :</span> {{ entity.salt }}</p>
+            <p><span class="gras">Image :</span> <img src="{{ entity.image.webPath|imagine_filter('profil_picture_small') }}" alt="" class="img-circle"></p>
+
         </div>
         <!-- /.col-lg-12 -->
     </div>

@@ -29,6 +29,7 @@
             <p><span class="gras">Type de repas :</span> {{ entity.tcoms.name }}</p>
             <p><span class="gras">Mode de remise :</span> {{ entity.tliv.name }}</p>
             <p><span class="gras">Date de création :</span> {{ entity.dateCreated|date('Y-m-d H:i:s') }}</p>
+            <p><span class="gras">Photo :</span> <img src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt=""></p>
         </div>
         <!-- /.col-lg-12 -->
     </div>

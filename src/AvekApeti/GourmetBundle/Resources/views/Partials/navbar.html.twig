@@ -69,6 +69,7 @@
                                     Messages
                                 </div>
                                 <i class="fa fa-3x fa-comment-o"></i>
+                                <div class="notification">3</div>
                             </a>
                     </li>
                     <li role="presentation" class=" dropdown">
@@ -134,7 +135,7 @@
                         <i class="fa fa-3x fa-shopping-cart "></i>
                         {% if  app.user %}
                             {% if  app.user.hasAttribute('Panier',app.request) %}
-                                <span class="Panier_nb">{{ app.user.getAttribute('Panier',app.request).getCount() }}</span>
+                                <span class="Panier_nb notification">{{ app.user.getAttribute('Panier',app.request).getCount() }}</span>
                             {% endif %}
                         {% endif %}
                     </a>

@@ -3,7 +3,7 @@
 {% block foot_scripts %}
     {{ parent() }}
     <script type="text/javascript">
-        var banListe=['1','2','3','4'];
+        var banListe=['1','2','3','4','5'];
         document.getElementsByTagName('header')[0].className += 'header' + banListe[Math.floor(Math.random()*banListe.length)];
     </script>
     <script type="text/javascript" src="{{ asset('bundles/gourmet/js/search.js') }}"></script>

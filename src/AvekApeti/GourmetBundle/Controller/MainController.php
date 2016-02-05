@@ -154,5 +154,10 @@ class MainController extends Controller
             $this->get('mailer')->send($message);
     }
 
+    public function error404Action()
+    {
+        return $this->render('GourmetBundle:Main:error404.html.twig');
+    }
+
 
 }

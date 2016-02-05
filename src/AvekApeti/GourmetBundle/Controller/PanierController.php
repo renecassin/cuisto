@@ -13,6 +13,13 @@ class PanierController extends Controller
 {
     public function indexAction(Request $request)
     {
+        //Recuperation de l'utilisateur connecté et recuperation de son id
+        $user =$this->get('security.context')->getToken()->getUser();
+        $id = $user->getId();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AvekApetiBackBundle:Utilisateur')->find($id);
         //$session = $request->getSession();
 
       //  die(dump($session->get('Panier')));
@@ -24,7 +31,8 @@ class PanierController extends Controller
             }
 
         return $this->render('GourmetBundle:Panier:index.html.twig', array(
-                'panier' => $Panier
+                'panier' => $Panier,
+                'entity' => $entity
             ));
     }
 

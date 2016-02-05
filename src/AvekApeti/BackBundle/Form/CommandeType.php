@@ -71,13 +71,13 @@ class CommandeType extends AbstractType
                      'multiple' => false,
                      'mapped' => false
                  ])
-            ->add('commandemenu', 'entity',
+            /*->add('commandemenu', 'entity',
                 [
                     'class' => 'AvekApetiBackBundle:Menu',
                     'property'    => 'name',
                     'multiple' => false,
                     'mapped' => false
-                ])
+                ])*/
             ->add('liste_plats','hidden',[
                 'mapped' => false
             ])
