@@ -17,6 +17,7 @@ class Commande
         $this->dateCreated = new \DateTime("now");
         $this->commandeplat = new ArrayCollection();
         $this->commandemenu = new ArrayCollection();
+        $this->status = 0;
 
     }
 
@@ -51,9 +52,14 @@ class Commande
     private $commission;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * O : En attente
+     * 1 : Validée
+     * 2 : Annulation du chef
+     * 3 : Annulation du gourmet
+     *
+     * @ORM\Column(name="status", type="integer")
      */
     private $status;
 

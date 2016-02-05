@@ -35,6 +35,26 @@
 
                                 <fieldset>
                                         <div class="form-group has-feedback">
+                                            {{ form_widget(form.firstname,
+                                            {
+                                                attr:{class: "form-control form-control-perso",placeholder: "Prénom",id: "firstname-gourmet",required: 'data-validation-required-message= "Veuillez entrer votre prénom."'}
+                                            })
+                                            }}
+                                            <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
+                                            <p class="help-block text-danger">{{ form_errors(form.firstname) }}</p>
+                                        </div>
+
+                                        <div class="form-group has-feedback">
+                                            {{ form_widget(form.lastname,
+                                            {
+                                                attr:{class: "form-control form-control-perso",placeholder: "Nom",id: "lastname-gourmet",required: 'data-validation-required-message= "Veuillez entrer votre nom."'}
+                                            })
+                                            }}
+                                            <span class="glyphicon glyphicon-user form-control-feedback glyphicon-perso"></span>
+                                            <p class="help-block text-danger">{{ form_errors(form.lastname) }}</p>
+                                        </div>
+
+                                        <div class="form-group has-feedback">
                                             {{ form_widget(form.login,
                                             {
                                                 attr:{class: "form-control form-control-perso",placeholder: "Pseudo",id: "login-gourmet",required: 'data-validation-required-message= "Veuillez entrer votre pseudo."'}

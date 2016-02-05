@@ -19,6 +19,10 @@ chef_commande_code:
     path:     /commande/{id}/validation-code/{code}
     defaults: { _controller: "GourmetBundle:Payment:codeValidCommand" }
 
+chef_commande_cancel:
+    path:     /commande/{id}/annuler
+    defaults: { _controller: "GourmetBundle:Payment:cancelCommandChef" }
+
 chef_profil_public:
     path:     /profil-public
     defaults: { _controller: "ChefBundle:Chef:profilpublic" }

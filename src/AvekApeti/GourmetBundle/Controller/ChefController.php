@@ -10,6 +10,7 @@ use AvekApeti\BackBundle\Entity\Utilisateur;
 use AvekApeti\GourmetBundle\Form\UtilisateurType;
 use AvekApeti\BackBundle\Entity\Chef;
 use AvekApeti\GourmetBundle\Form\ChefType;
+use lib\LemonWay\LemonWayKit;
 
 class ChefController extends Controller
 {
@@ -46,6 +47,15 @@ class ChefController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+
+            $chef = new Chef();
+            $chef->setUtilisateur($entity);
+            $em->persist($chef);
+
+
+            // create id lemon way
+            $this->registerWallet($entity);
+
             $em->flush();
 
             //connection automatique
@@ -53,11 +63,11 @@ class ChefController extends Controller
             $this->get('security.context')->setToken($token);
 
             $this->addFlash(
-                'notice',
+                'notice_chef_compte',
                 'N\'oubliez pas de renseigner votre adresse (dans la rubrique "Modifier mon profil") si vous voulez que les gourmets vous retrouvent :-)'
             );
 
-            return $this->redirect($this->generateUrl('gourmet_homepage'));
+            return $this->redirect($this->generateUrl('chef_profil'));
 
             //return $this->redirect($this->generateUrl('gourmet_loginpage'));
         }
@@ -106,16 +116,56 @@ class ChefController extends Controller
            $em = $this->getDoctrine()->getManager();
            $em->persist($entity);
            $em->persist($user);
+
+           // create id lemon way
+           $this->registerWallet($user);
+
            $em->flush();
-          // $user->isEqualTo($user);
+           // $user->isEqualTo($user);
+
+           //connection automatique
+           $token = new UsernamePasswordToken($user, null, 'main', array('ROLE_CHEF'));
+           $this->get('security.context')->setToken($token);
+
+           $this->addFlash(
+               'notice_chef_compte',
+               'N\'oubliez pas de renseigner votre adresse si vous voulez que les gourmets vous retrouvent :-)'
+           );
+
+           $this->addFlash(
+               'notice_chef_compte',
+               'N\'oubliez pas de renseigner votre RIB pour que vous puissiez recevoir les paiements des gourmets qui ont dégusté vos bons petits plats'
+           );
+
+           return $this->redirect($this->generateUrl('chef_profil'));
        }
 
-        $this->addFlash(
-            'notice',
-            'N\'oubliez pas de renseigner votre adresse (dans la rubrique "Modifier mon profil") si vous voulez que les gourmets vous retrouvent :-)'
-        );
-
         return $this->redirect($this->generateUrl('gourmet_homepage'));
+    }
+
+
+    private function registerWallet($user)
+    {
+        $wallet = $this->getRandomId();
+        $res = LemonWayKit::RegisterWallet(['wallet' => $wallet,
+            'clientMail' => $user->getEmail(),
+            'clientTitle' => 'U',
+            'clientFirstName' => $user->getFirstname(),
+            'clientLastName' => $user->getLastname(),
+            'payerOrBeneficiary' => '2']);
+
+        if (isset($res->lwError))
+            throw $this->createNotFoundException('Erreur lors de la création de votre wallet. Veuillez contactez le service technique.');
+        else {
+            $user->setWalletLemonWay((string)$res->wallet->ID);
+        }
+    }
+
+    /*
+		Generate random ID for wallet IDs or tokens
+	*/
+    private function getRandomId(){
+        return str_replace('.', '', microtime(true).rand());
     }
 
 }
