@@ -34,8 +34,8 @@ class PaymentController extends Controller
             $em->flush();
         }
 
-
         $panier = $user->getAttribute('Panier',$request);
+        // TODO : faire un test pour savoir si on peut commander (quantité et temps)
         $totalCommande = number_format(round($panier->getTableauPlatsTotal(), 2), 2);
         $commissionAvekapeti = number_format(round($totalCommande * ( 12 / 100 ), 2), 2);
 
@@ -53,7 +53,7 @@ class PaymentController extends Controller
             ));
 
         if (isset($res2->lwError)){
-            throw $this->createNotFoundException('Erreur lors de la création de votre commande. Veuillez contactez le service technique.');
+            throw $this->createNotFoundException('Erreur lors de la création de votre commande. Veuillez contacter le service technique.');
         }
 
 
@@ -66,7 +66,6 @@ class PaymentController extends Controller
      */
     public function donePaymentAction(Request $request)
     {
-        // TODO : faire un test pour savoir si on peut commander (quantité et temps)
         if(!$this->getUser()->hasAttribute('Panier',$request))
         {
             return $this->redirectToRoute('gourmet_homepage');
@@ -88,7 +87,7 @@ class PaymentController extends Controller
         $infoCommande = $returnPayment->lwXml->TRANS->HPAY;
 
         $commande = new Commande();
-        $commande->setContent('A remplacer par le texte utilisateur lors de la commande');
+        $commande->setContent('');
         $commande->setLivraison(NULL);
         $commande->setStatus(0);
         $commande->setTotal((string)$infoCommande->CRED);
@@ -144,9 +143,13 @@ class PaymentController extends Controller
 
         $messageChat = new Message();
         $messageChat->setEmetteurUser($user);
-        $messageChat->setDestUser($chef);
+        $messageChat->setDestUser($chef->getUtilisateur());
         $messageChat->setItem("Commande du ".date('Y-m-d H:i:s'));
+        $messageChat->setAccLecture(0);
         $messageChat->setContent("Bonjour,\nJe viens de vous commander un plat");
+
+        $em->persist($messageChat);
+        $em->flush();
 
         $this->addFlash('success_command', 'Votre commande a bien été prise en compte');
         return $this->redirectToRoute('gourmet_commande');
@@ -169,7 +172,7 @@ class PaymentController extends Controller
     public function errorPaymentAction()
     {
         // TODO : send mail to avekapeti
-        $this->addFlash('cancel_payment_command', "Un produit s'est produit lors du paiement. Veuillez réessayer ou contacter l'équipe technique.");
+        $this->addFlash('cancel_payment_command', "Un problème s'est produit lors du paiement. Veuillez réessayer ou contacter l'équipe technique.");
         return $this->redirectToRoute('panier_index');
     }
 
@@ -271,7 +274,7 @@ class PaymentController extends Controller
 
             if (isset($res->lwError))
             {
-                $this->addFlash('error_money_recup', "Problème avec votre wallet. Veuillez contactez l'équipe technique");
+                $this->addFlash('error_money_recup', "Problème avec votre wallet. Veuillez contacter l'équipe technique");
             }
             else
             {
@@ -298,7 +301,7 @@ class PaymentController extends Controller
             'payerOrBeneficiary' => '1']);
 
         if (isset($res->lwError))
-            throw $this->createNotFoundException('Erreur lors de la création de votre wallet. Veuillez contactez le service technique.');
+            throw $this->createNotFoundException('Erreur lors de la création de votre wallet. Veuillez contacter le service technique.');
         else {
             $user->setWalletLemonWay((string)$res->wallet->ID);
         }

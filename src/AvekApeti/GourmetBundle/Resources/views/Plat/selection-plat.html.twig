@@ -48,7 +48,7 @@
 
     <!-- Page Content -->
     <div class="container petite-section" id="selection-plat">
-
+        {#
         <div class="row">
 
             <div class="col-md-12">
@@ -81,15 +81,16 @@
                 </div>
             </div>
         </div>
+        #}
         <div class="row">
 
             <div class="col-md-7">
-
+              {#
                 <div class="col-md-12">
                     <div id="MonCollapseFiltre" class="collapse">
                         <form name="sentFilter" id="filter-form" novalidate>
                             <div class="bloc-filtre">
-{#
+
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Prix</p>
                                     <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
@@ -107,8 +108,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                #}
-                                {#
+
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Type de cuisine</p>
                                     <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
@@ -130,7 +130,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                #}
+
 
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Repas</p>
@@ -239,7 +239,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                {#
+
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Rayon</p>
                                     <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
@@ -258,7 +258,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                #}
+
 
 
                                 <div>
@@ -269,6 +269,7 @@
                         </form>
                     </div>
                 </div>
+                #}
 
                 <div id="result-search-plat">
                     {% include 'GourmetBundle:Plat:include-selection-plat.html.twig' with {'entities':entities} only %}

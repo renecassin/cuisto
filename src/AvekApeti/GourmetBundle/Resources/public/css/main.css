@@ -703,6 +703,9 @@ section#contact .glyphicon-perso {
     }
     .fixCarte {
         position: fixed;
+        top: 80px;
+        right: 70px;
+        width: 540px;
     }
 }
 

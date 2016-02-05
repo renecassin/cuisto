@@ -62,4 +62,17 @@ class MessageRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function getNbMessageNotRead($userId)
+    {
+        $query = $this->_em->createQueryBuilder()
+            ->select("COUNT(m.id)")
+            ->from("AvekApetiBackBundle:Message", "m")
+            ->where('m.dest_user = :User_id')
+            ->andWhere('m.accLecture = 0')
+            ->setParameter('User_id',$userId)
+            ->getQuery();
+
+        return $query->getSingleScalarResult();
+    }
 }

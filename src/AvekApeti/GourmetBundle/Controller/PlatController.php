@@ -53,6 +53,7 @@ class PlatController extends Controller
             }
         }
 
+
         if (!$entities)
         {
             // center of Paris (longitude and latitude)

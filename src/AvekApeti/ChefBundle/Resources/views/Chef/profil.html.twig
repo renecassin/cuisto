@@ -30,7 +30,6 @@
                 var ville = place.vicinity;
                 document.getElementById('avekapeti_backbundle_chef_city').value = ville;
                 var fullPlace = place.formatted_address.split(', ');
-                console.log(fullPlace);
                 var cp = fullPlace[1].replace(' '+ville, '');
                 document.getElementById('avekapeti_backbundle_chef_cp').value = cp;
             });
@@ -92,7 +91,7 @@
                                     <div class="col-md-7" >
                                         {{ form_widget(edit_form.adress,
                                         {
-                                            attr:{class: "form-control",placeholder: "Adresse",id: "adresse",required: 'data-validation-required-message= "Veuillez entrer votre adresse."'}
+                                            attr:{autocomplete:"off", class: "form-control",placeholder: "Adresse",id: "adresse",required: 'data-validation-required-message= "Veuillez entrer votre adresse."'}
                                         })
                                         }}
                                         <p class="help-block text-danger">{{ form_errors(edit_form.adress) }}</p>
