@@ -37,6 +37,7 @@ class PaymentController extends Controller
 
         $panier = $user->getAttribute('Panier',$request);
         $totalCommande = number_format(round($panier->getTableauPlatsTotal(), 2), 2);
+        $commissionLemonWay = number_format(round( ($totalCommande * (0.8 / 100)) + 0.2, 2), 2);
         $commissionAvekapeti = number_format(round($totalCommande * ( 12 / 100 ), 2), 2);
 
         $res2 = LemonWayKit::MoneyInWebInit(
