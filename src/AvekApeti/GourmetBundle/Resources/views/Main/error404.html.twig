@@ -1,0 +1,37 @@
+{%  extends 'GourmetBundle::layout.html.twig' %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+
+{%  endblock foot_scripts %}
+
+{% block titre %}Error 404 {{ parent() }}{% endblock %}
+
+{% block content %}
+    <header class="header-inscription" id="header-error404">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Erreur 404</h1>
+                <h2 class="adresse-selection">Oops... Page non trouvée :(</h2>
+            </div>
+        </div>
+    </header>
+
+    <section id="page404">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 col-md-offset-3 ">
+                    <p>Nous sommes désolés, la page que vous cherchez est introuvable. Voici quelques liens utiles pour vous remettre sur la bonne voie :</p>
+                    <p><a href={{ path('gourmet_homepage') }}><i class="fa fa-2x fa-map-marker"></i> Pour rechercher un plat</a></p>
+                    <p><a href={{ path('gourmet_chef_inscription_page') }}><i class="fa fa-2x fa-plus"></i> Pour s'inscrire</a></p>
+                    <p><a href={{ path('gourmet_chef_inscription_page') }}><i class="fa fa-2x fa-cutlery"></i> Pour devenir Chef</a></p>
+                    <p><a href={{ path('gourmet_loginpage') }}><i class="fa fa-2x fa-sign-in"></i> Pour se connecter</a></p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

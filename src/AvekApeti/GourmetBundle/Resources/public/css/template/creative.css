@@ -241,6 +241,8 @@ header {
     height: 440px;
 }
 
+#header-panier,
+#header-error404,
 #header-voir-commande,
 #header-liste-commande,
 #header-voir-msg,
@@ -288,6 +290,8 @@ header .header-content {
     transform: translateY(100%);
 }
 
+#header-panier .header-content-transform,
+#header-error404 .header-content-transform,
 #header-mon-compte-public .header-content-transform,
 #header-mon-compte-chef-public .header-content-transform,
 #header-creation-plat .header-content-transform,
@@ -324,6 +328,7 @@ header .header-content {
         transform: translateY(60%);
     }
 
+    #header-panier .header-content-transform,
     #header-mon-compte-chef-public .header-content-transform,
     #header-mon-compte-public .header-content-transform,
     #header-mon-compte-chef .header-content-transform,
@@ -368,6 +373,8 @@ header .header-content .header-content-inner p {
 }
 */
 @media(min-width:768px) {
+    #header-panier .header-content,
+    #header-error404 .header-content,
     #header-voir-commande .header-content,
     #header-liste-commande .header-content,
     #header-new-msg .header-content,
@@ -422,6 +429,8 @@ header .header-content .header-content-inner p {
     #header-home {
         height: 600px;
     }
+    #header-panier,
+    #header-error404,
     #header-voir-commande,
     #header-liste-commande,
     #header-voir-msg,
@@ -542,6 +551,7 @@ fieldset[disabled] .btn-default.active {
 
 }
 
+#header-selection-plat .btn-primary,
 #header-landing .btn-primary,
 #header-home .btn-primary {
     border-radius: 0 4px 4px 0;
@@ -630,6 +640,7 @@ fieldset[disabled] .btn-primary.active {
 
 @media(max-width:768px) {
 
+    #page-panier .btn-xl,
     #page-new-msg .btn-filtre,
     #page-edit-plat .btn-filtre,
     #page-creation-plat .btn-filtre,
@@ -909,6 +920,7 @@ section#contact .form-group textarea.form-control {
 }
 
 
+#page-panier .text-danger,
 #page-new-msg .text-danger,
 #page-edit-plat .text-danger,
 #page-creation-plat .text-danger,

@@ -70,7 +70,7 @@ class PlatRepository extends \Doctrine\ORM\EntityRepository
                 AND p.active = 1
                 AND (c.lat BETWEEN :min_lat AND :max_lat) AND (c.lng BETWEEN :min_lng AND :max_lng)
                 AND p.quantity > 0
-                HAVING distance < 10 AND diff_hour > 0
+                HAVING distance < 10 AND diff_hour < 0
                 ORDER BY distance ASC
                 ';
         $query = $this->_em->createNativeQuery($sql, $rsm);

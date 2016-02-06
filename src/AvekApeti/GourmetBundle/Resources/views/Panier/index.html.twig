@@ -1,33 +1,59 @@
-{% extends "::base.html.twig" %}
-
-{% block title %}GourmetBundle:Panier:index{% endblock %}
-
-{% block body %}
-{% for message in app.session.flashBag.get('cancel_payment_command') %}
-    <p class="alert alert-danger">{{ message }}</p>
-{% endfor %}
-<h1>Welcome to the Panier:index page</h1>
-    <div id="widgetPanier">
-        {{ render(controller('GourmetBundle:Panier:widgetPanier')) }}
-    </div>
-    <br>
-    <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }} data-id="1" class="ajout_plat_panier">ajout Plat</a>
-    <a href={{ path('panier_plat_suppr',{idPlat:'1'}) }} data-id="1" class="suppr_plat_panier">supprimer Plat</a>
-    <a href={{ path('panier_menu_ajout',{idMenu:'1'}) }} data-id="1" class="ajout_menu_panier">ajout Menu</a>
-    <a href={{ path('panier_menu_suppr',{idMenu:'1'}) }} data-id="1" class="suppr_menu_panier">supprimer Menu</a>
-    <a href={{ path('panier_reset') }} class="reset_panier">reset</a><br>
-     <span class="Panier_nb">
-         {% if  app.user.hasAttribute('Panier',app.request) %}
-             {{ app.user.getAttribute('Panier',app.request).getCount() }}
-         {% else %}
-             0
-         {% endif %}
-     </span>
-    <a href="">Commander</a>
+{%  extends 'GourmetBundle::layout.html.twig' %}
 
 {% block foot_scripts %}
     {{ parent() }}
-<script type="text/javascript" src="{{ asset('bundles/gourmet/js/Panier.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/Panier.js') }}"></script>
+{% endblock foot_scripts %}
 
-{% endblock %}
-{% endblock %}
+{% block titre %}Mon panier {{ parent() }}{% endblock %}
+
+{% block content %}
+    <header class="header-inscription" id="header-panier">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Mon panier</h1>
+                <h2 class="adresse-selection">Emballé, c'est pesé</h2>
+            </div>
+        </div>
+    </header>
+
+    <section id="page-panier">
+        <div class="container">
+
+            <div class="col-sm-12 text-center photo-mon-compte ">
+                {% if entity.image %}
+                    <img src="{{ entity.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 titre-compte text-center">
+                    <div id="widgetPanier">
+                        <h3 class="section-heading">{{ render(controller('GourmetBundle:Panier:widgetPanier')) }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            {% if  app.user.hasAttribute('Panier',app.request) %}
+                <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }} data-id="1" class="ajout_plat_panier"><i class="fa fa-3x fa-plus-circle"></i></a>
+                <a href={{ path('panier_plat_suppr',{idPlat:'1'}) }} data-id="1" class="suppr_plat_panier"><i class="fa fa-3x fa-minus-circle"></i></a>
+
+                {#<a href={{ path('panier_menu_ajout',{idMenu:'1'}) }} data-id="1" class="ajout_menu_panier">ajout Menu</a>
+                <a href={{ path('panier_menu_suppr',{idMenu:'1'}) }} data-id="1" class="suppr_menu_panier">supprimer Menu</a>#}
+                <a href={{ path('panier_reset') }} class="reset_panier">Vider le panier</a><br>
+                 <span class="Panier_nb">
+                     {{ app.user.getAttribute('Panier',app.request).getCount() }}
+                </span>
+                <a href="">Commander</a>
+            {% endif %}
+
+
+            {% for message in app.session.flashBag.get('cancel_payment_command') %}
+                <p class="alert alert-danger">{{ message }}</p>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock content%}

@@ -40,6 +40,10 @@ gourmet_feedbackpage:
     path:     /feedback
     defaults: { _controller: GourmetBundle:Main:feedback}
 
+gourmet_error404:
+    path:     /error404
+    defaults: { _controller: GourmetBundle:Main:error404}
+
 gourmet_detail:
     resource: "@GourmetBundle/Resources/config/routing/gourmet.yml"
     prefix:   /gourmet

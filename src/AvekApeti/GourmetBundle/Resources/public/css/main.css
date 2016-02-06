@@ -239,6 +239,9 @@
 .header4{
     background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header4.jpg) no-repeat center;
 }
+.header5{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header8.jpg) no-repeat center;
+}
 
 
 #chef-inscription {
@@ -274,6 +277,16 @@
 
 #header-mon-compte-public{
     background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/gourmet/profil-public.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-panier{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/gourmet/panier1.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#header-error404{
+    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/404.jpg) center no-repeat;
     background-size: cover;
 }
 
@@ -345,6 +358,7 @@
     .grande-recherche{
         display: none;
     }
+    #header-selection-plat .btn-primary,
     #header-home .btn-primary{
         padding: 13px 28px;
     }
@@ -622,10 +636,16 @@ section#contact .glyphicon-perso {
     padding:5px 0;
 }
 
+#page404 .fa-2x{
+    color:#ffada2;
+    padding-right: 10px;
+}
+
 #mainNav .fa-3x{
     padding-left:10px;
 }
 
+#page-voir-commande input,
 #selection-plat input{
     margin-left: -1px;
 }
@@ -661,9 +681,9 @@ section#contact .glyphicon-perso {
 @media (min-width: 1280px) {
     #index-plat .carte-fixe,
     #selection-plat .carte-fixe {
-        position: sticky;
+        /*position: sticky;
         position: -webkit-sticky;
-        top: 70px;
+        top: 70px;*/
         margin-bottom: 20px;
     }
     #index-plat .carte-fixe{
@@ -680,7 +700,13 @@ section#contact .glyphicon-perso {
     }
     #selection-plat .carte-fixe .carte-fixe-container #map {
         height: 100%;
-      }
+    }
+    .fixCarte {
+        position: fixed;
+        top: 80px;
+        right: 70px;
+        width: 540px;
+    }
 }
 
 
@@ -691,8 +717,9 @@ section#contact .glyphicon-perso {
     }
 }
 
+#page-voir-commande input,
 #selection-plat input{
-    height: 49px;
+    height: 48px;
 }
 
 @media (min-width: 768px) {
@@ -983,6 +1010,7 @@ section#contact .glyphicon-perso {
 left: 50%;
 transform: translateX(-50%);
 */
+#page-panier .img-circle,
 #page-voir-commande .img-circle,
 #page-liste-commande .img-circle,
 #page-voir-msg .img-circle,
@@ -1004,6 +1032,7 @@ transform: translateX(-50%);
 
 
 @media(min-width:1280px) {
+    #page-panier .img-circle,
     #page-voir-commande .img-circle,
     #page-liste-commande .img-circle,
     #page-voir-msg .img-circle,
@@ -1063,6 +1092,7 @@ transform: translateX(-50%);
     margin-bottom: 30px;
 }
 
+#page-panier,
 #page-voir-commande,
 #page-liste-commande,
 #page-voir-msg,
@@ -1078,6 +1108,8 @@ transform: translateX(-50%);
     padding: 50px 0;
 }
 
+#page-panier,
+#page404,
 #page-voir-commande,
 #page-liste-commande,
 #page-voir-msg,
@@ -1119,6 +1151,7 @@ transform: translateX(-50%);
 }
 */
 
+#page-panier .rond,
 #page-mon-compte-public .rond,
 #page-mon-compte-chef-public .rond,
 #page-mon-compte .form-group .rond,
@@ -1400,6 +1433,7 @@ transform: translateX(-50%);
 
 .bandeau-btn{
     margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .liste-plats-commande{
@@ -1489,4 +1523,15 @@ transform: translateX(-50%);
     border: 2px solid ;
     vertical-align: middle;
     color: white;
+}
+
+.notification{
+    color: white;
+    background-color: #ff4848;
+    border-radius: 50%;
+    padding: 2px 8px;
+    position: absolute;
+    top: 20%;
+    right: 3%;
+    font-size: 18px;
 }

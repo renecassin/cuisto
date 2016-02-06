@@ -92,7 +92,7 @@ class ChefController extends Controller
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('chef_profil'));
+            return $this->redirect($this->generateUrl('chef_plat'));
         }
 
         return $this->render('ChefBundle:Chef:profil.html.twig', array(

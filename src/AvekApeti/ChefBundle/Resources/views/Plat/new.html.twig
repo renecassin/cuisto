@@ -361,10 +361,10 @@
                     <div class="col-md-12">
                         <div class="form-group has-feedback">
                             {{ form_label(form.unableWhile, 'Fermeture des commandes', {'label_attr': {'class': 'col-md-4 control-label'}}) }}
-                            <div class="col-md-7">
+                            <div class="col-md-3">
                                 {{ form_widget(form.unableWhile,
                                 {
-                                    attr:{ type:"date",id: "dispo", class:"form-control datepicker"}
+                                    attr:{ type:"date",id: "dispo", class:"form-control timepicker-hour"}
                                 })
                                 }}
                                 <p class="help-block text-danger">{{ form_errors(form.unableWhile) }}</p>
@@ -439,16 +439,15 @@
 
                 <div class="clearfix"></div>
 
-                <div class="bandeau-btn">
-                    <div class="col-md-5 text-right">
-                        <div id="success"></div>
-                        <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
-                    </div>
-
-                    <div class="col-md-7 text-left">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <div class="bandeau-btn">
                         <div id="success"></div>
                         <button type="submit" class="btn btn-default btn-xl" id="myStateButton" data-complete-text="Création du plat..." autocomplete="off">Publier mon chef d'oeuvre</button>
                     </div>
+                </div>
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <div id="success"></div>
+                    <a href="{{ path('chef_plat') }}" class="btn btn-default btn-filtre"><i class="fa fa-1x fa-undo"></i>Retour</a>
                 </div>
 
             </div>

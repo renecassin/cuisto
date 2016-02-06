@@ -2,20 +2,6 @@
 
 {% block foot_scripts %}
     {{ parent() }}
-    <script type="text/javascript">
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    <script>
-        $('#myStateButton').on('click', function () {
-            var btn = $(this)
-            btn.button('complete')
-            setTimeout(function () {
-                btn.button('reset')
-            }, 12000)
-        })
-    </script>
 {%  endblock foot_scripts %}
 
 {% block titre %}Mon profil {{ parent() }}{% endblock %}

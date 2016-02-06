@@ -408,3 +408,13 @@ a{
 .pagination>li>span {
     color: #ff4848;
 }
+
+.page-header {
+    padding-bottom: 0;
+    margin: 40px 0 0 0;
+    border-bottom: none;
+}
+
+.btn-header{
+    margin: 45px 0 0 0;
+}

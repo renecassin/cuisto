@@ -4,6 +4,7 @@ namespace AvekApeti\GourmetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use AvekApeti\BackBundle\Entity\Mail;
 use AvekApeti\GourmetBundle\Form\MailType;
@@ -152,6 +153,23 @@ class MainController extends Controller
              );
 
             $this->get('mailer')->send($message);
+    }
+
+    public function error404Action()
+    {
+        return $this->render('GourmetBundle:Main:error404.html.twig');
+    }
+
+    public function nbNotifMessageRenderAction()
+    {
+        $nbMessage = 0;
+        $user = $this->getUser();
+        if ($user)
+        {
+            $em = $this->getDoctrine()->getManager();
+            $nbMessage = $em->getRepository('AvekApetiBackBundle:Message')->getNbMessageNotRead($user->getId());
+        }
+        return new Response($nbMessage);
     }
 
 

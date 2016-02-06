@@ -2,10 +2,23 @@
 
 {% block foot_scripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/gourmet/js/home.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/gourmet/js/search.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYTi5aSKJ1iyKx-zEJKA3lRIzfdcSQfE&signed_in=true&libraries=places&callback=initMap"
     async defer></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).scroll(function () {
+                console.log('toto');
+                if ($(this).scrollTop() > 450) {
+                    console.log('toto1');
+                    $('#carte').addClass("fixCarte");
+                } else {
+                    console.log('toto2');
+                    $('#carte').removeClass("fixCarte");
+                }
+            });
+        });
+    </script>
 {%  endblock foot_scripts %}
 
 {% block titre %}Près de chez vous{{ parent() }}{% endblock %}
@@ -35,7 +48,7 @@
 
     <!-- Page Content -->
     <div class="container petite-section" id="selection-plat">
-
+        {#
         <div class="row">
 
             <div class="col-md-12">
@@ -68,15 +81,16 @@
                 </div>
             </div>
         </div>
+        #}
         <div class="row">
 
-            <div class="col-md-8">
-
+            <div class="col-md-7">
+              {#
                 <div class="col-md-12">
                     <div id="MonCollapseFiltre" class="collapse">
                         <form name="sentFilter" id="filter-form" novalidate>
                             <div class="bloc-filtre">
-{#
+
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Prix</p>
                                     <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
@@ -94,8 +108,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                #}
-                                {#
+
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Type de cuisine</p>
                                     <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
@@ -117,7 +130,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                #}
+
 
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Repas</p>
@@ -226,7 +239,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                {#
+
                                 <div class="btn-toolbar btn-toolbar-filtre" role="toolbar" aria-label="...">
                                     <p>Rayon</p>
                                     <div class="btn-group btn-group-date" role="group" aria-label="..."  data-toggle="buttons">
@@ -245,7 +258,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                #}
+
 
 
                                 <div>
@@ -256,6 +269,7 @@
                         </form>
                     </div>
                 </div>
+                #}
 
                 <div id="result-search-plat">
                     {% include 'GourmetBundle:Plat:include-selection-plat.html.twig' with {'entities':entities} only %}
@@ -264,7 +278,7 @@
 
             </div>
 
-            <div class="col-md-4 carte-fixe">
+            <div id="carte" class="col-md-5 carte-fixe">
                 <div class="carte-fixe-container">
                     <div id="map"></div>
                 </div>
@@ -273,5 +287,7 @@
 
     </div>
     <!-- /.container -->
+
+
 {% endblock content %}
 

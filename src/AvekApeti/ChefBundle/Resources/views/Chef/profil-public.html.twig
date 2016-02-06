@@ -43,6 +43,7 @@
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 titre-compte text-center">
+                    {#
                     <div class="ratings"  data-target="#MonCollapsePlus1" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
                         <p>
                             <span class="glyphicon glyphicon-heart"></span>
@@ -53,11 +54,13 @@
                             - 3 commentaires
                         </p>
                     </div>
+                    #}
                     <h3 class="section-heading">{{ entity.adress }}, {{ entity.city }} {{ entity.cp }}</h3>
                     <hr class="primary">
                     <p class="italique">J'adore cuisiner et découvrir de nouvelles recettes. J’aime aussi les partager, c'est pour cela que je me suis inscris en tant que Chef Avekapeti ! Si vous aimez un de mes plats, n'hésitez pas à les ajouter au panier ;)</p>
                 </div>
             </div>
+
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -102,7 +105,7 @@
                     </div>
                 </div>
             </div>
-
+            {#
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 titre-compte">
 
@@ -171,6 +174,7 @@
                     </div>
                 </div>
             </div>
+            #}
 
             <div class="col-md-8 col-md-offset-2 text-center grande-recherche">
                 <iframe  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="700" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
