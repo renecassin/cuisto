@@ -25,6 +25,8 @@ class ChefType extends AbstractType
                     0 => 'Non',
                 )))
             ->add('siret')
+            ->add('siret', null,['required' => false])
+            ->add('iban', null,['required' => false])
 
         ;
     }

@@ -19,6 +19,7 @@ class Plat
         $this->tlivs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->avis = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dateCreated = new \DateTime("now");
+        $this->active = true;
 
     }
     /**
@@ -663,7 +664,7 @@ class Plat
      */
     public function calculPriceNet()
     {
-        $this->priceNet = $this->price * 1.12;
+        $this->priceNet = round($this->price * 1.12, 2);
     }
 
 

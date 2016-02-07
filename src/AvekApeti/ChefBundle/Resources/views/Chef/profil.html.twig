@@ -54,6 +54,10 @@
     <section id="page-mon-compte-chef">
         <div class="container">
 
+            {% for message in app.session.flashBag.get('error_iban_chef') %}
+                <p class="alert alert-danger">{{ message }}</p>
+            {% endfor %}
+
             <div class="col-sm-12 text-center photo-mon-compte ">
                 {% if entityChef.image %}
                     <img src="{{ entityChef.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
@@ -234,11 +238,15 @@
                         <div class="form-group has-feedback">
                             <label for="rib" class="col-md-4 control-label" id="label-rib">Coordonnées bancaires</label>
                             <div class="col-md-7">
-                                <input type="text" id="rib" class="form-control" placeholder="Votre RIB" maxlength="23">
+                                {{ form_widget(edit_form.iban,
+                                {
+                                    attr:{class: "form-control",id: "iban",placeholder: "IBAN"}
+                                })
+                                }}
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="col-md-10 col-md-offset-1">
-                                <p class="help-block">Renseignez ici votre RIB pour que vous puissiez recevoir les paiements des gourmets qui ont dégusté vos bons petits plats.</p>
+                                <p class="help-block">Renseignez ici votre IBAN pour que vous puissiez recevoir les paiements des gourmets qui ont dégusté vos bons petits plats.</p>
                             </div>
                         </div>
 
@@ -259,7 +267,7 @@
                             <div class="col-md-7">
                                 {{ form_widget(edit_form.siret,
                                 {
-                                    attr:{class: "form-control",placeholder: "n° Siret",id: "siret",required: 'data-validation-required-message= "Veuillez entrer votre n° de siret."'}
+                                    attr:{class: "form-control",placeholder: "n° Siret",id: "siret"}
                                 })
                                 }}
                                 <p class="help-block text-danger"></p>

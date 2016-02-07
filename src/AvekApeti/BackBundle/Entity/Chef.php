@@ -77,6 +77,7 @@ class Chef
      * @var string
      *
      * @ORM\Column(name="iban", type="string", length=255, nullable=true)
+     * @Assert\Iban(message="Veuillez rentrer un IBAN valide")
      */
     private $iban;
 

@@ -3,7 +3,7 @@
 namespace AvekApeti\BackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AvekApeti\BackBundle\Entity\Validator as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
@@ -56,6 +56,7 @@ class Utilisateur implements UserInterface //, EquatableInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(message="Veuillez rentrer un email valide")
      */
     private $email;
 

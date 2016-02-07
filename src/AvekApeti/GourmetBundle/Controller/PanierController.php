@@ -38,6 +38,7 @@ class PanierController extends Controller
 
     public function ajoutPlatPanierAction($idPlat, Request $request)
     {
+        $valid = true;
 
         if($idPlat == null)
             return $this->Redirection_origine();
@@ -47,19 +48,28 @@ class PanierController extends Controller
         $Panier = $this->getUser()->getAttribute('Panier',$request);
         if($this->getUser()->hasAttribute('Panier',$request))
         {
-
-            if($Panier->getChefSelect()->getId() == $Plat->getUtilisateur()->getId())
+            if($Panier->getChefSelect()->getUtilisateur()->getId() == $Plat->getUtilisateur()->getId())
             {
-
-                $this->platExiste($Plat,$Panier);
-                $this->getUser()->setAttribute('Panier',$Panier,$request);
-
+                if (isset($Panier->getTableauPlats()[$Plat->getId()]) && ($Plat->getQuantity() - $Panier->getTableauPlats()[$Plat->getId()]->getQuantity() <= 0) )
+                {
+                    $this->addFlash(
+                        'addPanierNotQuantity',
+                        "Il n'y a plus de quantité pour ce plat"
+                    );
+                    $valid = false;
+                }
+                else
+                {
+                    $this->platExiste($Plat, $Panier);
+                    $this->getUser()->setAttribute('Panier', $Panier, $request);
+                }
             }else
             {
                 $this->addFlash(
                     'addPanierOtherChef',
-                    true
+                    "Vous ne pouvez pas ajouter un plat d'un autre chef"
                 );
+                $valid = false;
             }
 
         }else{
@@ -75,19 +85,22 @@ class PanierController extends Controller
 
             $Panier->addTableauPlats($platPanier);
             $Panier->addTableauPlatsTotal($Plat->getPriceNet());
+            $Panier->addTableauPlatsTotalHT($Plat->getPrice());
             $Panier->setChefSelect($Plat->getUtilisateur()->getChef());
         }
 
-         //$_SESSION['Panier']=$Panier;
-        $this->getUser()->setAttribute('Panier',$Panier,$request);
+        if ($valid) {
+            //$_SESSION['Panier']=$Panier;
+            $this->getUser()->setAttribute('Panier', $Panier, $request);
 
-        //$session = $request->getSession();
-        //$session->set('Panier', $Panier);
+            //$session = $request->getSession();
+            //$session->set('Panier', $Panier);
 
-        $this->addFlash(
-            'addPanier',
-            true
-        );
+            $this->addFlash(
+                'addPanier',
+                "Votre plat a bien été ajouté"
+            );
+        }
 
         return $this->Redirection_origine();
 
@@ -121,6 +134,7 @@ class PanierController extends Controller
     private function platExiste($Plat,$Panier)
     {
         $Panier->addTableauPlatsTotal($Plat->getPriceNet());
+        $Panier->addTableauPlatsTotalHT($Plat->getPrice());
 
         $tableauPlat = $Panier->getTableauPlats();
         if (count($tableauPlat) != 0) {
@@ -157,6 +171,7 @@ class PanierController extends Controller
                         $Panier->supTableauPlats($c);
                     }
                     $Panier->supTableauPlatsTotal($Plat->getPriceNet());
+                    $Panier->supTableauPlatsTotalHT($Plat->getPrice());
                 }
                 $c++;
             }
@@ -164,6 +179,7 @@ class PanierController extends Controller
         if ($c == 0)
         {
             $Panier->setTableauPlatsTotal(0);
+            $Panier->setTableauPlatsTotalHT(0);
         }
 
 

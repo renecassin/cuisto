@@ -2,6 +2,7 @@
 
 namespace AvekApeti\ChefBundle\Controller;
 
+use lib\LemonWay\LemonWayKit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AvekApeti\BackBundle\Entity\Chef;
@@ -78,6 +79,8 @@ class ChefController extends Controller
         ));
         $editForm->add('submit', 'submit', array('label' => 'Update'));
 
+        $oldIban = $entity->getIban();
+
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -88,7 +91,21 @@ class ChefController extends Controller
             $entity->setLng($dataGeo->getLongitude());
             $entity->setLat($dataGeo->getLatitude());
 
-            // TODO : RegisterIBAN pour lemonway
+            if ($entity->getIban() && $entity->getIban() != $oldIban)
+            {
+                $res = LemonWayKit::RegisterIBAN(
+                    [
+                        'wallet' => $entity->getUtilisateur()->getWalletLemonWay(),
+                        'holder' => $entity->getUtilisateur()->getFirstname().' '.$entity->getUtilisateur()->getLastname(),
+                        'iban' => $entity->getIban()
+                    ]);
+
+                if (isset($res->lwError)) {
+                    $this->addFlash('error_iban_chef', 'Veuillez vérifier votre IBAN');
+                    return $this->redirect($this->generateUrl('chef_plat'));
+                }
+
+            }
 
             $em->flush();
 

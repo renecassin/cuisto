@@ -24,6 +24,8 @@ class Panier
 
     private $tableauPlatsTotal = 0;
 
+    private $tableauPlatsTotalHT = 0;
+
     private $tableauMenus;
     /**
      * Get id
@@ -49,7 +51,7 @@ class Panier
         return $this->tableauMenus;
     }
     public function addTableauPlats(\AvekApeti\GourmetBundle\Entity\PlatPanier $PlatPanier){
-        $this->tableauPlats[] = $PlatPanier;
+        $this->tableauPlats[$PlatPanier->getPlat()->getId()] = $PlatPanier;
         return $this;
     }
     public function addTableauMenus(\AvekApeti\GourmetBundle\Entity\MenuPanier $MenuPanier){
@@ -123,6 +125,33 @@ class Panier
     public function supTableauPlatsTotal($price)
     {
         $this->tableauPlatsTotal -= $price;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTableauPlatsTotalHT()
+    {
+        return $this->tableauPlatsTotalHT;
+    }
+
+    /**
+     * @param mixed $tableauPlatsTotal
+     */
+    public function setTableauPlatsTotalHT($tableauPlatsTotal)
+    {
+        $this->tableauPlatsTotalHT = $tableauPlatsTotal;
+    }
+
+    public function addTableauPlatsTotalHT($price)
+    {
+        $this->tableauPlatsTotalHT += $price;
+    }
+
+    public function supTableauPlatsTotalHT($price)
+    {
+        $this->tableauPlatsTotalHT -= $price;
     }
 }
 

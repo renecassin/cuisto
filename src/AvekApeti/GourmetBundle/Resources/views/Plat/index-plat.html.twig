@@ -33,11 +33,15 @@
         <div class="row">
 
             {% for message in app.session.flashBag.get('addPanier') %}
-                <p class="alert alert-success">Votre plat a bien été ajouté</p>
+                <p class="alert alert-success">{{ message }}</p>
+            {% endfor %}
+
+            {% for message in app.session.flashBag.get('addPanierNotQuantity') %}
+                <p class="alert alert-danger">{{ message }}</p>
             {% endfor %}
 
             {% for message in app.session.flashBag.get('addPanierOtherChef') %}
-                <p class="alert alert-danger">Vous ne pouvez pas ajouter un plat d'un autre chef</p>
+                <p class="alert alert-danger">{{ message }}</p>
             {% endfor %}
 
             <div class="col-md-3 text-center carte-fixe">

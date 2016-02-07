@@ -35,30 +35,66 @@ class PaymentController extends Controller
         }
 
         $panier = $user->getAttribute('Panier',$request);
-        // TODO : faire un test pour savoir si on peut commander (quantité et temps)
-        $totalCommande = number_format(round($panier->getTableauPlatsTotal(), 2), 2);
-        $commissionLemonWay = number_format(round( ($totalCommande * (0.8 / 100)) + 0.2, 2), 2);
-        $commissionAvekapeti = number_format(round($totalCommande * ( 12 / 100 ), 2), 2);
 
-        $res2 = LemonWayKit::MoneyInWebInit(
-            array(
-                'wkToken'       =>  $this->getRandomId(),
-                'wallet'        =>  $user->getWalletLemonWay(),
-                'amountTot'     =>  $totalCommande,
-                'amountCom'     =>  $commissionAvekapeti,
-                'comment'       =>  "Commande du ".date('Y-m-d H:i:s')." par : ".$user->getFirstname()." ".$user->getLastname(),
-                'returnUrl'     =>  urlencode($this->generateUrl('gourmet_payment_done', [], true)),
-                'cancelUrl'     =>  urlencode($this->generateUrl('gourmet_payment_cancel', [], true)),
-                'errorUrl'      =>  urlencode($this->generateUrl('gourmet_payment_error', [], true)),
-                'autoCommission'=>  '0'
-            ));
+        $commandePossible = true;
 
-        if (isset($res2->lwError)){
-            throw $this->createNotFoundException('Erreur lors de la création de votre commande. Veuillez contacter le service technique.');
+        foreach($panier->getTableauPlats() as $plat)
+        {
+            $currentPlat = $em->getRepository('AvekApetiBackBundle:Plat')->find($plat->getPlat()->getId());
+
+            $hourOfUnableWhilePlat = new \DateTime("1970-01-01 ".$currentPlat->getUnableWhile()->format('H:i:s'));
+            $hourNow = new \DateTime('1970-01-01 '.date('H:i:s'));
+            $diff = $hourOfUnableWhilePlat->diff($hourNow);
+
+            if ($diff->invert == 0)
+            {
+                $commandePossible = false;
+                $panier->supTableauPlatsTotal($currentPlat->getPriceNet() * $plat->getQuantity());
+                $panier->supTableauPlatsTotalHT($currentPlat->getPrice() * $plat->getQuantity());
+                $plat->setQuantity(0);
+                unset($panier->getTableauPlats()[$plat->getPlat()->getId()]);
+            }
+            else if ($currentPlat->getQuantity() < $plat->getQuantity())
+            {
+                $commandePossible = false;
+                $plat->setQuantity($currentPlat->getQuantity());
+                $panier->supTableauPlatsTotal($currentPlat->getPriceNet());
+                $panier->supTableauPlatsTotalHT($currentPlat->getPrice());
+            }
         }
 
+        if (true == $commandePossible)
+        {
+            $totalCommande = number_format(round($panier->getTableauPlatsTotal(), 2), 2);
+            $totalCommandeHT = number_format(round($panier->getTableauPlatsTotalHT(), 2), 2);
+            $commissionAvekapeti = number_format(round($totalCommande - $totalCommandeHT, 2), 2);
 
-        return new Response(LemonWayKit::printCardForm($res2->lwXml->MONEYINWEB->TOKEN, ''));
+            $res2 = LemonWayKit::MoneyInWebInit(
+                array(
+                    'wkToken' => $this->getRandomId(),
+                    'wallet' => $user->getWalletLemonWay(),
+                    'amountTot' => $totalCommande,
+                    'amountCom' => $commissionAvekapeti,
+                    'comment' => "Commande du " . date('Y-m-d H:i:s') . " par : " . $user->getFirstname() . " " . $user->getLastname(),
+                    'returnUrl' => urlencode($this->generateUrl('gourmet_payment_done', [], true)),
+                    'cancelUrl' => urlencode($this->generateUrl('gourmet_payment_cancel', [], true)),
+                    'errorUrl' => urlencode($this->generateUrl('gourmet_payment_error', [], true)),
+                    'autoCommission' => '0'
+                ));
+
+            if (isset($res2->lwError)) {
+                throw $this->createNotFoundException('Erreur lors de la création de votre commande. Veuillez contacter le service technique.');
+            }
+
+
+            return new Response(LemonWayKit::printCardForm($res2->lwXml->MONEYINWEB->TOKEN, ''));
+        }
+        else
+        {
+            $user->setAttribute('Panier',$panier,$request);
+            $this->addFlash('error_qty_or_time_panier', "Problème de quantité ou de délai sur votre commande. Votre panier a été remis à jour. Veuillez le vérifier !");
+            return $this->redirectToRoute('panier_index');
+        }
     }
 
     /**
@@ -108,6 +144,9 @@ class PaymentController extends Controller
             $commandePlat->setPlats($currentPlat);
             $commandePlat->setQuantity($plat->getQuantity());
             $commande->addCommandeplat($commandePlat);
+            $currentPlat->setQuantity($currentPlat->getQuantity()-$plat->getQuantity());
+            $em->persist($currentPlat);
+            $em->flush();
         }
 
         // get real chef
@@ -280,7 +319,7 @@ class PaymentController extends Controller
             else
             {
                 die(dump($res));
-                $res = LemonWayKit::RegisterWallet(
+                $res = LemonWayKit::MoneyOut(
                     [
                         'wallet' => $user->getWalletLemonWay(),
                         'amountTot' => 15.00

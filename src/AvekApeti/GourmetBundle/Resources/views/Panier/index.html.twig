@@ -20,6 +20,14 @@
     <section id="page-panier">
         <div class="container">
 
+            {% for message in app.session.flashBag.get('addPanierNotQuantity') %}
+                <p class="alert alert-danger">{{ message }}</p>
+            {% endfor %}
+
+            {% for message in app.session.flashBag.get('error_qty_or_time_panier') %}
+                <p class="alert alert-danger">{{ message }}</p>
+            {% endfor %}
+
             <div class="col-sm-12 text-center photo-mon-compte ">
                 {% if entity.image %}
                     <img src="{{ entity.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
