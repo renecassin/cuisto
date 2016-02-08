@@ -31,7 +31,7 @@
 }
 
 .cercle h3{
-    margin-top: 8px;
+    margin-top: 25px;
 }
 
 #header-home p,
@@ -238,9 +238,6 @@
 }
 .header4{
     background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header4.jpg) no-repeat center;
-}
-.header5{
-    background: radial-gradient(rgba(0,0,0,0.2),black 150%), url(../img/header8.jpg) no-repeat center;
 }
 
 
@@ -691,7 +688,7 @@ section#contact .glyphicon-perso {
         margin-bottom: 400px;
     }
     #selection-plat .carte-fixe {
-        height: 500px;
+        height: 515px;
     }
     #selection-plat .carte-fixe .carte-fixe-container {
         height: 100%;
@@ -705,7 +702,7 @@ section#contact .glyphicon-perso {
         position: fixed;
         top: 80px;
         right: 70px;
-        width: 540px;
+        width: 542px;
     }
 }
 
@@ -881,8 +878,8 @@ section#contact .glyphicon-perso {
 .cercle{
     background-color: white;
     border: 2px solid;
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
     transition: 0.5s ease-in-out;
 }
@@ -1189,6 +1186,7 @@ transform: translateX(-50%);
 
 .bandeau-icon{
     color: #ffada2;
+    margin-top: 20px;
 }
 
 .souligner{
@@ -1201,7 +1199,7 @@ transform: translateX(-50%);
 }
 
 #index-plat  .thumbnail .caption-full img {
-    /*margin-bottom: 15px;*/
+    margin-bottom: 20px;
 }
 
 .bandeau-icon p {
@@ -1337,20 +1335,27 @@ transform: translateX(-50%);
     height: 350px;
 }
 
+#header-index-plat{
+    height: 350px;
+}
+
 .img-background{
     width: 100%;
     height: 100%;
 }
 
 @media(min-width:768px) {
-    .cadre-img-background {
+    .cadre-img-background{
         height: 600px;
+    }
+    #header-index-plat{
+        height: 550px;
     }
 }
 
 .fix{
     position: fixed;
-    bottom: 10px;
+    bottom: 0px;
     left: 0px;
     right: 0px;
     z-index: 100;
@@ -1476,10 +1481,6 @@ transform: translateX(-50%);
     font-size: 22px;
 }
 
-.img-defaut{
-    height: 215.1px;
-}
-
 .help-block{
     font-size: 14px;
 }
@@ -1534,4 +1535,8 @@ transform: translateX(-50%);
     top: 20%;
     right: 3%;
     font-size: 18px;
+}
+
+#header-index-plat .header-content .header-content-inner {
+    max-width: 850px;
 }

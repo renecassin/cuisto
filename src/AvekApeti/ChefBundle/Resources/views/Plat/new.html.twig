@@ -253,7 +253,7 @@
                         <div class="col-md-7">
                             {{ form_widget(form.quantity,
                             {
-                                attr:{maxlength:"50", class: "form-control",'placeholder': "1" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
+                                attr:{maxlength:"50", class: "form-control",'value': "1" ,id: "quantite", required: 'data-validation-required-message= "Veuillez entrer la quantité du plat."'}
                             })
                             }}
                             <p class="help-block text-danger">{{ form_errors(form.quantity) }}</p>

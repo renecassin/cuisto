@@ -8,12 +8,9 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $(document).scroll(function () {
-                console.log('toto');
-                if ($(this).scrollTop() > 450) {
-                    console.log('toto1');
+                if ($(this).scrollTop() > 390) {
                     $('#carte').addClass("fixCarte");
                 } else {
-                    console.log('toto2');
                     $('#carte').removeClass("fixCarte");
                 }
             });

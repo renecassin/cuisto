@@ -29,9 +29,9 @@
                                 <p>{{ entity.quantity }} {% if entity.quantity>1 %} parts restantes {% else %} part restante {% endif %} <i class="fa fa-1x fa-home"></i><i class="fa fa-1x fa-bicycle"></i></p>
                             </div>
                             {% if entity.image %}
-                                <img src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt="" >
+                                <img src="{{ entity.image.webPath|imagine_filter('plat_picture_small') }}" alt={{ entity.name}} >
                             {% else %}
-                                <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} class="img-defaut" alt="">
+                                <img src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg'|imagine_filter('plat_picture_small')) }} class="img-defaut" alt="">
                             {% endif %}
                         </div>
                     </a>

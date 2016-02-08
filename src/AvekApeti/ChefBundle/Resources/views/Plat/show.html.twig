@@ -9,22 +9,40 @@
 
 {% block content %}
 
-    <header class="header" id="header-index-plat">
-            {#<div class="header-content header-content-transform">
-            {
+    <header class="header" id="header-index-plat"
+            {% if entity.image %}
+                style="background: url({{ asset(entity.image.webPath) }})
+            {% else %}
+                style="background: url({{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }})
+            {% endif %}
+        no-repeat center / cover;">
+
+        {#<div class="header-content header-content-transform">
             <div class="header-content-inner disparition">
                 <h2 class="h1-page">Roti de boeuf Esterhazy<br>9 €</h2>
                 <h3 class="adresse-selection">Chef Ludo94</h3>
             </div>
-            #}
-            <div class="cadre-img-background">
+        </div>
+
+        <div class="cadre-img-background">
             {% if entity.image %}
                 <img class="img-background" src="{{ entity.image.webPath|imagine_filter('plat_picture_big') }}" alt="" >
             {% else %}
                 <img class="img-background" src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
             {% endif %}
+        </div>#}
+        <div class="header-content header-content-transform">
+            <div class="col-md-6 col-md-offset-3">
+                {% for message in app.session.flashBag.get('addPlat') %}
+                <div class="flash-notice">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p><strong>Et un de plus !</strong> {{ message }}</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-
+        </div>
     </header>
 
     <!-- Page Content -->
@@ -73,12 +91,10 @@
                             </div>
 
                             <div class="col-sm-2 text-center">
-                                <button class="cercle">
-                                    <div>
-                                        {% set prix_final = entity.price * 1.12 %}
-                                        <h3>{{  prix_final|number_format(2, ',', ' ') }}€</h3>
-                                    </div>
-                                </button>
+                                <div class="cercle">
+                                    {% set prix_final = entity.price * 1.12 %}
+                                    <h3>{{  prix_final|number_format(2, ',', ' ') }}€</h3>
+                                </div>
                             </div>
 
                         </div>
@@ -186,7 +202,7 @@
                                         <li>2 à 3 cs de beurre, beurre clarifié ou huile</li>
                                         <li>Persil haché pour garnir</li>
                                     </ul>
-
+                                    {#
                                     <div class="well">
 
                                         <div class="row">
@@ -259,7 +275,7 @@
                                         <a class="btn btn-default btn-filtre ">
                                             <i class="fa fa-1x fa-comment"></i>Laisser un commentaire
                                         </a>
-                                    </div>
+                                    </div>#}
                                 </div>
                             </div>
                             {#<div class="col-md-12">
@@ -320,11 +336,9 @@
                                     </div>
 
                                     <div class="col-sm-2 text-center">
-                                        <button class="cercle">
-                                            <div >
-                                                <h3>{{ entit.price }}€</h3>
-                                            </div>
-                                        </button>
+                                        <div class="cercle">
+                                            <h3>{{ entit.price }}€</h3>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -418,7 +432,7 @@
                                                 <li>Blanc d’œuf pour enduire</li>
                                                 <li>100 à150 g de beurre brun pour arroser</li>
                                             </ul>
-
+                                            {#
                                             <div class="well">
 
                                                 <div class="row">
@@ -447,7 +461,7 @@
                                                 <a class="btn btn-default btn-filtre ">
                                                     <i class="fa fa-1x fa-comment"></i>Laisser un commentaire
                                                 </a>
-                                            </div>
+                                            </div>#}
                                         </div>
                                     </div>
                                 </div>

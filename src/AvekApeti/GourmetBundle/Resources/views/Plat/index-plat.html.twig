@@ -9,14 +9,13 @@
 
 {% block content %}
 
-    <header class="header" id="header-index-plat">
+    <header class="header" id="header-index-plat" style="background: url({{ asset(entity.image.webPath) }}) no-repeat center / cover;">
         {#<div class="header-content header-content-transform">
-            {#
             <div class="header-content-inner disparition">
                 <h2 class="h1-page">Roti de boeuf Esterhazy<br>9 €</h2>
                 <h3 class="adresse-selection">Chef Ludo94</h3>
             </div>
-                  #}
+        </div>
 
         <div class="cadre-img-background">
             {% if entity.image %}
@@ -24,72 +23,100 @@
             {% else %}
                 <img class="img-background" src={{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }} alt="">
             {% endif %}
-        </div>
-    </header>
+        </div>#}
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                    {% for message in app.session.flashBag.get('addPanier') %}
+                    <div class="flash-notice">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <p><strong>Plus qu'à commander !</strong> {{ message }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
 
-    <!-- Page Content -->
-    <div class="container" id="index-plat">
+                    {% for message in app.session.flashBag.get('addPanierNotQuantity') %}
+                        <div class="flash-notice">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <p><strong>Attention !</strong> {{ message }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
 
-        <div class="row">
-
-            {% for message in app.session.flashBag.get('addPanier') %}
-                <p class="alert alert-success">{{ message }}</p>
-            {% endfor %}
-
-            {% for message in app.session.flashBag.get('addPanierNotQuantity') %}
-                <p class="alert alert-danger">{{ message }}</p>
-            {% endfor %}
-
-            {% for message in app.session.flashBag.get('addPanierOtherChef') %}
-                <p class="alert alert-danger">{{ message }}</p>
-            {% endfor %}
-
-            <div class="col-md-3 text-center carte-fixe">
-                <div class="portrait-chef">
-                    <a href=# class="lien-portrait-chef" >
-                        {% if entityChef.image is not null %}
-                            <img src="{{ asset(entityChef.image.webPath|imagine_filter('profil_picture_small')) }}" alt="" class="img-circle">
-                        {% else %}
-                            <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
-                        {% endif %}
-                        <h4 class="nom-plat lien-hover grande-recherche">Chef {{ entityChef.login }}</h4>
-                        <p class="description-adresse grande-recherche">{{ entityChef.chef.adress|default('') }},  {{ entityChef.chef.city|default('') }}</p>
-                    </a>
-                    <a href=# class="lien-portrait-chef grande-recherche" >
-                        <h5 class="lien-hover souligner">Voir le chef en action</h5>
-                    </a>
-                </div>
-
-                <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    {% for message in app.session.flashBag.get('addPanierOtherChef') %}
+                    <div class="flash-notice">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <p><strong>Attention !</strong> {{ message }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
             </div>
+        </div>
+</header>
 
-            <div class="col-md-6">
-                <div class="thumbnail">
-                    <div class="caption-full">
+<!-- Page Content -->
+<div class="container" id="index-plat">
 
-                        <div class="row">
+<div class="row">
 
-                            <div class="col-sm-10 texte-centre">
-                                <h1>{{ entity.name }}</h1>
-                                <div class="ratings"  data-target="#MonCollapsePlus" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
-                                    <p>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                        - 3 commentaires
-                                    </p>
-                                </div>
+    <div class="col-md-3 text-center carte-fixe">
+        <div class="portrait-chef">
+            <a href=# class="lien-portrait-chef" >
+                {% if entityChef.image is not null %}
+                    <img src="{{ asset(entityChef.image.webPath|imagine_filter('profil_picture_small')) }}" alt="" class="img-circle">
+                {% else %}
+                    <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
+                {% endif %}
+                <h4 class="nom-plat lien-hover grande-recherche">Chef {{ entityChef.login }}</h4>
+                <p class="description-adresse grande-recherche">{{ entityChef.chef.adress|default('') }},  {{ entityChef.chef.city|default('') }}</p>
+            </a>
+            <a href=# class="lien-portrait-chef grande-recherche" >
+                <h5 class="lien-hover souligner">Voir le chef en action</h5>
+            </a>
+        </div>
+
+        <iframe class="petite-carte" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d42002.097395699224!2d2.2577908499999997!3d48.85571065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1448422160580" width="290" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+    <div class="col-md-6">
+        {% for message in app.session.flashBag.get('addPanier') %}
+            <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
+        {% for message in app.session.flashBag.get('addPanierNotQuantity') %}
+            <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+
+        {% for message in app.session.flashBag.get('addPanierOtherChef') %}
+            <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        <div class="thumbnail">
+            <div class="caption-full">
+
+                <div class="row">
+
+                    <div class="col-sm-10 texte-centre">
+                        <h1>{{ entity.name }}</h1>
+                        {#
+                        <div class="ratings"  data-target="#MonCollapsePlus" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                            <p>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                - 3 commentaires
+                            </p>
+                        </div>#}
 
                             </div>
 
                             <div class="col-sm-2 text-center">
-                                <button class="cercle">
-                                    <div >
-                                        <h3>{{  entity.priceNet|number_format(2, ',', ' ') }}€</h3>
-                                    </div>
-                                </button>
+                                <div class="cercle">
+                                    <h3>{{  entity.priceNet|number_format(2, ',', ' ') }}€</h3>
+                                </div>
                             </div>
 
                         </div>
@@ -185,7 +212,7 @@
 
                             <div class="col-md-12 ">
 
-                                <div id="MonCollapsePlus1" class="collapse">
+                                <div id="MonCollapsePlus" class="collapse">
 
                                     <p class="description-plat souligner">Ingrédients (pour 4 personnes) :</p>
                                     <ul>
@@ -203,7 +230,7 @@
                                         <li>2 à 3 cs de beurre, beurre clarifié ou huile</li>
                                         <li>Persil haché pour garnir</li>
                                     </ul>
-
+{#
                                     <div class="well">
 
                                         <div class="row">
@@ -276,7 +303,7 @@
                                         <a class="btn btn-default btn-filtre ">
                                             <i class="fa fa-1x fa-comment"></i>Laisser un commentaire
                                         </a>
-                                    </div>
+                                    </div>#}
                                 </div>
                             </div>
                         </div>
@@ -313,7 +340,7 @@
                                         <a href="{{ path('gourmet_platpage', { 'id': entit.id }) }}">
                                             <h2>{{ entit.name }}</h2>
                                         </a>
-                                        <div class="ratings"  data-target="#MonCollapsePlus{{i}}" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
+                                        {#<div class="ratings"  data-target="#MonCollapsePlus{{i}}" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
                                             <p>
                                                 <span class="glyphicon glyphicon-heart"></span>
                                                 <span class="glyphicon glyphicon-heart"></span>
@@ -322,16 +349,14 @@
                                                 <span class="glyphicon glyphicon-heart-empty"></span>
                                                 - 1 commentaire
                                             </p>
-                                        </div>
+                                        </div>#}
 
                                     </div>
 
                                     <div class="col-sm-2 text-center">
-                                        <button class="cercle">
-                                            <div >
-                                                <h3>{{ entit.price }}€</h3>
-                                            </div>
-                                        </button>
+                                        <div class="cercle">
+                                            <h3>{{  entit.priceNet|number_format(2, ',', ' ') }}€</h3>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -423,7 +448,7 @@
                                             <li>Blanc d’œuf pour enduire</li>
                                             <li>100 à150 g de beurre brun pour arroser</li>
                                         </ul>
-
+                                        {#
                                         <div class="well">
 
                                             <div class="row">
@@ -452,7 +477,7 @@
                                             <a class="btn btn-default btn-filtre ">
                                                 <i class="fa fa-1x fa-comment"></i>Laisser un commentaire
                                             </a>
-                                        </div>
+                                        </div>#}
                                     </div>
                                 </div>
                             </div>
@@ -470,6 +495,7 @@
                     <div class="fix">
                         <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl petite-recherche">Ajouter au panier</a>
                     </div>
+                    {#
                     <div id="panier-dynamique">
                         <div class="row">
                             <div class="col-md-9 ">
@@ -507,7 +533,8 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-default btn-xl">Commander</a>
+                    #}
+                    <a class="btn btn-default btn-xl" href={{ path('panier_index') }}>Commander</a>
                 </div>
             </aside>
 

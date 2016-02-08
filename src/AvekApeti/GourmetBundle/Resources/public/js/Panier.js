@@ -46,6 +46,7 @@ $('.reset_panier').click(function(event){
     event.stopImmediatePropagation();
     $.get( "reset", function() {
         affichagePanier();
+        location.reload(true);
     });
 });
 

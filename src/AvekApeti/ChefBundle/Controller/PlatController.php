@@ -58,6 +58,11 @@ class PlatController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->addFlash(
+                'addPlat',
+                'Votre plat a bien été créé.'
+            );
+
             return $this->redirect($this->generateUrl('chef_plat_show', array('id' => $entity->getId())));
         }
 
@@ -203,6 +208,11 @@ class PlatController extends Controller
             }
             $em->flush();
 
+            $this->addFlash(
+                'editPlat',
+                'Votre plat a bien été modifié.'
+            );
+
             return $this->redirect($this->generateUrl('chef_plat'));
         }
 
@@ -235,6 +245,11 @@ class PlatController extends Controller
             $entity->setSupp('1');
             //$em->remove($entity);
             $em->flush();
+
+            $this->addFlash(
+                'deletePlat',
+                'Votre plat a bien été supprimé.'
+            );
         }
 
         return $this->redirect($this->generateUrl('chef_plat'));
