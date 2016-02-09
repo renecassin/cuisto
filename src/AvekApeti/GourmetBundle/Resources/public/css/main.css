@@ -610,6 +610,7 @@ section#contact .glyphicon-perso {
     padding: 10px;
 }
 
+#page-panier .fa-1x,
 #page-voir-commande .fa-1x,
 #page-liste-commande  .fa-1x,
 #page-voir-msg .fa-1x,
@@ -735,6 +736,7 @@ section#contact .glyphicon-perso {
     margin-top: 5px;
 }
 
+#commande hr,
 .dropdown-menu hr,
 #index-plat .panier hr,
 #page-mon-compte-chef-public .well hr,
@@ -1539,4 +1541,29 @@ transform: translateX(-50%);
 
 #header-index-plat .header-content .header-content-inner {
     max-width: 850px;
+}
+
+#commande h4,
+#commande p{
+    margin-bottom: 0;
+}
+
+#commande .plus-moins{
+    margin-bottom: 10px;
+}
+
+ #total h2{
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+#total h4{
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+@media(max-width:768px) {
+    #btn-total .btn-filtre {
+        width: 100%;
+    }
 }

@@ -1,6 +1,65 @@
 {% if  app.user.hasAttribute('Panier',app.request) %}
+
     {% set panier = app.user.getAttribute('Panier',app.request) %}
-    {{ dump(panier) }}
+
+    <h3>
+        Chef {{ panier.chefSelect.utilisateur.login }}
+        // {{ panier.chefSelect.adress }}, {{ panier.chefSelect.city }} {{ panier.chefSelect.cp }}
+    </h3>
+
+    <p>Créneau horaire : {{ (panier.tableauPlats|last).plat.dateStart|date('H:i') }}
+        à {{ (panier.tableauPlats|last).plat.dateEnd|date('H:i') }}
+    </p>
+    <br>
+    <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Votre commande</h2>
+        <hr class="primary">
+    </div>
+
+    <div id="commande">
+
+        {% for platPanier in panier.tableauPlats %}
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <p>{{ platPanier.quantity }} x <a href="{{ path('gourmet_platpage', { 'id': platPanier.plat.id }) }}">{{ platPanier.plat.name }}</a></p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <h4>{{ platPanier.plat.priceNet|number_format(2) }} €</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left plus-moins">
+                    <a href={{ path('panier_plat_suppr',{'idPlat':platPanier.plat.id}) }} data-id="{{ platPanier.plat.id }}" class="suppr_plat_panier"><i class="fa fa-3x fa-minus-circle"></i></a>
+                    <a href={{ path('panier_plat_ajout',{'idPlat':platPanier.plat.id}) }} data-id="{{ platPanier.plat.id }}" class="ajout_plat_panier"><i class="fa fa-3x fa-plus-circle"></i></a>
+                </div>
+            </div>
+        {% endfor %}
+        <hr>
+    </div>
+
+    <div class="row" id="total">
+        <div class="col-md-6 text-left">
+            <span class="Panier_nb">
+                <h4>Quantité total : x {{ app.user.getAttribute('Panier',app.request).getCount() }}</h4>
+            </span>
+
+        </div>
+        <div class="col-md-6 text-right">
+            <h2>Prix total : {{ panier.tableauPlatsTotal|number_format(2) }}€</h2>
+        </div>
+    </div>
+
+    <div class="row" id="btn-total">
+        <div class="col-sm-5 text-left">
+            <a href="{{ path('panier_reset') }}" class="reset_panier btn btn-default btn-filtre">
+                <i class="fa fa-1x fa-trash"></i> Vider le panier
+            </a>
+        </div>
+        <div class="col-sm-7 text-right">
+            <a href="" class="btn btn-default btn-xl">Commander</a>
+        </div>
+    </div>
+
 {% else %}
     Votre panier est vide
 {% endif %}

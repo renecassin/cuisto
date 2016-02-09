@@ -13,6 +13,27 @@
             <div class="header-content-inner">
                 <h1 class="h1-page">Mon panier</h1>
                 <h2 class="adresse-selection">Emballé, c'est pesé</h2>
+                <div class="col-md-6 col-md-offset-3">
+                    {% for message in app.session.flashBag.get('addPanierNotQuantity') %}
+                        <div class="flash-notice">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <p><strong>Désolé !</strong> {{ message }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-6 col-md-offset-3">
+                    {% for message in app.session.flashBag.get('error_qty_or_time_panier') %}
+                        <div class="flash-notice">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <p><strong>Désolé !</strong> {{ message }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </header>
@@ -20,13 +41,7 @@
     <section id="page-panier">
         <div class="container">
 
-            {% for message in app.session.flashBag.get('addPanierNotQuantity') %}
-                <p class="alert alert-danger">{{ message }}</p>
-            {% endfor %}
 
-            {% for message in app.session.flashBag.get('error_qty_or_time_panier') %}
-                <p class="alert alert-danger">{{ message }}</p>
-            {% endfor %}
 
             <div class="col-sm-12 text-center photo-mon-compte ">
                 {% if entity.image %}
@@ -43,20 +58,6 @@
                     </div>
                 </div>
             </div>
-
-            {% if  app.user.hasAttribute('Panier',app.request) %}
-                <a href={{ path('panier_plat_ajout',{idPlat:'1'}) }} data-id="1" class="ajout_plat_panier"><i class="fa fa-3x fa-plus-circle"></i></a>
-                <a href={{ path('panier_plat_suppr',{idPlat:'1'}) }} data-id="1" class="suppr_plat_panier"><i class="fa fa-3x fa-minus-circle"></i></a>
-
-                {#<a href={{ path('panier_menu_ajout',{idMenu:'1'}) }} data-id="1" class="ajout_menu_panier">ajout Menu</a>
-                <a href={{ path('panier_menu_suppr',{idMenu:'1'}) }} data-id="1" class="suppr_menu_panier">supprimer Menu</a>#}
-                <a href={{ path('panier_reset') }} class="reset_panier">Vider le panier</a><br>
-                 <span class="Panier_nb">
-                     {{ app.user.getAttribute('Panier',app.request).getCount() }}
-                </span>
-                <a href="">Commander</a>
-            {% endif %}
-
 
             {% for message in app.session.flashBag.get('cancel_payment_command') %}
                 <p class="alert alert-danger">{{ message }}</p>
