@@ -1,0 +1,37 @@
+{%  extends 'GourmetBundle::layout.html.twig' %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+
+{%  endblock foot_scripts %}
+
+{% block titre %}Confiance & transparence {{ parent() }}{% endblock %}
+
+{% block content %}
+    <header class="header-inscription" id="header-error404">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Confiance & transparences</h1>
+            </div>
+        </div>
+    </header>
+
+    <section id="page404">
+        <div class="container">
+            <div class="row">
+
+                <h2>Nous mettons tout en oeuvre pour qu’Avekapeti soit le plus sûr possible.</h2>
+                <p>Tout d'abord nous vérifions au maximum l'identité de nos membres grâce par exemple à la certification de leur numéro de téléphone mobile.
+                    Ensuite la communauté utilise les profils et les avis pour évaluer les membres et mettre de côté ceux qui ne respectent pas l'esprit de la consommation collaborative.</p>
+                <p>Enfin, Avekapeti a une équipe dédiée, disponible tous les jours pour aider nos membres à utiliser au mieux notre service de partage de plats maison.</P>
+                <p>Ajoutons à cela que les chefs s’engagent à respecter une charte d’hygiène très précise et complète réalisée par des experts ; qui leur donne toutes les informations et conseils pour une hygiène irréprochable. </p>
+
+                <p>Encore un doute? Certains chefs publient des photos voir même une vidéo de leur cuisine, n’hésitez pas à les consulter pour une totale transparence.
+                    Toujours pas convaincu? Vous pourrez si vous allez retirer le plat chez le chef demander à entrer visiter la cuisine et vérifier par vous-même les conditions dans lesquelles votre plat a été préparé. Les chefs s’engagent à vous laisser entrer.
+                    Soyez cependant indulgents envers les chefs qui n’ont pas de vidéo. Nous avons remarqué que ce n’est pas par mauvaise foi, certains ne sont tout simplement pas familiers avec Internet et se contentent d’une utilisation minimale d’Avekapeti.</p>
+
+                <p>Et surtout n’oubliez pas que les chefs cuisinent à la base pour eux-même et leur famille. Ils font donc naturellement trés attention et préparent les plats avec amour.</p>            </div>
+        </div>
+    </section>
+
+{% endblock content %}

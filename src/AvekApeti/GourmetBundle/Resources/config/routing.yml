@@ -44,6 +44,36 @@ gourmet_error404:
     path:     /error404
     defaults: { _controller: GourmetBundle:Main:error404}
 
+gourmet_chefpage:
+    path:     /{id}/chef
+    defaults: { _controller: GourmetBundle:Chef:index}
+    requirements:
+              id : \d+
+
+gourmet_cgu:
+    path:     /cgu
+    defaults: { _controller: GourmetBundle:Main:cgu}
+
+gourmet_aide:
+    path:     /aide
+    defaults: { _controller: GourmetBundle:Main:aide}
+
+gourmet_charte:
+    path:     /charte
+    defaults: { _controller: GourmetBundle:Main:charte}
+
+gourmet_ccm:
+    path:     /ccm
+    defaults: { _controller: GourmetBundle:Main:ccm}
+
+gourmet_confiance:
+    path:     /confiance
+    defaults: { _controller: GourmetBundle:Main:confiance}
+
+gourmet_questions:
+    path:     /questions
+    defaults: { _controller: GourmetBundle:Main:questions}
+
 gourmet_detail:
     resource: "@GourmetBundle/Resources/config/routing/gourmet.yml"
     prefix:   /gourmet
@@ -57,3 +87,4 @@ gourmet_panier:
 gourmet_payment_resource:
     resource: "@GourmetBundle/Resources/config/routing/payment.yml"
     prefix:   /paiement
+

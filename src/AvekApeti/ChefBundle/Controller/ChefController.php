@@ -52,8 +52,6 @@ class ChefController extends Controller
             throw $this->createNotFoundException('Unable to find Chef .');
         }
 
-        /*$editForm->add('submit', 'submit', array('label' => 'Update'));*/
-
         return $this->render('ChefBundle:Chef:profil-public.html.twig', array(
             'entity'      => $entity,
             'entityChef'      => $user,

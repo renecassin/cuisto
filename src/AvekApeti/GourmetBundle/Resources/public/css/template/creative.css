@@ -174,7 +174,7 @@ aside {
 
     .navbar-default.affix {
         border-color: rgba(34,34,34,.05);
-        background-color: rgba(2,201,164,0.7);
+        background-color: rgba(2,201,164,0.8);
     }
 
     .navbar-default.affix .navbar-header .navbar-brand {
@@ -393,7 +393,6 @@ header .header-content .header-content-inner p {
     #header-mon-compte-chef-public .header-content,
     #header-mon-compte-public .header-content,
     #header-landing .header-content,
-    #header-index-plat .header-content-transform,
     #header-selection-plat .header-content,
     #header-home .header-content {
         position: absolute;
@@ -402,6 +401,15 @@ header .header-content .header-content-inner p {
         -webkit-transform: translateY(-40%);
         -ms-transform: translateY(-40%);
     }
+
+    #header-index-plat .header-content{
+        position: absolute;
+        top: 50%;
+        transform: translateY(220%);
+        -webkit-transform: translateY(220%);
+        -ms-transform: translateY(220%);
+    }
+
 
     header .header-content {
         position: absolute;
@@ -713,7 +721,7 @@ footer span.copyright {
 
 footer ul.quicklinks {
     margin-bottom: 0;
-    line-height: 40px;
+    /*line-height: 40px;*/
 }
 
 

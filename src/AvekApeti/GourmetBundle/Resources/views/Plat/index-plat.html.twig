@@ -9,7 +9,13 @@
 
 {% block content %}
 
-    <header class="header" id="header-index-plat" style="background: url({{ asset(entity.image.webPath) }}) no-repeat center / cover;">
+        <header class="header" id="header-index-plat"
+            {% if entity.image %}
+                style="background: url({{ asset(entity.image.webPath) }})
+            {% else %}
+                style="background: url({{ asset('bundles/gourmet/img/defaut/defaut2.jpg') }})
+            {% endif %}
+            no-repeat center / cover;">
         {#<div class="header-content header-content-transform">
             <div class="header-content-inner disparition">
                 <h2 class="h1-page">Roti de boeuf Esterhazy<br>9 €</h2>
@@ -198,11 +204,13 @@
 
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-4 col-md-push-6">
-                                        <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl">Ajouter au panier</a>
+                                    <div class="col-md-5 col-md-push-6">
+                                        <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl">
+                                            <i class="fa fa-1x fa-plus-circle"></i>Ajouter au panier
+                                        </a>
 
                                     </div>
-                                    <div class="col-md-4 col-md-pull-2">
+                                    <div class="col-md-4 col-md-pull-3">
                                         <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
                                             <i class="fa fa-1x fa-plus"></i>En savoir plus
                                         </button>
@@ -310,17 +318,23 @@
 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">Chef {{ entityChef.login }} propose aussi ...</h2>
-                        <hr>
-                    </div>
-                </div>
+
 
                 {% set i=0 %}
                 {% for entit in entities %}
-                    {% if entit.id != entity.id %}
+
+
+                    {% if entit.id != entity.id and entit.quantity > 0 and 'now'|date('H:i:s') - entit.unableWhile|date('H:i:s') > 0 %}
                         {% set i=i+1 %}
+
+                        {% if i==1 %}
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h2 class="section-heading">Chef {{ entityChef.login }} propose aussi ...</h2>
+                                <hr>
+                            </div>
+                        </div>
+                        {% endif %}
 
                         <div class="thumbnail">
                             <div class="caption-full">
@@ -425,10 +439,11 @@
 
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-4 col-md-push-6">
-                                                <a href="{{ path('panier_plat_ajout', {idPlat: entit.id }) }}" class="btn btn-default btn-xl">Ajouter au panier</a>
+                                            <div class="col-md-5 col-md-push-6">
+                                                <a href="{{ path('panier_plat_ajout', {idPlat: entit.id }) }}" class="btn btn-default btn-xl">
+                                                <i class="fa fa-1x fa-plus-circle"></i>Ajouter au panier</a>
                                             </div>
-                                            <div class="col-md-4 col-md-pull-2">
+                                            <div class="col-md-4 col-md-pull-3">
                                                 <button class="btn btn-default btn-filtre" type="button" data-target="#MonCollapsePlus{{i}}" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
                                                     <i class="fa fa-1x fa-plus"></i>En savoir plus
                                                 </button>
@@ -491,7 +506,9 @@
             <aside class="col-md-3 text-center ">
                 {#<p class="nbre-part">Attention il ne reste que 3 parts !</p>#}
                 <div class="panier">
-                    <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl grande-recherche">Ajouter au panier</a>
+                    <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl grande-recherche">
+                        <i class="fa fa-1x fa-plus-circle"></i>Ajouter au panier
+                    </a>
                     <div class="fix">
                         <a href="{{ path('panier_plat_ajout', {idPlat: entity.id }) }}" class="btn btn-default btn-xl petite-recherche">Ajouter au panier</a>
                     </div>
@@ -534,7 +551,13 @@
                         </div>
                     </div>
                     #}
-                    <a class="btn btn-default btn-xl" href={{ path('panier_index') }}>Commander</a>
+                    {% if  app.user.hasAttribute('Panier',app.request) %}
+                        {% if(app.user.getAttribute('Panier',app.request).getCount() > 0) %}
+                            <a class="btn btn-default btn-xl" href={{ path('panier_index') }}>
+                                <i class="fa fa-1x fa-shopping-cart"></i>Commander
+                            </a>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </aside>
 

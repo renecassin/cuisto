@@ -213,7 +213,7 @@ class GourmetController extends Controller
             'method' => 'PUT',
         ));
 
-        $editForm->add('submit', 'submit', array('label' => 'Update'));
+        /*$editForm->add('submit', 'submit', array('label' => 'Update'));*/
         $editForm->handleRequest($request);
        // die(dump($request->request->get($Utilisateur2Type->getName())));
         if ($editForm->isValid()) {
@@ -233,7 +233,7 @@ class GourmetController extends Controller
             $em->flush();
 
             $user->setImage(new Image());
-            return $this->redirect($this->generateUrl('gourmet_profil'));
+            return $this->redirect($this->generateUrl('gourmet_profil_public'));
         }
 
         // la validation n'est pas bonne, on réaffiche le formulaire avec les erreurs

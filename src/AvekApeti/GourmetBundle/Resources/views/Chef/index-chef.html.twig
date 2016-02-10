@@ -25,7 +25,7 @@
         <div class="header-content header-content-transform">
             <div class="header-content-inner">
                 <h1 class="h1-page">Mon profil Chef</h1>
-                <h2 class="adresse-selection">Chef {{ app.user.username }}</h2>
+                <h2 class="adresse-selection">Chef {{ entity.login }}</h2>
             </div>
         </div>
     </header>
@@ -34,8 +34,8 @@
         <div class="container">
 
             <div class="col-sm-12 text-center photo-mon-compte ">
-                {% if entityChef.image %}
-                    <img src="{{ entityChef.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
+                {% if entity.image %}
+                    <img src="{{ entity.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">
                 {% else %}
                     <img src={{ asset('bundles/gourmet/img/defaut/defaut-icon.png') }} alt="" class="img-circle">
                 {% endif %}
@@ -55,7 +55,7 @@
                         </p>
                     </div>
                     #}
-                    <h3 class="section-heading">{{ entity.adress }}, {{ entity.city }} {{ entity.cp }}</h3>
+                    <h3 class="section-heading">{{ entityChef.adress }}, {{ entityChef.city }} {{ entityChef.cp }}</h3>
                     <hr class="primary">
                     <p class="italique">J'adore cuisiner et découvrir de nouvelles recettes. J’aime aussi les partager, c'est pour cela que je me suis inscris en tant que Chef Avekapeti ! Si vous aimez un de mes plats, n'hésitez pas à les ajouter au panier ;)</p>
                 </div>

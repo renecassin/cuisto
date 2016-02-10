@@ -43,6 +43,7 @@
                 {% endfor %}
             </div>
         </div>
+
     </header>
 
     <!-- Page Content -->
@@ -77,6 +78,7 @@
 
                             <div class="col-sm-10 texte-centre">
                                 <h1>{{ entity.name }}</h1>
+                                {#
                                 <div class="ratings"  data-target="#MonCollapsePlus" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
                                     <p>
                                         <span class="glyphicon glyphicon-heart"></span>
@@ -87,13 +89,12 @@
                                         - 3 commentaires
                                     </p>
                                 </div>
-
+                                #}
                             </div>
 
                             <div class="col-sm-2 text-center">
                                 <div class="cercle">
-                                    {% set prix_final = entity.price * 1.12 %}
-                                    <h3>{{  prix_final|number_format(2, ',', ' ') }}€</h3>
+                                    <h3>{{  entity.priceNet|number_format(2, ',', ' ') }}€</h3>
                                 </div>
                             </div>
 
@@ -322,6 +323,7 @@
                                         <a href="{{ path('chef_plat_show', { 'id': entit.id }) }}">
                                             <h2>{{ entit.name }}</h2>
                                         </a>
+                                        {#
                                         <div class="ratings"  data-target="#MonCollapsePlus{{i}}" data-toggle="collapse" aria-expanded="false" aria-controls="MonCollapse">
                                             <p>
                                                 <span class="glyphicon glyphicon-heart"></span>
@@ -332,12 +334,13 @@
                                                 - 1 commentaire
                                             </p>
                                         </div>
+                                        #}
 
                                     </div>
 
                                     <div class="col-sm-2 text-center">
                                         <div class="cercle">
-                                            <h3>{{ entit.price }}€</h3>
+                                            <h3>{{ entit.priceNet|number_format(2, ',', ' ') }}€</h3>
                                         </div>
                                     </div>
 
@@ -348,30 +351,30 @@
                                         <div class="row bandeau-icon">
                                             <div class="col-sm-2 col-xs-6 text-center">
                                                 {% if entity.categorie %}
-                                                    {% if entity.categorie.name == "Entrée" %}
+                                                    {% if entit.categorie.name == "Entrée" %}
                                                         <i class="fa fa-2x fa-sign-in"></i>
-                                                    {% elseif entity.categorie.name == "Dessert" %}
+                                                    {% elseif entit.categorie.name == "Dessert" %}
                                                         <i class="fa fa-2x fa-birthday-cake"></i>
-                                                    {% elseif entity.categorie.name == "Menu" %}
+                                                    {% elseif entit.categorie.name == "Menu" %}
                                                         <i class="fa fa-2x fa-book"></i>
                                                     {% else %}
                                                         <i class="fa fa-2x fa-cutlery"></i>
                                                     {% endif %}
-                                                    <p>{{ entity.categorie.name }}</p>
+                                                    <p>{{ entit.categorie.name }}</p>
                                                 {% endif %}
                                             </div>
                                             <div class="col-sm-2 col-xs-6 text-center">
                                                 {% if entity.specialite %}
-                                                    {% if entity.specialite.name == "Occidentale" %}
+                                                    {% if entit.specialite.name == "Occidentale" %}
                                                         <i class="fa fa-2x fa-umbrella"></i>
-                                                    {% elseif entity.specialite.name == "Orientale" %}
+                                                    {% elseif entit.specialite.name == "Orientale" %}
                                                         <i class="fa fa-2x fa-try"></i>
-                                                    {% elseif entity.specialite.name == "Asiatique" %}
+                                                    {% elseif entit.specialite.name == "Asiatique" %}
                                                         <i class="fa fa-2x fa-jpy"></i>
                                                     {% else %}
                                                         <i class="fa fa-2x fa-globe"></i>
                                                     {% endif %}
-                                                    <p>{{ entity.specialite.name }}</p>
+                                                    <p>{{ entit.specialite.name }}</p>
                                                 {% endif %}
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
@@ -385,16 +388,16 @@
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
                                                 <i class="fa fa-2x fa-adjust"></i>
-                                                <p>{{ entity.quantity }} part(s) / 8 </p>
+                                                <p>{{ entit.quantity }} part(s) / 8 </p>
                                             </div>
                                             <div class="col-sm-2 col-xs-4 text-center">
-                                                {% if entity.tliv %}
-                                                    {% if entity.tliv.name == "Retrait" %}
+                                                {% if entit.tliv %}
+                                                    {% if entit.tliv.name == "Retrait" %}
                                                         <i class="fa fa-2x fa-bicycle"></i>
                                                     {% else %}
                                                         <i class="fa fa-2x fa-home"></i>
                                                     {% endif %}
-                                                    <p>{{ entity.tliv.name }}</p>
+                                                    <p>{{ entit.tliv.name }}</p>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -514,7 +517,7 @@
                     <ul >
                         <h4>Détails du prix :</h4>
                         <li><h5>Prix défini par le Chef {{ entityChef.login }} : {{ entity.price|number_format(2, ',', ' ') }} €</h5></li>
-                        <li><h5>Prix final affiché aux Gourmets : {{ prix_final|number_format(2, ',', ' ')  }} €</h5></li>
+                        <li><h5>Prix final affiché aux Gourmets : {{ entity.priceNet|number_format(2, ',', ' ')  }} €</h5></li>
                     </ul>
 
                     {#<button class="btn btn-default btn-xl grande-recherche">Ajouter au panier</button>

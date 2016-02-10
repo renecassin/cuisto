@@ -1,9 +1,11 @@
 {% if entities|length == 0 %}
-    <div class="col-lg-12 text-center titre-compte">
-        <h2 class="section-heading">Nous sommes désolés...</h2>
-        <h3 class="section-heading">Nous n'avons aucun plat à vous proposer</h3>
+    <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Malheureusement les chefs sont de repos aujourd'hui</h2>
         <hr class="primary">
-        <p>Réessayer en <a href={{ path('gourmet_homepage') }}>modifiant votre adresse</a></p>
+        <p>Mais n'hésitez pas à retenter demain! Vous pouvez aussi nous envoyer un message pour nous le signaler, nous chercherons d'autres chefs dans votre quartier :-) <a href="mailto:contact@avekapeti.com">contact@avekapeti.com</a></p>
+        <div class="alert alert-info" role="alert">
+            <p><strong>Le saviez-vous?</strong> Si aucun plat n'est disponible à cette adresse, vous n'avez pas besoin de revenir à la page d'accueil pour la modifier, il suffit de déplacer le curseur sur la carte à droite, c'est magique :-)</p>
+        </div>
     </div>
 {% else %}
 
@@ -21,7 +23,7 @@
                                         {{ entity.utilisateur.login }}
                                     </div>
                                     <div class="project-name">
-                                        {{ entity.utilisateur.adress }}, {{ entity.utilisateur.city }}
+                                        {{ entity.utilisateur.chef.adress }}, {{ entity.utilisateur.chef.city }}
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +38,7 @@
                         </div>
                     </a>
                     <div class="caption">
-                        <a href=# class="lien-image-chef" >
+                        <a href="{{ path('gourmet_chefpage', { 'id': entity.utilisateur.chef.id }) }}" class="lien-image-chef" >
                             <div class="panel-image-chef">
                                 {% if entity.utilisateur.image %}
                                     <img src="{{ entity.utilisateur.image.webPath|imagine_filter('profil_picture') }}" alt="" class="img-circle">

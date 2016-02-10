@@ -685,8 +685,8 @@ section#contact .glyphicon-perso {
         margin-bottom: 20px;
     }
     #index-plat .carte-fixe{
-        top: 50px;
-        margin-bottom: 400px;
+        top: 30px;
+        /*margin-bottom: 400px;*/
     }
     #selection-plat .carte-fixe {
         height: 515px;
@@ -806,7 +806,7 @@ section#contact .glyphicon-perso {
     position: absolute;
     z-index: 1;
     left: 79%;
-    top: 63%;
+    top: 70%;
     z-index: 3;
 }
 
@@ -826,9 +826,12 @@ section#contact .glyphicon-perso {
     transition: all .4s ease-in-out;
 }
 
-#index-plat .img-circle,
 #selection-plat .img-circle{
     color: white;
+}
+
+#index-plat .img-circle{
+    color: #f0f0f0;
 }
 
 .well .img-circle,
@@ -1204,6 +1207,10 @@ transform: translateX(-50%);
     margin-bottom: 20px;
 }
 
+#index-plat  .thumbnail .caption-full img:hover {
+    opacity: 0.8;
+}
+
 .bandeau-icon p {
     font-size: 15px;
 }
@@ -1566,4 +1573,9 @@ transform: translateX(-50%);
     #btn-total .btn-filtre {
         width: 100%;
     }
+}
+
+#index-plat  .fa-shopping-cart,
+#index-plat  .fa-plus-circle{
+    color: white
 }

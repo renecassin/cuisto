@@ -1,0 +1,31 @@
+{%  extends 'GourmetBundle::layout.html.twig' %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+
+{%  endblock foot_scripts %}
+
+{% block titre %}Besoin d’aide pour publier vos plats? {{ parent() }}{% endblock %}
+
+{% block content %}
+    <header class="header-inscription" id="header-error404">
+        <div class="header-content header-content-transform">
+            <div class="header-content-inner">
+                <h1 class="h1-page">Besoin d’aide pour publier vos plats?</h1>
+            </div>
+        </div>
+    </header>
+
+    <section id="page404">
+        <div class="container">
+            <div class="row">
+                <p>Avez-vous consulté les <a href="questionsfrequentes.html">questions fréquentes?</a> La réponse à votre question s’y trouve surement. Si ce n’est pas le cas, vous pouvez nous envoyer un mail à : <a href="mailto:contact@avekapeti.com">contact@avekapeti.com</a> avec votre
+                    question précise. Nous y répondrons dés que possible.
+                    Nous pouvons également vous appeler, ainsi notre service client répondra à toutes vos questions lors d’un rendez-vous téléphonique.
+                    Pour ce faire, il vous suffit de remplir le formulaire ci-dessous :
+                </p>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

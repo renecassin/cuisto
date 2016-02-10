@@ -9,8 +9,7 @@
                 <div class="bloc-titre-inscription">
                     <h1 class="h1-page">Vous avez des questions ?</h1>
                     <hr class="light">
-                    <p>Comment rechercher un plat ? Et si j'ai un imprévu, comment annuler ma réservation ? Comment récupérer mon argent disponible ? Comment contacter mon chef ? Et si mon chef est injoignable ?</p>
-
+                    <p>Nous sommes à votre service, si vous avez la moindre question n’hésitez pas à nous contacter en renseignant le formulaire ci-dessous. Vous ne pouvez pas attendre? Vous avez besoin d’une réponse urgente? Pas de soucis! Nous nous ferons une joie d’y répondre : une petite fenêtre en bas à droite « Questions? Discutez avec nous » vous permet de nous poser toutes vos questions. Nous ferons tout notre possible pour y répondre sur le champ.</p>
                 </div>
                 {{  include  ('GourmetBundle:Main:form-contact-feedback.html.twig')  }}
             </div>
@@ -19,4 +18,5 @@
 {% endblock content %}
 
 {% block footer %}
+    {{ parent() }}
 {% endblock footer %}

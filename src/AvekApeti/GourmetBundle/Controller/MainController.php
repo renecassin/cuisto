@@ -36,6 +36,11 @@ class MainController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->addFlash(
+                'envoiOk',
+                "Votre message a bien été envoyé."
+            );
+
             return $this->redirect($this->generateUrl('gourmet_homepage'));
         }
         return $this->render('GourmetBundle:Main:index.html.twig', array(
@@ -94,6 +99,11 @@ class MainController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->addFlash(
+                'envoiOk',
+                "Votre message a bien été envoyé."
+            );
+
             return $this->redirect($this->generateUrl('gourmet_homepage'));
         }
         return $this->render('GourmetBundle:Main:contact.html.twig', array(
@@ -128,6 +138,11 @@ class MainController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            $this->addFlash(
+                'envoiOk',
+                "Votre feedback a bien été envoyé."
+            );
 
             return $this->redirect($this->generateUrl('gourmet_homepage'));
         }
@@ -172,5 +187,34 @@ class MainController extends Controller
         return new Response($nbMessage);
     }
 
+    public function cguAction()
+    {
+        return $this->render('GourmetBundle:Partials:cgu.html.twig');
+    }
+
+    public function aideAction()
+    {
+        return $this->render('GourmetBundle:Partials:aide.html.twig');
+    }
+
+    public function ccmAction()
+    {
+        return $this->render('GourmetBundle:Partials:ccm.html.twig');
+    }
+
+    public function charteAction()
+    {
+        return $this->render('GourmetBundle:Partials:charte.html.twig');
+    }
+
+    public function confianceAction()
+    {
+        return $this->render('GourmetBundle:Partials:confiance.html.twig');
+    }
+
+    public function questionsAction()
+    {
+        return $this->render('GourmetBundle:Partials:questions.html.twig');
+    }
 
 }

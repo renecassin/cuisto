@@ -161,6 +161,22 @@ class ChefController extends Controller
         }
     }
 
+    public function indexAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AvekApetiBackBundle:Chef')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Chef entity.');
+        }
+
+        return $this->render('GourmetBundle:Chef:index-chef.html.twig', array(
+            'entity'      => $entity->getUtilisateur(),
+            'entityChef'      => $entity,
+        ));
+    }
+
     /*
 		Generate random ID for wallet IDs or tokens
 	*/

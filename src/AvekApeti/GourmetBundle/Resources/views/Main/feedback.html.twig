@@ -9,7 +9,15 @@
                 <div class="bloc-titre-inscription">
                     <h1 class="h1-page">Vous avez des suggestions ?</h1>
                     <hr class="light">
-                    <p>Aidez-nous à améliorer la révolution culinaire ! Vous avez des idées pour améliorer l'expérience utilisateur ? Des fonctionnalités manquent ? N'hésitez pas à nous faire part de vos propositions</p>
+                    <p>Avez-vous rencontré un problème lors de votre navigation sur Avekapeti? Un beug? Une incohérence?
+
+                        Quelque chose n’est pas clair?
+
+                        Avez-vous des suggestions à nous faire pour une meilleure expérience sur Avekapeti?
+
+                        Nous sommes ouverts à toute proposition et sommes impatients de découvrir vos suggestions. Pour ce faire, veuillez remplir le formulaire ci-dessous.
+
+                        Formulaire simple avec un minimum d’informations à remplir, juste leur message et adresse mail</p>
 
                 </div>
                 {{  include  ('GourmetBundle:Main:form-contact-feedback.html.twig')  }}
@@ -19,4 +27,5 @@
 {% endblock content %}
 
 {% block footer %}
+    {{ parent() }}
 {% endblock footer %}

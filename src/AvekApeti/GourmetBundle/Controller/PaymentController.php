@@ -186,7 +186,7 @@ class PaymentController extends Controller
         $messageChat->setDestUser($chef->getUtilisateur());
         $messageChat->setItem("Commande du ".date('Y-m-d H:i:s'));
         $messageChat->setAccLecture(0);
-        $messageChat->setContent("Bonjour,\nJe viens de vous commander un plat");
+        $messageChat->setContent("Bonjour!\nUn petit message pour vous avertir que j'ai commandé une part de votre plat :-)");
 
         $em->persist($messageChat);
         $em->flush();
